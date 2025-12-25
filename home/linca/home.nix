@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 {
-  home.username = "linca";
-  home.homeDirectory = "/home/linca";
+  home = {
+    username = "linca";
+    homeDirectory = "/home/linca";
+    stateVersion = "26.05";
+  };
 
-  home.stateVersion = "26.05";
   programs.home-manager.enable = true;
 
   imports = [

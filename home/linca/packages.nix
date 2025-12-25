@@ -1,5 +1,5 @@
 { pkgs, ... }:
-{ 
+{
   home.packages = with pkgs; [
     vscode
     qq
@@ -10,5 +10,7 @@
     nil
     nixd
     hyprlauncher
+    nodejs_latest
+    statix
   ];
 }
