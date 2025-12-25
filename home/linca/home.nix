@@ -5,6 +5,8 @@
 
   home.packages = with pkgs; [
     vscode
+    qq
+    yazi
     waybar
     gcc
     tree-sitter
@@ -16,8 +18,12 @@
   programs.home-manager.enable = true;
 
   programs.git = {
-    enable = true;  
-    userName = "linca";
-    userEmail = "lhcfl@outlook.com";
+    enable = true;
+    settings = {
+      user = {
+        mame = "linca";
+        email = "lhcfl@outlook.com";
+      };
+    };
   };
 }
