@@ -8,6 +8,8 @@
     waybar
     gcc
     tree-sitter
+    nil
+    nixd
   ];
 
   home.stateVersion = "26.05";
@@ -16,6 +18,6 @@
   programs.git = {
     enable = true;  
     userName = "linca";
-    userEmail = "lhcfl@outlook.com"
+    userEmail = "lhcfl@outlook.com";
   };
 }
