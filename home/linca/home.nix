@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     vscode
     waybar
+    gcc
   ];
 
   home.stateVersion = "26.05";
