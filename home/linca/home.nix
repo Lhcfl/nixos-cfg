@@ -3,19 +3,12 @@
   home.username = "linca";
   home.homeDirectory = "/home/linca";
 
-  home.packages = with pkgs; [
-    vscode
-    qq
-    yazi
-    waybar
-    gcc
-    tree-sitter
-    nil
-    nixd
-  ];
-
   home.stateVersion = "26.05";
   programs.home-manager.enable = true;
+
+  imports = [
+    ./packages.nix
+  ];
 
   programs.git = {
     enable = true;

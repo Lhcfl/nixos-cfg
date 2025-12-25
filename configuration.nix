@@ -115,6 +115,8 @@
     xray
     brightnessctl
     playerctl
+    unzip
+    p7zip
   ];
 
   fonts.packages = with pkgs; [

@@ -11,32 +11,36 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = {
-    self,
-    nixpkgs,
-    lanzaboote,
-    home-manager,
-    ...
-  }: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          lanzaboote.nixosModules.lanzaboote
-          home-manager.nixosModules.home-manager
-          ./configuration.nix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.linca = ./home/linca/home.nix;
-          }
-        ];
-      };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      lanzaboote,
+      home-manager,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
+          modules = [
+            lanzaboote.nixosModules.lanzaboote
+            home-manager.nixosModules.home-manager
+            ./configuration.nix
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.linca = ./home/linca/home.nix;
+            }
+          ];
+        };
+      };
+    };
 }
