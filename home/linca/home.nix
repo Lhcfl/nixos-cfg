@@ -15,5 +15,7 @@
 
   programs.git = {
     enable = true;  
-  }
+    userName = "linca";
+    userEmail = "lhcfl@outlook.com"
+  };
 }
