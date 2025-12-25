@@ -14,5 +14,11 @@
     vscode-json-languageserver
     mako
     telegram-desktop
+    # 截图
+    gradia
+    grim
+    slurp
+    wl-clipboard-rs
+    zed-editor
   ];
 }
