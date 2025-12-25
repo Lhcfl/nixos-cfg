@@ -4,7 +4,6 @@
     vscode
     qq
     yazi
-    waybar
     gcc
     tree-sitter
     nil
@@ -12,5 +11,8 @@
     hyprlauncher
     nodejs_latest
     statix
+    vscode-json-languageserver
+    mako
+    telegram-desktop
   ];
 }

@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkForce false;
@@ -20,7 +25,7 @@
     enable = true;
     pkiBundle = "/var/lib/sbctl";
   };
-  
+
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -41,7 +46,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   nix.settings.experimental-features = [
-    "nix-command"      
+    "nix-command"
     "flakes"
   ];
 
@@ -64,7 +69,7 @@
     fcitx5.addons = with pkgs; [
       fcitx5-rime
       fcitx5-gtk
-      kdePackages.fcitx5-qt      
+      kdePackages.fcitx5-qt
     ];
   };
 
@@ -83,19 +88,23 @@
   users.users.linca = {
     isNormalUser = true;
     description = "linca";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   programs.hyprland.enable = true;
+  programs.waybar.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     neovim
     eza
@@ -117,6 +126,7 @@
     playerctl
     unzip
     p7zip
+    libnotify
   ];
 
   fonts.packages = with pkgs; [
@@ -139,6 +149,8 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  services.blueman.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
