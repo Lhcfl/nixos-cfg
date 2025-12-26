@@ -10,6 +10,7 @@ _: {
     ./global/networking.nix
     ./global/locale.nix
     ./global/programs.nix
+    ./global/security.nix
   ];
 
   nix.settings.experimental-features = [
