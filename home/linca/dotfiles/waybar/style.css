@@ -1,0 +1,61 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(43, 48, 59, 0.5);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    color: white;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: white;
+}
+
+#workspaces button {
+  padding: 0 10px 0 5px;
+  margin: 4px 2px;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(100, 114, 125, 0.5);
+  border-radius: 10px;
+}
+
+#workspaces button.focused, #workspaces button.active {
+    background-color: rgba(100, 114, 125, 0.3);
+}
+
+.moudles-right > widget {
+  padding: 0 20px;
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+}
+
+.modules-center * {
+  font-family:  Maple Mono NF CN;
+}
+
+.modules-right .module {
+  padding: 0 5px 0 5px;
+  color: #ffffff;
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+}
+
+#workspaces button:hover {
+  border: 2px solid rgba(100, 114, 125, 1);
+  box-shadow: none;
+}

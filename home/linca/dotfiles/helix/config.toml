@@ -1,0 +1,32 @@
+theme = "monokai_aqua"
+
+[editor]
+line-number = "relative"
+cursorline = true
+bufferline = "multiple"
+color-modes = true
+end-of-line-diagnostics = "warning"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.indent-guides]
+render = true
+character = ""
+skip-levels = 1
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+max-wrap = 0
+
+[keys.normal.space]
+x = ":buffer-close"
+
+[keys.normal."["]
+b = ":buffer-previous"
+
+[keys.normal."]"]
+b = ":buffer-next"
