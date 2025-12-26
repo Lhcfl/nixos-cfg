@@ -12,5 +12,6 @@
       ".config/helix" = mkDotfilesLnk "helix";
       ".config/mako" = mkDotfilesLnk "mako";
       ".config/waybar" = mkDotfilesLnk "waybar";
+      ".config/starship.toml" = mkDotfilesLnk "starship.toml";
     };
 }
