@@ -3,25 +3,30 @@
   home.packages = with pkgs; [
     vscode
     qq
-    yazi
+    yazi # terminal file explorer
     gcc
     tree-sitter
-    nil
-    nixd
-    hyprlauncher
+    nil # nix lsp
+    nixd # nix lsp
+    hyprlauncher # hyprland tools
     nodejs_latest
-    statix
+    statix # nix lsp
     vscode-json-languageserver
-    mako
+    mako # notifcation
     telegram-desktop
-    # 截图
+    # BEGIN 截图
     gradia
     grim
     slurp
     wl-clipboard-rs
+    # END 截图
     zed-editor
-    hypridle
-    hyprlock
+    hypridle # hyprland tools
+    hyprlock # hyprland tools
     tombi # toml LSP
+    go-musicfox # music
+    python3
+    uv # python3
+    ninja
   ];
 }
