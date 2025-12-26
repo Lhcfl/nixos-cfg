@@ -2,7 +2,9 @@
 {
   home.file =
     let
-      mkDotfilesLnk = name: config.lib.file.mkOutOfStoreSymlink ./dotfiles/${name};
+      mkDotfilesLnk = name: {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${name}";
+      };
     in
     {
       ".config/kitty" = mkDotfilesLnk "kitty";
