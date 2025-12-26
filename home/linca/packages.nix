@@ -22,5 +22,6 @@
     zed-editor
     hypridle
     hyprlock
+    tombi # toml LSP
   ];
 }

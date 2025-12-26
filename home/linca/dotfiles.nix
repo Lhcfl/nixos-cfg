@@ -13,5 +13,6 @@
       ".config/mako" = mkDotfilesLnk "mako";
       ".config/waybar" = mkDotfilesLnk "waybar";
       ".config/starship.toml" = mkDotfilesLnk "starship.toml";
+      ".config/yazi" = mkDotfilesLnk "yazi";
     };
 }
