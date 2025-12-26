@@ -9,5 +9,6 @@
       ".config/hypr" = mkDotfilesLnk "hypr";
       ".config/helix" = mkDotfilesLnk "helix";
       ".config/mako" = mkDotfilesLnk "mako";
+      ".config/waybar" = mkDotfilesLnk "waybar";
     };
 }
