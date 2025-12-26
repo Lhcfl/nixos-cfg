@@ -3,7 +3,7 @@
   home.file =
     let
       mkDotfilesLnk = name: {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/${name}";
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
       };
     in
     {
