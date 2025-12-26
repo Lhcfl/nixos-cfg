@@ -11,6 +11,8 @@
   imports = [
     ./packages.nix
     ./dotfiles.nix
+    ./shell.nix
+    ./environment.nix
   ];
 
   programs.git = {
