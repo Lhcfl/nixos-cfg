@@ -10,7 +10,7 @@ _: {
     ./global/networking.nix
     ./global/locale.nix
     ./global/programs.nix
-    ./global/security.nix
+    ./modules/fingerprint.nix
   ];
 
   nix.settings.experimental-features = [

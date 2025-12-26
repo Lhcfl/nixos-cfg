@@ -13,10 +13,7 @@ _: {
   # services.openssh.enable = true;
 
   services = {
-
     blueman.enable = true;
-
-    fprintd.enable = true;
 
     # Configure keymap in X11
     xserver = {
@@ -28,6 +25,5 @@ _: {
       #   touchpad.naturalScrolling = false;
       # };
     };
-
   };
 }
