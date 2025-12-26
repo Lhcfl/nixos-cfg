@@ -10,6 +10,7 @@
 
   imports = [
     ./packages.nix
+    ./dotfiles.nix
   ];
 
   programs.git = {

@@ -20,5 +20,7 @@
     slurp
     wl-clipboard-rs
     zed-editor
+    hypridle
+    hyprlock
   ];
 }

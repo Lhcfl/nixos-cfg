@@ -19,7 +19,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       lanzaboote,
       home-manager,
@@ -34,11 +33,7 @@
             lanzaboote.nixosModules.lanzaboote
             home-manager.nixosModules.home-manager
             ./configuration.nix
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.linca = ./home/linca/home.nix;
-            }
+            ./home-manager.nix
           ];
         };
       };
