@@ -1,7 +1,16 @@
+-- 注册文件类型
+if not vim.filetype.match({ filename = "cangjie" }) then
+  vim.filetype.add({
+    extension = {
+      cj = "cangjie",
+    },
+  })
+end
+
 return {
   {
     "https://gitcode.com/ystyle/cangjie-nvim",
-    ft = "cj",
+    ft = "cangjie",
     dependencies = {
       "neovim/nvim-lspconfig",
     },

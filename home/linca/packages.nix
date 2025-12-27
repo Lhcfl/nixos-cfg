@@ -8,6 +8,7 @@
     tree-sitter
     nil # nix lsp
     nixd # nix lsp
+    nixfmt
     hyprlauncher # hyprland tools
     nodejs_latest
     statix # nix lsp
@@ -28,5 +29,7 @@
     python3
     uv # python3
     onedrive
+    gnome-keyring # for vscode
+    libsecret
   ];
 }

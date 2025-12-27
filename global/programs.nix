@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   programs = {
+    # allow appimage
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
 
     # nix-ld helps you to run non-nix executables in a nix environment
     # https://nix.dev/guides/faq#how-to-run-non-nix-executables
@@ -38,6 +43,7 @@
     unzip
     p7zip
     libnotify
+    docker
   ];
 
   fonts.packages = with pkgs; [

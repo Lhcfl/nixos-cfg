@@ -21,6 +21,15 @@ _: {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {
     isNormalUser = true;
@@ -28,6 +37,7 @@ _: {
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
   };
 
