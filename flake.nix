@@ -19,20 +19,44 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       lanzaboote,
       home-manager,
       ...
     }:
+    let 
+      project = {
+        globals = [
+          ./global/locale.nix
+          ./global/networking.nix
+          ./global/services.nix
+          ./global/programs.nix
+          ./global/nix.nix
+        ];
+        
+        modules = {
+          docker = ./modules/docker.nix;
+          fingerprint = ./modules/fingerprint.nix;
+          gnome-keyring = ./modules/gnome-keyring.nix;
+          hyprland = ./modules/hyprland.nix;
+          secure-boot = ./modules/secure-boot.nix;
+        };
+      };
+    in
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
+          specialArgs = {
+            inherit project;
+          };
+
           modules = [
             lanzaboote.nixosModules.lanzaboote
             home-manager.nixosModules.home-manager
-            ./configuration.nix
+            ./devices/legion-82tf/configuration.nix
             ./home-manager.nix
           ];
         };

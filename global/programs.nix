@@ -15,13 +15,6 @@
       # libraries = with pkgs; [ ];
     };
 
-    # desktop
-    hyprland.enable = true;
-    waybar.enable = true;
-
-    # ssh
-    ssh.startAgent = true;
-
     # traceroute and ping
     mtr.enable = true;
 
@@ -49,7 +42,6 @@
     git
     bat
     bun
-    sbctl
     lon
     v2rayn
     xray

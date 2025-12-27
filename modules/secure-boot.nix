@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
+
   # Bootloader.
   boot = {
     # lanzaboot will replace systemd-boot. so we disable it.

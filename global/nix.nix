@@ -1,3 +1,5 @@
+# Global Nix/Nixpkgs configuration
+
 _: {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

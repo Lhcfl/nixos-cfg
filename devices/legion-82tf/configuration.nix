@@ -1,19 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-_: {
-  imports = [
-    # Include the results of the hardware scan.
+{ project, ... }: {
+  imports = project.globals ++ [
     ./hardware-configuration.nix
-    ./global/services.nix
-    ./global/boot.nix
-    ./global/networking.nix
-    ./global/locale.nix
-    ./global/programs.nix
-    ./global/nix.nix
-    ./modules/fingerprint.nix
-    ./modules/docker.nix
-    ./modules/keyring.nix
+    project.modules.fingerprint
+    project.modules.docker
+    project.modules.hyprland
+    project.modules.gnome-keyring
+    project.modules.secure-boot
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

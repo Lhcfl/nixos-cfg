@@ -3,17 +3,6 @@ _: {
   services = {
     blueman.enable = true;
 
-    # Configure keymap in X11
-    xserver = {
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      # libinput = {
-      #   touchpad.naturalScrolling = false;
-      # };
-    };
-
     # Enable the OpenSSH daemon.
     openssh = {
       enable = true;
@@ -25,6 +14,5 @@ _: {
         AllowUsers = [ "linca" ];
       };
     };
-
   };
 }
