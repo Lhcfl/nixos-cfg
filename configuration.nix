@@ -11,6 +11,7 @@ _: {
     ./global/locale.nix
     ./global/programs.nix
     ./modules/fingerprint.nix
+    ./modules/docker.nix
   ];
 
   nix.settings.experimental-features = [
@@ -20,15 +21,6 @@ _: {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {
