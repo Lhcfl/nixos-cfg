@@ -10,17 +10,10 @@ _: {
     ./global/networking.nix
     ./global/locale.nix
     ./global/programs.nix
+    ./global/nix.nix
     ./modules/fingerprint.nix
     ./modules/docker.nix
   ];
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {
