@@ -29,7 +29,5 @@
     python3
     uv # python3
     onedrive
-    gnome-keyring # for vscode
-    libsecret
   ];
 }

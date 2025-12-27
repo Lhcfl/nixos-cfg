@@ -13,6 +13,7 @@ _: {
     ./global/nix.nix
     ./modules/fingerprint.nix
     ./modules/docker.nix
+    ./modules/keyring.nix
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
