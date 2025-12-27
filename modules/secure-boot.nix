@@ -1,3 +1,9 @@
+# Module for enabling Secure Boot with lanzaboote and sbctl.
+# Please refer to https://nix-community.github.io/lanzaboote/getting-started/prepare-your-system.html
+# first, sudo sbctl create-keys,
+# then evaluate and apply this module.
+# finally sudo sbctl enroll-keys to enroll the keys into your firmware.
+
 { pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [

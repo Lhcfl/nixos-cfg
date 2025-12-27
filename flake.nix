@@ -57,7 +57,7 @@
             lanzaboote.nixosModules.lanzaboote
             home-manager.nixosModules.home-manager
             ./devices/legion-82tf/configuration.nix
-            ./home-manager.nix
+            ./home/home-manager.nix
           ];
         };
       };
