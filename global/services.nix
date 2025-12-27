@@ -1,17 +1,5 @@
 _: {
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   services = {
     blueman.enable = true;
 
@@ -25,5 +13,18 @@ _: {
       #   touchpad.naturalScrolling = false;
       # };
     };
+
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+      ports = [ 8322 ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AllowUsers = [ "linca" ];
+      };
+    };
+
   };
 }

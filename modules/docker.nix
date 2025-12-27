@@ -1,30 +1,31 @@
-_: {
+{ lib, pkgs, ... }:
+{
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    rootless.enable = false;
+    # {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
+    # daemon.settings = {
+    #   "registry-mirrors" = [
+    #     "https://docker.mirrors.ustc.edu.cn/"
+    #   ];
+    # };
   };
 
-  services.docker = {
-    enable = true;
+  environment.systemPackages = with pkgs; [
+    docker
+  ];
 
-    daemon.settings = {
-      "registry-mirrors" = [
-        "https://docker.mirrors.ustc.edu.cn/"
-      ];
-    };
-  };
-
-  systemd.services.docker = {
-    environment = {
-      "HTTP_PROXY" = "";
-      "HTTPS_PROXY" = "";
-      "SOCKS_PROXY" = "";
-      "SOCKS5_PROXY" = "";
-      "ALL_PROXY" = "";
-    };
-  };
+  # systemd.services.docker = {
+  #   environment = {
+  #     "http_proxy" = lib.mkForce "";
+  #     "https_proxy" = lib.mkForce "";
+  #     "socks_proxy" = lib.mkForce "";
+  #     "socks5_proxy" = lib.mkForce "";
+  #     "all_proxy" = lib.mkForce "";
+  #   };
+  # };
 }
