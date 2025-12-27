@@ -5,7 +5,7 @@
     # nix-ld helps you to run non-nix executables in a nix environment
     # https://nix.dev/guides/faq#how-to-run-non-nix-executables
     nix-ld = {
-      enabled = true;
+      enable = true;
       # libraries = with pkgs; [ ];
     };
     hyprland.enable = true;
