@@ -1,13 +1,6 @@
 { pkgs, ... }:
 {
   # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   programs = {
     # allow appimage
     appimage = {
@@ -28,6 +21,15 @@
 
     # ssh
     ssh.startAgent = true;
+
+    # traceroute and ping
+    mtr.enable = true;
+
+    #gunpg
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = false; # ssh agent
+    };
   };
 
   # List packages installed in system profile. To search, run:
@@ -56,7 +58,6 @@
     unzip
     p7zip
     libnotify
-    docker
   ];
 
   fonts.packages = with pkgs; [
