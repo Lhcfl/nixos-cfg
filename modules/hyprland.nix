@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs = {
     # desktop
@@ -6,7 +7,6 @@
     waybar.enable = true;
 
     # use default ssh agent
-    ssh.startAgent = true; 
+    ssh.startAgent = true;
   };
-
 }

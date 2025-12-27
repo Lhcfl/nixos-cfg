@@ -19,13 +19,12 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       lanzaboote,
       home-manager,
       ...
     }:
-    let 
+    let
       project = {
         globals = [
           ./global/boot.nix
@@ -35,7 +34,7 @@
           ./global/programs.nix
           ./global/nix.nix
         ];
-        
+
         modules = {
           docker = ./modules/docker.nix;
           fingerprint = ./modules/fingerprint.nix;
