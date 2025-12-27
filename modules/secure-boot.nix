@@ -9,13 +9,12 @@
 
   # Bootloader.
   boot = {
-    # lanzaboot will replace systemd-boot. so we disable it.
+    # Lanzaboote currently replaces the systemd-boot module.
+    # This setting is usually set to true in configuration.nix
+    # generated at installation time. So we force it to false
+    # for now.
     loader.systemd-boot.enable = lib.mkForce false;
-
-    loader.efi.canTouchEfiVariables = true;
-
-    bootspec.enable = true;
-
+    
     lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
@@ -27,8 +26,5 @@
       autoGenerateKeys.enable = true;
       autoEnrollKeys.enable = true;
     };
-
-    # Use latest kernel.
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 }

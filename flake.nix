@@ -28,6 +28,7 @@
     let 
       project = {
         globals = [
+          ./global/boot.nix
           ./global/locale.nix
           ./global/networking.nix
           ./global/services.nix

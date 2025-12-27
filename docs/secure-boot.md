@@ -6,7 +6,7 @@ The module has been configured to automatically generate and enroll keys. Howeve
 
 ## PREPARE YOUR SYSTEM
 
-Exit "User Mode" in your firmware settings, and enable "Configuration Mode".
+Exit "User Mode" in your firmware settings, and enable "Setup Mode".
 
 ```
 sudo sbctl create-keys
