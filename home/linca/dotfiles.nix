@@ -6,14 +6,21 @@
         # 😭️ if we use relative sym link, hyprland will broken
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
       };
+      mkConfig = name: {
+        name = ".config/${name}";
+        value = mkDotfilesLnk name;
+      };
     in
-    {
-      ".config/kitty" = mkDotfilesLnk "kitty";
-      ".config/hypr" = mkDotfilesLnk "hypr";
-      ".config/helix" = mkDotfilesLnk "helix";
-      ".config/mako" = mkDotfilesLnk "mako";
-      ".config/waybar" = mkDotfilesLnk "waybar";
-      ".config/starship.toml" = mkDotfilesLnk "starship.toml";
-      ".config/yazi" = mkDotfilesLnk "yazi";
-    };
+    builtins.listToAttrs (
+      builtins.map mkConfig [
+        "kitty"
+        "hypr"
+        "helix"
+        "mako"
+        "waybar"
+        "starship.toml"
+        "yazi"
+        "nvim"
+      ]
+    );
 }
