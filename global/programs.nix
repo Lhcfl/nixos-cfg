@@ -1,8 +1,16 @@
 { pkgs, ... }:
 {
+  programs = {
 
-  programs.hyprland.enable = true;
-  programs.waybar.enable = true;
+    # nix-ld helps you to run non-nix executables in a nix environment
+    # https://nix.dev/guides/faq#how-to-run-non-nix-executables
+    nix-ld = {
+      enabled = true;
+      # libraries = with pkgs; [ ];
+    };
+    hyprland.enable = true;
+    waybar.enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -27,6 +27,6 @@
     go-musicfox # music
     python3
     uv # python3
-    ninja
+    onedrive
   ];
 }
