@@ -1,8 +1,5 @@
 # Module for enabling Secure Boot with lanzaboote and sbctl.
 # Please refer to https://nix-community.github.io/lanzaboote/getting-started/prepare-your-system.html
-# first, sudo sbctl create-keys,
-# then evaluate and apply this module.
-# finally sudo sbctl enroll-keys to enroll the keys into your firmware.
 
 { pkgs, lib, ... }:
 {
@@ -22,6 +19,13 @@
     lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
+      
+      # Keys are generated in a systemd service, so you will need to actually boot
+      # the system to generate the keys. They will not be generated as part of 
+      # switch-to-configuration or nixos-install.
+      # https://nix-community.github.io/lanzaboote/how-to-guides/automatically-generate-keys.html
+      autoGenerateKeys.enable = true;
+      autoEnrollKeys.enable = true;
     };
 
     # Use latest kernel.
