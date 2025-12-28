@@ -6,7 +6,6 @@
       lua-language-server
       lua5_1
       luarocks
-      tree-sitter
     ];
   };
 }

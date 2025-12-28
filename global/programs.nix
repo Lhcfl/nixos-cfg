@@ -53,6 +53,9 @@
     p7zip # 7z
     libnotify # notification support
     manix # nix configuration helper
+    gdu # better `du`
+    btop # better htop
+    htop
   ];
 
   fonts.packages = with pkgs; [
