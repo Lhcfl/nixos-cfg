@@ -41,6 +41,7 @@
           gnome-keyring = ./modules/gnome-keyring.nix;
           hyprland = ./modules/hyprland.nix;
           secure-boot = ./modules/secure-boot.nix;
+          btrbk = ./modules/btrbk.nix;
         };
       };
     in

@@ -10,6 +10,7 @@
     project.modules.hyprland
     project.modules.gnome-keyring
     project.modules.secure-boot
+    project.modules.btrbk
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
