@@ -20,7 +20,7 @@
         "waybar"
         "starship.toml"
         "yazi"
-        "nvim"
+        # "nvim"
       ]
     );
 }

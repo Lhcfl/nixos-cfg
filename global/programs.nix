@@ -23,33 +23,36 @@
       enable = true;
       enableSSHSupport = false; # ssh agent
     };
+
+    # better shell
+    fish.enable = true;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # system wide packages.
+  # to search run `nix search wget`
   environment.systemPackages = with pkgs; [
     wget
     neovim
-    eza
-    fd
-    ripgrep
-    zoxide
-    helix
+    eza # `ls` replacement
+    fd # `find` replacement
+    ripgrep # `grep` replacement
+    zoxide # `cd` replacement
+    helix # `vim` replacement
     firefox
-    fzf
-    kitty
+    fzf # fuzzy finder
+    kitty # terminal emulator
     git
-    bat
-    bun
-    lon
-    v2rayn
-    xray
-    brightnessctl
-    playerctl
+    bat # `cat` replacement
+    bun # js runtime
+    lon # nix package manager
+    v2rayn # proxy client
+    xray # proxy client
+    brightnessctl # brightness control
+    playerctl # media player control
     unzip
-    p7zip
-    libnotify
-    manix
+    p7zip # 7z
+    libnotify # notification support
+    manix # nix configuration helper
   ];
 
   fonts.packages = with pkgs; [

@@ -15,6 +15,8 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           lua-language-server
+          luarocks
+          lua5_1
         ];
       };
     };
