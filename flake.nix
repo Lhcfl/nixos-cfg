@@ -33,6 +33,7 @@
           ./global/services.nix
           ./global/programs.nix
           ./global/nix.nix
+          ./global/fonts.nix
         ];
 
         modules = {

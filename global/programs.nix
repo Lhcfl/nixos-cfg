@@ -58,12 +58,4 @@
     htop
   ];
 
-  fonts.packages = with pkgs; [
-    maple-mono.NF-CN-unhinted
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-  ];
-
 }
