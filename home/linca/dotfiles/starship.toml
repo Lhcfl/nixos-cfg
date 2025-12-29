@@ -1,5 +1,5 @@
 command_timeout = 300
-format = '$os$all $fill $time $cmd_duration$line_break$directory$character'
+format = '$shell$os$all $fill $time $cmd_duration$line_break$directory$character'
 
 [os]
 style = "bold red"
@@ -20,6 +20,14 @@ format = '[$user]($style) '
 
 [[battery.display]]
 threshold = 100
+
+[shell]
+disabled = false
+bash_indicator = "bash"
+fish_indicator = "fish"
+zsh_indicator = "zsh"
+powershell_indicator = "pwsh"
+format = '\([$indicator]($style)\) '
 
 [aws]
 symbol = "  "
