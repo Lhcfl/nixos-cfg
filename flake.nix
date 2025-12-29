@@ -49,10 +49,6 @@
         nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
-          specialArgs = {
-            inherit project;
-          };
-
           modules = globals ++ [
             lanzaboote.nixosModules.lanzaboote
             home-manager.nixosModules.home-manager
