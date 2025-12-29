@@ -21,6 +21,8 @@
         "starship.toml"
         "yazi"
         "nvim"
+        "dolphinrc"
+        "kdeglobals"
       ]
     );
 }
