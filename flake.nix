@@ -34,6 +34,7 @@
         ./global/programs.nix
         ./global/nix.nix
         ./global/fonts.nix
+        ./global/root.nix
 
         # default disabled modules
         ./modules/gnome-keyring.nix
