@@ -1,20 +1,20 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 11px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  min-height: 0;
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
-    color: white;
+  background: rgba(43, 48, 59, 0.5);
+  /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+  color: white;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+.modules-left>widget:first-child>#workspaces {
+  margin-left: 0;
 }
 
 tooltip {
@@ -31,31 +31,60 @@ tooltip label {
   padding: 0 10px 0 5px;
   margin: 4px 2px;
   background: transparent;
-  color: white;
-  border: 1px solid rgba(100, 114, 125, 0.5);
+  color: black;
+  background-color: rgb(222, 184, 135);
   border-radius: 10px;
 }
 
-#workspaces button.focused, #workspaces button.active {
-    background-color: rgba(100, 114, 125, 0.3);
+#workspaces button:hover {
+  background-color: rgb(255, 224, 184);
+  box-shadow: none;
 }
 
-.moudles-right > widget {
-  padding: 0 20px;
-  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+#workspaces button.active {
+  background-color: rgb(255, 224, 184);
 }
 
-.modules-center * {
-  font-family:  Maple Mono NF CN;
+
+.modules-center #window {
+  padding: 0 10px;
+  margin: 5px 0;
+  font-family: Noto Sans CJK CN;
+  background-color: rgb(222, 184, 135);
+  border-radius: 10px;
+  color: black;
+  font-size: 13px;
 }
 
-.modules-right .module {
+/* .modules-right .module {
   padding: 0 5px 0 5px;
   color: #ffffff;
   border-bottom: 3px solid rgba(100, 114, 125, 0.5);
 }
 
-#workspaces button:hover {
-  border: 2px solid rgba(100, 114, 125, 1);
-  box-shadow: none;
+.modules-right>widget {
+  padding: 0 20px;
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+} */
+
+.modules-right>*>* {
+  padding: 0 5px 0 5px;
+  margin: 4px 1px;
+  background: transparent;
+  color: black;
+  background-color: rgb(222, 184, 135);
+  border-radius: 10px;
+}
+
+#sysinfo {
+  padding: 0 4px 0 2px;
+  margin: 4px 1px;
+  background: transparent;
+  color: black;
+  background-color: rgb(222, 184, 135);
+  border-radius: 10px;
+}
+
+#sysinfo>*>* {
+  margin: 0 2px;
 }

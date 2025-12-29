@@ -18,7 +18,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       nixpkgs,
       lanzaboote,
       home-manager,
@@ -49,6 +49,10 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+
+          specialArgs = {
+            inherit inputs;
+          };
 
           modules = globals ++ [
             lanzaboote.nixosModules.lanzaboote

@@ -24,6 +24,7 @@
         "dolphinrc"
         "kdeglobals"
         "vicinae"
+        "ashell"
       ]
     );
 }
