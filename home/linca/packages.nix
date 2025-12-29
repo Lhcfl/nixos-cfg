@@ -29,5 +29,6 @@
     python3
     uv # python3
     onedrive
+    vicinae
   ];
 }

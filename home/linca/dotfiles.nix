@@ -12,7 +12,7 @@
       };
     in
     builtins.listToAttrs (
-      builtins.map mkConfig [
+      map mkConfig [
         "kitty"
         "hypr"
         "helix"
@@ -23,6 +23,7 @@
         "nvim"
         "dolphinrc"
         "kdeglobals"
+        "vicinae"
       ]
     );
 }
