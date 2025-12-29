@@ -14,5 +14,6 @@
     ./shell.nix
     ./environment.nix
     ./programs.nix
+    ./modules/kde.nix
   ];
 }
