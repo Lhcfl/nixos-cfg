@@ -25,26 +25,24 @@
       ...
     }:
     let
-      project = {
-        globals = [
-          ./global/boot.nix
-          ./global/locale.nix
-          ./global/networking.nix
-          ./global/services.nix
-          ./global/programs.nix
-          ./global/nix.nix
-          ./global/fonts.nix
-          ./modules/gnome-keyring.nix
-        ];
+      globals = [
+        # enabled modules
+        ./global/boot.nix
+        ./global/locale.nix
+        ./global/networking.nix
+        ./global/services.nix
+        ./global/programs.nix
+        ./global/nix.nix
+        ./global/fonts.nix
 
-        modules = {
-          docker = ./modules/docker.nix;
-          fingerprint = ./modules/fingerprint.nix;
-          hyprland = ./modules/hyprland.nix;
-          secure-boot = ./modules/secure-boot.nix;
-          btrbk = ./modules/btrbk.nix;
-        };
-      };
+        # default disabled modules
+        ./modules/gnome-keyring.nix
+        ./modules/docker.nix
+        ./modules/fingerprint.nix
+        ./modules/hyprland.nix
+        ./modules/secure-boot.nix
+        ./modules/btrbk.nix
+      ];
     in
     {
       nixosConfigurations = {
@@ -55,7 +53,7 @@
             inherit project;
           };
 
-          modules = [
+          modules = globals ++ [
             lanzaboote.nixosModules.lanzaboote
             home-manager.nixosModules.home-manager
             ./devices/legion-82tf/configuration.nix

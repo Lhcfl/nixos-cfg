@@ -1,19 +1,19 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ project, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = project.globals ++ [
+  imports = [
     ./hardware-configuration.nix
-    project.modules.fingerprint
-    project.modules.docker
-    project.modules.hyprland
-    project.modules.secure-boot
-    project.modules.btrbk
   ];
 
   funkcia.modules = {
     gnome-keyring.enable = true;
+    fingerprint.enable = true;
+    docker.enable = true;
+    hyprland.enable = true;
+    secure-boot.enable = true;
+    btrbk.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

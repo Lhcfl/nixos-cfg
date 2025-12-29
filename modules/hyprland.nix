@@ -5,16 +5,25 @@
   ...
 }:
 {
-  programs = {
-    # desktop
-    hyprland.enable = true;
-    waybar.enable = true;
-
-    # use default ssh agent
-    ssh.startAgent = true;
+  options.funkcia.modules.hyprland = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        funkcia: Enable Hyprland module.
+      '';
+    };
   };
 
-  security.pam.services.hyprland = {
-    enableGnomeKeyring = lib.mkIf config.funkcia.modules.gnome-keyring.enable true;
+  config = lib.mkIf config.funkcia.modules.hyprland.enable {
+    programs = {
+      # desktop
+      hyprland.enable = true;
+      waybar.enable = true;
+    };
+
+    security.pam.services.hyprland = {
+      enableGnomeKeyring = lib.mkIf config.funkcia.modules.gnome-keyring.enable true;
+    };
   };
 }

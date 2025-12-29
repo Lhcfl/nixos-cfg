@@ -26,6 +26,9 @@
 
     # better shell
     fish.enable = true;
+
+    # use default ssh agent
+    ssh.startAgent = true;
   };
 
   # system wide packages.
