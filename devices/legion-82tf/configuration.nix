@@ -8,10 +8,13 @@
     project.modules.fingerprint
     project.modules.docker
     project.modules.hyprland
-    project.modules.gnome-keyring
     project.modules.secure-boot
     project.modules.btrbk
   ];
+
+  funkcia.modules = {
+    gnome-keyring.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {

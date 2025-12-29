@@ -2,6 +2,12 @@
 
 存放各种 NixOS 系统配置文件的仓库。
 
+## Name
+
+它被叫做 `funkcia`
+
+配置文件中的 `funkcia` 就是这个仓库的东西
+
 ## Installation Documentations
 
 Refer to [Documentations](./docs/)

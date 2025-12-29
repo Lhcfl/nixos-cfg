@@ -34,12 +34,12 @@
           ./global/programs.nix
           ./global/nix.nix
           ./global/fonts.nix
+          ./modules/gnome-keyring.nix
         ];
 
         modules = {
           docker = ./modules/docker.nix;
           fingerprint = ./modules/fingerprint.nix;
-          gnome-keyring = ./modules/gnome-keyring.nix;
           hyprland = ./modules/hyprland.nix;
           secure-boot = ./modules/secure-boot.nix;
           btrbk = ./modules/btrbk.nix;
