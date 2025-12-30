@@ -41,24 +41,27 @@
     ripgrep # `grep` replacement
     zoxide # `cd` replacement
     helix # `vim` replacement
-    firefox
     fzf # fuzzy finder
-    kitty # terminal emulator
     git
     bat # `cat` replacement
     bun # js runtime
     lon # nix package manager
-    v2rayn # proxy client
-    xray # proxy client
-    brightnessctl # brightness control
-    playerctl # media player control
     unzip
     p7zip # 7z
-    libnotify # notification support
     manix # nix configuration helper
     gdu # better `du`
     btop # better htop
     htop
+
+    ## GUI PACKAGES
+
+    libnotify # notification support
+    firefox
+    kitty # terminal emulator
+    v2rayn # proxy client
+    xray # proxy client
+    brightnessctl # brightness control
+    playerctl # media player control
   ];
 
 }
