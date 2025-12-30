@@ -7,7 +7,7 @@ _: {
         defaultBranch = "main";
       };
       user = {
-        mame = "linca";
+        name = "linca";
         email = "lhcfl@outlook.com";
       };
     };
