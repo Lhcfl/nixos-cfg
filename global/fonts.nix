@@ -17,6 +17,7 @@
     ];
 
     fontconfig.defaultFonts = {
+      # Sans serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
       sansSerif = [
         "Noto Sans"
         "Noto Sans CJK SC"
@@ -28,6 +29,7 @@
         "HanaMinB"
       ];
 
+      # Serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
       serif = [
         "Noto Serif"
         "Noto Serif CJK SC"
@@ -39,12 +41,14 @@
         "HanaMinB"
       ];
 
+      # Monospace fonts: Maple Mono for programming, fallback to Noto Sans Mono
       monospace = [
         "Maple Mono NF CN"
         "Noto Sans Mono"
         "Noto Color Emoji"
       ];
 
+      # Emoji font
       emoji = [
         "Noto Color Emoji"
       ];
