@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
-{
+_: {
   home = {
     username = "linca";
     homeDirectory = "/home/linca";
-    stateVersion = "26.05";
   };
 
   programs.home-manager.enable = true;
@@ -14,6 +12,6 @@
     ./shell.nix
     ./environment.nix
     ./programs.nix
-    ./modules/kde.nix
+    ./gui.nix
   ];
 }
