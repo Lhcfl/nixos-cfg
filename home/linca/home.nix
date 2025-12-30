@@ -1,4 +1,7 @@
-_: {
+{ lib, ... }:
+{
+  funkcia.hm.gui.enable = lib.mkDefault true;
+
   home = {
     username = "linca";
     homeDirectory = "/home/linca";

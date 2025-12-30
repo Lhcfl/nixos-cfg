@@ -7,13 +7,10 @@
     extraSpecialArgs = {
       inherit inputs;
     };
-    users.linca = [
-      ./linca/home.nix
-      {
-        home.stateVersion = "26.05";
-        funkcia.hm.gui.enable = true;
-      }
-    ];
+    users.linca = _: {
+      imports = [ ./linca/home.nix ];
+      home.stateVersion = "26.05";
+    };
     backupFileExtension = ".hm.old";
   };
 }
