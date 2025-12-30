@@ -13,6 +13,7 @@
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       lxgw-wenkai-screen
+      hanazono # 花园明朝，覆盖了几乎所有的汉字
     ];
 
     fontconfig.defaultFonts = {
@@ -23,6 +24,8 @@
         "Noto Sans CJK JP"
         "Noto Sans CJK KR"
         "Noto Color Emoji"
+        "HanaMinA"
+        "HanaMinB"
       ];
 
       serif = [
@@ -32,6 +35,8 @@
         "Noto Serif CJK JP"
         "Noto Serif CJK KR"
         "Noto Color Emoji"
+        "HanaMinA"
+        "HanaMinB"
       ];
 
       monospace = [
