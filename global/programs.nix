@@ -48,5 +48,5 @@
       brightnessctl # brightness control
       playerctl # media player control
     ]
-    ++ import ./common/cli-packages.nix { inherit pkgs; };
+    ++ import ../common/cli-packages.nix { inherit pkgs; };
 }
