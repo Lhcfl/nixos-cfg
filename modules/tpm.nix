@@ -10,7 +10,7 @@
     };
   };
 
-  config = lib.mkIf config.duckie.modules.tpm.enable {
+  config = lib.mkIf config.funkcia.modules.tpm.enable {
 
     # https://nixos.wiki/wiki/TPM
     security.tpm2 = {
