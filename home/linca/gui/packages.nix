@@ -19,7 +19,6 @@
       # BEGIN hyprland
       hypridle # hyprland tools
       hyprlock # hyprland tools
-      vicinae
       hyprlauncher # hyprland tools
       # END hyprland
       onedriver

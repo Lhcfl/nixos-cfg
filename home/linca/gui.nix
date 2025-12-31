@@ -14,6 +14,7 @@
   imports = [
     ./gui/modules/kde.nix
     ./gui/modules/hypr.nix
+    ./gui/modules/vicinae.nix
     ./gui/packages.nix
   ];
 }
