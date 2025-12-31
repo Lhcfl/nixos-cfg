@@ -19,11 +19,14 @@
     programs = {
       # desktop
       hyprland.enable = true;
+      hyprland.withUWSM = true;
       waybar.enable = true;
     };
 
     security.pam.services.hyprland = {
       enableGnomeKeyring = lib.mkIf config.funkcia.modules.gnome-keyring.enable true;
     };
+
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }

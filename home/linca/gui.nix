@@ -13,6 +13,7 @@
 
   imports = [
     ./gui/modules/kde.nix
+    ./gui/modules/hypr.nix
     ./gui/packages.nix
   ];
 }
