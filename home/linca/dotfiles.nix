@@ -24,7 +24,8 @@
         "dolphinrc"
         "kdeglobals"
         "vicinae"
-        "ashell"
+        "ashell" # waybar replacement # but not used now
+        "go-musicfox"
       ]
     );
 }
