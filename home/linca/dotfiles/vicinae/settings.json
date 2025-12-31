@@ -7,6 +7,7 @@
 // If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
 //
 // Learn more about configuration at https://docs.vicinae.com/config
+
 {
    "close_on_focus_loss": false,
    "theme": {
@@ -17,5 +18,12 @@
    },
    "launcher_window": {
       "opacity": 0.8
+   },
+   "providers": {
+      "applications": {
+         "preferences": {
+            "launchPrefix": "uwsm app --"
+         }
+      }
    }
 }

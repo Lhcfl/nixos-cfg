@@ -26,6 +26,7 @@
       vscode
       qq
       thunderbird
+      gparted
     ];
   };
 }
