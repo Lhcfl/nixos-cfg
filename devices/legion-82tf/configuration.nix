@@ -14,6 +14,7 @@
     hyprland.enable = true;
     secure-boot.enable = true;
     btrbk.enable = true;
+    tpm.enable = true;
   };
 
   hardware.bluetooth = {
@@ -29,6 +30,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "tss" # tss group has access to TPM devices
     ];
     shell = pkgs.fish;
   };

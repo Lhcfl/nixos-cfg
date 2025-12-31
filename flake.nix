@@ -43,6 +43,7 @@
         ./modules/hyprland.nix
         ./modules/secure-boot.nix
         ./modules/btrbk.nix
+        ./modules/tpm.nix
       ];
     in
     {
