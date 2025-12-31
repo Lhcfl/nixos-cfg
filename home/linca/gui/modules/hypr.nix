@@ -4,7 +4,10 @@
     services.hyprpolkitagent.enable = true;
 
     programs = {
-      waybar.enable = true;
+      waybar = {
+        enable = true;
+        systemd.enable = true;
+      };
     };
   };
 }
