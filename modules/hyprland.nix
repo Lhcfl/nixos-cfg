@@ -20,7 +20,7 @@
       # desktop
       hyprland.enable = true;
       hyprland.withUWSM = true;
-      waybar.enable = true;
+      # waybar.enable = true;
     };
 
     security.pam.services.hyprland = {

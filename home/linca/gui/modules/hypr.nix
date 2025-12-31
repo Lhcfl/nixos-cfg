@@ -2,5 +2,9 @@
 {
   config = lib.mkIf config.funkcia.hm.gui.enable {
     services.hyprpolkitagent.enable = true;
+
+    programs = {
+      waybar.enable = true;
+    };
   };
 }
