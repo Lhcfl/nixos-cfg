@@ -29,6 +29,8 @@
 
     # use default ssh agent
     ssh.startAgent = true;
+
+    neovim.enable = true;
   };
 
   # system wide packages.
@@ -37,7 +39,6 @@
     with pkgs;
     [
       wget
-      neovim
 
       ## GUI PACKAGES
       libnotify # notification support
