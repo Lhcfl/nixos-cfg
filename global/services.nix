@@ -14,5 +14,8 @@ _: {
         AllowUsers = [ "linca" ];
       };
     };
+
+    # flatpak support
+    flatpak.enable = true;
   };
 }
