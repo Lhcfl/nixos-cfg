@@ -27,5 +27,9 @@
       thunderbird
       gparted
     ];
+
+    programs.keepassxc = {
+      enable = true;
+    };
   };
 }
