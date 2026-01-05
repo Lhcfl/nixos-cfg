@@ -26,6 +26,8 @@
       qq
       thunderbird
       gparted
+      element-desktop
+      opencode
     ];
 
     programs.keepassxc = {

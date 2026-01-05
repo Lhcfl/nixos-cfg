@@ -8,6 +8,7 @@
     nixd # nix lsp
     nixfmt
     nodejs_latest
+    nodePackages.pnpm
     statix # nix lsp
     vscode-json-languageserver
     tombi # toml LSP
@@ -15,5 +16,6 @@
     python3
     uv # python3
     aescrypt
+    elan
   ];
 }
