@@ -15,6 +15,7 @@
     ./gui/modules/kde.nix
     ./gui/modules/hypr.nix
     ./gui/modules/vicinae.nix
+    ./gui/vscode/vscode.nix # 还没写完
     ./gui/packages.nix
   ];
 }
