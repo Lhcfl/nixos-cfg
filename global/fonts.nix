@@ -7,6 +7,7 @@
     enableDefaultPackages = true;
 
     packages = with pkgs; [
+      nerd-fonts.liberation
       maple-mono.NF-CN-unhinted
       noto-fonts
       noto-fonts-cjk-sans

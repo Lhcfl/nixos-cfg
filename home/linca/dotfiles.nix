@@ -16,7 +16,7 @@
         "kitty"
         "hypr"
         "helix"
-        "mako"
+        # "mako"
         "waybar"
         "starship.toml"
         "yazi"

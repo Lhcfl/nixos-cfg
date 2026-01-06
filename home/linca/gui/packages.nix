@@ -8,7 +8,7 @@
   config = lib.mkIf config.funkcia.hm.gui.enable {
     home.packages = with pkgs; [
       zed-editor
-      mako # notifcation
+      # mako # notifcation
       telegram-desktop
       # BEGIN 截图
       gradia
@@ -19,7 +19,6 @@
       # BEGIN hyprland
       hypridle # hyprland tools
       hyprlock # hyprland tools
-      hyprlauncher # hyprland tools
       # END hyprland
       onedriver
       vscode

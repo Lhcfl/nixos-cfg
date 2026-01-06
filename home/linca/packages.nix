@@ -16,6 +16,7 @@
     python3
     uv # python3
     aescrypt
-    elan
+    elan # lean
+    llvmPackages.clang-tools
   ];
 }
