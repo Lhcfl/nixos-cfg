@@ -18,5 +18,7 @@
     aescrypt
     elan # lean
     llvmPackages.clang-tools
+    neofetch # system info
+    devenv
   ];
 }

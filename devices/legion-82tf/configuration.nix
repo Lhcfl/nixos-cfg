@@ -22,6 +22,11 @@
     powerOnBoot = true;
   };
 
+  nix.settings.trusted-users = [
+    "root"
+    "linca"
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {
     isNormalUser = true;
