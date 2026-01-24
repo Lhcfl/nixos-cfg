@@ -23,6 +23,7 @@
       onedriver
       vscode
       qq
+      wechat
       thunderbird
       gparted
       element-desktop
