@@ -1,4 +1,4 @@
-theme = "monokai_aqua"
+theme = "fleet_dark"
 
 [editor]
 line-number = "relative"
@@ -21,6 +21,10 @@ skip-levels = 1
 [editor.inline-diagnostics]
 cursor-line = "warning"
 max-wrap = 0
+
+[keys.normal]
+P = ":clipboard-paste-after"
+Y = ":clipboard-yank"
 
 [keys.normal.space]
 x = ":buffer-close"
