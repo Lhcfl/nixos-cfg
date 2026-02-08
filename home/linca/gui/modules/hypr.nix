@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf config.funkcia.hm.gui.enable {
     services.hyprpolkitagent.enable = true;
@@ -32,5 +37,16 @@
         systemd.enable = true;
       };
     };
+
+    home.pointerCursor = {
+      hyprcursor.enable = true;
+      size = 24;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
+
+    home.packages = with pkgs; [
+      hyprcursor
+    ];
   };
 }
