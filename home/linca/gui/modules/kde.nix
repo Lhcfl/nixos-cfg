@@ -16,7 +16,10 @@
       qtsvg # SVG support
       kio # KDE I/O framework
       kio-extras # Additional KDE I/O protocols
+      kio-fuse # KDE I/O FUSE support
       kwayland # KDE Wayland integration
+      ark # archive manager with KDE integration
+      gwenview # KDE image viewer
     ];
 
     xdg.mimeApps = {
@@ -24,6 +27,7 @@
         "inode/directory" = [ "org.kde.dolphin.desktop" ];
         "x-scheme-handler/file" = [ "org.kde.dolphin.desktop" ];
         "x-scheme-handler/about" = [ "org.kde.dolphin.desktop" ];
+        "image/png" = [ "org.kde.gwenview.desktop" ];
       };
     };
   };
