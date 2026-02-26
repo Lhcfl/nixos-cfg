@@ -30,13 +30,19 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
     fsType = "btrfs";
-    options = [ "subvol=@" ];
+    options = [
+      "subvol=@"
+      "compress=zstd:3"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
     fsType = "btrfs";
-    options = [ "subvol=@home" ];
+    options = [
+      "subvol=@home"
+      "compress=zstd:3"
+    ];
   };
 
   fileSystems."/boot" = {
