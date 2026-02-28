@@ -20,5 +20,6 @@
     astro-build.astro-vscode
     github.vscode-github-actions
     antfu.unocss
+    unifiedjs.vscode-mdx
   ];
 }
