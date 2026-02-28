@@ -4,6 +4,7 @@
     "github.copilot.nextEditSuggestions.enabled" = true;
     "terminal.integrated.stickyScroll.enabled" = false;
     "editor.fontFamily" = "Maple Mono NF CN";
+    "editor.fontLigatures" = true;
     "editor.fontSize" = 13;
     "chat.viewSessions.orientation" = "stacked";
     "[typescript]" = {
