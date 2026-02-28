@@ -12,7 +12,7 @@
         # 使用 nix-vscode-extensions 获取更多扩展
         vscode-exts =
           (import inputs.nixpkgs {
-            system = pkgs.stdenv.hostPlatform.system;
+            inherit (pkgs.stdenv.hostPlatform) system;
             config.allowUnfree = true;
             overlays = [ inputs.nix-vscode-extensions.overlays.default ];
           }).nix-vscode-extensions;
@@ -26,7 +26,6 @@
 
         # 兼容性问题
         common-pkg-extensions = with pkgs.vscode-extensions; [
-          github.copilot
           github.copilot-chat
         ];
 

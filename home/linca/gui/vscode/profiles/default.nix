@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-{
+_: {
   userSettings = {
     "editor.fontSize" = 13;
     "editor.fontFamily" = "Maple Mono NF CN";

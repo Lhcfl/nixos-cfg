@@ -1,4 +1,4 @@
-{ pkgs, vscode-exts, ... }:
+{ vscode-exts, ... }:
 {
   userSettings = {
     "github.copilot.nextEditSuggestions.enabled" = true;
@@ -16,5 +16,8 @@
     lokalise.i18n-ally
     biomejs.biome
     blazejkustra.react-compiler-marker
+    astro-build.astro-vscode
+    github.vscode-github-actions
+    antfu.unocss
   ];
 }
