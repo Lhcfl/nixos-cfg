@@ -2,9 +2,12 @@
 {
   home.file =
     let
+      # ...
+      # mkDotfilesLnk = name: {
+      #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
+      # };
       mkDotfilesLnk = name: {
-        # 😭️ if we use relative sym link, hyprland will broken
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
+        source = ./dotfiles/${name};
       };
       mkConfig = name: {
         name = ".config/${name}";
