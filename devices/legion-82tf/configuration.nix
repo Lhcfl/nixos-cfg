@@ -22,6 +22,8 @@
     powerOnBoot = true;
   };
 
+  networking.hostName = "nixos";
+
   boot.loader.systemd-boot.configurationLimit = 10;
 
   nix.settings.trusted-users = [
