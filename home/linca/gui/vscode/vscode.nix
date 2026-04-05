@@ -46,11 +46,11 @@
       {
         enable = true;
 
-        profiles = {
-          default = callProfile ./profiles/default.nix;
-          cangjie = callProfile ./profiles/cangjie.nix;
-          ts = callProfile ./profiles/ts.nix;
-        };
+        # profiles = {
+        #   default = callProfile ./profiles/default.nix;
+        #   cangjie = callProfile ./profiles/cangjie.nix;
+        #   ts = callProfile ./profiles/ts.nix;
+        # };
       };
   };
 }
