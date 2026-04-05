@@ -8,7 +8,7 @@
     nixd # nix lsp
     nixfmt
     nodejs_latest
-    nodePackages.pnpm
+    corepack_24
     statix # nix lsp
     vscode-json-languageserver
     tombi # toml LSP
