@@ -17,7 +17,6 @@
     uv # python3
     ty
     ruff # python linter
-    aescrypt
     elan # lean
     llvmPackages.clang-tools
     fastfetch # system info
