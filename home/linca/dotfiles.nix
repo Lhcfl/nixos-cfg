@@ -2,7 +2,7 @@
 {
   home.file =
     let
-      # ...
+      # hyprland cannot dynnamically reload config of lnk, which is very strange.
       # mkDotfilesLnk = name: {
       #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
       # };
