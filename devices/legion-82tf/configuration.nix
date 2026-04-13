@@ -15,6 +15,7 @@
     secure-boot.enable = true;
     btrbk.enable = true;
     tpm.enable = true;
+    nix-mirrors.enable = true;
   };
 
   hardware.bluetooth = {

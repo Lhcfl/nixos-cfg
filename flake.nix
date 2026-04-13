@@ -51,6 +51,7 @@
         ./modules/secure-boot.nix
         ./modules/btrbk.nix
         ./modules/tpm.nix
+        ./modules/nix-mirrors.nix
       ];
     in
     {
