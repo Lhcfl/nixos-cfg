@@ -20,6 +20,11 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cli = {
+      url = "github:nix-community/nixos-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,10 +33,14 @@
       lanzaboote,
       home-manager,
       nix-vscode-extensions,
+      nixos-cli,
       ...
     }:
     let
       globals = [
+        nixos-cli.nixosModules.nixos-cli
+        home-manager.nixosModules.home-manager
+
         # enabled modules
         ./global/boot.nix
         ./global/locale.nix
@@ -65,7 +74,6 @@
 
           modules = globals ++ [
             lanzaboote.nixosModules.lanzaboote
-            home-manager.nixosModules.home-manager
             ./devices/legion-82tf/configuration.nix
             ./home/home-manager.nix
           ];
