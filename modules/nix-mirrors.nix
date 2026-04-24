@@ -13,6 +13,7 @@
   config = lib.mkIf config.funkcia.modules.nix-mirrors.enable {
     nix.settings.substituters = [
       "https://mirror.nju.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
     ];
   };
 }
