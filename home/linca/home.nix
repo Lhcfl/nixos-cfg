@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, utils, ... }:
 {
   funkcia.hm.gui.enable = lib.mkDefault true;
 
@@ -14,7 +14,7 @@
     ./dotfiles.nix
     ./shell.nix
     ./environment.nix
-    ./programs.nix
     ./gui.nix
-  ];
+  ]
+  ++ utils.files.listNixFiles ./programs;
 }

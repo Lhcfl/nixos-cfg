@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   home-manager = {
     useGlobalPkgs = true;
@@ -6,6 +6,9 @@
     # i don't know why, but home manager needs extraSpecialArgs
     extraSpecialArgs = {
       inherit inputs;
+      utils = {
+        files = pkgs.callPackage ../utils/files.nix { nixpkgs = pkgs; };
+      };
     };
     users.linca = _: {
       imports = [ ./linca/home.nix ];

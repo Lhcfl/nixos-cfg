@@ -37,32 +37,15 @@
       ...
     }:
     let
+      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFiles;
+      globals-cfgs = listNixFiles ./global;
+      modules-cfgs = listNixFiles ./modules;
       globals = [
         nixos-cli.nixosModules.nixos-cli
         home-manager.nixosModules.home-manager
-
-        # enabled modules
-        ./global/boot.nix
-        ./global/locale.nix
-        ./global/networking.nix
-        ./global/services.nix
-        ./global/programs.nix
-        ./global/nix.nix
-        ./global/fonts.nix
-        ./global/root.nix
-        ./global/security.nix
-
-        # default disabled modules
-        ./modules/gnome-keyring.nix
-        ./modules/docker.nix
-        ./modules/fingerprint.nix
-        ./modules/hyprland.nix
-        ./modules/secure-boot.nix
-        ./modules/btrbk.nix
-        ./modules/tpm.nix
-        ./modules/nix-mirrors.nix
-        ./modules/laptop.nix
-      ];
+      ]
+      ++ globals-cfgs
+      ++ modules-cfgs;
     in
     {
       nixosConfigurations = {
