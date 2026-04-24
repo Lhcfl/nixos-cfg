@@ -61,12 +61,14 @@
         ./modules/btrbk.nix
         ./modules/tpm.nix
         ./modules/nix-mirrors.nix
+        ./modules/laptop.nix
       ];
     in
     {
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          # system = "x86_64-linux";
+          # ignore the system parameter because it is deprecated
 
           specialArgs = {
             inherit inputs;
