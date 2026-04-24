@@ -11,7 +11,8 @@
   };
 
   config = lib.mkIf config.funkcia.modules.laptop.enable {
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     services.tlp.enable = true; # tlp is a good power management tool for laptops
+    services.tlp.pd.enable = true;
   };
 }
