@@ -8,7 +8,6 @@
       inherit inputs;
       utils = {
         files = pkgs.callPackage ../utils/files.nix { nixpkgs = pkgs; };
-        fp = pkgs.callPackage ../utils/fp.nix { };
       };
     };
     users.linca = _: {
