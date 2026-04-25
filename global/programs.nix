@@ -31,8 +31,6 @@
     ssh.startAgent = true;
 
     neovim.enable = true;
-
-    nixos-cli.enable = true;
   };
 
   # system wide packages.
