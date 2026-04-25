@@ -32,7 +32,6 @@
       nixpkgs,
       lanzaboote,
       home-manager,
-      nix-vscode-extensions,
       nixos-cli,
       ...
     }:
