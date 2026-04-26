@@ -5,6 +5,12 @@
   home = {
     username = "linca";
     homeDirectory = "/home/linca";
+
+    file = {
+      ".face" = {
+        source = ./assets/avatar.png;
+      };
+    };
   };
 
   programs.home-manager.enable = true;

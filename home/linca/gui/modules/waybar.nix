@@ -1,11 +1,16 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  config = lib.mkIf config.funkcia.hm.gui.enable {
+  options.funkcia.hm.waybar.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable Hyprland and related services.";
+  };
+
+  config = lib.mkIf config.funkcia.hm.waybar.enable {
     services.hyprpolkitagent.enable = true;
 
     services = {
@@ -38,17 +43,5 @@
       };
     };
 
-    home = {
-      pointerCursor = {
-        hyprcursor.enable = true;
-        size = 24;
-        name = "Bibata-Modern-Ice";
-        package = pkgs.bibata-cursors;
-      };
-
-      packages = with pkgs; [
-        hyprcursor
-      ];
-    };
   };
 }

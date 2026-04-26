@@ -29,6 +29,7 @@
 
   outputs =
     inputs@{
+      self,
       nixpkgs,
       lanzaboote,
       home-manager,
@@ -63,5 +64,8 @@
           ];
         };
       };
+
+      # checks the nixos top level
+      checks.x86_64-linux.nixosTopLevel = self.nixosConfigurations.nixos.config.system.build.toplevel;
     };
 }
