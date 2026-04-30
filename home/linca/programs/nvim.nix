@@ -7,7 +7,9 @@
       lua5_1
       luarocks
       typescript-language-server
+      typescript-go
+      markdownlint-cli2
     ];
-    sideloadInitLua = false;
+    sideloadInitLua = true;
   };
 }

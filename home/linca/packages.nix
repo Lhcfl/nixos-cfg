@@ -20,5 +20,6 @@
     llvmPackages.clang-tools
     fastfetch # system info
     devenv
+    ast-grep
   ];
 }

@@ -12,8 +12,4 @@
 
 Refer to [Documentations](./docs/)
 
-## bat patterns
-
-`/home/linca/dotfiles.nix` 的实现有比较大的问题，但是目前还没有更好的替代方案。
-
-这个文件导致了改仓库必须被放在 `/home/linca/nixos` 这个位置才能 build 起来
+Here is a [`apply.sh`](./apply.sh) file to build nixos and apply some extra syncs
