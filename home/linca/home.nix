@@ -1,4 +1,8 @@
-{ lib, utils, ... }:
+{
+  lib,
+  utils,
+  ...
+}:
 {
   funkcia.hm.gui.enable = lib.mkDefault true;
 

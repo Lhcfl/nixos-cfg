@@ -6,6 +6,8 @@
       lua-language-server
       lua5_1
       luarocks
+      typescript-language-server
     ];
+    sideloadInitLua = false;
   };
 }
