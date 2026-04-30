@@ -23,6 +23,10 @@
 
   config = lib.mkIf config.funkcia.modules.laptop.enable (
     lib.mkMerge [
+      {
+        services.upower.enable = true; # show battery
+      }
+
       (lib.mkIf (config.funkcia.modules.laptop.using == "power-profiles-daemon") {
         services.power-profiles-daemon.enable = true;
       })
