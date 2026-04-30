@@ -700,7 +700,7 @@
         "fontDefault": "Sans Serif",
         "fontDefaultScale": 0.85,
         "fontFixed": "Maple Mono NF CN",
-        "fontFixedScale": 0.95,
+        "fontFixedScale": 0.9,
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": false,
         "scrollbarAlwaysVisible": true,
