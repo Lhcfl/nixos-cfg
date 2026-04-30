@@ -1,4 +1,6 @@
 _: {
+  home.shell.enableShellIntegration = true;
+
   programs = {
     zoxide.enable = true;
     fish = {

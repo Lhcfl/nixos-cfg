@@ -25,6 +25,11 @@
       url = "github:nix-community/nixos-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yazi-everforest-medium = {
+      url = "github:Chromium-3-Oxide/everforest-medium.yazi";
+      flake = false;
+    }
   };
 
   outputs =
@@ -63,7 +68,7 @@
             ./home/home-manager.nix
           ];
         };
-      };
+      
 
       # checks the nixos top level
       checks.x86_64-linux.nixosTopLevel = self.nixosConfigurations.nixos.config.system.build.toplevel;

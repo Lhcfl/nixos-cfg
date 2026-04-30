@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    yazi # terminal file explorer
     gcc
     tree-sitter
     nil # nix lsp
