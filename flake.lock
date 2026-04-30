@@ -259,7 +259,8 @@
         "lanzaboote": "lanzaboote",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-cli": "nixos-cli",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yazi-everforest-medium": "yazi-everforest-medium"
       }
     },
     "rust-overlay": {
@@ -280,6 +281,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "yazi-everforest-medium": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776895426,
+        "narHash": "sha256-We1LBVtluFru8IglUXH1qI7fa3PEGgNZp1HWXrxsvig=",
+        "owner": "Chromium-3-Oxide",
+        "repo": "everforest-medium.yazi",
+        "rev": "4eede31fbc3df85c95951d6d8e3c752806bf6f08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Chromium-3-Oxide",
+        "repo": "everforest-medium.yazi",
         "type": "github"
       }
     }
