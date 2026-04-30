@@ -16,7 +16,8 @@
     btrbk.enable = true;
     tpm.enable = true;
     nix-mirrors.enable = true;
-    laptop.enable = false;
+    laptop.enable = true;
+    niri.enable = true;
   };
 
   hardware.bluetooth = {
