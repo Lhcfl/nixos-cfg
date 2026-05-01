@@ -12,6 +12,15 @@
       default = false;
       description = "Enable GUI packages";
     };
+
+    preset = lib.mkOption {
+      type = lib.types.enum [
+        "kde"
+        "gnome"
+      ];
+      default = "gnome";
+      description = "Choose a desktop environment preset to install related packages.";
+    };
   };
 
   imports = (utils.files.listNixFiles ./gui/modules) ++ [

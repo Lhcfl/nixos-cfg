@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.funkcia.hm.gui.enable {
+  config = lib.mkIf (config.funkcia.hm.gui.enable && config.funkcia.hm.gui.preset == "kde") {
     home.packages = with pkgs.kdePackages; [
       dolphin # KDE file manager
       qtimageformats # Image format support for Qt5
