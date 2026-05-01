@@ -1,6 +1,5 @@
 // Migrated from the Hyprland config with Niri-native equivalents where needed.
 
-spawn-at-startup "hypridle"
 spawn-at-startup "uwsm" "app" "--" "fcitx5"
 spawn-at-startup "uwsm" "app" "--" "firefox"
 spawn-at-startup "uwsm" "app" "--" "kitty"
@@ -38,9 +37,6 @@ input {
 }
 
 gestures {
-	hot-corners {
-		off
-	}
 
 	dnd-edge-view-scroll {
 		trigger-width 30
@@ -72,12 +68,6 @@ layout {
 	center-focused-column "never"
 	background-color "#111111"
 
-	struts {
-		left -3
-		right -3
-		top -3
-		bottom -3
-	}
 
 	default-column-width { proportion 0.5; }
 
@@ -142,61 +132,14 @@ animations {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
 	}
 }
-
-workspace "1"
-workspace "2"
-workspace "3"
-workspace "4"
-workspace "5"
-workspace "6"
-workspace "7"
-workspace "8"
-workspace "9"
-workspace "10"
-
 window-rule {
 	geometry-corner-radius 10
 	clip-to-geometry true
 	draw-border-with-background false
 }
 
-window-rule {
-	match app-id="^org\\.telegram\\.desktop$"
-	open-on-workspace "5"
-}
-
-window-rule {
-	match app-id="^firefox$"
-	open-on-workspace "2"
-}
-
-window-rule {
-	match app-id="^dev\\.zed\\.Zed$"
-	open-on-workspace "3"
-}
-
-window-rule {
-	match app-id="^(code|Code)$"
-	open-on-workspace "3"
-}
-
-window-rule {
-	match app-id="(?i)v2rayn"
-	open-on-workspace "9"
-}
-
-window-rule {
-	match app-id="^kitty$"
-	opacity 0.8
-}
-
 layer-rule {
 	match namespace="vicinae"
-}
-
-layer-rule {
-	match namespace="^noctalia-background-.*$"
-	opacity 0.5
 }
 
 binds {
@@ -229,7 +172,7 @@ binds {
 
 	Mod+Q hotkey-overlay-title=null { close-window; }
 	Alt+F4 hotkey-overlay-title=null { close-window; }
-	Mod+Delete allow-inhibiting=false { spawn "uwsm" "stop"; }
+	Mod+Delete allow-inhibiting=false { quit; }
 	Mod+Shift+F { toggle-window-floating; }
 	Mod+G { toggle-column-tabbed-display; }
 	Shift+F11 { fullscreen-window; }
@@ -242,42 +185,5 @@ binds {
 	Mod+Right { focus-column-right; }
 	Mod+Up { focus-window-up; }
 	Mod+Down { focus-window-down; }
-
-	Mod+1 { focus-workspace "1"; }
-	Mod+2 { focus-workspace "2"; }
-	Mod+3 { focus-workspace "3"; }
-	Mod+4 { focus-workspace "4"; }
-	Mod+5 { focus-workspace "5"; }
-	Mod+6 { focus-workspace "6"; }
-	Mod+7 { focus-workspace "7"; }
-	Mod+8 { focus-workspace "8"; }
-	Mod+9 { focus-workspace "9"; }
-	Mod+0 { focus-workspace "10"; }
-	Mod+N { focus-workspace-down; }
 	Mod+Tab { focus-workspace-previous; }
-
-	Mod+Shift+1 { move-window-to-workspace "1"; }
-	Mod+Shift+2 { move-window-to-workspace "2"; }
-	Mod+Shift+3 { move-window-to-workspace "3"; }
-	Mod+Shift+4 { move-window-to-workspace "4"; }
-	Mod+Shift+5 { move-window-to-workspace "5"; }
-	Mod+Shift+6 { move-window-to-workspace "6"; }
-	Mod+Shift+7 { move-window-to-workspace "7"; }
-	Mod+Shift+8 { move-window-to-workspace "8"; }
-	Mod+Shift+9 { move-window-to-workspace "9"; }
-	Mod+Shift+0 { move-window-to-workspace "10"; }
-	Mod+Shift+Left { move-window-to-workspace-up; }
-	Mod+Shift+Right { move-window-to-workspace-down; }
-	Mod+Shift+N { move-window-to-workspace-down; }
-
-	Mod+Alt+1 { move-window-to-workspace "1" focus=false; }
-	Mod+Alt+2 { move-window-to-workspace "2" focus=false; }
-	Mod+Alt+3 { move-window-to-workspace "3" focus=false; }
-	Mod+Alt+4 { move-window-to-workspace "4" focus=false; }
-	Mod+Alt+5 { move-window-to-workspace "5" focus=false; }
-	Mod+Alt+6 { move-window-to-workspace "6" focus=false; }
-	Mod+Alt+7 { move-window-to-workspace "7" focus=false; }
-	Mod+Alt+8 { move-window-to-workspace "8" focus=false; }
-	Mod+Alt+9 { move-window-to-workspace "9" focus=false; }
-	Mod+Alt+0 { move-window-to-workspace "10" focus=false; }
 }
