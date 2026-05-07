@@ -28,7 +28,7 @@
     # https://github.com/NixOS/nixpkgs/blob/nixos-25.11/nixos/modules/services/misc/nix-gc.nix
     gc = {
       automatic = true;
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 7d";
       dates = "Sun 19:00";
       randomizedDelaySec = "45min";
     };

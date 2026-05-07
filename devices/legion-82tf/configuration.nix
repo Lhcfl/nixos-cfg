@@ -20,6 +20,14 @@
     niri.enable = true;
   };
 
+  services.displayManager.ly = {
+    settings = {
+      animation = "gameoflife";
+    };
+    enable = true;
+  };
+  security.pam.services.ly.fprintAuth = false;
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -28,6 +36,7 @@
   networking.hostName = "nixos";
 
   boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
 
   nix.settings.trusted-users = [
     "root"
