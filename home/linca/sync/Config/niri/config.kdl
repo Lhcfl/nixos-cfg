@@ -1,15 +1,20 @@
 // Migrated from the Hyprland config with Niri-native equivalents where needed.
 
-spawn-at-startup "uwsm" "app" "--" "fcitx5"
-spawn-at-startup "uwsm" "app" "--" "firefox"
-spawn-at-startup "uwsm" "app" "--" "kitty"
-spawn-at-startup "uwsm" "app" "--" "v2rayN"
+spawn-at-startup "fcitx5"
+spawn-at-startup "firefox"
+spawn-at-startup "kitty"
+spawn-at-startup "v2rayN"
 spawn-at-startup "noctalia-shell"
+spawn-at-startup "vicinae" "server"
 
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+environment {
+    QT_QPA_PLATFORM "wayland"
+    DISPLAY null
+}
 cursor {
 	xcursor-size 24
 	hide-when-typing
@@ -17,6 +22,13 @@ cursor {
 
 hotkey-overlay {
 	skip-at-startup
+}
+
+blur {
+    passes 3
+    offset 3.0
+    noise 0.02
+    saturation 1.5
 }
 
 input {
@@ -27,6 +39,7 @@ input {
 	}
 
 	touchpad {
+		tap
 		natural-scroll
 	}
 
@@ -68,8 +81,7 @@ layout {
 	center-focused-column "never"
 	background-color "#111111"
 
-
-	default-column-width { proportion 0.5; }
+	default-column-width { proportion 0.48; }
 
 	focus-ring {
 		off
@@ -93,6 +105,10 @@ layout {
 
 	insert-hint {
 		color "#ddaa7780"
+	}
+
+	tab-indicator {
+		on
 	}
 }
 
@@ -132,6 +148,7 @@ animations {
 		spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
 	}
 }
+
 window-rule {
 	geometry-corner-radius 10
 	clip-to-geometry true
@@ -146,11 +163,10 @@ binds {
 	Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
 	Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
 
-	Ctrl+Alt+T allow-when-locked=true { spawn "uwsm" "app" "--" "kitty"; }
-	Mod+E { spawn "uwsm" "app" "--" "dolphin"; }
-	Mod+C { spawn "uwsm" "app" "--" "sh" "-lc" "$EDITOR"; }
-	Mod+B { spawn "uwsm" "app" "--" "firefox"; }
-	XF86Favorites { spawn "uwsm" "app" "--" "keepassxc"; }
+	Ctrl+Alt+T { spawn "kitty"; }
+	Mod+E { spawn "nautilus"; }
+	Mod+B { spawn "firefox"; }
+	XF86Favorites { spawn "keepassxc"; }
 	Mod+R { spawn-sh "niri msg action reload-config"; }
 	Mod+F { spawn "vicinae" "toggle"; }
 
