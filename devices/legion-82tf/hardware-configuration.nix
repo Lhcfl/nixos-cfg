@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -14,44 +13,61 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-    "rtsx_pci_sdmmc"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
-    fsType = "btrfs";
-    options = [
-      "subvol=@"
-      "compress=zstd:3"
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
     ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
-    fsType = "btrfs";
-    options = [
-      "subvol=@home"
-      "compress=zstd:3"
-    ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7E2C-2BF1";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
+      fsType = "btrfs";
+      options = [
+        "subvol=@"
+        "compress=zstd:3"
+      ];
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
+      fsType = "btrfs";
+      options = [
+        "subvol=@home"
+        "compress=zstd:3"
+      ];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/7E2C-2BF1";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
+    "/media/c" = {
+      device = "/dev/disk/by-uuid/F654E4A954E46E35";
+      fsType = "ntfs3";
+      options = [
+        "ro"
+        # not work?
+        # "fmask=0222"
+        # "dmask=0222"
+      ];
+    };
+    "/media/d" = {
+      device = "/dev/disk/by-uuid/04374294FD1C96EA";
+      fsType = "ntfs3";
+      options = [ "ro" ];
+    };
   };
 
   swapDevices = [ ];
