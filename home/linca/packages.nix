@@ -21,5 +21,6 @@
     fastfetch # system info
     devenv
     ast-grep
+    typst
   ];
 }
