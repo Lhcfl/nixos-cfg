@@ -68,6 +68,15 @@
       fsType = "ntfs3";
       options = [ "ro" ];
     };
+    "/media/share" = {
+      device = "/dev/disk/by-uuid/72C7-B373";
+      fsType = "exfat";
+
+      # "gid=wheel"
+      # "dmask=007"
+      # "fmask=117"
+
+    };
   };
 
   swapDevices = [ ];

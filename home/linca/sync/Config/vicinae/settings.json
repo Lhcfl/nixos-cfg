@@ -7,23 +7,22 @@
 // If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
 //
 // Learn more about configuration at https://docs.vicinae.com/config
-
 {
-   "close_on_focus_loss": false,
-   "theme": {
-      "dark": {
-         "name": "tokyo-night",
-         "icon_theme": "Hicolor"
+  "close_on_focus_loss": false,
+  "theme": {
+    "dark": {
+      "name": "tokyo-night",
+      "icon_theme": "Hicolor"
+    }
+  },
+  "launcher_window": {
+    "opacity": 0.8
+  },
+  "providers": {
+    "applications": {
+      "preferences": {
+        "launchPrefix": "uwsm app --"
       }
-   },
-   "launcher_window": {
-      "opacity": 0.8
-   },
-   "providers": {
-      "applications": {
-         "preferences": {
-            "launchPrefix": "uwsm app --"
-         }
-      }
-   }
+    }
+  }
 }

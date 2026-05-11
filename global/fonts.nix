@@ -15,6 +15,8 @@
       noto-fonts-color-emoji
       lxgw-wenkai-screen
       hanazono # 花园明朝，覆盖了几乎所有的汉字
+      source-han-sans
+      source-han-serif
     ];
 
     fontconfig.defaultFonts = {

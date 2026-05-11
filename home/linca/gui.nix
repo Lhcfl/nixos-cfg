@@ -31,26 +31,34 @@
     home.packages = with pkgs; [
       noctalia-shell
       zed-editor
-      # mako # notifcation
       telegram-desktop
+
       # BEGIN 截图
       gradia
       grim
       slurp
       wl-clipboard-rs
       # END 截图
-      onedriver
+
       vscode
       qq
-      # wechat
-      thunderbird
       gparted
       element-desktop
       opencode
     ];
 
-    programs.keepassxc = {
+    programs = {
+      keepassxc.enable = true;
+      firefox.enable = true;
+      thunderbird.enable = true;
+    };
+
+    xdg.mimeApps = {
       enable = true;
+
+      defaultApplications = {
+        "application/pdf" = [ "org.mozilla.firefox.desktop" ];
+      };
     };
   };
 }

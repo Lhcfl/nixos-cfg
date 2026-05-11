@@ -24,7 +24,7 @@
         "showCategories": true,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "alacritty -e",
+        "terminalCommand": "kitty -e",
         "viewMode": "list"
     },
     "audio": {
@@ -553,7 +553,7 @@
         "backgroundOpacity": 1,
         "clearDismissed": true,
         "criticalUrgencyDuration": 15,
-        "density": "default",
+        "density": "compact",
         "enableBatteryToast": true,
         "enableKeyboardLayoutToast": true,
         "enableMarkdown": false,
