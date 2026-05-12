@@ -19,7 +19,7 @@
     programs = {
       # desktop
       hyprland.enable = true;
-      hyprland.withUWSM = true;
+      # hyprland.withUWSM = true;
       # waybar.enable = true;
     };
 

@@ -20,6 +20,8 @@
     niri.enable = true;
   };
 
+  programs.steam.enable = true;
+
   services.displayManager.ly = {
     settings = {
       animation = "gameoflife";

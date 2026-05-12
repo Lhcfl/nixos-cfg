@@ -3,15 +3,7 @@ _: {
 
   programs = {
     zoxide.enable = true;
-    fish = {
-      enable = true;
-
-      loginShellInit = ''
-        if uwsm check may-start;
-          uwsm start default
-        end
-      '';
-    };
+    fish.enable = true;
     starship.enable = true;
     nushell.enable = true;
   };
