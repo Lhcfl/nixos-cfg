@@ -23,6 +23,10 @@
       # waybar.enable = true;
     };
 
+    environment.pathsToLink = [
+      "/share/hypr"
+    ];
+
     security.pam.services.hyprland = {
       enableGnomeKeyring = lib.mkIf config.funkcia.modules.gnome-keyring.enable true;
     };

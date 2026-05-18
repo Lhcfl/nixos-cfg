@@ -13,8 +13,12 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 environment {
     QT_QPA_PLATFORM "wayland"
-    DISPLAY null
 }
+
+xwayland-satellite {
+  path "/run/current-system/sw/bin/xwayland-satellite"
+}
+
 cursor {
 	xcursor-size 24
 	hide-when-typing
@@ -81,7 +85,14 @@ layout {
 	center-focused-column "never"
 	background-color "#111111"
 
-	default-column-width { proportion 0.48; }
+	default-column-width { proportion 0.49; }
+
+  preset-column-widths {
+    proportion 0.33
+    proportion 0.49
+    proportion 0.65
+    proportion 0.98
+  }
 
 	focus-ring {
 		off
@@ -164,10 +175,9 @@ binds {
 	Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
 
 	Ctrl+Alt+T { spawn "kitty"; }
-	Mod+E { spawn "nautilus"; }
+	Mod+E { spawn "xdg-open ~"; }
 	Mod+B { spawn "firefox"; }
 	XF86Favorites { spawn "keepassxc"; }
-	Mod+R { spawn-sh "niri msg action reload-config"; }
 	Mod+F { spawn "vicinae" "toggle"; }
 
 	Print { screenshot show-pointer=false; }
@@ -192,14 +202,40 @@ binds {
 	Mod+Shift+F { toggle-window-floating; }
 	Mod+G { toggle-column-tabbed-display; }
 	Shift+F11 { fullscreen-window; }
-	Mod+L allow-inhibiting=false { spawn "hyprlock"; }
-	Alt+Control_R { spawn-sh "killall waybar || waybar"; }
-	Mod+P { maximize-column; }
-	Mod+J { center-column; }
+	Mod+M { maximize-column; }
+	Mod+C { center-column; }
 
 	Mod+Left { focus-column-left; }
 	Mod+Right { focus-column-right; }
 	Mod+Up { focus-window-up; }
 	Mod+Down { focus-window-down; }
 	Mod+Tab { focus-workspace-previous; }
+
+  Mod+R { switch-preset-column-width; }
+
+  Mod+Shift+Left { move-column-left; }
+  Mod+Shift+Right { move-column-right; }
+  Mod+Shift+Up { move-window-to-workspace-up; }
+  Mod+Shift+Down { move-window-to-workspace-down; }
+
+  Mod+Shift+N { move-window-to-workspace 255; }
+
+  Mod+1 { focus-workspace 1; }
+  Mod+Shift+1 { move-column-to-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+3 { focus-workspace 3; }
+  Mod+Shift+3 { move-column-to-workspace 3; }
+  Mod+4 { focus-workspace 4; }
+  Mod+Shift+4 { move-column-to-workspace 4; }
+  Mod+5 { focus-workspace 5; }
+  Mod+Shift+5 { move-column-to-workspace 5; }
+  Mod+6 { focus-workspace 6; }
+  Mod+Shift+6 { move-column-to-workspace 6; }
+  Mod+7 { focus-workspace 7; }
+  Mod+Shift+7 { move-column-to-workspace 7; }
+  Mod+8 { focus-workspace 8; }
+  Mod+Shift+8 { move-column-to-workspace 8; }
+  Mod+9 { focus-workspace 9; }
+  Mod+Shift+9 { move-column-to-workspace 9; }
 }
