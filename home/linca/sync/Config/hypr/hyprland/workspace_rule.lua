@@ -1,7 +1,8 @@
-for _, i in pairs({ "1", "5" }) do
+-- make odd workspaces use the scrolling layout
+
+for _, i in pairs({ "1", "3", "5", "7", "9" }) do
   hl.workspace_rule({
     workspace = i,
     layout = "scrolling",
-    layout_opts = { column_width = 0.6667 }
   })
 end
