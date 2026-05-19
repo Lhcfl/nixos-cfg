@@ -12,7 +12,7 @@ hl.config({
   misc = {
     force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
-    focus_on_activate = true,
+    focus_on_activate       = true,
   },
 })
 
@@ -38,6 +38,9 @@ hl.config({
 hl.config({
   scrolling = {
     fullscreen_on_one_column = true,
+    follow_focus = true,
+    explicit_column_widths = "0.33, 0.49, 0.66, 0.98",
+    follow_min_visible = 0.01,
   },
 })
 
@@ -72,3 +75,4 @@ require("./hyprland/autostart")
 require("./hyprland/look")
 require("./hyprland/animations")
 require("./hyprland/windowrule")
+require("./hyprland/workspace_rule")

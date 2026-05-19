@@ -38,6 +38,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "qq-workspace-5",
+  match = { class = "QQ", float = false },
+  workspace = 5,
+})
+
+hl.window_rule({
   name = "firefox-workspace-2",
   match = { class = "firefox" },
   workspace = 2,

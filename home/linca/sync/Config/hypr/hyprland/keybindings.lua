@@ -44,13 +44,16 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"
 -- Window management
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
-hl.bind(mainMod .. " + Delete", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + Delete",
+  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float())
 hl.bind(mainMod .. " + G", hl.dsp.group.toggle())
 hl.bind("SHIFT + F11", hl.dsp.window.fullscreen())
 -- 任意选择大小
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + R", hl.dsp.layout("colresize +conf"))
+
 
 -- Focus navigation
 hl.bind(mainMod .. " + Left", hl.dsp.focus({ direction = "left" }))
