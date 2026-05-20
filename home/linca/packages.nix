@@ -22,5 +22,6 @@
     devenv
     ast-grep
     typst
+    gh
   ];
 }
