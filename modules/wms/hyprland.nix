@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  options.funkcia.modules.hyprland = {
+  options.funkcia.modules.wms.hyprland = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -15,13 +14,15 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.hyprland.enable {
+  config = lib.mkIf config.funkcia.modules.wms.hyprland.enable {
     programs = {
       # desktop
       hyprland.enable = true;
       # hyprland.withUWSM = true;
       # waybar.enable = true;
     };
+
+    funkcia.modules.gnome-keyring.enable = lib.mkDefault true;
 
     environment.pathsToLink = [
       "/share/hypr"

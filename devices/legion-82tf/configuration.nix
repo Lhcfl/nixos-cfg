@@ -8,33 +8,22 @@
   ];
 
   funkcia.modules = {
-    gnome-keyring.enable = true;
     fingerprint.enable = true;
     docker.enable = true;
-    hyprland.enable = true;
     secure-boot.enable = true;
     btrbk.enable = true;
     tpm.enable = true;
     nix-mirrors.enable = true;
     laptop.enable = true;
-    niri.enable = true;
+    wms = {
+      niri.enable = true;
+      hyprland.enable = true;
+    };
+    ly.enable = true;
   };
 
   programs.steam.enable = true;
 
-  services.displayManager.ly = {
-    settings = {
-      animation = "dur_file";
-      dur_file_path = toString (
-        pkgs.fetchurl {
-          url = "https://codeberg.org/attachments/f336d6ac-8331-4323-91fc-0e4619803401";
-          hash = "sha256-fRm0wlkq9/GdLrVBOzMEnQG/i2ng+uGIzq0u9hu3m9g=";
-        }
-      );
-      full_color = true;
-    };
-    enable = true;
-  };
   security.pam.services.ly.fprintAuth = false;
 
   hardware.bluetooth = {

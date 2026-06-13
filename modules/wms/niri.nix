@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.modules.niri = {
+  options.funkcia.modules.wms.niri = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -15,8 +15,10 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.niri.enable {
+  config = lib.mkIf config.funkcia.modules.wms.niri.enable {
     programs.niri.enable = true;
+
+    funkcia.modules.gnome-keyring.enable = lib.mkDefault true;
 
     environment.systemPackages = with pkgs; [
       xwayland-satellite

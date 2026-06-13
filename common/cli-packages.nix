@@ -10,7 +10,6 @@ with pkgs;
   git
   bat # `cat` replacement
   bun # js runtime
-  lon # nix package manager
   unzip
   p7zip # 7z
   manix # nix configuration helper
