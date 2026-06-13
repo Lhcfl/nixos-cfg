@@ -50,12 +50,14 @@
       inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFiles;
       globals-cfgs = listNixFiles ./global;
       modules-cfgs = listNixFiles ./modules;
-      globals = [
-        nixos-cli.nixosModules.nixos-cli
-        home-manager.nixosModules.home-manager
-      ]
-      ++ globals-cfgs
-      ++ modules-cfgs;
+      globals = builtins.concatLists [
+        [
+          nixos-cli.nixosModules.nixos-cli
+          home-manager.nixosModules.home-manager
+        ]
+        globals-cfgs
+        modules-cfgs
+      ];
     in
     {
       nixosConfigurations = {
