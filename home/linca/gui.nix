@@ -42,10 +42,16 @@
 
       vscode
       qq
-      gparted
       element-desktop
       opencode
+      polkit_gnome
     ];
+
+    home.file = {
+      ".local/bin/start-gnome-polkit" = {
+        source = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      };
+    };
 
     programs = {
       keepassxc.enable = true;

@@ -4,6 +4,7 @@ spawn-at-startup "kitty"
 spawn-at-startup "v2rayN"
 spawn-at-startup "noctalia-shell"
 spawn-at-startup "vicinae" "server"
+spawn-at-startup "~/.local/bin/start-gnome-polkit"
 
 prefer-no-csd
 
