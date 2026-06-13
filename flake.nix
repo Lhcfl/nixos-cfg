@@ -1,5 +1,5 @@
 {
-  description = "A SecureBoot-enabled NixOS configurations";
+  description = "不会有人真的看简介吧？ - a flake file for my configurations.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
