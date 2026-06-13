@@ -10,6 +10,9 @@
         files = pkgs.callPackage ../utils/files.nix { nixpkgs = pkgs; };
       };
     };
+    sharedModules = [
+      inputs.nix-index-database.homeModules.default
+    ];
     users.linca = _: {
       imports = [ ./linca/home.nix ];
       home.stateVersion = "26.05";

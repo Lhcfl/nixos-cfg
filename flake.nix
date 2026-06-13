@@ -30,6 +30,11 @@
       url = "github:Chromium-3-Oxide/everforest-medium.yazi";
       flake = false;
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
