@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    (pkgs.corepack.override { nodejs-slim = pkgs.nodejs-slim_latest; })
-  ]
-  ++ (with pkgs; [
+  home.packages = with pkgs; [
+    (corepack.override {
+      nodejs-slim = nodejs-slim_latest;
+    })
     gcc
     tree-sitter
     nil # nix lsp
@@ -26,5 +26,6 @@
     typst
     gh
     biome
-  ]);
+    comma
+  ];
 }

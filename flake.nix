@@ -69,8 +69,9 @@
           ];
         };
 
-        # checks the nixos top level
-        checks.x86_64-linux.nixosTopLevel = self.nixosConfigurations.nixos.config.system.build.toplevel;
       };
+
+      # checks the nixos top level
+      checks.x86_64-linux.nixosTopLevel = self.nixosConfigurations.nixos.config.system.build.toplevel;
     };
 }
