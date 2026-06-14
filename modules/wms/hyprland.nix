@@ -24,6 +24,7 @@
 
     funkcia.modules.gnome-keyring.enable = lib.mkDefault true;
 
+    # hyprland lua 会暴露出其 类型注释等
     environment.pathsToLink = [
       "/share/hypr"
     ];

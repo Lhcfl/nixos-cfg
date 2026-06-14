@@ -31,6 +31,13 @@
     powerOnBoot = true;
   };
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    open = true;
+    nvidiaSettings = true;
+  };
+
   networking.hostName = "nixos";
 
   boot.loader.systemd-boot.configurationLimit = 10;
