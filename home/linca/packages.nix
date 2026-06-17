@@ -26,5 +26,6 @@
     typst
     gh
     biome
+    openssl
   ];
 }
