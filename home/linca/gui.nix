@@ -57,6 +57,14 @@
       keepassxc.enable = true;
       firefox.enable = true;
       thunderbird.enable = true;
+      alacritty.enable = true;
+      alacritty.settings = {
+        font.normal.family = "Maple Mono NF CN";
+        window.padding = {
+          x = 5;
+          y = 5;
+        };
+      };
     };
 
     xdg.mimeApps = {
