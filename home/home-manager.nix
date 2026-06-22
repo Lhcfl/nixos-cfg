@@ -12,6 +12,7 @@
     };
     sharedModules = [
       inputs.nix-index-database.homeModules.default
+      inputs.noctalia.homeModules.default
     ];
     users.linca = _: {
       imports = [ ./linca/home.nix ];

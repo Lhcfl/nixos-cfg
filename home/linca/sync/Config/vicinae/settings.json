@@ -48,6 +48,14 @@
                "/run/current-system/sw/share/applications"
             ]
          }
+      },
+      "files": {
+         "preferences": {
+            "autoIndexing": true,
+            "excludedPaths": "",
+            "paths": "/home/linca;/media",
+            "watcherPaths": ""
+         }
       }
    }
 }

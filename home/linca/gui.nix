@@ -29,7 +29,7 @@
 
   config = lib.mkIf config.funkcia.hm.gui.enable {
     home.packages = with pkgs; [
-      noctalia-shell
+      # noctalia-shell
       zed-editor
       telegram-desktop
 
@@ -54,6 +54,7 @@
     };
 
     programs = {
+      noctalia.enable = true;
       keepassxc.enable = true;
       firefox.enable = true;
       thunderbird.enable = true;
