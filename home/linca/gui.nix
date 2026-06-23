@@ -54,17 +54,26 @@
     };
 
     programs = {
+      chromium.enable = true;
+
       obsidian.enable = true;
+
       noctalia.enable = true;
+
       keepassxc.enable = true;
+
       firefox.enable = true;
+
       thunderbird.enable = true;
-      alacritty.enable = true;
-      alacritty.settings = {
-        font.normal.family = "Maple Mono NF CN";
-        window.padding = {
-          x = 5;
-          y = 5;
+
+      alacritty = {
+        enable = true;
+        settings = {
+          font.normal.family = "Maple Mono NF CN";
+          window.padding = {
+            x = 5;
+            y = 5;
+          };
         };
       };
     };
