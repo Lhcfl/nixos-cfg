@@ -54,6 +54,7 @@
     };
 
     programs = {
+      obsidian.enable = true;
       noctalia.enable = true;
       keepassxc.enable = true;
       firefox.enable = true;

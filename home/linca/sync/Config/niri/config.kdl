@@ -44,6 +44,7 @@ input {
     touchpad {
         tap
         natural-scroll
+        dwt
     }
 
     focus-follows-mouse
