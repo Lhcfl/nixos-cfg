@@ -11,11 +11,10 @@
     in
     lib.mkIf (cfg.enable && cfg.preset == "gnome") {
       home.packages = with pkgs; [
-        # File manager
-        nautilus
-
-        # Image viewer
-        eog
+        nautilus # File manager
+        eog # Image viewer
+        decibels # audio player
+        papers # doc viewer
 
         # GNOME runtime/theme integration
         adwaita-icon-theme
@@ -27,6 +26,9 @@
         gnome-clocks
         gnome-disk-utility
         gnome-system-monitor
+        gnome-text-editor
+        gnome-calendar
+        gnome-music
       ];
 
       # Allow GTK/GNOME apps to read settings properly
