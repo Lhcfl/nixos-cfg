@@ -79,7 +79,9 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/dc0f5ad4-f124-4050-a75f-11558f7c82fe"; }
+  ];
 
   hardware.bluetooth = {
     enable = true;

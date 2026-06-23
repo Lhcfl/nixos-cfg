@@ -1,0 +1,12 @@
+{
+  "$schema": "https://mimo.xiaomi.com/mimocode/config.json",
+  "mcp": {
+    "nixos": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "mcp-nixos"
+      ],
+    }
+  }
+}
