@@ -145,6 +145,9 @@ binds {
     Ctrl+Alt+T {
         spawn "kitty"
     }
+    Mod+S {
+        spawn-sh "kitty nu"
+    }
     Mod+E {
         spawn-sh "xdg-open ~"
     }
