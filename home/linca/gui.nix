@@ -80,9 +80,8 @@
 
     xdg.mimeApps = {
       enable = true;
-
       defaultApplications = {
-        "application/pdf" = [ "org.mozilla.firefox.desktop" ];
+        "application/pdf" = [ "firefox.desktop" ];
       };
     };
   };
