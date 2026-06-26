@@ -4,39 +4,28 @@
   lib,
   ...
 }:
+let
+  ghHelper = "${lib.getExe pkgs.gh} auth git-credential";
+in
 {
-  programs.git = lib.mkMerge [
-    {
-      enable = true;
-      settings = {
-        init = {
-          defaultBranch = "main";
-        };
-        user = {
-          name = "linca";
-          email = "lhcfl@outlook.com";
-        };
-        http.proxy = osConfig.networking.proxy.default;
-        https.proxy = osConfig.networking.proxy.default;
+  programs.git = {
+    enable = true;
+    settings = {
+      init = {
+        defaultBranch = "main";
       };
-    }
-    (
-      let
-        githubUrls = [
-          "https://github.com"
-          "https://gist.github.com"
-        ];
-      in
-      {
-        settings = lib.listToAttrs (
-          lib.map (
-            url:
-            lib.nameValuePair "credential \"${url}\"" {
-              helper = "${lib.getExe pkgs.gh} auth git-credential";
-            }
-          ) githubUrls
-        );
-      }
-    )
-  ];
+      user = {
+        name = "linca";
+        email = "lhcfl@outlook.com";
+      };
+      http.proxy = osConfig.networking.proxy.default;
+      https.proxy = osConfig.networking.proxy.default;
+      "credential \"https://github.com\"" = {
+        helper = ghHelper;
+      };
+      "credential \"https://gist.github.com\"" = {
+        helper = ghHelper;
+      };
+    };
+  };
 }
