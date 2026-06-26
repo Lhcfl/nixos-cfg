@@ -164,7 +164,8 @@ binds {
         screenshot show-pointer=false
     }
     Ctrl+Alt+A {
-        spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png"
+        // spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png"
+        spawn-sh "noctalia msg screenshot-region"
     }
     XF86AudioMute allow-when-locked=true {
         spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"
