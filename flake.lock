@@ -293,6 +293,22 @@
         "type": "github"
       }
     },
+    "rime": {
+      "inputs": {
+        "rime-emoji": "rime-emoji",
+        "rime-essay": "rime-essay",
+        "rime-luna-pinyin": "rime-luna-pinyin"
+      },
+      "locked": {
+        "path": "./sub-inputs/rime",
+        "type": "path"
+      },
+      "original": {
+        "path": "./sub-inputs/rime",
+        "type": "path"
+      },
+      "parent": []
+    },
     "rime-emoji": {
       "flake": false,
       "locked": {
@@ -350,9 +366,7 @@
         "nixos-cli": "nixos-cli",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
-        "rime-emoji": "rime-emoji",
-        "rime-essay": "rime-essay",
-        "rime-luna-pinyin": "rime-luna-pinyin",
+        "rime": "rime",
         "yazi-everforest-medium": "yazi-everforest-medium"
       }
     },

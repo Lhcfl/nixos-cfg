@@ -39,9 +39,9 @@ in
 {
   home.file = lib.mkMerge [
     (source ./rime-config)
-    (source inputs.rime-luna-pinyin)
-    (source inputs.rime-essay)
-    (source inputs.rime-emoji)
+    (source inputs.rime.rime-luna-pinyin)
+    (source inputs.rime.rime-essay)
+    (source inputs.rime.rime-emoji)
     (patch [
       "luna_pinyin"
       "luna_pinyin_simp"
