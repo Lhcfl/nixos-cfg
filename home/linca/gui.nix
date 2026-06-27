@@ -25,6 +25,7 @@
 
   imports = (utils.files.listNixFiles ./gui/modules) ++ [
     ./gui/vscode/vscode.nix # 还没写完
+    ./gui/rime/rime.nix
   ];
 
   config = lib.mkIf config.funkcia.hm.gui.enable {
