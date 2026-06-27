@@ -1,10 +1,12 @@
 {
   inputs,
+  pkgs,
   lib,
   ...
 }:
 let
   rime-dir = file: ".local/share/fcitx5/rime/${file}";
+  yaml = pkgs.formats.yaml { };
 
   source =
     src:
@@ -26,10 +28,9 @@ let
     (lib.pipe schema [
       (map (schema: {
         name = rime-dir "${schema}.custom.yaml";
-        value.text = ''
-          patch:
-            __include: emoji_suggestion:/patch
-        '';
+        value.source = yaml.generate "${schema}.custom.yaml" {
+          patch.__include = "emoji_suggestion:/patch";
+        };
       }))
       builtins.listToAttrs
     ]);
