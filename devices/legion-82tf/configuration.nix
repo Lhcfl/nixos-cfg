@@ -38,7 +38,13 @@
     nvidiaSettings = true;
   };
 
-  networking.hostName = "nixos";
+  networking = {
+    hostName = "nixos";
+
+    firewall = {
+      enable = true;
+    };
+  };
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
