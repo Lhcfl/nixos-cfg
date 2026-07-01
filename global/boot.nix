@@ -8,8 +8,5 @@
 
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
-
-    # ? maybe a error i don't know
-    bootspec.enable = true;
   };
 }
