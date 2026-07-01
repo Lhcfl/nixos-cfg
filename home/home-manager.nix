@@ -13,6 +13,7 @@
     sharedModules = [
       inputs.nix-index-database.homeModules.default
       inputs.noctalia.homeModules.default
+      inputs.plum-nix.homeModules.default
     ];
     users.linca = _: {
       imports = [ ./linca/home.nix ];

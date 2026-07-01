@@ -270,6 +270,47 @@
         "type": "github"
       }
     },
+    "plum": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778239174,
+        "narHash": "sha256-o16OYMjYrLhoo0H9hw7s/VnXAs+vS0OIY29T1v96WDE=",
+        "owner": "rime",
+        "repo": "plum",
+        "rev": "b1be1969f914cc005add4090631b855db00c2591",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rime",
+        "repo": "plum",
+        "type": "github"
+      }
+    },
+    "plum-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "plum": "plum",
+        "rime-emoji": "rime-emoji",
+        "rime-essay": "rime-essay",
+        "rime-luna-pinyin": "rime-luna-pinyin",
+        "rime-prelude": "rime-prelude"
+      },
+      "locked": {
+        "lastModified": 1782922070,
+        "narHash": "sha256-yZ8oenuosAh7fsifKufRNEnIyysPDUONrhsGUrrwnzA=",
+        "owner": "Lhcfl",
+        "repo": "plum-nix",
+        "rev": "cfbacaa50d8fda45e02002e2ba168cdc321bce16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "plum-nix",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -292,22 +333,6 @@
         "repo": "pre-commit-hooks.nix",
         "type": "github"
       }
-    },
-    "rime": {
-      "inputs": {
-        "rime-emoji": "rime-emoji",
-        "rime-essay": "rime-essay",
-        "rime-luna-pinyin": "rime-luna-pinyin"
-      },
-      "locked": {
-        "path": "./sub-inputs/rime",
-        "type": "path"
-      },
-      "original": {
-        "path": "./sub-inputs/rime",
-        "type": "path"
-      },
-      "parent": []
     },
     "rime-emoji": {
       "flake": false,
@@ -357,6 +382,22 @@
         "type": "github"
       }
     },
+    "rime-prelude": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778321827,
+        "narHash": "sha256-roHPpaAbsnQgnz6kupMz/kHFQWwshRYojNsdS5iFApI=",
+        "owner": "rime",
+        "repo": "rime-prelude",
+        "rev": "082425ea0684bca36474415d4a0e8db9b016487e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rime",
+        "repo": "rime-prelude",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -366,7 +407,7 @@
         "nixos-cli": "nixos-cli",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
-        "rime": "rime",
+        "plum-nix": "plum-nix",
         "yazi-everforest-medium": "yazi-everforest-medium"
       }
     },
