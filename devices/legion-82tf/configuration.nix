@@ -44,6 +44,8 @@
     firewall = {
       enable = true;
     };
+
+    nftables.enable = true;
   };
 
   boot.loader.systemd-boot.configurationLimit = 10;
