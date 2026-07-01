@@ -13,5 +13,11 @@ _: {
         "key_bindings:/numbered_mode_switch"
       ];
     };
+
+    customize.symbols = {
+      patch = {
+        "punctuator/half_shape/#/=".commit = "#";
+      };
+    };
   };
 }

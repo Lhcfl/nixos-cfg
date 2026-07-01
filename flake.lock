@@ -298,11 +298,11 @@
         "rime-prelude": "rime-prelude"
       },
       "locked": {
-        "lastModified": 1782922070,
-        "narHash": "sha256-yZ8oenuosAh7fsifKufRNEnIyysPDUONrhsGUrrwnzA=",
+        "lastModified": 1782923947,
+        "narHash": "sha256-cqGb/v303MEqeiqZZ+ohwnsc+g2yTXzOBK/IgQ+XiMA=",
         "owner": "Lhcfl",
         "repo": "plum-nix",
-        "rev": "cfbacaa50d8fda45e02002e2ba168cdc321bce16",
+        "rev": "849fec2f293ecbfd6e9fa9aff8142214a8029d7e",
         "type": "github"
       },
       "original": {
