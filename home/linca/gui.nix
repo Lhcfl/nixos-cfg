@@ -76,6 +76,8 @@
             x = 5;
             y = 5;
           };
+          window.blur = true;
+          window.opacity = 0.5;
         };
       };
     };

@@ -134,7 +134,53 @@ window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
     draw-border-with-background false
+
+    background-effect {
+        // xray false
+    }
 }
+
+window-rule {
+    match is-floating=true
+
+    background-effect {
+        xray false
+    }
+}
+
+window-rule {
+    match app-id="zen"
+
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="kitty"
+    match app-id="Alacritty"
+
+    background-effect {
+        blur true
+    }
+}
+
+layer-rule {
+    match namespace="noctalia-panel"
+    match namespace="vicinae"
+    background-effect {
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="noctalia-bar-Linca"
+
+    background-effect {
+        blur false
+    }
+}
+
 binds {
     Mod+WheelScrollDown cooldown-ms=150 {
         focus-workspace-down
@@ -153,6 +199,9 @@ binds {
     }
     Mod+B {
         spawn "firefox"
+    }
+    Mod+Z {
+        spawn "zen"
     }
     XF86Favorites {
         spawn "keepassxc"

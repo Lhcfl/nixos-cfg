@@ -13,7 +13,7 @@
    "close_on_focus_loss": false,
    "theme": {
       "dark": {
-         "name": "tokyo-night",
+         "name": "vicinae-dark",
          "icon_theme": "Hicolor"
       }
    },
