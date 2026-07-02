@@ -15,9 +15,7 @@ _: {
     };
 
     customize.symbols = {
-      patch = {
-        "punctuator/half_shape/#/=".commit = "#";
-      };
+      "punctuator/half_shape/#/=".commit = "#";
     };
   };
 }

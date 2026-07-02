@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   utils,
   config,
@@ -45,6 +46,7 @@
       element-desktop
       opencode
       polkit_gnome
+      (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
     ];
 
     home.file = {

@@ -288,9 +288,6 @@
     },
     "plum-nix": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
         "plum": "plum",
         "rime-emoji": "rime-emoji",
         "rime-essay": "rime-essay",
@@ -298,11 +295,11 @@
         "rime-prelude": "rime-prelude"
       },
       "locked": {
-        "lastModified": 1782923947,
-        "narHash": "sha256-cqGb/v303MEqeiqZZ+ohwnsc+g2yTXzOBK/IgQ+XiMA=",
+        "lastModified": 1782984032,
+        "narHash": "sha256-EYZBlC+oez46SD7WcnBK/vx6LD0UsopuTkzzvQaFhrI=",
         "owner": "Lhcfl",
         "repo": "plum-nix",
-        "rev": "849fec2f293ecbfd6e9fa9aff8142214a8029d7e",
+        "rev": "094aacd8f5ed7973df319db3881aeb51951a6e76",
         "type": "github"
       },
       "original": {
@@ -408,7 +405,8 @@
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "plum-nix": "plum-nix",
-        "yazi-everforest-medium": "yazi-everforest-medium"
+        "yazi-everforest-medium": "yazi-everforest-medium",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -445,6 +443,26 @@
       "original": {
         "owner": "Chromium-3-Oxide",
         "repo": "everforest-medium.yazi",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782624757,
+        "narHash": "sha256-pqFaCAV+g8H+p0kE4vYn9ZgcEFvt644zGy7SyCdf9c8=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "907465791e7064d86d37964dd95e23280dfb68da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
