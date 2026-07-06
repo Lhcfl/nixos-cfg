@@ -20,6 +20,7 @@
       hyprland.enable = true;
     };
     ly.enable = true;
+    # winslow-cloud.enable = true;
   };
 
   programs.steam.enable = true;
@@ -38,15 +39,7 @@
     nvidiaSettings = true;
   };
 
-  networking = {
-    hostName = "nixos";
-
-    firewall = {
-      enable = true;
-    };
-
-    nftables.enable = true;
-  };
+  networking.hostName = "nixos";
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows

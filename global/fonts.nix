@@ -1,64 +1,81 @@
-{ pkgs, ... }:
 {
-  fonts = {
-    # when set to true, causes some "basic" fonts to be installed for reasonable
-    # Unicode coverage. Set to true if you are unsure about what languages
-    # you might end up reading.
-    enableDefaultPackages = true;
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options.funkcia.modules.fonts.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+  };
 
-    packages = with pkgs; [
-      nerd-fonts.liberation
-      maple-mono.NF-CN-unhinted
+  config = lib.mkIf config.funkcia.modules.fonts.enable {
+    fonts = {
+      # when set to true, causes some "basic" fonts to be installed for reasonable
+      # Unicode coverage. Set to true if you are unsure about what languages
+      # you might end up reading.
+      enableDefaultPackages = true;
+
+      packages = with pkgs; [
+        nerd-fonts.liberation
+        maple-mono.NF-CN-unhinted
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+        lxgw-wenkai-screen
+        hanazono # 花园明朝，覆盖了几乎所有的汉字
+        source-han-sans
+        source-han-serif
+        source-serif
+        source-serif-pro
+        lxgw-wenkai
+        lxgw-wenkai-screen
+      ];
+
+      fontconfig.defaultFonts = {
+        # Sans serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK SC"
+          "Noto Sans CJK TC"
+          "Noto Sans CJK JP"
+          "Noto Sans CJK KR"
+          "Noto Color Emoji"
+          "HanaMinA"
+          "HanaMinB"
+        ];
+
+        # Serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
+        serif = [
+          "Noto Serif"
+          "Noto Serif CJK SC"
+          "Noto Serif CJK TC"
+          "Noto Serif CJK JP"
+          "Noto Serif CJK KR"
+          "Noto Color Emoji"
+          "HanaMinA"
+          "HanaMinB"
+        ];
+
+        # Monospace fonts: Maple Mono for programming, fallback to Noto Sans Mono
+        monospace = [
+          "Maple Mono NF CN"
+          "Noto Sans Mono"
+          "Noto Color Emoji"
+        ];
+
+        # Emoji font
+        emoji = [
+          "Noto Color Emoji"
+        ];
+      };
+    };
+
+    programs.steam.fontPackages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-color-emoji
-      lxgw-wenkai-screen
-      hanazono # 花园明朝，覆盖了几乎所有的汉字
-      source-han-sans
-      source-han-serif
-      source-serif
-      source-serif-pro
-      lxgw-wenkai
-      lxgw-wenkai-screen
     ];
-
-    fontconfig.defaultFonts = {
-      # Sans serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
-      sansSerif = [
-        "Noto Sans"
-        "Noto Sans CJK SC"
-        "Noto Sans CJK TC"
-        "Noto Sans CJK JP"
-        "Noto Sans CJK KR"
-        "Noto Color Emoji"
-        "HanaMinA"
-        "HanaMinB"
-      ];
-
-      # Serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
-      serif = [
-        "Noto Serif"
-        "Noto Serif CJK SC"
-        "Noto Serif CJK TC"
-        "Noto Serif CJK JP"
-        "Noto Serif CJK KR"
-        "Noto Color Emoji"
-        "HanaMinA"
-        "HanaMinB"
-      ];
-
-      # Monospace fonts: Maple Mono for programming, fallback to Noto Sans Mono
-      monospace = [
-        "Maple Mono NF CN"
-        "Noto Sans Mono"
-        "Noto Color Emoji"
-      ];
-
-      # Emoji font
-      emoji = [
-        "Noto Color Emoji"
-      ];
-    };
   };
 }
