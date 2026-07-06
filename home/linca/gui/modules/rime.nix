@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -11,6 +10,12 @@ in
   plum-nix = {
     enable = true;
     type = "fcitx5";
+
+    schemas = [
+      "luna_pinyin_simp"
+      "luna_pinyin"
+      "luna_pinyin_tw"
+    ];
 
     patch = mkPatch {
       switcher.hotkeys = replace [ "F4" ];
@@ -25,15 +30,15 @@ in
     };
 
     customize.symbols = mkPatch {
-      punctuator.half_shape."#" = replace { commit = "#"; };
+      punctuator.half_shape = {
+        "#" = replace { commit = "#"; };
+        "[" = replace { commit = "「"; };
+        "]" = replace { commit = "」"; };
+        "{" = replace { commit = "{"; };
+        "}" = replace { commit = "}"; };
+        "=" = replace { commit = "="; };
+        "`" = replace { commit = "·"; };
+      };
     };
   };
-
-  # home.activation.rime =
-  #   let
-  #     rimeDir = ".local/share/fcitx5/rime";
-  #   in
-  #   lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-  #     ${pkgs.librime}/bin/rime_deployer --build $HOME/${rimeDir}
-  #   '';
 }
