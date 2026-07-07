@@ -1,19 +1,18 @@
 { pkgs, ... }:
-{
-  home.file =
-    # hyprland cannot dynnamically reload config of lnk, which is very strange.
-    # mkDotfilesLnk = name: {
-    #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
-    # };
-    pkgs.lib.pipe ./dotfiles [
+let
+  source =
+    path:
+    pkgs.lib.pipe ./xdg/${path} [
       builtins.readDir
       builtins.attrNames
       (map (name: {
-        name = ".config/${name}";
+        name = "${name}";
         # value.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/home/linca/dotfiles/${name}";
-        value.source = ./dotfiles/${name};
+        value.source = ./xdg/${path}/${name};
       }))
       builtins.listToAttrs
     ];
-
+in
+{
+  xdg.configFile = source "config";
 }
