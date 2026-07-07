@@ -52,6 +52,67 @@
         (saturation 1.5)
       ])
 
+      (input [
+        (touchpad [
+          tap
+          natural-scroll
+          dwt
+        ])
+        # focus-follows-mouse
+      ])
+
+      (overview [
+        (workspace-shadow [
+          off
+        ])
+      ])
+
+      (layout [
+        (gaps 3)
+        (background-color "transparent")
+        (center-focused-column "never")
+        (default-column-width [
+          (proportion 0.49)
+        ])
+        (preset-column-widths [
+          (proportion 0.33)
+          (proportion 0.49)
+          (proportion 0.65)
+          (proportion 0.98)
+        ])
+        (focus-ring [
+          off
+        ])
+        (border [
+          (width 2)
+          (inactive-color "#595959aa")
+          (active-gradient {
+            from = "#ddaa77ee";
+            to = "#eebb99ee";
+            angle = 45;
+            relative-to = "workspace-view";
+          })
+        ])
+      ])
+
+      # default window rule
+      (window-rule [
+        (geometry-corner-radius 10)
+        (clip-to-geometry true)
+        (draw-border-with-background false)
+        (background-effect [
+          (blur true)
+        ])
+      ])
+
+      # default floating rule
+      (window-rule [
+        (match { is-floating = true; })
+        (background-effect [
+          (xray false)
+        ])
+      ])
+
       (binds (
         lib.flatten [
           (map workspace-action (builtins.genList (x: x + 1) 9))

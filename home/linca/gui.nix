@@ -76,7 +76,7 @@
             y = 5;
           };
           window.blur = true;
-          window.opacity = 0.5;
+          window.opacity = 0.8;
         };
       };
     };
