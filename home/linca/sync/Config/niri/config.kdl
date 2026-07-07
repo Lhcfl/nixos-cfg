@@ -1,4 +1,6 @@
 include "hm-generated.kdl"
+include "workspaces.kdl"
+
 input {
     keyboard {
         xkb {

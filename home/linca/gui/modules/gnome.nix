@@ -10,6 +10,8 @@
       cfg = config.funkcia.hm.gui;
     in
     lib.mkIf (cfg.enable && cfg.preset == "gnome") {
+      programs.gnome-shell.enable = true;
+
       home.packages = with pkgs; [
         nautilus # File manager
         eog # Image viewer

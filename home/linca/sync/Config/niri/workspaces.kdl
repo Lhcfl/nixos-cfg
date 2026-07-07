@@ -1,0 +1,7 @@
+workspace "dashboard"
+
+// Open Fractal on the "chat" workspace, if it runs at niri startup.
+window-rule {
+    match app-id="v2rayN"
+    open-on-workspace "dashboard"
+}

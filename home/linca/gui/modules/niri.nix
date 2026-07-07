@@ -19,8 +19,6 @@
     in
     inputs.nix-kdl.kdl.formats.v1 [
       (spawn-at-startup "fcitx5")
-      (spawn-at-startup "firefox")
-      (spawn-at-startup "kitty")
       (spawn-at-startup "v2rayN")
       (spawn-at-startup "noctalia")
       (spawn-at-startup "vicinae" "server")

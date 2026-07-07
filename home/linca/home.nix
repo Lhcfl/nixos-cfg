@@ -26,6 +26,7 @@
     ./environment.nix
     ./gui.nix
     ./xdg.nix
+    ./ricing.nix
   ]
   ++ utils.files.listNixFiles ./programs;
 }
