@@ -44,7 +44,6 @@
       vscode
       qq
       element-desktop
-      opencode
       polkit_gnome
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
     ];
