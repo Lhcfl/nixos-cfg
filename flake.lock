@@ -151,6 +151,21 @@
         "type": "github"
       }
     },
+    "nix-kdl": {
+      "locked": {
+        "lastModified": 1783405649,
+        "narHash": "sha256-fYQqkUbpLe11+LEu16n4HPq2jsRf08Ny4TdrHoLaWJ4=",
+        "owner": "Lhcfl",
+        "repo": "nix-kdl",
+        "rev": "066501dc19631968d24a5efe24639b9aeee71fa0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "nix-kdl",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -400,6 +415,7 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nix-index-database": "nix-index-database",
+        "nix-kdl": "nix-kdl",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-cli": "nixos-cli",
         "nixpkgs": "nixpkgs",

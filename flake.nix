@@ -29,6 +29,8 @@
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-kdl.url = "github:Lhcfl/nix-kdl";
   };
 
   outputs =
