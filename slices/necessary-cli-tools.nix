@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-with pkgs;
+{ pkgs, ... }: with pkgs;
 [
   eza # `ls` replacement
   fd # `find` replacement
@@ -16,4 +15,6 @@ with pkgs;
   gdu # better `du`
   btop # better htop
   htop
+  age
+  sops
 ]

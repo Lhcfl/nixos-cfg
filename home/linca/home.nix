@@ -1,6 +1,7 @@
 {
   lib,
   utils,
+  osConfig,
   ...
 }:
 {

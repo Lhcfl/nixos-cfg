@@ -49,6 +49,9 @@
     "linca"
   ];
 
+  services.cloudflared.enable = true;
+  environment.systemPackages = with pkgs; [ cloudflared ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.linca = {
     isNormalUser = true;

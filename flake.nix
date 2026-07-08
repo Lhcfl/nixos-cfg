@@ -31,6 +31,9 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-kdl.url = "github:Lhcfl/nix-kdl";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -40,6 +43,7 @@
       lanzaboote,
       home-manager,
       nixos-cli,
+      sops-nix,
       ...
     }:
     let
@@ -50,6 +54,7 @@
         [
           nixos-cli.nixosModules.nixos-cli
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
         ]
         globals-cfgs
         modules-cfgs

@@ -22,6 +22,7 @@ in
         (window-rule [
           (match { app-id = "code"; })
           (match { app-id = "org.telegram.desktop"; })
+          (match { app-id = "v2rayN"; })
           (opacity 0.9)
           (background-effect [
             (blur true)

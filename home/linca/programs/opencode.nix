@@ -1,5 +1,5 @@
-# { config, lib, ... }:
-_: {
+{ osConfig, ... }:
+{
   # options.funkcia.hm.opencode.enable = lib.mkEnableOption "enable opencode";
   # config = lib.mkIf config.funkcia.hm.opencode.enable {
   # };
@@ -12,5 +12,7 @@ _: {
     tui = {
       theme = "system";
     };
+    web.enable = true;
+    web.environmentFile = osConfig.sops.templates."opencode_server_env".path;
   };
 }
