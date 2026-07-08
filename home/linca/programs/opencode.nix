@@ -35,7 +35,7 @@
               dotenv-cli
             ];
             text = ''
-              dotenv -e ${env_path} -- opencode attach "http://localhost:4096"
+              dotenv -e ${env_path} -- opencode attach "http://localhost:4096" --dir "$(pwd)" "$@"
             '';
           })
         ];
