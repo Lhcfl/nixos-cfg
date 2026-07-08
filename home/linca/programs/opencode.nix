@@ -28,11 +28,17 @@
       in
       {
         programs.opencode.web.environmentFile = env_path;
-
-        home.file.".local/bin/opencode-attach" = {
-          text = "${lib.getExe pkgs.dotenv-cli} -e ${env_path} -- opencode attach http://localhost:4096";
-          executable = true;
-        };
+        home.packages = [
+          (pkgs.writeShellApplication {
+            name = "opencode-attach";
+            runtimeInputs = with pkgs; [
+              dotenv-cli
+            ];
+            text = ''
+              dotenv -e ${env_path} -- opencode attach "http://localhost:4096"
+            '';
+          })
+        ];
       }
     ))
   ];
