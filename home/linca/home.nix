@@ -16,6 +16,10 @@
         source = ./assets/avatar.png;
       };
     };
+
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
   };
 
   programs.home-manager.enable = true;
