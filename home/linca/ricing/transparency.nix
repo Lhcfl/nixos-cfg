@@ -8,23 +8,33 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  options.funkcia.hm.ricing.transparency.enable = lib.mkEnableOption "使得一些软件变得透明";
-
-  config = lib.mkIf config.funkcia.hm.ricing.transparency.enable {
-    funkcia.gui.niri.settings = (
-      with kdl.extras.niri;
-      kdl.formats.v1 [
-        (window-rule [
-          (match { app-id = "code"; })
-          (match { app-id = "org.telegram.desktop"; })
-          (match { app-id = "v2rayN"; })
-          (match { app-id = "org.gnome.Nautilus"; })
-          (opacity 0.9)
-          (background-effect [
-            (blur true)
-          ])
-        ])
-      ]
-    );
+  options.funkcia.hm.ricing.transparency = {
+    enable = lib.mkEnableOption "使得一些软件变得透明";
+    opacity = lib.mkOption {
+      type = lib.types.float;
+      default = 0.8;
+    };
   };
+
+  config =
+    let
+      cfg = config.funkcia.hm.ricing.transparency;
+    in
+    lib.mkIf cfg.enable {
+      funkcia.gui.niri.settings = (
+        with kdl.extras.niri;
+        kdl.formats.v1 [
+          (window-rule [
+            (match { app-id = "code"; })
+            (match { app-id = "org.telegram.desktop"; })
+            (match { app-id = "v2rayN"; })
+            (match { app-id = "org.gnome.Nautilus"; })
+            (opacity cfg.opacity)
+            (background-effect [
+              (blur true)
+            ])
+          ])
+        ]
+      );
+    };
 }
