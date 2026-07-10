@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  utils,
   config,
   pkgs,
   ...
@@ -27,20 +26,17 @@
   config = lib.mkIf config.funkcia.hm.gui.enable {
     home.packages = with pkgs; [
       # noctalia-shell
-      zed-editor
       telegram-desktop
 
       # BEGIN 截图
       gradia
       grim
       slurp
-      wl-clipboard-rs
       # END 截图
 
-      vscode
+      wl-clipboard-rs
       qq
       element-desktop
-      polkit_gnome
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
     ];
 
@@ -51,6 +47,8 @@
     # };
 
     programs = {
+      zed-editor.enable = true;
+
       vscode.enable = true;
 
       chromium.enable = true;
