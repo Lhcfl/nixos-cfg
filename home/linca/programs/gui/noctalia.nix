@@ -1,0 +1,36 @@
+{
+  inputs,
+  config,
+  lib,
+  ...
+}:
+let
+  kdl = inputs.nix-kdl.kdl;
+in
+{
+  config = lib.mkIf config.programs.noctalia.enable {
+    funkcia.gui.niri.settings =
+      with kdl.extras.niri;
+      kdl.formats.v1 [
+        (layer-rule [
+          (match { namespace = "^noctalia.*(panel).*"; })
+          (match { namespace = "vicinae"; })
+          (background-effect [
+            (xray false)
+          ])
+        ])
+
+        (layer-rule [
+          (match { namespace = "noctalia-wallpaper"; })
+          (place-within-backdrop true)
+        ])
+
+        (layer-rule [
+          (match { namespace = "noctalia-bar-Linca"; })
+          (background-effect [
+            (blur false)
+          ])
+        ])
+      ];
+  };
+}

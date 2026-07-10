@@ -14,6 +14,7 @@
       inputs.nix-index-database.homeModules.default
       inputs.noctalia.homeModules.default
       inputs.plum-nix.homeModules.default
+      ./modules/niri.nix
     ];
     users.linca = _: {
       imports = [ ./linca/home.nix ];

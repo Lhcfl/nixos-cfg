@@ -4,7 +4,8 @@
   ...
 }:
 let
-  inherit (inputs.plum-nix.patchUtils lib) replace append mkPatch;
+  # inherit (inputs.plum-nix.patchUtils lib) replace append mkPatch;
+  inherit (inputs.plum-nix.patchUtils lib) replace mkPatch;
 in
 {
   plum-nix = {

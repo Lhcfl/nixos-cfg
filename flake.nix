@@ -47,9 +47,9 @@
       ...
     }:
     let
-      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFiles;
-      globals-cfgs = listNixFiles ./global;
-      modules-cfgs = listNixFiles ./modules;
+      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFilesRec;
+      globals-cfgs = listNixFilesRec ./global;
+      modules-cfgs = listNixFilesRec ./modules;
       globals = builtins.concatLists [
         [
           nixos-cli.nixosModules.nixos-cli

@@ -24,10 +24,6 @@
     };
   };
 
-  imports = (utils.files.listNixFiles ./gui/modules) ++ [
-    ./gui/vscode/vscode.nix # 还没写完
-  ];
-
   config = lib.mkIf config.funkcia.hm.gui.enable {
     home.packages = with pkgs; [
       # noctalia-shell
@@ -55,6 +51,8 @@
     };
 
     programs = {
+      vscode.enable = true;
+
       chromium.enable = true;
 
       obsidian.enable = true;

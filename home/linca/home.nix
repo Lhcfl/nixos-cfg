@@ -1,11 +1,12 @@
 {
   lib,
   utils,
-  osConfig,
   ...
 }:
 {
   funkcia.hm.gui.enable = lib.mkDefault true;
+
+  programs.home-manager.enable = true;
 
   home = {
     username = "linca";
@@ -20,18 +21,20 @@
     sessionPath = [
       "$HOME/.local/bin"
     ];
-  };
 
-  programs.home-manager.enable = true;
+    sessionVariables = {
+      EDITOR = "hx";
+      VISUAL = "nvim";
+    };
+  };
 
   imports = [
     ./packages.nix
     ./dotfiles.nix
     ./shell.nix
-    ./environment.nix
     ./gui.nix
     ./xdg.nix
     ./ricing.nix
   ]
-  ++ utils.files.listNixFiles ./programs;
+  ++ utils.files.listNixFilesRec ./programs;
 }

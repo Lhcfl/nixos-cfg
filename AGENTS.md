@@ -30,13 +30,13 @@ home/linca/
   dotfiles/            # Nix store copies → ~/.config/
   sync/Config/         # runtime symlinks → ~/.config/ (editable, applied by sync.ts)
 common/                # shared package lists
-utils/files.nix        # listNixFiles helper
+utils/files.nix        # listNixFilesRec helper
 ```
 
 ## Key conventions
 
 - **`funkcia` option namespace**: NixOS modules use `funkcia.modules.<name>.enable`; home-manager modules use `funkcia.hm.<name>.enable`. Always gate with `lib.mkIf`.
-- **Auto-import via `listNixFiles`**: `global/`, `modules/`, and `home/linca/programs/` are auto-discovered. Adding a `.nix` file to these dirs auto-imports it — no manual `imports` needed.
+- **Auto-import via `listNixFilesRec`**: `global/`, `modules/`, and `home/linca/programs/` are auto-discovered. Adding a `.nix` file to these dirs auto-imports it — no manual `imports` needed.
 - **Two dotfile mechanisms**:
   - `home/linca/dotfiles/` → Nix store copies (immutable at runtime). Managed by `dotfiles.nix`.
   - `home/linca/sync/Config/` → runtime symlinks created by `bun home/linca/sync/sync.ts`. Editable on disk.

@@ -1,5 +1,5 @@
 { utils, ... }: {
-  imports = utils.files.listNixFiles ./ricing;
+  imports = utils.files.listNixFilesRec ./ricing;
 
   funkcia.hm.ricing = {
     transparency.enable = true;
