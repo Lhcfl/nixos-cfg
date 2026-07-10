@@ -43,7 +43,6 @@
       ## GUI PACKAGES
       libnotify # notification support
       firefox
-      kitty # terminal emulator
       v2rayn # proxy client
       xray # proxy client
       brightnessctl # brightness control

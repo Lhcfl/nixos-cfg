@@ -9,7 +9,10 @@ let
 in
 {
   options.funkcia.hm.ricing.transparency = {
-    enable = lib.mkEnableOption "使得一些软件变得透明";
+    enable = lib.mkEnableOption "使得一些软件变得透明" // {
+      default = true;
+    };
+
     opacity = lib.mkOption {
       type = lib.types.float;
       default = 0.8;
@@ -36,5 +39,8 @@ in
           ])
         ]
       );
+
+      programs.alacritty.settings.window.opacity = cfg.opacity * 0.9;
+      programs.kitty.settings.background_opacity = cfg.opacity * 0.9;
     };
 }
