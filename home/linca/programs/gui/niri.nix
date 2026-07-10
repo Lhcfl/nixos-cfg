@@ -25,9 +25,9 @@ in
       (spawn-at-startup "v2rayN")
       (spawn-at-startup "noctalia")
       (spawn-at-startup "vicinae" "server")
-      (spawn-at-startup "~/.local/bin/start-gnome-polkit")
+      (spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
 
-      (prefer-no-csd)
+      prefer-no-csd
 
       (environment [
         (n "QT_QPA_PLATFORM" "wayland")
@@ -151,10 +151,10 @@ in
           ])
 
           (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
-            (focus-workspace-down)
+            focus-workspace-down
           ])
           (n "Mod+WheelScrollUp" { cooldown-ms = 150; } [
-            (focus-workspace-up)
+            focus-workspace-up
           ])
           (n "Ctrl+Alt+T" [
             (spawn "kitty")
@@ -212,34 +212,34 @@ in
             (spawn-sh "noctalia msg brightness-down")
           ])
           (n "Mod+Q" { hotkey-overlay-title = null; } [
-            (close-window)
+            close-window
           ])
           (n "Alt+F4" { hotkey-overlay-title = null; } [
-            (close-window)
+            close-window
           ])
           (n "Mod+Delete" { allow-inhibiting = false; } [
-            (quit)
+            quit
           ])
           (n "Mod+Shift+F" [
-            (toggle-window-floating)
+            toggle-window-floating
           ])
           (n "Mod+G" [
-            (toggle-column-tabbed-display)
+            toggle-column-tabbed-display
           ])
           (n "Shift+F11" [
-            (fullscreen-window)
+            fullscreen-window
           ])
           (n "Mod+M" [
-            (maximize-column)
+            maximize-column
           ])
           (n "Mod+C" [
-            (center-column)
+            center-column
           ])
           (n "Mod+Tab" [
-            (focus-workspace-previous)
+            focus-workspace-previous
           ])
           (n "Mod+R" [
-            (switch-preset-column-width)
+            switch-preset-column-width
           ])
         ]
       ))

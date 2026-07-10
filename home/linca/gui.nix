@@ -44,11 +44,11 @@
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
     ];
 
-    home.file = {
-      ".local/bin/start-gnome-polkit" = {
-        source = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      };
-    };
+    # home.file = {
+    #   ".local/bin/start-gnome-polkit" = {
+    #     source = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    #   };
+    # };
 
     programs = {
       vscode.enable = true;
