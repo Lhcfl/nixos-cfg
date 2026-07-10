@@ -1,25 +1,31 @@
 { inputs, pkgs, ... }:
+let
+  utils = {
+    files = import ../utils/files.nix { nixpkgs = pkgs; };
+  };
+in
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    # i don't know why, but home manager needs extraSpecialArgs
+
+    # home manager use 'extraSpecialArgs'
     extraSpecialArgs = {
-      inherit inputs;
-      utils = {
-        files = pkgs.callPackage ../utils/files.nix { nixpkgs = pkgs; };
-      };
+      inherit inputs utils;
     };
+
     sharedModules = [
       inputs.nix-index-database.homeModules.default
       inputs.noctalia.homeModules.default
       inputs.plum-nix.homeModules.default
-      ./modules/niri.nix
-    ];
+    ]
+    ++ (utils.files.listNixFilesRec ./modules);
+
     users.linca = _: {
       imports = [ ./linca/home.nix ];
       home.stateVersion = "26.05";
     };
-    backupFileExtension = ".hm.old";
+
+    backupFileExtension = "hm.old";
   };
 }
