@@ -14,6 +14,7 @@
   config = lib.mkIf config.funkcia.hm.gui.hyprland.enable {
     home = {
       pointerCursor = {
+        enable = true;
         hyprcursor.enable = true;
         size = 24;
         name = "Bibata-Modern-Ice";

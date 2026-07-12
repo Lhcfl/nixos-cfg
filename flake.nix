@@ -13,9 +13,6 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-cli.url = "github:nix-community/nixos-cli";
-    nixos-cli.inputs.nixpkgs.follows = "nixpkgs";
-
     yazi-everforest-medium.url = "github:Chromium-3-Oxide/everforest-medium.yazi";
     yazi-everforest-medium.flake = false;
 
@@ -42,7 +39,6 @@
       nixpkgs,
       lanzaboote,
       home-manager,
-      nixos-cli,
       sops-nix,
       ...
     }:
@@ -52,7 +48,6 @@
       modules-cfgs = listNixFilesRec ./modules;
       globals = builtins.concatLists [
         [
-          nixos-cli.nixosModules.nixos-cli
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
         ]
