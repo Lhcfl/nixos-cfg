@@ -15,7 +15,7 @@ in
 
     opacity = lib.mkOption {
       type = lib.types.float;
-      default = 0.8;
+      default = 0.85;
     };
   };
 

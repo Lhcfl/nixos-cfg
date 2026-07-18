@@ -38,6 +38,8 @@
       qq
       element-desktop
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
+
+      libreoffice
     ];
 
     # home.file = {
