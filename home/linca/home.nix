@@ -5,6 +5,7 @@
 }:
 {
   funkcia.hm.gui.enable = lib.mkDefault true;
+  funkcia.hm.wine.enable = lib.mkDefault true;
 
   programs.home-manager.enable = true;
 
@@ -35,6 +36,7 @@
     ./gui.nix
     ./xdg.nix
     ./ricing.nix
+    ./wine.nix
   ]
   ++ utils.files.listNixFilesRec ./programs;
 }
