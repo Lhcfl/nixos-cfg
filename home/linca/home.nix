@@ -6,6 +6,12 @@
 {
   funkcia.hm.gui.enable = lib.mkDefault true;
   funkcia.hm.wine.enable = lib.mkDefault true;
+  funkcia.hm.language-sdk = {
+    cpp.enable = true;
+    javascript.enable = true;
+    nix.enable = true;
+    python.enable = true;
+  };
 
   programs.home-manager.enable = true;
 
