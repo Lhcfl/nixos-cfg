@@ -168,9 +168,9 @@ in
           (n "Mod+B" [
             (spawn "zen")
           ])
-          (n "XF86Favorites" [
-            (spawn "keepassxc")
-          ])
+          # (n "XF86Favorites" [
+          #   (spawn "keepassxc")
+          # ])
           (n "Mod+F" [
             (spawn "vicinae" "toggle")
           ])

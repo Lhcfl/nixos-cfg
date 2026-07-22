@@ -27,5 +27,6 @@
     gh
     biome
     openssl
+    dotenv-cli
   ];
 }

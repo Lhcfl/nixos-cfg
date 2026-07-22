@@ -59,7 +59,8 @@
 
       noctalia.enable = true;
 
-      keepassxc.enable = true;
+      # bitwarden 更好
+      # keepassxc.enable = true;
 
       firefox.enable = true;
 
