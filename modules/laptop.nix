@@ -1,13 +1,10 @@
 { config, lib, ... }:
+let
+  cfg = config.funkcia.modules.laptop;
+in
 {
   options.funkcia.modules.laptop = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable laptop module.
-      '';
-    };
+    enable = lib.mkEnableOption "Enable laptop related settings.";
 
     using = lib.mkOption {
       type = lib.types.enum [
@@ -21,17 +18,17 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.laptop.enable (
+  config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
         services.upower.enable = true; # show battery
       }
 
-      (lib.mkIf (config.funkcia.modules.laptop.using == "power-profiles-daemon") {
+      (lib.mkIf (cfg.using == "power-profiles-daemon") {
         services.power-profiles-daemon.enable = true;
       })
 
-      (lib.mkIf (config.funkcia.modules.laptop.using == "tlp") {
+      (lib.mkIf (cfg.using == "tlp") {
         powerManagement.enable = false;
 
         services.tlp = {

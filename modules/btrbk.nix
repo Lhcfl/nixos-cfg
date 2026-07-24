@@ -1,5 +1,3 @@
-# btrbk - Backup tool for Btrfs filesystems
-
 {
   config,
   lib,
@@ -13,6 +11,7 @@
       default = false;
       description = ''
         funkcia: Enable btrbk module.
+        btrbk - Backup tool for Btrfs filesystems
       '';
     };
   };
