@@ -17,6 +17,8 @@ in
       type = lib.types.float;
       default = 0.85;
     };
+
+    onlyTerminal = lib.mkEnableOption "只有终端是透明的";
   };
 
   config =
@@ -32,7 +34,7 @@ in
             (match { app-id = "org.telegram.desktop"; })
             (match { app-id = "v2rayN"; })
             (match { app-id = "org.gnome.Nautilus"; })
-            (opacity cfg.opacity)
+            (opacity (if cfg.onlyTerminal then 1.0 else cfg.opacity))
             (background-effect [
               (blur true)
             ])
