@@ -19,7 +19,7 @@ nix build .#checks.x86_64-linux.nixosTopLevel
 ```
 flake.nix              # root; single nixosConfigurations.nixos
 global/                # system-wide NixOS config (auto-imported)
-modules/               # optional NixOS features, gated by funkcia.modules.* options
+modules/               # optional NixOS features, gated by funkcia.os.* options
 devices/legion-82tf/   # hardware + device-specific overrides
 home/home-manager.nix  # home-manager bridge
 home/linca/
@@ -35,7 +35,7 @@ utils/files.nix        # listNixFilesRec helper
 
 ## Key conventions
 
-- **`funkcia` option namespace**: NixOS modules use `funkcia.modules.<name>.enable`; home-manager modules use `funkcia.hm.<name>.enable`. Always gate with `lib.mkIf`.
+- **`funkcia` option namespace**: NixOS modules use `funkcia.os.<name>.enable`; home-manager modules use `funkcia.hm.<name>.enable`. Always gate with `lib.mkIf`.
 - **Auto-import via `listNixFilesRec`**: `global/`, `modules/`, and `home/linca/programs/` are auto-discovered. Adding a `.nix` file to these dirs auto-imports it — no manual `imports` needed.
 - **Two dotfile mechanisms**:
   - `home/linca/dotfiles/` → Nix store copies (immutable at runtime). Managed by `dotfiles.nix`.

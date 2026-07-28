@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.modules.btrbk = {
+  options.funkcia.os.btrbk = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -16,7 +16,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.btrbk.enable {
+  config = lib.mkIf config.funkcia.os.btrbk.enable {
     environment.systemPackages = with pkgs; [
       btrbk
     ];

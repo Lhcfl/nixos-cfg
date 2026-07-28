@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.modules.ly = {
+  options.funkcia.os.ly = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -15,7 +15,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.ly.enable {
+  config = lib.mkIf config.funkcia.os.ly.enable {
     services.displayManager.ly = {
       settings = {
         animation = "dur_file";

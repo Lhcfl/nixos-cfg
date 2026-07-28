@@ -5,12 +5,12 @@
   ...
 }:
 {
-  options.funkcia.modules.fonts.enable = lib.mkOption {
+  options.funkcia.os.fonts.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
   };
 
-  config = lib.mkIf config.funkcia.modules.fonts.enable {
+  config = lib.mkIf config.funkcia.os.fonts.enable {
     fonts = {
       # when set to true, causes some "basic" fonts to be installed for reasonable
       # Unicode coverage. Set to true if you are unsure about what languages

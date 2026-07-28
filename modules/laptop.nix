@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.funkcia.modules.laptop;
+  cfg = config.funkcia.os.laptop;
 in
 {
-  options.funkcia.modules.laptop = {
+  options.funkcia.os.laptop = {
     enable = lib.mkEnableOption "Enable laptop related settings.";
 
     using = lib.mkOption {

@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
   ];
 
-  funkcia.modules = {
+  funkcia.os = {
     fingerprint.enable = true;
     docker.enable = true;
     secure-boot.enable = true;
@@ -20,6 +20,7 @@
       hyprland.enable = true;
     };
     ly.enable = true;
+    gui.enable = true;
     # winslow-cloud.enable = true;
   };
 

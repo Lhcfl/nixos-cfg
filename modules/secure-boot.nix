@@ -8,7 +8,7 @@
   ...
 }:
 {
-  options.funkcia.modules.secure-boot = {
+  options.funkcia.os.secure-boot = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -18,7 +18,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.secure-boot.enable {
+  config = lib.mkIf config.funkcia.os.secure-boot.enable {
 
     environment.systemPackages = with pkgs; [
       sbctl

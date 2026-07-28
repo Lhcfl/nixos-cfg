@@ -1,10 +1,10 @@
 { config, lib, ... }: {
-  options.funkcia.modules.networking.enable = lib.mkOption {
+  options.funkcia.os.networking.enable = lib.mkOption {
     type = lib.types.bool;
     default = true;
   };
 
-  config = lib.mkIf config.funkcia.modules.networking.enable {
+  config = lib.mkIf config.funkcia.os.networking.enable {
     networking = {
       # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

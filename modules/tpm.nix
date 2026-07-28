@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  options.funkcia.modules.tpm = {
+  options.funkcia.os.tpm = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -10,7 +10,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.tpm.enable {
+  config = lib.mkIf config.funkcia.os.tpm.enable {
 
     # https://nixos.wiki/wiki/TPM
     security.tpm2 = {

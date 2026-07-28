@@ -44,7 +44,7 @@
 
         module = {
           options = if content ? "options" then content.options else { };
-          config = if content ? "config" then content.config else { };
+          config = if content ? "config" then content.config else content;
         };
       in
       module // (patcher args module)

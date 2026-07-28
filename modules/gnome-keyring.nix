@@ -10,7 +10,7 @@
   ...
 }:
 {
-  options.funkcia.modules.gnome-keyring = {
+  options.funkcia.os.gnome-keyring = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -21,7 +21,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.gnome-keyring.enable {
+  config = lib.mkIf config.funkcia.os.gnome-keyring.enable {
     environment.systemPackages = with pkgs; [
       gnome-keyring
       libsecret

@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  options.funkcia.modules.nix-mirrors = {
+  options.funkcia.os.nix-mirrors = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -10,7 +10,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.nix-mirrors.enable {
+  config = lib.mkIf config.funkcia.os.nix-mirrors.enable {
     nix.settings.substituters = [
       "https://mirror.nju.edu.cn/nix-channels/store"
       "https://mirrors.ustc.edu.cn/nix-channels/store"

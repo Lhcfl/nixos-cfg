@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.modules.docker = {
+  options.funkcia.os.docker = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -15,7 +15,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.modules.docker.enable {
+  config = lib.mkIf config.funkcia.os.docker.enable {
     virtualisation.docker = {
       enable = true;
       storageDriver = "btrfs";

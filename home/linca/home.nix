@@ -1,10 +1,11 @@
 {
   lib,
   utils,
+  osConfig,
   ...
 }:
 {
-  funkcia.hm.gui.enable = lib.mkDefault true;
+  funkcia.hm.gui.enable = osConfig.funkcia.os.gui.enable;
   funkcia.hm.wine.enable = lib.mkDefault true;
   funkcia.hm.language-sdk = {
     cpp.enable = true;
