@@ -44,5 +44,5 @@
     ./ricing.nix
     ./wine.nix
   ]
-  ++ utils.files.listNixFilesRec ./programs;
+  ++ utils.files.listNixFiles ./programs;
 }

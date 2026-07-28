@@ -1,11 +1,39 @@
-{
+input@{
   inputs,
   lib,
   config,
   pkgs,
+  utils,
   ...
 }:
+let
+  cfg = config.funkcia.hm.gui;
+in
 {
+  # 神奇魔法！
+  # 给 ./programs/gui 下的 nix 文件统一添加条件 lib.mkIf cfg.enable
+  imports = lib.pipe ./programs/gui [
+    utils.files.listNixFiles
+    (map import)
+    (map (
+      module:
+      let
+        args = builtins.functionArgs module;
+        magic = builtins.mapAttrs (key: _: input.${key}) args;
+        content = module magic;
+      in
+      if content ? "config" then
+        content
+        // {
+          config = lib.mkIf cfg.enable content.config;
+        }
+      else
+        {
+          config = lib.mkIf cfg.enable content;
+        }
+    ))
+  ];
+
   options.funkcia.hm.gui = {
     enable = lib.mkOption {
       type = lib.types.bool;

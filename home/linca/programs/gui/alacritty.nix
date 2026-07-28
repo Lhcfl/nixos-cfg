@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-lib.mkIf config.funkcia.hm.gui.enable {
+{ lib, ... }: {
   programs.alacritty = {
     enable = true;
     settings = {
