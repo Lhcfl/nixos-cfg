@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.os.wms.niri = {
+  options.funkcia.os.gui.niri = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -15,7 +15,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.os.wms.niri.enable {
+  config = lib.mkIf config.funkcia.os.gui.niri.enable {
     programs.niri.enable = true;
 
     funkcia.os.gnome-keyring.enable = lib.mkDefault true;

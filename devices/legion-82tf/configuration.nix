@@ -15,7 +15,7 @@
     tpm.enable = true;
     nix-mirrors.enable = true;
     laptop.enable = true;
-    wms = {
+    gui = {
       niri.enable = true;
       hyprland.enable = true;
     };

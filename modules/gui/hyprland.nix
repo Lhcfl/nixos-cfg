@@ -4,7 +4,7 @@
   ...
 }:
 {
-  options.funkcia.os.wms.hyprland = {
+  options.funkcia.os.gui.hyprland = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -14,7 +14,7 @@
     };
   };
 
-  config = lib.mkIf config.funkcia.os.wms.hyprland.enable {
+  config = lib.mkIf config.funkcia.os.gui.hyprland.enable {
     programs = {
       # desktop
       hyprland.enable = true;
