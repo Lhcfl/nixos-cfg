@@ -1,6 +1,5 @@
-{ lib, ... }:
-{
-  buildMap = app: formats: lib.listToAttrs (map (f: lib.nameValuePair f app) formats);
+{ lib, config, ... }:
+let
   formats = {
     webFormats = [
       "x-scheme-handler/http"
@@ -188,6 +187,30 @@
       "vnd.ms-powerpoint.presentation.macroEnabled.12"
       "vnd.ms-powerpoint.template.macroEnabled.12"
       "vnd.ms-powerpoint.slideshow.macroEnabled.12"
+    ];
+    explorerFormats = [
+      "inode/directory"
+      "x-scheme-handler/file"
+    ];
+  };
+
+  cfg = config.funkcia.hm.xdg.mime.defaultApplications;
+in
+{
+  options.funkcia.hm.xdg.mime.defaultApplications = lib.attrsets.mapAttrs (
+    name: _:
+    lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+    }
+  ) formats;
+
+  config.xdg.mimeApps = {
+    enable = true;
+    defaultApplications = lib.pipe cfg [
+      lib.attrsets.attrsToList
+      (map ({ name, value }: map (format: lib.nameValuePair format value) formats.${name}))
+      builtins.concatLists
+      lib.attrsets.listToAttrs
     ];
   };
 }

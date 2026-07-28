@@ -1,4 +1,4 @@
-input@{ pkgs, ... }:
+{ pkgs, ... }:
 let
   source =
     path:
@@ -12,30 +12,24 @@ let
       }))
       builtins.listToAttrs
     ];
-
-  inherit (import ./xdg/mime.nix input) buildMap formats;
 in
 {
+  funkcia.hm.xdg.mime.defaultApplications = {
+    webFormats = [ "zen.desktop" ];
+    wordFormats = [ "writer.desktop" ];
+    excelFormats = [ "calc.desktop" ];
+    pptFormats = [ "impress.desktop" ];
+  };
+
   xdg = {
     mimeApps = {
       enable = true;
-      defaultApplications =
-        buildMap [ "zen.desktop" ] formats.webFormats
-        // buildMap [ "org.gnome.Loupe.desktop" ] formats.imageFormats
-        // buildMap [ "org.gnome.FileRoller.desktop" ] formats.archiveFormats
-        // buildMap [ "org.gnome.Decibels.desktop" ] formats.audioFormats
-        // buildMap [ "org.gnome.Totem.desktop" ] formats.videoFormats
-        // buildMap [ "writer.desktop" ] formats.wordFormats
-        // buildMap [ "calc.desktop" ] formats.excelFormats
-        // buildMap [ "impress.desktop" ] formats.pptFormats
-        // {
-          "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-          "text/plain" = [ "org.gnome.TextEditor.desktop" ];
-          "application/pdf" = [ "org.gnome.Papers.desktop" ];
-          "x-scheme-handler/mailto" = [ "org.gnome.Geary.desktop" ];
-        };
+      defaultApplications = {
+        "text/plain" = [ "org.gnome.TextEditor.desktop" ];
+        "application/pdf" = [ "org.gnome.Papers.desktop" ];
+        "x-scheme-handler/mailto" = [ "org.gnome.Geary.desktop" ];
+      };
     };
     configFile = source "config";
   };
-
 }

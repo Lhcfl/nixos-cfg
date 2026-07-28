@@ -13,9 +13,10 @@ in
 
     home.packages = with pkgs; [
       nautilus # File manager
-      eog # Image viewer
+      loupe # Image viewer
       decibels # audio player
       papers # doc viewer
+      file-roller
 
       # GNOME runtime/theme integration
       adwaita-icon-theme
@@ -54,19 +55,12 @@ in
       };
     };
 
-    xdg.mimeApps = {
-      enable = true;
-
-      defaultApplications = {
-        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-
-        "x-scheme-handler/file" = [ "org.gnome.Nautilus.desktop" ];
-        "x-scheme-handler/about" = [ "org.gnome.Nautilus.desktop" ];
-
-        "image/png" = [ "org.gnome.eog.desktop" ];
-        "image/jpeg" = [ "org.gnome.eog.desktop" ];
-        "image/webp" = [ "org.gnome.eog.desktop" ];
-      };
+    funkcia.hm.xdg.mime.defaultApplications = {
+      explorerFormats = [ "org.gnome.Nautilus.desktop" ];
+      imageFormats = [ "org.gnome.Loupe.desktop" ];
+      archiveFormats = [ "org.gnome.FileRoller.desktop" ];
+      audioFormats = [ "org.gnome.Decibels.desktop" ];
+      videoFormats = [ "org.gnome.Totem.desktop" ];
     };
   };
 }
