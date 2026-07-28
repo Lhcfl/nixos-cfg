@@ -1,5 +1,5 @@
 {
-  osConfig,
+  config,
   lib,
   pkgs,
   ...
@@ -22,12 +22,18 @@
         web.enable = true;
       };
     }
-    (lib.mkIf osConfig.linca.sops.enable (
+    (lib.mkIf config.linca.sops.enable (
       let
-        env_path = osConfig.sops.templates."opencode_server_env".path;
+        env_path = config.sops.templates."opencode_server_env".path;
       in
       {
+        sops.templates."opencode_server_env".content = ''
+          OPENCODE_SERVER_USERNAME=${config.sops.placeholder."opencode_server/username"}
+          OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."opencode_server/password"}
+        '';
+
         programs.opencode.web.environmentFile = env_path;
+
         home.packages = [
           (pkgs.writeShellApplication {
             name = "opencode-attach";

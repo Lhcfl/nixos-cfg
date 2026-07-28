@@ -24,6 +24,7 @@ in
       inputs.nix-index-database.homeModules.default
       inputs.noctalia.homeModules.default
       inputs.plum-nix.homeModules.default
+      inputs.sops-nix.homeManagerModules.sops
     ]
     ++ (utils.files.listNixFilesRec ./modules);
 

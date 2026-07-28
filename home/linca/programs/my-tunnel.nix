@@ -1,11 +1,11 @@
 {
-  osConfig,
+  config,
   lib,
   pkgs,
   ...
 }:
 {
-  config = lib.mkIf osConfig.linca.sops.enable {
+  config = lib.mkIf config.linca.sops.enable {
     home.packages = [
       (pkgs.writeShellApplication {
         name = "start-cloudflare-tunnel";
@@ -13,7 +13,7 @@
           dotenv-cli
         ];
         text = ''
-          cat ${osConfig.sops.secrets."cloudflare/start-tunnel-nixos".path} | bash
+          cat ${config.sops.secrets."cloudflare/start-tunnel-nixos".path} | bash
         '';
       })
     ];

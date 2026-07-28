@@ -56,6 +56,7 @@
     ./gui.nix
     ./xdg.nix
     ./ricing.nix
+    ./sops.nix
   ]
   ++ utils.files.listNixFiles ./programs;
 }
