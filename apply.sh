@@ -1,3 +1,3 @@
 set -euo
-sudo nixos apply
+sudo nixos-rebuild switch
 bun home/linca/sync/sync.ts
