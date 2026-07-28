@@ -5,8 +5,7 @@
   ...
 }:
 {
-  options.funkcia.os.fonts.enable = lib.mkOption {
-    type = lib.types.bool;
+  options.funkcia.os.fonts.enable = lib.mkEnableOption "字体相关设置" // {
     default = true;
   };
 

@@ -55,15 +55,7 @@ in
       qq
       element-desktop
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
-
-      libreoffice
     ];
-
-    # home.file = {
-    #   ".local/bin/start-gnome-polkit" = {
-    #     source = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-    #   };
-    # };
 
     programs = {
       zed-editor.enable = true;
@@ -75,9 +67,6 @@ in
       obsidian.enable = true;
 
       noctalia.enable = true;
-
-      # bitwarden 更好
-      # keepassxc.enable = true;
 
       firefox.enable = true;
 
