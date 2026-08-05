@@ -23,9 +23,14 @@ in
 
     xdg.configFile."niri/config.kdl".text = cfg.settings;
 
-    funkcia.hm.gui.wms.niri.settings = lib.mkAfter ''
-      include optional=true "noctalia.kdl"
-      include optional=true "customize.kdl"
-    '';
+    funkcia.hm.gui.wms.niri.settings = lib.mkMerge [
+      (lib.mkBefore (
+        config.lib.funkcia.niri.mkInclude "os-recommand" osConfig.funkcia.os.gui.niri.recommandSettings
+      ))
+      (lib.mkAfter ''
+        include optional=true "noctalia.kdl"
+        include optional=true "customize.kdl"
+      '')
+    ];
   };
 }

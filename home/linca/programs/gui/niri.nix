@@ -25,7 +25,6 @@ in
       (spawn-at-startup "v2rayN")
       (spawn-at-startup "noctalia")
       (spawn-at-startup "vicinae" "server")
-      (spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
 
       prefer-no-csd
 
@@ -34,10 +33,6 @@ in
       ])
 
       (screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png")
-
-      (xwayland-satellite [
-        (n "path" "${lib.getExe pkgs.xwayland-satellite}")
-      ])
 
       (cursor [
         (xcursor-size 24)
