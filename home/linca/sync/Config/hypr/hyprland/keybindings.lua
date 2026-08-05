@@ -26,7 +26,7 @@ with_main_mod("SUPER", function(mbind)
   mbind("C", hl.dsp.exec_cmd("code"))
   mbind("B", hl.dsp.exec_cmd(browser))
   -- hl.bind("XF86Favorites", hl.dsp.exec_cmd("keepassxc"))
-  mbind("R", hl.dsp.exec_cmd("hyprctl reload"))
+  -- mbind("R", hl.dsp.exec_cmd("hyprctl reload"))
 
   -- Window management
   mbind("Q", hl.dsp.window.close())

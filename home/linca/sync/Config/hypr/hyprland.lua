@@ -62,13 +62,14 @@ hl.config({
   misc = {
     force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
     disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
-    focus_on_activate       = true,
+    focus_on_activate       = false,
   },
 })
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("NIXOS_OZONE_WL", "1")
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
