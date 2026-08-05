@@ -5,7 +5,7 @@
 
   outputs =
     inputs@{
-      self,
+      flake-parts,
       nixpkgs,
       lanzaboote,
       home-manager,
@@ -14,45 +14,34 @@
     }:
     let
       inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFilesRec;
-
-      # make a nixos system with extra modules
-      mkNixosSystem =
-        extraModules:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-
-          modules = builtins.concatLists [
-            [
-              ./home/home-manager.nix
-              home-manager.nixosModules.home-manager
-              sops-nix.nixosModules.sops
-            ]
-            (listNixFilesRec ./global)
-            (listNixFilesRec ./modules)
-            extraModules
-          ];
-        };
     in
-    {
-      nixosConfigurations = {
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = listNixFilesRec ./parts;
 
-        legion-82tf = mkNixosSystem [
-          lanzaboote.nixosModules.lanzaboote
-          ./devices/legion-82tf/configuration.nix
+      nixos = {
+        sharedModules = builtins.concatLists [
+          [
+            ./home/home-manager.nix
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+          ]
+          (listNixFilesRec ./global)
+          (listNixFilesRec ./modules)
         ];
 
+        devices = {
+          legion-82tf.modules = [
+            ./devices/legion-82tf/configuration.nix
+            lanzaboote.nixosModules.lanzaboote
+          ];
+        };
       };
-
-      # checks the nixos top level
-      # checks.x86_64-linux.<hostname>TopLevel = self.nixosConfigurations.<hostname>.config.system.build.toplevel;
-      checks.x86_64-linux.legion-82tfTopLevel =
-        self.nixosConfigurations.legion-82tf.config.system.build.toplevel;
     };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     lanzaboote.url = "github:nix-community/lanzaboote/v1.1.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
