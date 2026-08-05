@@ -55,6 +55,12 @@ in
       };
     };
 
+    xdg.portal = {
+      enable = true;
+
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    };
+
     funkcia.hm.xdg.mime.defaultApplications = {
       explorerFormats = [ "org.gnome.Nautilus.desktop" ];
       imageFormats = [ "org.gnome.Loupe.desktop" ];

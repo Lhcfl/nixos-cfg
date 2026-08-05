@@ -30,6 +30,7 @@ in
         "x-scheme-handler/mailto" = [ "org.gnome.Geary.desktop" ];
       };
     };
+
     configFile = source "config";
   };
 }

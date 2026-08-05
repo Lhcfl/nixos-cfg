@@ -16,6 +16,9 @@
       # you might end up reading.
       enableDefaultPackages = true;
 
+      # create a directory with links to all fonts in /run/current-system/sw/share/X11/fonts.
+      fontDir.enable = true;
+
       packages = with pkgs; [
         nerd-fonts.liberation
         maple-mono.NF-CN-unhinted
@@ -33,6 +36,7 @@
         lxgw-wenkai-screen
       ];
 
+      fontconfig.enable = true;
       fontconfig.defaultFonts = {
         # Sans serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
         sansSerif = [

@@ -4,6 +4,7 @@
   config,
   pkgs,
   utils,
+  osConfig,
   ...
 }:
 let
@@ -24,10 +25,8 @@ in
   ];
 
   options.funkcia.hm.gui = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable GUI packages";
+    enable = lib.mkEnableOption "Enable GUI packages" // {
+      default = osConfig.funkcia.os.gui.enable;
     };
 
     preset = lib.mkOption {

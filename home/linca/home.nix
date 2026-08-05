@@ -1,12 +1,10 @@
 {
   utils,
-  osConfig,
   pkgs,
   ...
 }:
 {
   funkcia.hm = {
-    gui.enable = osConfig.funkcia.os.gui.enable;
     wine.enable = true;
     language-sdk = {
       cpp.enable = true;
