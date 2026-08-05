@@ -27,10 +27,7 @@ in
     ]
     ++ (utils.files.listNixFilesRec ./modules);
 
-    users.linca = _: {
-      imports = [ ./linca/home.nix ];
-      home.stateVersion = "26.05";
-    };
+    users.linca = ./linca/home.nix;
 
     backupFileExtension = "hm.old";
   };
