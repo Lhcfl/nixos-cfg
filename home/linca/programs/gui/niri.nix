@@ -8,7 +8,7 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.gui.niri.settings = (
+  funkcia.hm.gui.wms.niri.settings = (
     with kdl.extras.niri;
     let
       workspace-action = id: [

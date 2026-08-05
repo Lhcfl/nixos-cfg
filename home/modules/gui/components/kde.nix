@@ -4,8 +4,15 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.funkcia.hm.gui.components.kde;
+in
 {
-  config = lib.mkIf (config.funkcia.hm.gui.enable && config.funkcia.hm.gui.preset == "kde") {
+  options.funkcia.hm.gui.components.kde = {
+    enable = lib.mkEnableOption "Enable KDE components";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs.kdePackages; [
       dolphin # KDE file manager
       qtimageformats # Image format support for Qt5
@@ -22,13 +29,10 @@
       gwenview # KDE image viewer
     ];
 
-    xdg.mimeApps = {
-      defaultApplications = {
-        "inode/directory" = [ "org.kde.dolphin.desktop" ];
-        "x-scheme-handler/file" = [ "org.kde.dolphin.desktop" ];
-        "x-scheme-handler/about" = [ "org.kde.dolphin.desktop" ];
-        "image/png" = [ "org.kde.gwenview.desktop" ];
-      };
+    funkcia.hm.xdg.mime.defaultApplications = {
+      explorerFormats = [ "org.kde.dolphin.desktop" ];
+      imageFormats = [ "org.kde.gwenview.desktop" ];
+      archiveFormats = [ "org.kde.ark.desktop" ];
     };
   };
 }

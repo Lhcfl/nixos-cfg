@@ -5,10 +5,30 @@
   ...
 }:
 let
-  cfg = config.funkcia.hm.gui;
+  cfg = config.funkcia.hm.gui.components.gnome;
 in
 {
-  config = lib.mkIf (cfg.enable && cfg.preset == "gnome") {
+  options.funkcia.hm.gui.components.gnome = {
+    enable = lib.mkEnableOption "Enable GNOME components";
+    theme = {
+      name = lib.mkOption {
+        default = "Adwaita";
+        type = lib.types.str;
+        description = "The GTK theme to use for GNOME components";
+      };
+
+      package = lib.mkOption {
+        default = with pkgs; [
+          adwaita-icon-theme
+          gnome-themes-extra
+        ];
+        type = lib.types.listOf lib.types.package;
+        description = "The packages providing the GTK theme to use for GNOME components";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.gnome-shell.enable = true;
 
     home.packages = with pkgs; [
@@ -31,33 +51,17 @@ in
       gnome-text-editor
       gnome-calendar
       gnome-music
-    ];
 
-    # Allow GTK/GNOME apps to read settings properly
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        icon-theme = "Adwaita";
-        gtk-theme = "Adwaita";
-      };
-    };
+    ];
 
     gtk = {
       enable = true;
-
-      iconTheme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
-      };
-
-      theme = {
-        name = "Adwaita";
-        package = pkgs.gnome-themes-extra;
-      };
+      iconTheme.name = cfg.theme.name;
+      theme.name = cfg.theme.name;
     };
 
     xdg.portal = {
       enable = true;
-
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
 

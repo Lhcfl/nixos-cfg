@@ -9,7 +9,7 @@ let
 in
 {
   config = lib.mkIf config.programs.noctalia.enable {
-    funkcia.gui.niri.settings =
+    funkcia.hm.gui.wms.niri.settings =
       with kdl.extras.niri;
       kdl.formats.v1 [
         (layer-rule [

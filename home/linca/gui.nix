@@ -40,6 +40,8 @@ in
   };
 
   config = lib.mkIf config.funkcia.hm.gui.enable {
+    funkcia.hm.gui.components.gnome.enable = lib.mkIf (cfg.preset == "gnome") true;
+
     home.packages = with pkgs; [
       # noctalia-shell
       telegram-desktop

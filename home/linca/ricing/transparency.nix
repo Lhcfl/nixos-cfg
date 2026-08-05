@@ -26,7 +26,7 @@ in
       cfg = config.funkcia.hm.ricing.transparency;
     in
     lib.mkIf cfg.enable {
-      funkcia.gui.niri.settings = (
+      funkcia.hm.gui.wms.niri.settings = (
         with kdl.extras.niri;
         kdl.formats.v1 [
           (window-rule [
