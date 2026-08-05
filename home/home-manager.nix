@@ -1,12 +1,11 @@
 {
   inputs,
-  pkgs,
   lib,
   ...
 }:
 let
   utils = {
-    files = import ../utils/files.nix { nixpkgs = pkgs; };
+    files = import ../utils/files.nix { inherit lib; };
     magic = import ../utils/magic.nix { inherit lib; };
   };
 in

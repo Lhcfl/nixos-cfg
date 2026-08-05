@@ -1,7 +1,4 @@
-{ nixpkgs, ... }:
-let
-  inherit (nixpkgs) lib;
-in
+{ lib, ... }:
 {
   listNixFilesRec =
     path:

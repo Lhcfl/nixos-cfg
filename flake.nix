@@ -13,7 +13,7 @@
       ...
     }:
     let
-      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFilesRec;
+      inherit ((import ./utils/files.nix { lib = nixpkgs.lib; })) listNixFilesRec;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = listNixFilesRec ./parts;
