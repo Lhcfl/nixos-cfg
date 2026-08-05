@@ -30,7 +30,7 @@
         ];
 
         devices = {
-          legion-82tf.modules = [
+          legion-82tf.imports = [
             ./devices/legion-82tf/configuration.nix
             lanzaboote.nixosModules.lanzaboote
           ];
