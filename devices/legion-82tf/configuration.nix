@@ -40,7 +40,7 @@
     nvidiaSettings = true;
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = "legion-82tf"; # Define your hostname.
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows

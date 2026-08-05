@@ -1,5 +1,55 @@
 {
-  description = "不会有人真的看简介吧？ - a flake file for my configurations.";
+  description = ''
+    不会有人真的看简介吧？ - a flake file for my configurations.
+  '';
+
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      lanzaboote,
+      home-manager,
+      sops-nix,
+      ...
+    }:
+    let
+      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFilesRec;
+
+      # make a nixos system with extra modules
+      mkNixosSystem =
+        extraModules:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+
+          modules = builtins.concatLists [
+            [
+              ./home/home-manager.nix
+              home-manager.nixosModules.home-manager
+              sops-nix.nixosModules.sops
+            ]
+            (listNixFilesRec ./global)
+            (listNixFilesRec ./modules)
+            extraModules
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+
+        legion-82tf = mkNixosSystem [
+          lanzaboote.nixosModules.lanzaboote
+          ./devices/legion-82tf/configuration.nix
+        ];
+
+      };
+
+      # checks the nixos top level
+      # checks.x86_64-linux.<hostname>TopLevel = self.nixosConfigurations.<hostname>.config.system.build.toplevel;
+      checks.x86_64-linux.legion-82tfTopLevel =
+        self.nixosConfigurations.legion-82tf.config.system.build.toplevel;
+    };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -32,49 +82,4 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
-
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      lanzaboote,
-      home-manager,
-      sops-nix,
-      ...
-    }:
-    let
-      inherit ((import ./utils/files.nix { inherit nixpkgs; })) listNixFilesRec;
-      globals-cfgs = listNixFilesRec ./global;
-      modules-cfgs = listNixFilesRec ./modules;
-      globals = builtins.concatLists [
-        [
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-        ]
-        globals-cfgs
-        modules-cfgs
-      ];
-    in
-    {
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          # system = "x86_64-linux";
-          # ignore the system parameter because it is deprecated
-
-          specialArgs = {
-            inherit inputs;
-          };
-
-          modules = globals ++ [
-            lanzaboote.nixosModules.lanzaboote
-            ./devices/legion-82tf/configuration.nix
-            ./home/home-manager.nix
-          ];
-        };
-
-      };
-
-      # checks the nixos top level
-      checks.x86_64-linux.nixosTopLevel = self.nixosConfigurations.nixos.config.system.build.toplevel;
-    };
 }
