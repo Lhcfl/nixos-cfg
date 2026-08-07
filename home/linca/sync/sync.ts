@@ -14,11 +14,22 @@ const DIR_MAP = {
   "State/noctalia/settings.toml": ".local/state/noctalia/settings.toml",
 }
 
-for (const [source, dest] of Object.entries(DIR_MAP).map(([source, dest]) => [
-  path.join(here, source),
-  path.join(homedir(), dest)
-] as const)) {
-  console.log("linking", source, "from", source, "->", dest);
+const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
+const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
+const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
+const blue = (s: string) => `\x1b[34m${s}\x1b[0m`;
+
+for (const [s, d] of Object.entries(DIR_MAP)) {
+  const source = path.join(here, s);
+  const dest = path.join(homedir(), d);
+
+  const withGroup = (fn: () => void) => {
+    console.group()
+    fn()
+    console.groupEnd()
+  }
+
+  let statue
 
   try {
     const x = await fs.lstat(dest);
@@ -27,16 +38,22 @@ for (const [source, dest] of Object.entries(DIR_MAP).map(([source, dest]) => [
       if (
         path.normalize(source) == path.normalize(origin)
       ) {
-        console.log("success.")
+        console.log(green("[SKIP]"), blue("already linked"), s, "->", dest);
         continue;
       }
 
-      console.error("exists a symlink: ", dest, "->", origin)
+      withGroup(() => {
+        console.error(red("[ERR]"), "exists a symlink", dest, "->", origin)
+      });
     }
 
-    console.error("exists a file: ", dest)
+    withGroup(() => {
+      console.error(red("[ERR]"), "exists a file: ", dest)
+    })
   } catch {
-    await fs.symlink(source, dest).catch((err) => console.error(err))
+    await fs.symlink(source, dest).catch((err) => console.error(err)).then(() => {
+      console.log(green("[OK]"), source, "->", dest);
+    })
   }
 }
 
