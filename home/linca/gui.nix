@@ -67,8 +67,6 @@ in
 
       obsidian.enable = true;
 
-      noctalia.enable = true;
-
       firefox.enable = true;
 
       thunderbird.enable = true;

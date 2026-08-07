@@ -7,16 +7,17 @@
 }:
 let
   kdl = inputs.nix-kdl.kdl;
+  cfg = config.funkcia.os.gui.niri;
 in
 {
   options.funkcia.os.gui.niri = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable niri module.
-      '';
-    };
+    enable = lib.mkEnableOption "Enable niri, a Wayland WM";
+
+    noctalia.enable =
+      lib.mkEnableOption "Enable noctalia shell, a sleek, customizable desktop shell crafted for Wayland"
+      // {
+        default = true;
+      };
 
     recommandSettings = lib.mkOption {
       type = lib.types.lines;
@@ -27,8 +28,17 @@ in
     };
   };
 
-  config = lib.mkIf config.funkcia.os.gui.niri.enable {
-    programs.niri.enable = true;
+  config = lib.mkIf cfg.enable {
+
+    programs = {
+      niri.enable = true;
+
+      noctalia = lib.mkIf cfg.noctalia.enable {
+        enable = true;
+        recommendedServices.enable = lib.mkDefault true;
+      };
+    };
+
     funkcia.os.gnome-keyring.enable = lib.mkDefault true;
 
     funkcia.os.gui.niri.recommandSettings =

@@ -1,6 +1,6 @@
 {
   inputs,
-  config,
+  osConfig,
   lib,
   ...
 }:
@@ -8,7 +8,7 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  config = lib.mkIf config.programs.noctalia.enable {
+  config = lib.mkIf osConfig.programs.noctalia.enable {
     funkcia.hm.gui.wms.niri.settings =
       with kdl.extras.niri;
       kdl.formats.v1 [

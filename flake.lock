@@ -201,26 +201,6 @@
         "type": "github"
       }
     },
-    "noctalia": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1786061077,
-        "narHash": "sha256-a8KdcFi/gIo+75FRHgMvr2WErg51BGtfNl5Nz64wz1I=",
-        "owner": "noctalia-dev",
-        "repo": "noctalia",
-        "rev": "0ad7d80225c15aa9b6cac99e820bb34cee1256b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "noctalia-dev",
-        "repo": "noctalia",
-        "type": "github"
-      }
-    },
     "plum": {
       "flake": false,
       "locked": {
@@ -355,7 +335,6 @@
         "nix-kdl": "nix-kdl",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs",
-        "noctalia": "noctalia",
         "plum-nix": "plum-nix",
         "sops-nix": "sops-nix",
         "yazi-everforest-medium": "yazi-everforest-medium",
