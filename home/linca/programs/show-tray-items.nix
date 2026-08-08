@@ -22,8 +22,8 @@
         while IFS= read -r item; do
           [ -z "$item" ] && continue
 
-          bus="$\{item%%/*}"
-          path="/$\{item#*/}"
+          bus="''${item%%/*}"
+          path="/''${item#*/}"
 
           id_raw=$(busctl --user get-property "$bus" "$path" \
                 org.kde.StatusNotifierItem Id 2>/dev/null || true)
