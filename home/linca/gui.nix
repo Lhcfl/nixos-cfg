@@ -53,7 +53,6 @@ in
       # END 截图
 
       wl-clipboard-rs
-      qq
       element-desktop
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
     ];
