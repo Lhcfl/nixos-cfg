@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   lib,
   ...
@@ -23,8 +24,8 @@ in
       inputs.nix-index-database.homeModules.default
       inputs.plum-nix.homeModules.default
       inputs.sops-nix.homeManagerModules.sops
-    ]
-    ++ (utils.files.listNixFilesRec ./modules);
+      inputs.self.homeModules.default
+    ];
 
     users.linca = ./linca/home.nix;
 

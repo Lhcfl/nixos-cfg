@@ -5,6 +5,7 @@
 
   outputs =
     inputs@{
+      self,
       flake-parts,
       nixpkgs,
       lanzaboote,
@@ -21,14 +22,11 @@
       ];
 
       nixos = {
-        sharedModules = builtins.concatLists [
-          [
-            ./home/home-manager.nix
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-          ]
-          (listNixFilesRec ./global)
-          (listNixFilesRec ./modules)
+        sharedModules = [
+          ./home/home-manager.nix
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
+          self.nixosModules.default
         ];
 
         devices = {
@@ -36,6 +34,19 @@
             ./devices/legion-82tf/configuration.nix
             lanzaboote.nixosModules.lanzaboote
           ];
+        };
+      };
+
+      flake = {
+        nixosModules.default = {
+          imports = builtins.concatLists [
+            (listNixFilesRec ./global)
+            (listNixFilesRec ./modules)
+          ];
+        };
+
+        homeModules.default = {
+          imports = listNixFilesRec ./home/modules;
         };
       };
     };

@@ -198,9 +198,13 @@ let
 in
 {
   options.funkcia.hm.xdg.mime.defaultApplications = lib.attrsets.mapAttrs (
-    name: _:
+    name: value:
     lib.mkOption {
       type = lib.types.listOf lib.types.str;
+      description = ''
+        default applications for these MIME:
+        ${builtins.concatStringsSep "\n- " value}
+      '';
     }
   ) formats;
 

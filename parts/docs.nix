@@ -1,5 +1,5 @@
 {
-  config,
+  self,
   inputs,
   ...
 }:
@@ -11,32 +11,22 @@
   perSystem = { pkgs, system, ... }: {
     packages.funkcia-options-doc =
       let
-        inherit ((import ../utils/files.nix { lib = inputs.nixpkgs.lib; })) listNixFilesRec;
+        urlPrefix = "https://github.com/Lhcfl/nixos-cfg/blob/main/";
       in
       inputs.nuschtos-search.packages.${system}.mkMultiSearch {
         title = "Funkcia Options";
         baseHref = "/nixos-cfg/";
         scopes = [
           {
+            inherit urlPrefix;
             name = "NixOS Modules";
-
-            modules = builtins.concatLists [
-              (listNixFilesRec ../modules)
-              (listNixFilesRec ../global)
-            ];
-            urlPrefix = "https://github.com/Lhcfl/nixos-cfg/blob/main/";
-
+            modules = [ self.nixosModules.default ];
             specialArgs = { inherit inputs; };
           }
           {
+            inherit urlPrefix;
             name = "Home Manager Modules";
-
-            modules = builtins.concatLists [
-              (listNixFilesRec ../home/modules)
-            ];
-
-            urlPrefix = "https://github.com/Lhcfl/nixos-cfg/blob/main/";
-
+            modules = [ self.homeModules.default ];
             specialArgs = { inherit inputs pkgs; };
           }
         ];
