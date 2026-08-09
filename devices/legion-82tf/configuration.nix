@@ -16,17 +16,24 @@
     nix-mirrors.enable = true;
     laptop.enable = true;
     gui = {
+      enable = true;
       niri.enable = true;
       hyprland.enable = true;
     };
-    ly.enable = true;
-    gui.enable = true;
+    # ly.enable = true;
     # winslow-cloud.enable = true;
+    sddm.enable = true;
+    sddm.theme.name = "pixel_sakura";
+  };
+
+  services.displayManager.sddm.settings = {
+    General = {
+      GreeterEnvironment = "QT_SCALE_FACTOR=2";
+    };
   };
 
   programs.steam.enable = true;
-
-  security.pam.services.ly.fprintAuth = false;
+  # security.pam.services.ly.fprintAuth = false;
 
   hardware.bluetooth = {
     enable = true;
