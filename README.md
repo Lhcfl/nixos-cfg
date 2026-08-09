@@ -2,6 +2,8 @@
 
 存放各种 NixOS 系统配置文件的仓库。
 
+[Search Options](https://lhcfl.github.io/nixos-cfg)
+
 ## 路径约定
 
 - [`devices/`](devices/) 下的文件存放设备特定的配置

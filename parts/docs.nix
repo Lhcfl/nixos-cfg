@@ -18,7 +18,7 @@
         baseHref = "/nixos-cfg/";
         scopes = [
           {
-            name = "nixos modules";
+            name = "NixOS Modules";
 
             modules = builtins.concatLists [
               (listNixFilesRec ../modules)
@@ -29,7 +29,7 @@
             specialArgs = { inherit inputs; };
           }
           {
-            name = "home modules";
+            name = "Home Manager Modules";
 
             modules = builtins.concatLists [
               (listNixFilesRec ../home/modules)
