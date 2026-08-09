@@ -362,7 +362,7 @@ builtin = "Ayu"
 community_palette = "Oxocarbon"
 mode = "dark"
 source = "wallpaper"
-wallpaper_scheme = "m3-tonal-spot"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "niri" ]
@@ -384,10 +384,10 @@ directory = "/home/linca/Pictures/Wallpapers"
     path = "/home/linca/Pictures/Wallpapers/1.png"
 
     [[wallpaper.favorite]]
-    builtin_palette = "Ayu"
-    palette_source = "builtin"
+    palette_source = "wallpaper"
     path = "/home/linca/Pictures/Wallpapers/1.png"
     theme_mode = "dark"
+    wallpaper_scheme = "m3-content"
 
 [widget.battery]
 show_label = false

@@ -28,7 +28,7 @@
 
   services.displayManager.sddm.settings = {
     General = {
-      GreeterEnvironment = "QT_SCALE_FACTOR=2";
+      GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell,QT_SCALE_FACTOR=1.5";
     };
   };
 
