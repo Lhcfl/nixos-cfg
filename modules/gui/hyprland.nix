@@ -5,7 +5,7 @@
 }:
 {
   options.funkcia.os.gui.hyprland = {
-    enable = lib.mkOption ''
+    enable = lib.mkEnableOption ''
       Hyprland and related settings.
     '';
   };
