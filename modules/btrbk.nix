@@ -6,14 +6,9 @@
 }:
 {
   options.funkcia.os.btrbk = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable btrbk module.
-        btrbk - Backup tool for Btrfs filesystems
-      '';
-    };
+    enable = lib.mkEnableOption ''
+      btrbk module. btrbk is a backup tool for Btrfs filesystems
+    '';
   };
 
   config = lib.mkIf config.funkcia.os.btrbk.enable {

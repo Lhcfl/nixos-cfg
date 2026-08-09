@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  options.linca.sops.enable = lib.mkEnableOption "Enable SOPS configs" // {
+  options.linca.sops.enable = lib.mkEnableOption "SOPS configs" // {
     default = true;
   };
 

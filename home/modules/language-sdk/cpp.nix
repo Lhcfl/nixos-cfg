@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.hm.language-sdk.cpp.enable = lib.mkEnableOption "Enable cpp SDK";
+  options.funkcia.hm.language-sdk.cpp.enable = lib.mkEnableOption "cpp SDK";
 
   config = lib.mkIf config.funkcia.hm.language-sdk.cpp.enable {
     home.packages = with pkgs; [

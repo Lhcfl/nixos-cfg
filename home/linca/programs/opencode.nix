@@ -5,7 +5,7 @@
   ...
 }:
 {
-  # options.funkcia.hm.opencode.enable = lib.mkEnableOption "enable opencode";
+  # options.funkcia.hm.opencode.enable = lib.mkEnableOption "opencode";
   # config = lib.mkIf config.funkcia.hm.opencode.enable {
   # };
 

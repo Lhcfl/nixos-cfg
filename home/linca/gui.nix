@@ -25,7 +25,7 @@ in
   ];
 
   options.funkcia.hm.gui = {
-    enable = lib.mkEnableOption "Enable GUI packages" // {
+    enable = lib.mkEnableOption "GUI packages" // {
       default = osConfig.funkcia.os.gui.enable;
     };
 

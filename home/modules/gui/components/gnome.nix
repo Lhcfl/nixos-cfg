@@ -9,7 +9,7 @@ let
 in
 {
   options.funkcia.hm.gui.components.gnome = {
-    enable = lib.mkEnableOption "Enable GNOME components";
+    enable = lib.mkEnableOption "GNOME components";
     theme = {
       name = lib.mkOption {
         default = "Adwaita";

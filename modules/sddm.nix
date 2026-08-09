@@ -14,7 +14,7 @@ let
 in
 {
   options.funkcia.os.sddm = {
-    enable = lib.mkEnableOption "Enable sddm module, which is a GUI login manager (or display manager).";
+    enable = lib.mkEnableOption "sddm module, which is a GUI login manager (or display manager).";
     theme.name = lib.mkOption {
       type = lib.types.str;
       default = "hyprland_kath";

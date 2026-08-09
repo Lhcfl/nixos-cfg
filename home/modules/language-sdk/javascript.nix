@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.hm.language-sdk.javascript.enable = lib.mkEnableOption "Enable javascript SDK";
+  options.funkcia.hm.language-sdk.javascript.enable = lib.mkEnableOption "javascript SDK";
 
   config = lib.mkIf config.funkcia.hm.language-sdk.javascript.enable {
     home.packages = with pkgs; [

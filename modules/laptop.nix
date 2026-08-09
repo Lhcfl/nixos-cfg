@@ -4,7 +4,7 @@ let
 in
 {
   options.funkcia.os.laptop = {
-    enable = lib.mkEnableOption "Enable laptop related settings.";
+    enable = lib.mkEnableOption "laptop related settings.";
 
     using = lib.mkOption {
       type = lib.types.enum [

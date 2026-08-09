@@ -4,6 +4,6 @@
 }:
 {
   options.funkcia.os.gui = {
-    enable = lib.mkEnableOption "Enable GUI";
+    enable = lib.mkEnableOption "GUI related options";
   };
 }

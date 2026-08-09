@@ -1,7 +1,7 @@
 # TODO
 { config, lib, ... }:
 {
-  options.funkcia.os.winslow-cloud.enable = lib.mkEnableOption "enable winslow-cloud";
+  options.funkcia.os.winslow-cloud.enable = lib.mkEnableOption "winslow-cloud";
 
   config = lib.mkIf config.funkcia.os.winslow-cloud.enable (
     lib.mkMerge [

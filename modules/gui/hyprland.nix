@@ -5,13 +5,9 @@
 }:
 {
   options.funkcia.os.gui.hyprland = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable Hyprland module.
-      '';
-    };
+    enable = lib.mkOption ''
+      Hyprland and related settings.
+    '';
   };
 
   config = lib.mkIf config.funkcia.os.gui.hyprland.enable {

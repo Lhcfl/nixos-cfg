@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.hm.language-sdk.nix.enable = lib.mkEnableOption "Enable nix SDK";
+  options.funkcia.hm.language-sdk.nix.enable = lib.mkEnableOption "nix SDK";
 
   config = lib.mkIf config.funkcia.hm.language-sdk.nix.enable {
     home.packages = with pkgs; [

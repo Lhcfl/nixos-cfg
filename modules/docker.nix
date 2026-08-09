@@ -6,13 +6,7 @@
 }:
 {
   options.funkcia.os.docker = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable Docker module.
-      '';
-    };
+    enable = lib.mkEnableOption "docker";
   };
 
   config = lib.mkIf config.funkcia.os.docker.enable {

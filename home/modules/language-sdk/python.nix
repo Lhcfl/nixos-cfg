@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.hm.language-sdk.python.enable = lib.mkEnableOption "Enable python SDK";
+  options.funkcia.hm.language-sdk.python.enable = lib.mkEnableOption "python SDK";
 
   config = lib.mkIf config.funkcia.hm.language-sdk.python.enable {
     home.packages = with pkgs; [

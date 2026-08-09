@@ -10,7 +10,7 @@ let
 in
 {
   options.funkcia.os.fingerprint = {
-    enable = lib.mkEnableOption "enable fingerprint module";
+    enable = lib.mkEnableOption "fingerprint module";
     todDriver = lib.mkOption {
       description = ''
         If simply enabling fprintd is not enough, try enabling fprintd.tod, and use one of the next four drivers:

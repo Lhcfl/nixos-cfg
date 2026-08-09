@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.funkcia.hm.wine.enable = lib.mkEnableOption "Enable Wine";
+  options.funkcia.hm.wine.enable = lib.mkEnableOption "Wine";
 
   config = lib.mkIf config.funkcia.hm.wine.enable {
     home.packages = with pkgs; [

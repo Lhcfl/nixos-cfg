@@ -6,9 +6,9 @@
 }:
 {
   options.funkcia.os.gnome-keyring.enable = lib.mkEnableOption ''
-    funkcia: Enable GNOME Keyring module.
+    GNOME Keyring module.  
     这个模块是为了在 *不使用* GNOME 的情况下启用 Keyring 及其相关服务。
-    如果使用 GNOME 桌面环境，则不需要此模块
+    如果使用 GNOME 桌面环境，则不需要此模块。
     最初目的是为了在 Hyprland 上使用 Keyring
   '';
 

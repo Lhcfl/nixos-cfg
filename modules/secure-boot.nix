@@ -9,13 +9,7 @@
 }:
 {
   options.funkcia.os.secure-boot = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable Secure Boot module with lanzaboote and sbctl.
-      '';
-    };
+    enable = lib.mkEnableOption "安全启动模块。依赖 lanzaboote and sbctl";
   };
 
   config = lib.mkIf config.funkcia.os.secure-boot.enable {

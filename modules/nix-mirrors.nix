@@ -1,13 +1,7 @@
 { config, lib, ... }:
 {
   options.funkcia.os.nix-mirrors = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable Nix mirror configuration.
-      '';
-    };
+    enable = lib.mkEnableOption "适用于中国地区的 nix mirror";
   };
 
   config = lib.mkIf config.funkcia.os.nix-mirrors.enable {

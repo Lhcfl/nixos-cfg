@@ -9,7 +9,7 @@ let
 in
 {
   options.funkcia.hm.gui.components.kde = {
-    enable = lib.mkEnableOption "Enable KDE components";
+    enable = lib.mkEnableOption "KDE components";
   };
 
   config = lib.mkIf cfg.enable {

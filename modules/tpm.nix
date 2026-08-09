@@ -1,13 +1,10 @@
 { config, lib, ... }:
 {
   options.funkcia.os.tpm = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = ''
-        funkcia: Enable TPM module.
-      '';
-    };
+    enable = lib.mkEnableOption ''
+      TPM 模块。
+      see https://nixos.wiki/wiki/TPM
+    '';
   };
 
   config = lib.mkIf config.funkcia.os.tpm.enable {

@@ -11,10 +11,10 @@ let
 in
 {
   options.funkcia.os.gui.niri = {
-    enable = lib.mkEnableOption "Enable niri, a Wayland WM";
+    enable = lib.mkEnableOption "niri, a Wayland WM";
 
     noctalia.enable =
-      lib.mkEnableOption "Enable noctalia shell, a sleek, customizable desktop shell crafted for Wayland"
+      lib.mkEnableOption "noctalia shell, a sleek, customizable desktop shell crafted for Wayland"
       // {
         default = true;
       };
