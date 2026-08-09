@@ -16,7 +16,9 @@
       inherit ((import ./utils/files.nix { lib = nixpkgs.lib; })) listNixFilesRec;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = listNixFilesRec ./parts;
+      imports = builtins.concatLists [
+        (listNixFilesRec ./parts)
+      ];
 
       nixos = {
         sharedModules = builtins.concatLists [
@@ -67,5 +69,10 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nuschtos-search = {
+      url = "github:NuschtOS/search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
