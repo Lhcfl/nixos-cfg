@@ -8,7 +8,10 @@
   ];
 
   funkcia.os = {
-    fingerprint.enable = true;
+    fingerprint = {
+      enable = true;
+      todDriver = pkgs.libfprint-2-tod1-elan;
+    };
     docker.enable = true;
     secure-boot.enable = true;
     btrbk.enable = true;
@@ -22,8 +25,10 @@
     };
     # ly.enable = true;
     # winslow-cloud.enable = true;
-    sddm.enable = true;
-    sddm.theme.name = "pixel_sakura";
+    sddm = {
+      enable = true;
+      theme.name = "pixel_sakura";
+    };
   };
 
   services.displayManager.sddm.settings = {
