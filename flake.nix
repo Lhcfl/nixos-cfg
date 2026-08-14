@@ -14,14 +14,12 @@
       ...
     }:
     let
-      lib = nixpkgs.lib;
-
       funkcia-utils = {
-        files = import ./utils/files.nix { inherit lib; };
-        magic = import ./utils/magic.nix { inherit lib; };
+        files = import ./utils/files.nix { inherit (nixpkgs) lib; };
+        magic = import ./utils/magic.nix { inherit (nixpkgs) lib; };
       };
     in
-    flake-parts.lib.mkFlake
+    inputs.flake-parts.lib.mkFlake
       {
         inherit inputs;
         specialArgs = { inherit funkcia-utils; };
@@ -91,9 +89,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nuschtos-search = {
-      url = "github:NuschtOS/search";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nuschtos-search.url = "github:NuschtOS/search";
+    nuschtos-search.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
