@@ -36,6 +36,7 @@
     with pkgs;
     [
       wget
+      nvd
     ]
     ++ import ../slices/necessary-cli-tools.nix { inherit pkgs; };
 }

@@ -4,16 +4,6 @@
   ...
 }:
 {
-  funkcia.hm = {
-    wine.enable = true;
-    language-sdk = {
-      cpp.enable = true;
-      javascript.enable = true;
-      nix.enable = true;
-      python.enable = true;
-    };
-  };
-
   programs.home-manager.enable = true;
 
   home = {
@@ -34,28 +24,31 @@
       EDITOR = "hx";
       VISUAL = "nvim";
     };
+
+    shell.enableShellIntegration = true;
+  };
+
+  programs = {
+    zoxide.enable = true;
+    fish.enable = true;
+    starship.enable = true;
+    nushell.enable = true;
   };
 
   home.packages = with pkgs; [
-    tree-sitter
-    vscode-json-languageserver
-    tombi # toml LSP
     go-musicfox # music
     fastfetch # system info
-    devenv
-    ast-grep
-    typst
-    gh
     openssl
-    dotenv-cli
-    nvd
+    dotenv-cli # load .env
   ];
 
-  imports = [
-    ./gui.nix
-    ./xdg.nix
-    ./ricing.nix
-    ./sops.nix
-  ]
-  ++ funkcia-utils.files.listNixFiles ./programs;
+  imports = builtins.concatLists [
+    [
+      ./xdg.nix
+      ./ricing.nix
+      ./sops.nix
+    ]
+    (funkcia-utils.files.listNixFiles ./programs)
+    (funkcia-utils.files.listNixFilesRec ./modules)
+  ];
 }

@@ -12,7 +12,7 @@ in
 {
   # 神奇魔法！
   # 给 ./programs/gui 下的 nix 文件统一添加条件 lib.mkIf cfg.enable
-  imports = lib.pipe ./programs/gui [
+  imports = lib.pipe ../programs/gui [
     funkcia-utils.files.listNixFiles
     (map (
       funkcia-utils.magic.patchModule (

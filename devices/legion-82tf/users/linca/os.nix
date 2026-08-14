@@ -15,7 +15,10 @@
   };
 
   home-manager.users.linca = {
-    imports = [ (funkcia-utils.projectPath /home/linca/home.nix) ];
+    imports = [
+      (funkcia-utils.projectPath /home/linca/home.nix)
+      ./home.nix
+    ];
     home.stateVersion = "26.05";
   };
 }
