@@ -6,6 +6,7 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      AllowUsers = [ "root" ];
     };
   };
 }

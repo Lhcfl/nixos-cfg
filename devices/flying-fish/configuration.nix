@@ -1,12 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
 {
-  imports = [
-    ./ssh.nix
-    ./users.nix
-    ./hardware-vm.nix
+  lib,
+  funkcia-utils,
+  ...
+}:
+{
+  imports = builtins.concatLists [
+    [ ./hardware-vm.nix ]
+    (funkcia-utils.files.listNixFilesRec ./services)
+    (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
   ];
 
   networking.hostName = "flying-fish"; # Define your hostname.
