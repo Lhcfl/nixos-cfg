@@ -15,6 +15,7 @@
     }:
     let
       funkcia-utils = {
+        projectPath = path: ./. + path;
         files = import ./utils/files.nix { inherit (nixpkgs) lib; };
         magic = import ./utils/magic.nix { inherit (nixpkgs) lib; };
       };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs = {
     # better shell
@@ -9,9 +9,5 @@
     starship.presets = [
       "plain-text-symbols"
     ];
-  };
-
-  users.users.root = {
-    shell = pkgs.zsh;
   };
 }

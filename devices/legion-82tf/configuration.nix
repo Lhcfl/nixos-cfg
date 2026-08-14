@@ -1,52 +1,32 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
+  pkgs,
+  lib,
+  funkcia-utils,
+  ...
+}:
+{
+  imports = builtins.concatLists [
+    [ ./hardware-configuration.nix ]
+    (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
   ];
 
+  networking.hostName = "legion-82tf"; # Define your hostname.
+
   funkcia.os = {
+    preset = "pc";
+
+    gui.hyprland.enable = true;
+
     fingerprint = {
       enable = true;
       todDriver = pkgs.libfprint-2-tod1-elan;
     };
-    docker.enable = true;
-    secure-boot.enable = true;
+
     btrbk.enable = true;
-    tpm.enable = true;
-    nix-mirrors.enable = true;
+
     laptop.enable = true;
-    gui = {
-      enable = true;
-      niri.enable = true;
-      hyprland.enable = true;
-    };
-    # ly.enable = true;
-    # winslow-cloud.enable = true;
-    sddm = {
-      enable = true;
-      theme.name = "pixel_sakura";
-    };
+
     networking.proxy = "http://127.0.0.1:10808";
-  };
-
-  services.displayManager.sddm.settings = {
-    General = {
-      GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell,QT_SCALE_FACTOR=1.5";
-    };
-  };
-
-  services.blueman.enable = true;
-  services.flatpak.enable = true;
-
-  programs.steam.enable = true;
-  # security.pam.services.ly.fprintAuth = false;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -55,8 +35,6 @@
     open = true;
     nvidiaSettings = true;
   };
-
-  networking.hostName = "legion-82tf"; # Define your hostname.
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
@@ -70,23 +48,6 @@
 
   services.cloudflared.enable = true;
   environment.systemPackages = with pkgs; [ cloudflared ];
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.linca = {
-    isNormalUser = true;
-    description = "linca";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-      "tss" # tss group has access to TPM devices
-    ];
-    shell = pkgs.fish;
-  };
-  home-manager.users.linca = {
-    imports = [ ../../home/linca/home.nix ];
-    home.stateVersion = "26.05";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
