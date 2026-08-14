@@ -29,6 +29,7 @@
       enable = true;
       theme.name = "pixel_sakura";
     };
+    networking.proxy = "http://127.0.0.1:10808";
   };
 
   services.displayManager.sddm.settings = {
