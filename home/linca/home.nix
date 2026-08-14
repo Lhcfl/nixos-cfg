@@ -1,5 +1,5 @@
 {
-  utils,
+  funkcia-utils,
   pkgs,
   ...
 }:
@@ -48,6 +48,7 @@
     gh
     openssl
     dotenv-cli
+    nvd
   ];
 
   imports = [
@@ -56,5 +57,5 @@
     ./ricing.nix
     ./sops.nix
   ]
-  ++ utils.files.listNixFiles ./programs;
+  ++ funkcia-utils.files.listNixFiles ./programs;
 }

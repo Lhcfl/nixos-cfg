@@ -3,8 +3,7 @@
   lib,
   config,
   pkgs,
-  utils,
-  osConfig,
+  funkcia-utils,
   ...
 }:
 let
@@ -14,9 +13,9 @@ in
   # 神奇魔法！
   # 给 ./programs/gui 下的 nix 文件统一添加条件 lib.mkIf cfg.enable
   imports = lib.pipe ./programs/gui [
-    utils.files.listNixFiles
+    funkcia-utils.files.listNixFiles
     (map (
-      utils.magic.patchModule (
+      funkcia-utils.magic.patchModule (
         _: module: {
           config = lib.mkIf cfg.enable module.config;
         }
@@ -24,23 +23,8 @@ in
     ))
   ];
 
-  options.funkcia.hm.gui = {
-    enable = lib.mkEnableOption "GUI packages" // {
-      default = osConfig.funkcia.os.gui.enable;
-    };
-
-    preset = lib.mkOption {
-      type = lib.types.enum [
-        "kde"
-        "gnome"
-      ];
-      default = "gnome";
-      description = "Choose a desktop environment preset to install related packages.";
-    };
-  };
-
-  config = lib.mkIf config.funkcia.hm.gui.enable {
-    funkcia.hm.gui.components.gnome.enable = lib.mkIf (cfg.preset == "gnome") true;
+  config = lib.mkIf cfg.enable {
+    funkcia.hm.gui.components.gnome.enable = true;
 
     home.packages = with pkgs; [
       # noctalia-shell
@@ -55,6 +39,8 @@ in
       wl-clipboard-rs
       element-desktop
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
+
+      netease-cloud-music-gtk
     ];
 
     programs = {

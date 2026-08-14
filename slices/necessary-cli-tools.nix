@@ -15,6 +15,4 @@
   gdu # better `du`
   btop # better htop
   htop
-  age
-  sops
 ]

@@ -452,7 +452,7 @@ capsule_padding = 8.0
 detached_panel = true
 drawer = true
 drawer_columns = 5
-pinned = [ "Telegram Desktop", "v2rayN", "Fcitx" ]
+pinned = [ "Telegram Desktop", "v2rayN", "Fcitx", "chrome_status_icon_1", "steam" ]
 type = "tray"
 
 [widget.volume]

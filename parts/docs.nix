@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  funkcia-utils,
   ...
 }:
 {
@@ -12,6 +13,16 @@
     packages.funkcia-options-doc =
       let
         urlPrefix = "https://github.com/Lhcfl/nixos-cfg/blob/main/";
+
+        mkUserModule = name: {
+          inherit urlPrefix;
+          name = "User Modules for ${name}";
+          modules = [ ../home/${name}/home.nix ];
+          specialArgs = {
+            inherit inputs pkgs funkcia-utils;
+            osConfig = null;
+          };
+        };
       in
       inputs.nuschtos-search.packages.${system}.mkMultiSearch {
         title = "Funkcia Options";
@@ -29,6 +40,7 @@
             modules = [ self.homeModules.default ];
             specialArgs = { inherit inputs pkgs; };
           }
+          (mkUserModule "linca")
         ];
       };
   };

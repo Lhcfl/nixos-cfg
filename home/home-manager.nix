@@ -1,14 +1,8 @@
 {
   inputs,
-  lib,
+  funkcia-utils,
   ...
 }:
-let
-  utils = {
-    files = import ../utils/files.nix { inherit lib; };
-    magic = import ../utils/magic.nix { inherit lib; };
-  };
-in
 {
   home-manager = {
     useGlobalPkgs = true;
@@ -16,7 +10,7 @@ in
 
     # home manager use 'extraSpecialArgs'
     extraSpecialArgs = {
-      inherit inputs utils;
+      inherit inputs funkcia-utils;
     };
 
     sharedModules = [

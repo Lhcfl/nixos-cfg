@@ -3,6 +3,7 @@
   inputs,
   lib,
   config,
+  funkcia-utils,
   ...
 }:
 let
@@ -57,7 +58,7 @@ in
         { name, value }: {
           nixosConfigurations.${name} = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs;
+              inherit inputs funkcia-utils;
             };
 
             modules = cfg.sharedModules ++ [ value ];

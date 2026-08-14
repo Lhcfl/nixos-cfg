@@ -14,42 +14,52 @@
       ...
     }:
     let
-      inherit ((import ./utils/files.nix { lib = nixpkgs.lib; })) listNixFilesRec;
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = builtins.concatLists [
-        (listNixFilesRec ./parts)
-      ];
+      lib = nixpkgs.lib;
 
-      nixos = {
-        sharedModules = [
-          ./home/home-manager.nix
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          self.nixosModules.default
+      funkcia-utils = {
+        files = import ./utils/files.nix { inherit lib; };
+        magic = import ./utils/magic.nix { inherit lib; };
+      };
+    in
+    flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+        specialArgs = { inherit funkcia-utils; };
+      }
+      {
+        imports = builtins.concatLists [
+          (funkcia-utils.files.listNixFilesRec ./parts)
         ];
 
-        devices = {
-          legion-82tf.imports = [
-            ./devices/legion-82tf/configuration.nix
-            lanzaboote.nixosModules.lanzaboote
+        nixos = {
+          sharedModules = [
+            ./home/home-manager.nix
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+            self.nixosModules.default
           ];
+
+          devices = {
+            legion-82tf.imports = [
+              ./devices/legion-82tf/configuration.nix
+              lanzaboote.nixosModules.lanzaboote
+            ];
+          };
+        };
+
+        flake = {
+          nixosModules.default = {
+            imports = builtins.concatLists [
+              (funkcia-utils.files.listNixFilesRec ./global)
+              (funkcia-utils.files.listNixFilesRec ./modules)
+            ];
+          };
+
+          homeModules.default = {
+            imports = funkcia-utils.files.listNixFilesRec ./home/modules;
+          };
         };
       };
-
-      flake = {
-        nixosModules.default = {
-          imports = builtins.concatLists [
-            (listNixFilesRec ./global)
-            (listNixFilesRec ./modules)
-          ];
-        };
-
-        homeModules.default = {
-          imports = listNixFilesRec ./home/modules;
-        };
-      };
-    };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

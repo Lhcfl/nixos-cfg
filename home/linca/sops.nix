@@ -1,10 +1,15 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}:
 {
   options.linca.sops.enable = lib.mkEnableOption "SOPS configs" // {
     default = true;
   };
 
-  config = lib.mkIf config.linca.sops.enable {
+  config = lib.mkIf (osConfig.funkcia.os.sops-support.enable && config.linca.sops.enable) {
 
     sops = {
       defaultSopsFile = ./secrets.yaml;
