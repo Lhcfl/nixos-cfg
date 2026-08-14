@@ -38,6 +38,9 @@
     };
   };
 
+  services.blueman.enable = true;
+  services.flatpak.enable = true;
+
   programs.steam.enable = true;
   # security.pam.services.ly.fprintAuth = false;
 
@@ -57,6 +60,8 @@
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
+  # Whether the installation process is allowed to modify EFI boot variables.
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nix.settings.trusted-users = [
     "root"
@@ -78,6 +83,10 @@
     ];
     shell = pkgs.fish;
   };
+  home-manager.users.linca = {
+    imports = [ ../../home/linca/home.nix ];
+    home.stateVersion = "26.05";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -85,6 +94,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
-  home-manager.users.linca.home.stateVersion = "26.05";
+  system.stateVersion = "25.11"; # Did you read the comment?+
 }

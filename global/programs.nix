@@ -24,9 +24,6 @@
       enableSSHSupport = false; # ssh agent
     };
 
-    # better shell
-    fish.enable = true;
-
     # use default ssh agent
     ssh.startAgent = true;
 
@@ -39,14 +36,6 @@
     with pkgs;
     [
       wget
-
-      ## GUI PACKAGES
-      libnotify # notification support
-      firefox
-      v2rayn # proxy client
-      xray # proxy client
-      brightnessctl # brightness control
-      playerctl # media player control
     ]
     ++ import ../slices/necessary-cli-tools.nix { inherit pkgs; };
 }

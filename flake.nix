@@ -34,13 +34,17 @@
             ./home/home-manager.nix
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
+            lanzaboote.nixosModules.lanzaboote
             self.nixosModules.default
           ];
 
           devices = {
             legion-82tf.imports = [
               ./devices/legion-82tf/configuration.nix
-              lanzaboote.nixosModules.lanzaboote
+            ];
+
+            flying-fish.imports = [
+              ./devices/flying-fish/configuration.nix
             ];
           };
         };

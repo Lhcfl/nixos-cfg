@@ -20,8 +20,6 @@
       inputs.self.homeModules.default
     ];
 
-    users.linca = ./linca/home.nix;
-
     backupFileExtension = "hm.old";
   };
 }
