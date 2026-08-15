@@ -11,6 +11,10 @@
     ];
     shell = pkgs.fish;
     initialPassword = "change-this-password-after-login";
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwHaPGjtqvGsYrO5NiGHoVMSS/Qj+63hv1QNBG+wnm+ linca@nixos"
+    ];
   };
 
   home-manager.users.linca = {

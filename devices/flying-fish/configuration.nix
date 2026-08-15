@@ -8,7 +8,11 @@
 }:
 {
   imports = builtins.concatLists [
-    [ ./hardware-vm.nix ]
+    [
+      ./hardware-vm.nix
+      ./domain.nix
+      ./sops.nix
+    ]
     (funkcia-utils.files.listNixFilesRec ./services)
     (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
   ];
