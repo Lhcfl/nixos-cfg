@@ -1,8 +1,15 @@
-{ config, lib, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   domain = config.flying-fish.prefix-domain "mat";
+  port = 8008;
 in
 {
+  flying-fish.domains = [ domain ];
+
   services.matrix-synapse = {
     enable = true;
     settings = {
@@ -10,7 +17,7 @@ in
 
       listeners = [
         {
-          port = 8008;
+          port = port;
           bind_addresses = [
             "::1"
             "127.0.0.1"
@@ -55,7 +62,7 @@ in
       };
 
       locations."^(/_matrix|/_synapse/client|/_synapse/admin)" = {
-        proxyPass = "http://127.0.0.1:8008";
+        proxyPass = "http://127.0.0.1:${toString port}";
         recommendedProxySettings = true;
 
         extraConfig = ''
@@ -63,6 +70,42 @@ in
           client_max_body_size 50M;
         '';
       };
+
+      locations."/" =
+        let
+          cinny-config = pkgs.writeText "cinny-config" (
+            builtins.toJSON {
+              "defaultHomeserver" = 0;
+              "homeserverList" = [ domain ];
+              "allowCustomHomeservers" = false;
+
+              "featuredCommunities" = {
+                "openAsDefault" = false;
+                "spaces" = [ ];
+                "rooms" = [ ];
+                "servers" = [ ];
+              };
+
+              "hashRouter" = {
+                "enabled" = true;
+                "basename" = "/";
+              };
+            }
+          );
+
+          cinny = pkgs.symlinkJoin {
+            name = "cinny-configured";
+            paths = [ pkgs.cinny ];
+
+            postBuild = ''
+              rm $out/config.json
+              cp ${cinny-config} $out/config.json
+            '';
+          };
+        in
+        {
+          root = "${cinny}";
+        };
     };
   };
 }
