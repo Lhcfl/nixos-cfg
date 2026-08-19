@@ -30,6 +30,9 @@
   config.services.nginx.virtualHosts = lib.mkMerge (
     map (domain: {
       "${domain}" = {
+        forceSSL = true;
+        enableACME = true;
+
         listen = [
           {
             addr = "0.0.0.0";

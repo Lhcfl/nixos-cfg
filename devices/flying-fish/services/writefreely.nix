@@ -9,5 +9,7 @@ in
     inherit host;
     enable = true;
     nginx.enable = true;
+    nginx.forceSSL = true;
+    acme.enable = true;
   };
 }
