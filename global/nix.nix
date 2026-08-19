@@ -1,6 +1,6 @@
 # Global Nix/Nixpkgs configuration
 
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   nixpkgs = {
     # Allow unfree packages
@@ -35,5 +35,7 @@
 
     # lix!
     package = pkgs.lixPackageSets.stable.lix;
+
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 }
