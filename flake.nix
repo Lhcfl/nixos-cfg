@@ -26,9 +26,7 @@
         specialArgs = { inherit funkcia-utils; };
       }
       {
-        imports = builtins.concatLists [
-          (funkcia-utils.files.listNixFilesRec ./parts)
-        ];
+        imports = funkcia-utils.files.listNixFilesRec ./parts;
 
         nixos = {
           sharedModules = [
@@ -52,10 +50,7 @@
 
         flake = {
           nixosModules.default = {
-            imports = builtins.concatLists [
-              (funkcia-utils.files.listNixFilesRec ./global)
-              (funkcia-utils.files.listNixFilesRec ./modules)
-            ];
+            imports = funkcia-utils.files.listNixFilesRec ./modules;
           };
 
           homeModules.default = {

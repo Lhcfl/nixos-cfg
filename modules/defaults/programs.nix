@@ -32,11 +32,24 @@
 
   # system wide packages.
   # to search run `nix search wget`
-  environment.systemPackages =
-    with pkgs;
-    [
-      wget
-      nvd
-    ]
-    ++ import ../slices/necessary-cli-tools.nix { inherit pkgs; };
+  environment.systemPackages = with pkgs; [
+    wget
+    nvd
+
+    eza # `ls` replacement
+    fd # `find` replacement
+    ripgrep # `grep` replacement
+    zoxide # `cd` replacement
+    helix # `vim` replacement
+    fzf # fuzzy finder
+    git
+    bat # `cat` replacement
+    bun # js runtime
+    unzip
+    p7zip # 7z
+    manix # nix configuration helper
+    gdu # better `du`
+    btop # better htop
+    htop
+  ];
 }
