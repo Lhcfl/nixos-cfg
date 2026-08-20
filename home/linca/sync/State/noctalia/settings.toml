@@ -1,4 +1,4 @@
-config_version = 8
+config_version = 12
 
 [bar]
 order = [ "Linca", "task" ]
@@ -467,5 +467,5 @@ type = "noctalia/wallhaven:wallhaven"
 
 [widget.workspaces]
 active_pill_size = 1.75
-display = "name"
+label_source = "name"
 labels_only_when_occupied = true

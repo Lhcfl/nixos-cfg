@@ -37,8 +37,11 @@ in
         "]" = replace { commit = "」"; };
         "{" = replace { commit = "{"; };
         "}" = replace { commit = "}"; };
-        "=" = replace { commit = "="; };
-        "`" = replace { commit = "·"; };
+        # "=" = replace { commit = "="; };
+        # "`" = replace { commit = "·"; };
+        # "*" = replace { commit = "*"; };
+        "`" = replace "·";
+        "*" = replace "*";
       };
     };
   };
