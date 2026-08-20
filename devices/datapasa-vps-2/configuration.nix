@@ -12,6 +12,7 @@
       ./disk-config.nix
       ./hardware-configuration.nix
     ]
+    (funkcia-utils.files.listNixFilesRec ./services)
     (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
   ];
 

@@ -35,6 +35,11 @@ in
       # Or disable the firewall altogether.
       # networking.firewall.enable = false;
 
+      nameservers = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
+
       firewall.enable = true;
       nftables.enable = true;
     };
