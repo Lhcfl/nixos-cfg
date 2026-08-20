@@ -11,6 +11,7 @@
       lanzaboote,
       home-manager,
       sops-nix,
+      disko,
       ...
     }:
     let
@@ -44,6 +45,11 @@
 
             flying-fish.imports = [
               ./devices/flying-fish/configuration.nix
+            ];
+
+            datapasa-vps-2.imports = [
+              disko.nixosModules.disko
+              ./devices/datapasa-vps-2/configuration.nix
             ];
           };
         };
@@ -91,5 +97,8 @@
 
     nuschtos-search.url = "github:NuschtOS/search";
     nuschtos-search.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
