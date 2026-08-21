@@ -47,7 +47,7 @@ in
             ''
           ))
           (builtins.concatStringsSep "\n")
-          (x: "set +e\n${x}")
+          (x: "set +e\n${x}\ntrue")
         ];
 
         systemd.services."configure-ip" = {
