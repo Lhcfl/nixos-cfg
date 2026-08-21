@@ -21,6 +21,12 @@
 
   funkcia.os = {
     fonts.enable = false;
+    sshd.enable = true;
+  };
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    age.keyFile = "/var/lib/age/keys.txt";
   };
 
   boot.loader.grub = {
