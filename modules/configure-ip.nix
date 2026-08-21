@@ -51,7 +51,10 @@ in
 
         systemd.services."configure-ip" = {
           script = "sh ${config.sops.templates."configure-ip.sh".path}";
-          path = with pkgs; [ iproute2 ];
+          path = with pkgs; [
+            coreutils
+            iproute2
+          ];
           wantedBy = [ "multi-user.target" ];
           requires = [ "network-online.target" ];
           after = [ "network-online.target" ];
