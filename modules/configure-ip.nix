@@ -50,7 +50,8 @@ in
         ];
 
         systemd.services."configure-ip" = {
-          serviceConfig.ExecStart = "${lib.getExe pkgs.bash} ${config.sops.templates."configure-ip.sh".path}";
+          script = "sh ${config.sops.templates."configure-ip.sh".path}";
+          path = with pkgs; [ iproute2 ];
           wantedBy = [ "multi-user.target" ];
           requires = [ "network-online.target" ];
           after = [ "network-online.target" ];
