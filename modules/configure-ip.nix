@@ -50,9 +50,9 @@ in
         ];
 
         systemd.services."configure-ip" = {
-          script = "sh ${config.sops.templates."configure-ip.sh".path}";
+          script = "bash ${config.sops.templates."configure-ip.sh".path}";
           path = with pkgs; [
-            coreutils
+            bash
             iproute2
           ];
           wantedBy = [ "multi-user.target" ];
