@@ -47,7 +47,7 @@ in
             ''
           ))
           (builtins.concatStringsSep "\n")
-          (x: "set -uo pipefail\n${x}")
+          (x: "set +e\n${x}")
         ];
 
         systemd.services."configure-ip" = {
