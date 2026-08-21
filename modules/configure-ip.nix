@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.funkcia.os.configure-ip;
 
@@ -30,7 +35,7 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       (lib.mkIf (!config.systemd.network.enable) {
-        config.sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
+        sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
           lib.attrsToList
           (map (
             { name, value }: ''
@@ -45,7 +50,7 @@ in
         ];
 
         systemd.services."configure-ip" = {
-          script = "sh ${config.sops.templates."configure-ip.sh".path}";
+          serviceConfig.ExecStart = "${lib.getExe pkgs.bash} ${config.sops.templates."configure-ip.sh".path}";
           wantedBy = [ "multi-user.target" ];
           requires = [ "network-online.target" ];
           after = [ "network-online.target" ];
@@ -53,7 +58,7 @@ in
 
       })
       (lib.mkIf (config.systemd.network.enable) {
-        config.sops.templates = lib.mapAttrs' (name: value: {
+        sops.templates = lib.mapAttrs' (name: value: {
           name = "configure-ip-for-${name}";
           value = ''
             [Match]
