@@ -117,7 +117,7 @@ in
             lib.attrsToList
             (map (
               { name, value }: {
-                "configure-ip-for-systemd-networkd-wait-online.service${name}".content = ''
+                "configure-ip-for-${name}".content = ''
                   [Match]
                   Name=${name}
 
