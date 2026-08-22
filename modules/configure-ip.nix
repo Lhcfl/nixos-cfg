@@ -45,9 +45,9 @@ in
       type = lib.types.attrsOf (
         lib.types.submodule {
           options = {
-            addr = maybeSecretOption "address, example: 123.45.67.89";
-            mask = maybeSecretOption "mask, example: 32";
-            gateway = maybeSecretOption "gateway, example: 1.2.3.4";
+            addr = maybeSecretOption "IPv4 地址。例如 123.45.67.89";
+            mask = maybeSecretOption "子网掩码。例如 32";
+            gateway = maybeSecretOption "网关, 例如 1.2.3.4";
           };
         }
       );
