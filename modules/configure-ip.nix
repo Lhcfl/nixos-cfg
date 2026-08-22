@@ -88,11 +88,13 @@ in
             (map (
               { name, value }:
               ''
-                # begin configure for ${name}
-                ip addr replace ${getValue value.addr}/${getValue value.mask} dev ${name}
-                ip route replace ${getValue value.gateway}/${getValue value.mask} dev ${name}
-                ip route replace default via ${getValue value.gateway} dev ${name}
-                # end configure for ${name}
+                nmcli connection modify "${name}" \
+                  ipv4.method manual \
+                  ipv4.addresses ${getValue value.addr}/${getValue value.mask} \
+                  ipv4.gateway "" \
+                  ipv4.routes "0.0.0.0/0 ${getValue value.gateway} onlink=true" \
+                  ipv4.never-default no \
+                  connection.autoconnect yes
               ''
             ))
             (builtins.concatStringsSep "\n")
@@ -103,7 +105,7 @@ in
             script = "bash ${config.sops.templates."configure-ip.sh".path}";
             path = with pkgs; [
               bash
-              iproute2
+              networkmanager
             ];
             wantedBy = [ "network.target" ];
             after = [ "NetworkManager.service" ];
