@@ -73,9 +73,9 @@ in
               { name, value }:
               ''
                 # begin configure for ${name}
-                ip addr add ${getValue value.addr}/${getValue value.mask} dev ${name}
-                ip route add ${getValue value.gateway}/${getValue value.mask} dev ${name}
-                ip route add default via ${getValue value.gateway} dev ${name}
+                ip addr replace ${getValue value.addr}/${getValue value.mask} dev ${name}
+                ip route replace ${getValue value.gateway}/${getValue value.mask} dev ${name}
+                ip route replace default via ${getValue value.gateway} dev ${name}
                 # end configure for ${name}
               ''
             ))
@@ -89,9 +89,8 @@ in
               bash
               iproute2
             ];
-            wantedBy = [ "multi-user.target" ];
-            before = [ "network.target" ];
-            after = [ "network-pre.target" ];
+            wantedBy = [ "network.target" ];
+            after = [ "NetworkManager.service" ];
           };
         })
 
