@@ -12,7 +12,6 @@ let
     let
       types = lib.types;
     in
-
     lib.mkOption {
       description = ''
         ${description}
@@ -57,7 +56,13 @@ in
 
   config =
     let
-      getValue = x: if x ? "secret" then config.sops.placeholder.${x.secret} else x;
+      getValue =
+        x:
+        if x ? "secret" then
+          # config.sops.placeholder.${x.secret}
+          "<SOPS:${builtins.hashString "sha256" x.secret}:PLACEHOLDER>"
+        else
+          x;
     in
     lib.mkIf cfg.enable (
       lib.mkMerge [
@@ -88,42 +93,29 @@ in
             requires = [ "network-online.target" ];
             after = [ "network-online.target" ];
           };
-
         })
-        # (lib.mkIf (config.systemd.network.enable) {
-        #   sops.templates = lib.mapAttrs' (name: value: {
-        #     name = "configure-ip-for-${name}";
-        #     value = ''
-        #       [Match]
-        #       Name=${name}
 
-        #       [Network]
-        #       Address=${value.addr}/${value.mask}
-        #       Gateway=${value.gateway}
-        #     '';
-        #   }) cfg.v4;
-
-        #   environment.etc = lib.mapAttrs' (name: value: {
-        #     name = "systemd/network/45-configure-ip-for-${name}.network".source;
-        #     value = config.sops.templates."configure-ip-for-${name}".path;
-        #   }) cfg.v4;
-        # })
         (lib.mkIf (config.systemd.network.enable) {
-          sops.templates = lib.mapAttrs' (name: value: {
-            name = "configure-ip-for-${name}";
-            value = ''
-              [Match]
-              Name=${name}
+          sops.templates = lib.pipe cfg.v4 [
+            lib.attrsToList
+            (map (
+              { name, value }: {
+                "configure-ip-for-${name}".content = ''
+                  [Match]
+                  Name=${name}
 
-              [Network]
-              Address=${getValue value.addr}/${getValue value.mask}
-              Gateway=${getValue value.gateway}
-            '';
-          }) cfg.v4;
+                  [Network]
+                  Address=${getValue value.addr}/${getValue value.mask}
+                  Gateway=${getValue value.gateway}
+                '';
+              }
+            ))
+            lib.mkMerge
+          ];
 
           environment.etc = lib.mapAttrs' (name: value: {
-            name = "systemd/network/45-configure-ip-for-${name}.network".source;
-            value = config.sops.templates."configure-ip-for-${name}".path;
+            name = "systemd/network/45-configure-ip-for-${name}.network";
+            value.source = config.sops.templates."configure-ip-for-${name}".path;
           }) cfg.v4;
         })
       ]
