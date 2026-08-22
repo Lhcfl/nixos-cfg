@@ -90,8 +90,8 @@ in
               iproute2
             ];
             wantedBy = [ "multi-user.target" ];
-            requires = [ "network-online.target" ];
-            after = [ "network-online.target" ];
+            before = [ "network.target" ];
+            after = [ "network-pre.target" ];
           };
         })
 
@@ -100,7 +100,7 @@ in
             lib.attrsToList
             (map (
               { name, value }: {
-                "configure-ip-for-${name}".content = ''
+                "configure-ip-for-systemd-networkd-wait-online.service${name}".content = ''
                   [Match]
                   Name=${name}
 
