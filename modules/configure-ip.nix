@@ -16,7 +16,15 @@ let
       description = ''
         ${description}
 
-        Maybe a SOPS secret.
+        可能为机密的值。设置为下列两种值的一种。
+
+        - **明文**：此时直接设置值，比如 `"123.45.67.89"`
+
+        - **密文**：此时设置 secret = key，比如，如果 `config.sops.placeholder.key-name` 是对应了 `"123.45.67.89"` 的 sops，则设置为：
+
+        ```nix
+        { secret = "key-name"; }
+        ```
       '';
       type = types.oneOf [
         types.str
@@ -24,17 +32,9 @@ let
           options.secret = lib.mkOption { type = types.str; };
         })
       ];
-      example = lib.literalMD ''
-        设置为下列两种值的一种。
-
-        - 明文：此时直接设置值，比如 `"123.45.67.89"`
-
-        - 密文：此时设置 secret = key，比如，如果 `config.sops.placeholder.key-name` 是对应了 `"123.45.67.89"` 的 sops，则设置为：
-
-        ```nix
-        { secret = "key-name"; }
-        ```
-      '';
+      example = {
+        secret = "key-name";
+      };
     };
 in
 {
