@@ -18,17 +18,14 @@ in
 
   config = lib.mkIf config.funkcia.os.networking.enable {
     networking = {
-      # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
       # Configure network proxy if necessary
       proxy = lib.mkIf (cfg.proxy != null) {
         default = cfg.proxy;
         noProxy = "127.0.0.1,localhost,internal.domain";
       };
 
-      # Enable networking
       networkmanager.enable = true;
-      networkmanager.appendNameservers = [
+      nameservers = [
         "1.1.1.1"
         "8.8.8.8"
       ];
