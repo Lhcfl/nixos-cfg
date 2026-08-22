@@ -1,6 +1,5 @@
 {
   config,
-  options,
   lib,
   ...
 }:
@@ -13,7 +12,14 @@ in
       default = true;
     };
 
-    proxy = options.networking.proxy.default;
+    proxy = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = ''
+        This option specifies the default value for httpProxy, httpsProxy, ftpProxy and rsyncProxy.
+      '';
+      example = "http://127.0.0.1:3128";
+    };
   };
 
   config = lib.mkIf config.funkcia.os.networking.enable {
