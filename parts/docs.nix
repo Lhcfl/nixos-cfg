@@ -27,6 +27,7 @@
       inputs.nuschtos-search.packages.${system}.mkMultiSearch {
         title = "Funkcia Options";
         baseHref = "/nixos-cfg/";
+        hashLocation = true;
         scopes = [
           {
             inherit urlPrefix;
