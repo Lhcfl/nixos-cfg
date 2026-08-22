@@ -56,16 +56,32 @@ in
 
   config =
     let
-      getValue =
-        x:
-        if x ? "secret" then
-          # config.sops.placeholder.${x.secret}
-          "<SOPS:${builtins.hashString "sha256" x.secret}:PLACEHOLDER>"
-        else
-          x;
+      mkPlaceholder = x: "<SOPS:${builtins.hashString "sha256" x.secret}:PLACEHOLDER>";
+
+      getValue = x: if x ? "secret" then mkPlaceholder x else x;
     in
     lib.mkIf cfg.enable (
       lib.mkMerge [
+        {
+          sops.placeholder = lib.pipe cfg.v4 [
+            lib.attrsToList
+            (builtins.concatMap (
+              { value, ... }:
+              let
+                gen =
+                  key:
+                  (lib.mkIf (value.${key} ? "secret") { "${value.${key}.secret}" = mkPlaceholder value.${key}; });
+              in
+              [
+                (gen "addr")
+                (gen "mask")
+                (gen "gateway")
+              ]
+            ))
+            lib.mkMerge
+          ];
+        }
+
         (lib.mkIf (!config.systemd.network.enable) {
           sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
             lib.attrsToList

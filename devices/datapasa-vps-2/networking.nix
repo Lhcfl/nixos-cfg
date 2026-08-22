@@ -1,6 +1,6 @@
 { ... }: {
   networking.useDHCP = false;
-  # systemd.network.enable = true;
+  systemd.network.enable = true;
 
   sops.secrets = {
     "network/ens3/addr" = { };
