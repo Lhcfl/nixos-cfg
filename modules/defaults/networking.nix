@@ -28,17 +28,14 @@ in
 
       # Enable networking
       networkmanager.enable = true;
+      networkmanager.appendNameservers = [
+        "1.1.1.1"
+        "8.8.8.8"
+      ];
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
-      # Or disable the firewall altogether.
-      # networking.firewall.enable = false;
-
-      nameservers = [
-        "1.1.1.1"
-        "8.8.8.8"
-      ];
 
       firewall.enable = true;
       nftables.enable = true;
