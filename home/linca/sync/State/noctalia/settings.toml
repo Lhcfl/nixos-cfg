@@ -389,6 +389,10 @@ directory = "/home/linca/Pictures/Wallpapers"
     theme_mode = "dark"
     wallpaper_scheme = "m3-content"
 
+[widget.audio_visualizer]
+bands = 20
+color_2 = "secondary"
+
 [widget.battery]
 show_label = false
 

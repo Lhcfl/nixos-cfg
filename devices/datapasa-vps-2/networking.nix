@@ -1,5 +1,6 @@
-{ config, ... }: {
+{ ... }: {
   networking.useDHCP = false;
+  # systemd.network.enable = true;
 
   sops.secrets = {
     "network/ens3/addr" = { };
@@ -9,8 +10,8 @@
 
   funkcia.os.configure-ip.enable = true;
   funkcia.os.configure-ip.v4.ens3 = {
-    addr = config.sops.placeholder."network/ens3/addr";
-    mask = config.sops.placeholder."network/ens3/mask";
-    gateway = config.sops.placeholder."network/ens3/gateway";
+    addr.secret = "network/ens3/addr";
+    mask.secret = "network/ens3/mask";
+    gateway.secret = "network/ens3/gateway";
   };
 }
