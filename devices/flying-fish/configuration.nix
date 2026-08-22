@@ -19,14 +19,7 @@
 
   networking.hostName = "flying-fish"; # Define your hostname.
 
-  funkcia.os = {
-    fonts.enable = false;
-  };
-
-  nix.settings.trusted-users = [
-    "root"
-    "@wheel"
-  ];
+  funkcia.os.preset = "pc";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

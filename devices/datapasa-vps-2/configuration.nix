@@ -19,10 +19,7 @@
 
   networking.hostName = "datapasa-vps-2"; # Define your hostname.
 
-  funkcia.os = {
-    fonts.enable = false;
-    sshd.enable = true;
-  };
+  funkcia.os.preset = "server";
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
@@ -33,17 +30,6 @@
     enable = true;
     efiSupport = false;
   };
-
-  networking.firewall.allowedTCPPorts = [
-    22 # ssh
-    80 # HTTP
-    443 # HTTPS
-  ];
-
-  nix.settings.trusted-users = [
-    "root"
-    "@wheel"
-  ];
 
   users.users.root = {
     openssh.authorizedKeys.keys = [
