@@ -12,7 +12,7 @@
 
     file = {
       ".face" = {
-        source = ./assets/avatar.png;
+        source = ./assets/avatar-trans.png;
       };
     };
 
