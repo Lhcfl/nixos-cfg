@@ -37,6 +37,7 @@ in
       decibels # audio player
       papers # doc viewer
       file-roller
+      showtime
 
       # GNOME runtime/theme integration
       adwaita-icon-theme
