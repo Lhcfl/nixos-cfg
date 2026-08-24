@@ -15,6 +15,22 @@
         enable = true;
         settings = {
           plugin = [ "superpowers@git+https://github.com/obra/superpowers.git" ];
+          provider.agent-router = {
+            name = "Agent Router";
+            npm = "@ai-sdk/openai-compatible";
+            options.baseURL = "https://agentrouter.org/v1";
+            models = {
+              claude-opus-4-8 = {
+                name = "claude-opus-4-8";
+              };
+              claude-opus-5 = {
+                name = "claude-opus-5";
+              };
+              "gpt-5.6-sol" = {
+                name = "gpt-5.6-sol";
+              };
+            };
+          };
         };
         tui = {
           theme = "system";
