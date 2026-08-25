@@ -1,5 +1,5 @@
 { lib, ... }:
-{
+rec {
   listNixFilesRec =
     path:
     lib.pipe path [
@@ -15,4 +15,14 @@
       (builtins.filter (lib.hasSuffix ".nix"))
       (map (x: path + /${x}))
     ];
+
+  mkDirModule = path: {
+    imports = listNixFiles path;
+  };
+  mkRecDirModule = path: {
+    imports = listNixFilesRec path;
+  };
+  mkIndexDirModule = suffix: path: {
+    imports = (builtins.filter (lib.hasSuffix suffix) (listNixFilesRec path));
+  };
 }

@@ -1,13 +1,12 @@
 {
   pkgs,
-  lib,
   funkcia-utils,
   ...
 }:
 {
-  imports = builtins.concatLists [
-    [ ./hardware-configuration.nix ]
-    (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
+  imports = [
+    ./hardware-configuration.nix
+    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
   ];
 
   networking.hostName = "legion-82tf"; # Define your hostname.

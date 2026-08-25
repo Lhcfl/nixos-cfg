@@ -2,19 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  lib,
   funkcia-utils,
   ...
 }:
 {
-  imports = builtins.concatLists [
-    [
-      ./disk-config.nix
-      ./hardware-configuration.nix
-      ./networking.nix
-    ]
-    (funkcia-utils.files.listNixFilesRec ./services)
-    (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
+  imports = [
+    ./disk-config.nix
+    ./hardware-configuration.nix
+    ./networking.nix
+    (funkcia-utils.files.mkDirModule ./services)
+    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
   ];
 
   networking.hostName = "datapasa-vps-2"; # Define your hostname.

@@ -42,13 +42,11 @@
     dotenv-cli # load .env
   ];
 
-  imports = builtins.concatLists [
-    [
-      ./xdg.nix
-      ./ricing.nix
-      ./sops.nix
-    ]
-    (funkcia-utils.files.listNixFiles ./programs)
-    (funkcia-utils.files.listNixFilesRec ./modules)
+  imports = [
+    ./xdg.nix
+    ./ricing.nix
+    ./sops.nix
+    (funkcia-utils.files.mkDirModule ./programs)
+    (funkcia-utils.files.mkRecDirModule ./modules)
   ];
 }

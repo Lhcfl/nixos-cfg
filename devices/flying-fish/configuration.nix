@@ -2,19 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  lib,
   funkcia-utils,
   ...
 }:
 {
-  imports = builtins.concatLists [
-    [
-      ./hardware-vm.nix
-      ./domain.nix
-      ./sops.nix
-    ]
-    (funkcia-utils.files.listNixFilesRec ./services)
-    (builtins.filter (lib.hasSuffix "os.nix") (funkcia-utils.files.listNixFilesRec ./users))
+  imports = [
+    ./hardware-vm.nix
+    ./domain.nix
+    ./sops.nix
+    (funkcia-utils.files.mkDirModule ./services)
+    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
   ];
 
   networking.hostName = "flying-fish"; # Define your hostname.
