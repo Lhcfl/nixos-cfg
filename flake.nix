@@ -27,7 +27,9 @@
         specialArgs = { inherit funkcia-utils; };
       }
       {
-        imports = funkcia-utils.files.listNixFilesRec ./parts;
+        imports = [
+          (funkcia-utils.files.mkRecDirModule ./parts)
+        ];
 
         nixos = {
           sharedModules = [
@@ -55,13 +57,8 @@
         };
 
         flake = {
-          nixosModules.default = {
-            imports = funkcia-utils.files.listNixFilesRec ./modules;
-          };
-
-          homeModules.default = {
-            imports = funkcia-utils.files.listNixFilesRec ./home/modules;
-          };
+          nixosModules.default = funkcia-utils.files.mkRecDirModule ./modules;
+          homeModules.default = funkcia-utils.files.mkRecDirModule ./home/modules;
         };
       };
 

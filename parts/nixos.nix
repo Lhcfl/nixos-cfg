@@ -44,8 +44,7 @@ in
           ./home/home-manager.nix
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
-        ] ++ (listNixFilesRec ./global)
-          ++ (listNixFilesRec ./modules)
+        ]
       '';
     };
   };
