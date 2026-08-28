@@ -1,5 +1,9 @@
-export def main [] {
-    (busctl -j --user get-property
+export def main [
+    --json (-j), # print as json
+    --format (-f): string = "raw" # format of output, default table
+    ] {
+    
+    let result = (busctl -j --user get-property
         org.kde.StatusNotifierWatcher
         /StatusNotifierWatcher
         org.kde.StatusNotifierWatcher
@@ -15,4 +19,12 @@ export def main [] {
     } catch { |err|
         { ok: false, err: $err.rendered }
     }}
+
+    if ($json) {
+        $result | to json
+    } else if ($format != "raw") {
+        $result | run-internal $"to ($format)"
+    } else {
+        $result
+    }
 }
