@@ -8,6 +8,10 @@
 
     overlays = [
       (final: prev: {
+        funkcia = inputs.self.overlays.default final prev;
+      })
+
+      (final: prev: {
         inherit (prev.lixPackageSets.stable)
           nixpkgs-review
           nix-eval-jobs

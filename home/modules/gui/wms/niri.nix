@@ -1,5 +1,6 @@
 # home manager niri module
 {
+  inputs,
   lib,
   pkgs,
   config,
@@ -8,6 +9,7 @@
 }:
 let
   cfg = config.funkcia.hm.gui.wms.niri;
+  kdl = inputs.nix-kdl.kdl;
 in
 {
   options.funkcia.hm.gui.wms.niri = {
@@ -27,6 +29,24 @@ in
       (lib.mkBefore (
         config.lib.funkcia.niri.mkInclude "os-recommand" osConfig.funkcia.os.gui.niri.recommandSettings
       ))
+      (
+        with kdl.extras.niri;
+        kdl.formats.v1 [
+          (spawn-at-startup (lib.getExe pkgs.funkcia.niri-follow-pip))
+
+          (window-rule [
+            (match { title = "Picture-in-Picture"; })
+            (open-floating true)
+            (default-column-width [ (fixed 480) ])
+            (default-window-height [ (fixed 270) ])
+            (default-floating-position {
+              x = 32;
+              y = 32;
+              relative-to = "bottom-right";
+            })
+          ])
+        ]
+      )
       (lib.mkAfter ''
         include optional=true "noctalia.kdl"
         include optional=true "customize.kdl"

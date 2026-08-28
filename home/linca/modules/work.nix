@@ -8,7 +8,9 @@ let
   cfg = config.linca.work;
 in
 {
-  options.linca.work.enable = lib.mkEnableOption "packages for work";
+  options.linca.work = {
+    enable = lib.mkEnableOption "packages for work";
+  };
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [

@@ -28,7 +28,9 @@
       }
       {
         imports = [
+          flake-parts.flakeModules.easyOverlay
           (funkcia-utils.files.mkRecDirModule ./parts)
+          (funkcia-utils.files.mkIndexDirModule "index.nix" ./packages)
         ];
 
         nixos = {
