@@ -1,10 +1,6 @@
 export def "from nix" [] {
-  let file = (mktemp --tmpdir --suffix ".nix")
-
-  $in | save -f $file
-
   try {
-    nix eval --file $file --raw --apply '
+    nix eval --impure --file /dev/stdin --raw --apply '
       let
         sanitize = x:
           let t = builtins.typeOf x;
@@ -20,7 +16,9 @@ export def "from nix" [] {
                x;
       in x: builtins.toJSON (sanitize x)
     ' | from json
-  } finally {
-    rm -f $file
   }
+}
+
+export def "to nix" [] {
+  $in | to json  | nix eval -E "builtins.fromJSON (builtins.readFile \"/dev/stdin\")" --impure
 }
