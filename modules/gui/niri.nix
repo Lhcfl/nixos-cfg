@@ -48,6 +48,9 @@ in
         (xwayland-satellite [
           (n "path" "${lib.getExe pkgs.xwayland-satellite}")
         ])
+        (environment [
+          (n "QT_QPA_PLATFORM" "wayland")
+        ])
       ];
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

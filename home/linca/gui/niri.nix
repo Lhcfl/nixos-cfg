@@ -28,10 +28,6 @@ in
 
       prefer-no-csd
 
-      (environment [
-        (n "QT_QPA_PLATFORM" "wayland")
-      ])
-
       (screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png")
 
       (cursor [
@@ -144,7 +140,6 @@ in
           (n "Mod+Shift+Down" [
             move-window-to-workspace-down
           ])
-
           (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
             focus-workspace-down
           ])
