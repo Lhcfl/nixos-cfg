@@ -46,7 +46,7 @@
     ./xdg.nix
     ./ricing.nix
     ./sops.nix
-    (funkcia-utils.files.mkDirModule ./programs)
+    (funkcia-utils.files.mkIndexDirModule "index.nix" ./programs)
     (funkcia-utils.files.mkRecDirModule ./modules)
   ];
 }
