@@ -1,13 +1,14 @@
 config_version = 12
 
 [bar]
-order = [ "Linca", "task" ]
+order = [ "Linca", "task", "top-bar" ]
 
     [bar.Linca]
     background_opacity = 0.0
     capsule = true
     capsule_padding = 5.0
     center = [ "active_window", "media" ]
+    enabled = false
     end = [ "tray", "group:g3", "network", "group:g2", "battery", "clock" ]
     font_family = "Noto Sans"
     margin_edge = 0
@@ -65,6 +66,42 @@ order = [ "Linca", "task" ]
         fill = "surface_variant"
         id = "g2"
         members = [ "spacer_2", "clock_2", "notifications" ]
+        opacity = 1.0
+        padding = 6.0
+
+    [bar.top-bar]
+    background_opacity = 0.0
+    capsule = true
+    center = [ "active_window" ]
+    concave_edge_corners = false
+    enabled = true
+    end = [ "group:g2" ]
+    font_family = "Noto Sans"
+    margin_ends = 0
+    padding = 4
+    scale = 0.85000000521540642
+    shadow = false
+    start = [ "group:g1" ]
+    thickness = 28
+
+        [[bar.top-bar.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [ "cpu", "ram", "temp", "sysmon_2", "net-stat", "net-up-stats" ]
+        opacity = 1.0
+        padding = 6.0
+        widget_spacing = 3
+
+        [[bar.top-bar.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
+        fill = "surface_variant"
+        id = "g2"
+        members = [ "bluetooth", "clipboard", "caffeine", "brightness", "network" ]
         opacity = 1.0
         padding = 6.0
 
@@ -396,12 +433,9 @@ color_2 = "secondary"
 [widget.battery]
 show_label = false
 
-[widget.brightness]
-show_label = false
-
-    [widget.brightness.actions]
-    scroll_down = "brightness-down 1%"
-    scroll_up = "brightness-up 1%"
+[widget.brightness.actions]
+scroll_down = "brightness-down 1%"
+scroll_up = "brightness-up 1%"
 
 [widget.cat]
 scale = 1.2
@@ -431,9 +465,24 @@ title_scroll = "always"
 glyph = "rocket"
 type = "custom_button"
 
+[widget.net-stat]
+network_speed_compact = true
+stat = "net_rx"
+type = "sysmon"
+visualization = "none"
+
+[widget.net-up-stats]
+network_speed_compact = true
+stat = "net_tx"
+type = "sysmon"
+visualization = "none"
+
 [widget.network_2]
 show_label = false
 type = "network"
+
+[widget.ram]
+stat = "ram_pct"
 
 [widget.spacer_2]
 length = 5
@@ -441,6 +490,10 @@ type = "spacer"
 
 [widget.sysmon]
 stat = "ram_pct"
+
+[widget.sysmon_2]
+stat = "disk_used_pct"
+type = "sysmon"
 
 [widget.taskbar]
 group_by_workspace = true

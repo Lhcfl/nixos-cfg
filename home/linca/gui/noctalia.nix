@@ -27,6 +27,7 @@ in
 
         (layer-rule [
           (match { namespace = "noctalia-bar-Linca"; })
+          (match { namespace = "noctalia-bar-top-bar"; })
           (background-effect [
             (blur false)
           ])
