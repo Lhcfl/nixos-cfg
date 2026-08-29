@@ -21,8 +21,10 @@
         onCalendar = "hourly";
         settings = {
           timestamp_format = "long";
-          snapshot_preserve_min = "1w";
-          snapshot_preserve = "2w";
+          # 保留最近 24 小时内创建的所有快照（每小时快照全部保留）
+          snapshot_preserve_min = "1d";
+          # 保留最近 7 天的每日快照，以及最近 4 周的每周快照
+          snapshot_preserve = "7d 4w";
           volume = {
             "/" = {
               snapshot_dir = "/snapshots/home";
