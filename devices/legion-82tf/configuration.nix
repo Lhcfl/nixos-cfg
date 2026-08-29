@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
+    (funkcia-utils.files.mkDirModule ./services)
     (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
   ];
 
@@ -21,8 +22,6 @@
       enable = true;
       todDriver = pkgs.libfprint-2-tod1-elan;
     };
-
-    btrbk.enable = true;
 
     laptop.enable = true;
 

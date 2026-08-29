@@ -6,7 +6,6 @@
 {
   config = lib.mkIf (config.funkcia.os.preset == "pc") {
     funkcia.os = lib.mkDefault {
-      docker.enable = true;
       secure-boot.enable = true;
       tpm.enable = true;
       nix-mirrors.enable = true;
