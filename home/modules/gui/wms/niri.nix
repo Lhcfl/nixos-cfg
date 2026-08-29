@@ -48,7 +48,6 @@ in
         ]
       )
       (lib.mkAfter ''
-        include optional=true "noctalia.kdl"
         include optional=true "customize.kdl"
       '')
     ];

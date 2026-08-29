@@ -56,6 +56,8 @@ imports = [
 
 ## 构建和测试
 
+重要：在构建和测试前，由于 flake 的特性，必须 `git add` 新增的文件，否则文件不生效。
+
 在下文中，"device-name" means the device name to switch. for example, "legion-82tf"。
 
 使用
