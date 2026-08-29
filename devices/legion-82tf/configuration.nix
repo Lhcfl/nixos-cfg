@@ -6,6 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./packages.nix
     (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
   ];
 
