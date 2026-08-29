@@ -1,7 +1,7 @@
 config_version = 12
 
 [bar]
-order = [ "Linca", "task", "top-bar" ]
+order = [ "Linca", "task", "top-bar", "win11" ]
 
     [bar.Linca]
     background_opacity = 0.0
@@ -56,6 +56,9 @@ order = [ "Linca", "task", "top-bar" ]
     widget_spacing = 9
 
         [[bar.task.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
         fill = "surface_variant"
         id = "g1"
         members = [ "network_2", "volume_2", "battery" ]
@@ -63,6 +66,9 @@ order = [ "Linca", "task", "top-bar" ]
         padding = 6.0
 
         [[bar.task.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        enabled = true
         fill = "surface_variant"
         id = "g2"
         members = [ "spacer_2", "clock_2", "notifications" ]

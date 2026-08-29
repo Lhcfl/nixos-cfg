@@ -40,6 +40,28 @@ in
         See https://docs.noctalia.dev/noctalia/configuration/ for the schema.
       '';
     };
+
+    bars = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          options =
+            let
+              colType = lib.types.listOf widgetType;
+
+              widgetType = lib.types.submodule {
+                freeformType = lib.types.attrsOf lib.types.anything;
+                options.type = lib.mkOption { type = lib.types.str; };
+              };
+            in
+            {
+              start = lib.mkOption { type = colType; };
+              center = lib.mkOption { type = colType; };
+              end = lib.mkOption { type = colType; };
+              settings = lib.mkOption { type = toml.type; };
+            };
+        }
+      );
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -74,5 +96,94 @@ in
     xdg.configFile = lib.mkIf (cfg.settings != { }) {
       "noctalia/config.toml".source = toml.generate "noctalia-config.toml" cfg.settings;
     };
+
+    funkcia.hm.gui.noctalia.settings =
+      let
+        handle =
+          { name, value }:
+          let
+            collectWidgets' =
+              {
+                path ? "",
+              }:
+              arr:
+              let
+                withId = lib.imap0 (
+                  idx:
+                  data@{ type, ... }:
+                  {
+                    idx = idx;
+                    id =
+                      if type == "group" then "group:g${toString idx}" else "${name}-${path}-${toString idx}--${type}";
+                    data = data;
+                  }
+                ) arr;
+
+                widgets = builtins.filter ({ data, ... }: data.type != "group") withId;
+                groups = builtins.filter ({ data, ... }: data.type == "group") withId;
+
+                mkWidgets =
+                  src:
+                  lib.pipe src [
+                    (map (
+                      { id, data, ... }: {
+                        name = id;
+                        value = data;
+                      }
+                    ))
+                    lib.listToAttrs
+                  ];
+
+                mkGroup =
+                  {
+                    idx,
+                    data,
+                    ...
+                  }:
+                  let
+                    inherit (collectWidgets' { path = "${path}-g${toString idx}"; } data.members) widgets results;
+                  in
+                  {
+                    widgets = widgets;
+                    data = (removeAttrs data [ "type" ]) // {
+                      id = "g${toString idx}";
+                      members = results;
+                    };
+                  };
+
+                collected = map mkGroup groups;
+              in
+              {
+                widgets = lib.foldl (x: y: x // y) (mkWidgets widgets) (map (x: x.widgets) collected);
+                groups = map (x: x.data) collected;
+                results = map (x: x.id) withId;
+              };
+
+            collectWidgets =
+              path:
+              let
+                inherit (collectWidgets' { inherit path; } value.${path}) widgets results groups;
+              in
+              {
+                widget = widgets;
+                bar.${name} = {
+                  capsule_group = groups;
+                  ${path} = results;
+                };
+              };
+
+          in
+          lib.mkMerge [
+            (collectWidgets "start")
+            (collectWidgets "center")
+            (collectWidgets "end")
+            { bar.${name} = value.settings; }
+          ];
+      in
+      lib.pipe config.funkcia.hm.gui.noctalia.bars [
+        lib.attrsToList
+        (map handle)
+        lib.mkMerge
+      ];
   };
 }

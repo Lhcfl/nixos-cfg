@@ -1,15 +1,12 @@
 {
   inputs,
+  lib,
   ...
 }:
 let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.hm.gui.noctalia = {
-    enable = true;
-  };
-
   funkcia.hm.gui.wms.niri.settings =
     with kdl.extras.niri;
     kdl.formats.v1 [
@@ -37,4 +34,23 @@ in
       ])
     ];
 
+  funkcia.hm.gui.noctalia = {
+    enable = true;
+
+    settings = {
+      # shell = {
+      #   avatar_path = "/home/linca/.face";
+      #   lang = "zh-Hans";
+      #   panel = {
+      #     control_center_placement = "floating";
+      #     open_near_click_control_center = true;
+      #     transparency_mode = "soft";
+      #   };
+      #   screenshot = {
+      #     directory = "~/Pictures/Screenshots";
+      #   };
+      #   settings_show_advanced = true;
+      # };
+    };
+  };
 }
