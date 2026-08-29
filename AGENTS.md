@@ -1,47 +1,55 @@
 # AGENTS.md
 
-Personal NixOS system config (flake-based), named **funkcia**. Single host `nixos` on x86_64-linux (Legion laptop).
+多设备的个人 NixOS 配置，命名为 **funkcia**.
 
-## Deploy
+## 项目结构
+
+see README.md
+
+## 使用现代化的 cli 工具和脚本
+
+该系统已经配置了使用更现代的 CLI 工具，包括 `fd`, `fzf`, `rg`, `eza`, `bat`, `nushell` 等。
+可选地，可以使用这些现代化的 CLI 工具来完成各种搜索、替换等需求。
+
+推荐使用 javascript 和 python 进行脚本处理，优先使用 javascript 和 bun 运行时。
+该系统没有 system-wide python，使用 `uv run <script>.py` 运行 python 脚本。
+该系统 system-wide nodejs 版本很高，在新版本 nodejs 中，typescript 可以直接被运行。
+使用 bun 和 nodejs 可以无需 `tsc` 对 typescript 脚本运行。
+
+## 如何添加、修改一个系统功能
+
+1. 确定模块范围。判断这属于哪一层配置：device-specific（`devices/name/`）、user-specific（`home/name/`）、
+还是全局（home-manager → `home/modules/`，nixos → `modules/`）。
+
+若改动全局共享模块，会影响所有设备，先向用户确认影响面；若只涉及 `devices/name/` 或 `home/name/`，可直接进行。
+
+2. 先搜索是否有现成模块。在项目本地使用 `rg` 搜索现成模块，如果有共用模块，思考对它修改会造成多少影响，
+造成的影响是否是可以在所有机器上都变化的。
+
+3. 引入包、选项、模块之前，先搜索。
+
+**不要自己造轮子**
+
+如果是 home-manager 模块，使用 `nh search options {keyword} --scope=home-manager` 搜索 home manager 选项
+如果是 nixos 模块，使用 `nh search options {keyword} --scope=nixpkgs` 搜索 nixos 选项。
+如果都没有搜索到，最后尝试 `nh search packages {keyword}` 搜索包名
+
+能用 options 打开的，不要用添加包的方式打开。能复用现成 options 的，不要自己造轮子。
+
+## 构建和测试
+
+在下文中，"device-name" means the device name to switch. for example, "legion-82tf"。
+
+使用
 
 ```bash
-./apply.sh          # runs: sudo nixos apply && bun home/linca/sync/sync.ts
+nh os build .#device-name -o result-{device-name}
 ```
 
-Validate without applying:
+构建。对于本机，额外使用
 
 ```bash
-nix build .#checks.x86_64-linux.nixosTopLevel
+nvd diff result-{device-name} /run/current-system
 ```
 
-## Structure
-
-```
-flake.nix              # root; single nixosConfigurations.nixos
-global/                # system-wide NixOS config (auto-imported)
-modules/               # optional NixOS features, gated by funkcia.os.* options
-devices/legion-82tf/   # hardware + device-specific overrides
-home/home-manager.nix  # home-manager bridge
-home/linca/
-  home.nix             # user entrypoint
-  gui/                 # HM GUI modules, gated by funkcia.hm.* options
-  gui/modules/         # auto-imported by gui.nix
-  programs/            # per-program HM configs (auto-imported)
-  dotfiles/            # Nix store copies → ~/.config/
-  sync/Config/         # runtime symlinks → ~/.config/ (editable, applied by sync.ts)
-common/                # shared package lists
-utils/files.nix        # listNixFilesRec helper
-```
-
-## Key conventions
-
-- **`funkcia` option namespace**: NixOS modules use `funkcia.os.<name>.enable`; home-manager modules use `funkcia.hm.<name>.enable`. Always gate with `lib.mkIf`.
-- **Auto-import via `listNixFilesRec`**: `global/`, `modules/`, and `home/linca/programs/` are auto-discovered. Adding a `.nix` file to these dirs auto-imports it — no manual `imports` needed.
-- **Two dotfile mechanisms**:
-  - `home/linca/dotfiles/` → Nix store copies (immutable at runtime). Managed by `dotfiles.nix`.
-  - `home/linca/sync/Config/` → runtime symlinks created by `bun home/linca/sync/sync.ts`. Editable on disk.
-- **lix, not nix**: Uses `pkgs.lixPackageSets.stable.lix` (see `global/nix.nix`).
-- **nixfmt**: Use `nixfmt` (the nixpkgs-rfc-style one, already in `packages.nix`).
-- **Bun**: JS/TS runtime. `package.json` at root and `home/linca/dotfiles/waybar/`.
-- **home-manager backup**: Conflicts produce `.hm.old` files (see `backupFileExtension` in `home-manager.nix`).
-- **NixOS check**: `nix build .#checks.x86_64-linux.nixosTopLevel` builds the full system toplevel — use for CI or pre-deploy validation.
+计算差异，防止配置更改产生不必要的变化。

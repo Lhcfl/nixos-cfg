@@ -47,7 +47,6 @@
     bun # js runtime
     unzip
     p7zip # 7z
-    manix # nix configuration helper
     gdu # better `du`
     btop # better htop
     htop
