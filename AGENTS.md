@@ -18,6 +18,8 @@ see README.md
 
 ## 如何添加、修改一个系统功能
 
+0. 确定当前机器。使用 hostname 确定当前机器名。
+
 1. 确定模块范围。判断这属于哪一层配置：device-specific（`devices/name/`）、user-specific（`home/name/`）、
 还是全局（home-manager → `home/modules/`，nixos → `modules/`）。
 
@@ -35,6 +37,22 @@ see README.md
 如果都没有搜索到，最后尝试 `nh search packages {keyword}` 搜索包名
 
 能用 options 打开的，不要用添加包的方式打开。能复用现成 options 的，不要自己造轮子。
+
+## 特殊的 funkcia-utils
+
+定义在 `utils/files.nix` 文件夹下的 funkcia-utils.files 帮助实现按文件名的自动导入。例如
+
+```nix
+imports = [
+    (funkcia-utils.files.mkDirModule ./programs)
+    (funkcia-utils.files.mkIndexDirModule "index.nix" ./programs)
+    (funkcia-utils.files.mkRecDirModule ./modules)
+]
+```
+
+`mkDirModule`: ./programs 顶层（不包括子文件夹）下的所有 .nix 文件都被导入
+`mkIndexDirModule` ./programs （递归地包括子文件夹）下的所有 index.nix 文件都被导入
+`mkRecDirModule` ./modules （递归地包括子文件夹）下的所有 .nix 文件都被导入
 
 ## 构建和测试
 
