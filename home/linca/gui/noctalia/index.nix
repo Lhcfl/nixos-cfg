@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  funkcia-utils,
   ...
 }:
 let
@@ -24,33 +25,31 @@ in
         (match { namespace = "noctalia-wallpaper"; })
         (place-within-backdrop true)
       ])
-
-      (layer-rule [
-        (match { namespace = "noctalia-bar-Linca"; })
-        (match { namespace = "noctalia-bar-top-bar"; })
-        (background-effect [
-          (blur false)
-        ])
-      ])
     ];
 
   funkcia.hm.gui.noctalia = {
     enable = true;
 
     settings = {
-      # shell = {
-      #   avatar_path = "/home/linca/.face";
-      #   lang = "zh-Hans";
-      #   panel = {
-      #     control_center_placement = "floating";
-      #     open_near_click_control_center = true;
-      #     transparency_mode = "soft";
-      #   };
-      #   screenshot = {
-      #     directory = "~/Pictures/Screenshots";
-      #   };
-      #   settings_show_advanced = true;
-      # };
+      shell = {
+        avatar_path = funkcia-utils.projectPath /home/linca/assets/avatar-trans.png;
+        lang = "zh-Hans";
+        panel = {
+          control_center_placement = "floating";
+          open_near_click_control_center = true;
+          transparency_mode = "soft";
+        };
+        screenshot = {
+          directory = "~/Pictures/Screenshots";
+        };
+        settings_show_advanced = true;
+      };
+
+      hooks = {
+        theme_mode_changed = ''
+          dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
+        '';
+      };
     };
   };
 }

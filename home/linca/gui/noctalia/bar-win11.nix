@@ -1,30 +1,6 @@
-{
-  inputs,
-  ...
-}:
-let
-  kdl = inputs.nix-kdl.kdl;
-
-  mkWidget =
-    type: args:
-    args
-    // {
-      inherit type;
-    };
-in
+{ ... }:
 {
   config = {
-    funkcia.hm.gui.wms.niri.settings =
-      with kdl.extras.niri;
-      kdl.formats.v1 [
-        (layer-rule [
-          (match { namespace = "noctalia-bar-tasks"; })
-          (background-effect [
-            (blur false)
-          ])
-        ])
-      ];
-
     funkcia.hm.gui.noctalia.bars.win11 = {
       start = [
         { type = "wallpaper"; }

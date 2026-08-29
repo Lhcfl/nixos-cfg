@@ -103,10 +103,7 @@ in
           { name, value }:
           let
             collectWidgets' =
-              {
-                path ? "",
-              }:
-              arr:
+              path: arr:
               let
                 withId = lib.imap0 (
                   idx:
@@ -114,7 +111,10 @@ in
                   {
                     idx = idx;
                     id =
-                      if type == "group" then "group:g${toString idx}" else "${name}-${path}-${toString idx}--${type}";
+                      if type == "group" then
+                        "group:${path}-g${toString idx}"
+                      else
+                        "${name}-${path}-${toString idx}--${type}";
                     data = data;
                   }
                 ) arr;
@@ -141,12 +141,12 @@ in
                     ...
                   }:
                   let
-                    inherit (collectWidgets' { path = "${path}-g${toString idx}"; } data.members) widgets results;
+                    inherit (collectWidgets' "${path}-g${toString idx}" data.members) widgets results;
                   in
                   {
                     widgets = widgets;
                     data = (removeAttrs data [ "type" ]) // {
-                      id = "g${toString idx}";
+                      id = "${path}-g${toString idx}";
                       members = results;
                     };
                   };
@@ -162,7 +162,7 @@ in
             collectWidgets =
               path:
               let
-                inherit (collectWidgets' { inherit path; } value.${path}) widgets results groups;
+                inherit (collectWidgets' path value.${path}) widgets results groups;
               in
               {
                 widget = widgets;
