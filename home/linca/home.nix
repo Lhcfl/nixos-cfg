@@ -7,6 +7,7 @@
   programs.home-manager.enable = true;
 
   funkcia.avatar = ./assets/avatar-trans.png;
+  funkcia.hm.modern-cli-tools.enable = true;
 
   home = {
     username = "linca";
@@ -22,13 +23,6 @@
     };
 
     shell.enableShellIntegration = true;
-  };
-
-  programs = {
-    zoxide.enable = true;
-    fish.enable = true;
-    starship.enable = true;
-    nushell.enable = true;
   };
 
   home.packages = with pkgs; [

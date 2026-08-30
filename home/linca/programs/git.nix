@@ -6,6 +6,7 @@
 }:
 let
   ghHelper = "${lib.getExe pkgs.gh} auth git-credential";
+  credential = url: "credential \"${url}\"";
 in
 {
   programs.git = {
@@ -19,12 +20,8 @@ in
           name = "linca";
           email = "lhcfl@outlook.com";
         };
-        "credential \"https://github.com\"" = {
-          helper = ghHelper;
-        };
-        "credential \"https://gist.github.com\"" = {
-          helper = ghHelper;
-        };
+        ${credential "https://github.com"}.helper = ghHelper;
+        ${credential "https://gist.github.com"}.helper = ghHelper;
       }
 
       (lib.mkIf ((osConfig.networking.proxy.default or null) != null) {
