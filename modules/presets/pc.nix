@@ -13,10 +13,7 @@
         enable = true;
         niri.enable = true;
       };
-      sddm = {
-        enable = true;
-        theme.name = "pixel_sakura";
-      };
+      dm.noctalia-greeter.enable = true;
     };
 
     services.displayManager.sddm.settings = lib.mkDefault {
@@ -25,6 +22,7 @@
       };
     };
 
+    services.accounts-daemon.enable = lib.mkDefault true;
     services.blueman.enable = lib.mkDefault true;
     services.flatpak.enable = lib.mkDefault true;
 

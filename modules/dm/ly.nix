@@ -5,11 +5,11 @@
   ...
 }:
 {
-  options.funkcia.os.ly = {
+  options.funkcia.os.dm.ly = {
     enable = lib.mkEnableOption "ly module, which is a TUI login manager (or display manager).";
   };
 
-  config = lib.mkIf config.funkcia.os.ly.enable {
+  config = lib.mkIf config.funkcia.os.dm.ly.enable {
     services.displayManager.ly = {
       settings = {
         animation = "dur_file";
