@@ -14,10 +14,12 @@
     - fzf 作为 fuzzy finder
     - fd 替换 find
     - rg 替换 grep
-    - fish 作为默认 shell
+    - fish 作为 interactive shell
+    - atuin 搜索 history
   '';
 
   config = lib.mkIf config.funkcia.hm.modern-cli-tools.enable {
+    # 自动使得所有 shellIntergration 生效
     home.shell.enableShellIntegration = true;
 
     programs.zoxide.enable = true; # replace cd
@@ -40,5 +42,7 @@
     programs.fd.enable = true;
 
     programs.ripgrep.enable = true;
+
+    programs.atuin.enable = true;
   };
 }
