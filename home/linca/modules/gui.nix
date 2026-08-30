@@ -26,16 +26,12 @@ in
   config = lib.mkIf cfg.enable {
     funkcia.hm.gui.components.gnome.enable = true;
 
+    services.wl-clip-persist.enable = true;
+
     home.packages = with pkgs; [
       # noctalia-shell
       telegram-desktop
-
-      # BEGIN 截图
-      gradia
-      grim
-      slurp
-      # END 截图
-
+      gradia # 截图和编辑工具
       wl-clipboard-rs
       element-desktop
       (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
