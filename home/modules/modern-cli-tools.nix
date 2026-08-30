@@ -15,7 +15,6 @@
     - fd 替换 find
     - rg 替换 grep
     - fish 作为 interactive shell
-    - atuin 搜索 history
   '';
 
   config = lib.mkIf config.funkcia.hm.modern-cli-tools.enable {
@@ -43,6 +42,6 @@
 
     programs.ripgrep.enable = true;
 
-    programs.atuin.enable = true;
+    # programs.atuin.enable = true;
   };
 }

@@ -20,7 +20,6 @@ in
       devenv
       ast-grep
       typst
-      gh
     ];
 
     programs.pandoc.enable = true;
