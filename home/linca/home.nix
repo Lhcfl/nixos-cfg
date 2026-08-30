@@ -6,15 +6,11 @@
 {
   programs.home-manager.enable = true;
 
+  funkcia.avatar = ./assets/avatar-trans.png;
+
   home = {
     username = "linca";
     homeDirectory = "/home/linca";
-
-    file = {
-      ".face" = {
-        source = ./assets/avatar-trans.png;
-      };
-    };
 
     sessionPath = [
       "$HOME/.local/bin"
