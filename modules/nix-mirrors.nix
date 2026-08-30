@@ -6,10 +6,9 @@
 
   config = lib.mkIf config.funkcia.os.nix-mirrors.enable {
     nix.settings.substituters = [
-      "https://mirror.nju.edu.cn/nix-channels/store"
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      # https://help.mirrors.cernet.edu.cn/nix-channels/
+      # 自动选择
+      "https://mirrors.cernet.edu.cn/nix-channels/store"
     ];
   };
 }
