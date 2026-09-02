@@ -22,7 +22,6 @@ in
     in
     kdl.formats.v1 [
       (spawn-at-startup "fcitx5")
-      (spawn-at-startup "v2rayN")
 
       prefer-no-csd
 
