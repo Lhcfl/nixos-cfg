@@ -15,8 +15,7 @@
       ## GUI PACKAGES
       libnotify # notification support
       firefox
-      v2rayn # proxy client
-      xray # proxy client
+      xray
       brightnessctl # brightness control
       playerctl # media player control
     ];
