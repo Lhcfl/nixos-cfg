@@ -26,9 +26,7 @@
   };
 
   home.packages = with pkgs; [
-    go-musicfox # music
     fastfetch # system info
-    openssl
     dotenv-cli # load .env
   ];
 

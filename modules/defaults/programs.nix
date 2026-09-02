@@ -39,5 +39,6 @@
     unzip
     p7zip # 7z
     htop
+    openssl
   ];
 }
