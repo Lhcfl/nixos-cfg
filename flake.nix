@@ -47,6 +47,10 @@
               ./devices/legion-82tf/configuration.nix
             ];
 
+            dell-workstation.imports = [
+              ./devices/dell-workstation/configuration.nix
+            ];
+            
             flying-fish.imports = [
               ./devices/flying-fish/configuration.nix
             ];
