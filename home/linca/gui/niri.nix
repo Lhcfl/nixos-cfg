@@ -61,6 +61,9 @@ in
 
       (layout [
         (gaps 3)
+        (struts [
+          (top (-4))
+        ])
         (background-color "transparent")
         (center-focused-column "never")
         (default-column-width [
