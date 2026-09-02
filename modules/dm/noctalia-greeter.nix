@@ -17,5 +17,9 @@
       cursorTheme.name = "Bibata-Modern-Ice";
       cursorTheme.package = pkgs.bibata-cursors;
     };
+
+    security.pam.services.noctalia-greeter = {
+      enableGnomeKeyring = lib.mkIf config.services.gnome.gnome-keyring.enable true;
+    };
   };
 }

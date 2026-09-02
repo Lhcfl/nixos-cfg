@@ -41,6 +41,10 @@ in
 
     funkcia.os.gnome-keyring.enable = lib.mkDefault true;
 
+    security.pam.services.niri = {
+      enableGnomeKeyring = lib.mkIf config.services.gnome.gnome-keyring.enable true;
+    };
+
     funkcia.os.gui.niri.recommandSettings =
       with kdl.extras.niri;
       kdl.formats.v1 [
