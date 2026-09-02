@@ -15,7 +15,7 @@
 
   funkcia.os = {
     preset = "pc";
-
+    secure-boot.enable = true;
     gui.hyprland.enable = true;
 
     fingerprint = {
