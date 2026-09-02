@@ -16,7 +16,7 @@
 │   ├──  services          # device specific services
 │   └──  users/${username} # user settings for ${username}
 │       ├──  home.nix      # home-manager options
-│       └──  os.nix        # nixos options
+│       └──  default.nix        # nixos options
 ├── 󱂵 home
 │   ├──  home-manager.nix  # global home-manager module
 │   ├──  linca

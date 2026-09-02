@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
     ./packages.nix
     (funkcia-utils.files.mkDirModule ./services)
-    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
+    (funkcia-utils.files.mkDirModule ./users)
   ];
 
   networking.hostName = "dell-workstation"; # Define your hostname.

@@ -7,24 +7,16 @@ rec {
       (builtins.filter (lib.hasSuffix ".nix"))
     ];
 
-  listNixFiles =
-    path:
-    lib.pipe path [
-      builtins.readDir
-      builtins.attrNames
-      (builtins.filter (lib.hasSuffix ".nix"))
+  mkDirModule = path: {
+    imports = lib.pipe (builtins.readDir path) [
+      lib.attrsToList
+      (builtins.filter ({ name, value }: (lib.hasSuffix ".nix" name) || (value == "directory")))
+      (map ({ name, ... }: name))
       (map (x: path + /${x}))
     ];
-
-  mkDirModule = path: {
-    imports = listNixFiles path;
   };
 
   mkRecDirModule = path: {
     imports = listNixFilesRec path;
-  };
-
-  mkIndexDirModule = suffix: path: {
-    imports = (builtins.filter (lib.hasSuffix suffix) (listNixFilesRec path));
   };
 }

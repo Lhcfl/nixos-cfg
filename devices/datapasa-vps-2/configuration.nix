@@ -11,7 +11,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     (funkcia-utils.files.mkDirModule ./services)
-    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
+    (funkcia-utils.files.mkDirModule ./users)
   ];
 
   networking.hostName = "datapasa-vps-2"; # Define your hostname.

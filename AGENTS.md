@@ -45,13 +45,12 @@ see README.md
 ```nix
 imports = [
     (funkcia-utils.files.mkDirModule ./programs)
-    (funkcia-utils.files.mkIndexDirModule "index.nix" ./programs)
+    (funkcia-utils.files.mkDirModule ./programs)
     (funkcia-utils.files.mkRecDirModule ./modules)
 ]
 ```
 
 `mkDirModule`: ./programs 顶层（不包括子文件夹）下的所有 .nix 文件都被导入
-`mkIndexDirModule` ./programs （递归地包括子文件夹）下的所有 index.nix 文件都被导入
 `mkRecDirModule` ./modules （递归地包括子文件夹）下的所有 .nix 文件都被导入
 
 ## 构建和测试

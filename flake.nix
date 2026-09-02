@@ -30,7 +30,7 @@
         imports = [
           flake-parts.flakeModules.easyOverlay
           (funkcia-utils.files.mkRecDirModule ./parts)
-          (funkcia-utils.files.mkIndexDirModule "index.nix" ./packages)
+          (funkcia-utils.files.mkDirModule ./packages)
         ];
 
         nixos = {
@@ -50,7 +50,7 @@
             dell-workstation.imports = [
               ./devices/dell-workstation/configuration.nix
             ];
-            
+
             flying-fish.imports = [
               ./devices/flying-fish/configuration.nix
             ];

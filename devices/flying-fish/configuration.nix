@@ -11,7 +11,7 @@
     ./domain.nix
     ./sops.nix
     (funkcia-utils.files.mkDirModule ./services)
-    (funkcia-utils.files.mkIndexDirModule "os.nix" ./users)
+    (funkcia-utils.files.mkDirModule ./users)
   ];
 
   networking.hostName = "flying-fish"; # Define your hostname.
