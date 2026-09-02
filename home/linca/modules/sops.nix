@@ -5,21 +5,18 @@
   ...
 }:
 {
-  options.linca.sops.enable = lib.mkEnableOption "SOPS configs" // {
-    default = true;
-  };
+  options.linca.sops.enable = lib.mkEnableOption "SOPS configs";
 
-  config = lib.mkIf (osConfig.funkcia.os.sops-support.enable && config.linca.sops.enable) {
+  config.linca.sops.enable = lib.mkDefault (!osConfig.funkcia.os.new-cn-install);
 
-    sops = {
-      defaultSopsFile = ./secrets.yaml;
-      age.keyFile = "/home/linca/.config/sops/age/keys.txt";
+  config.sops = lib.mkIf (osConfig.funkcia.os.sops-support.enable && config.linca.sops.enable) {
+    defaultSopsFile = ./secrets.yaml;
+    age.keyFile = "/home/linca/.config/sops/age/keys.txt";
 
-      secrets = {
-        "opencode_server/username" = { };
-        "opencode_server/password" = { };
-        "cloudflare/start-tunnel-nixos" = { };
-      };
+    secrets = {
+      "opencode_server/username" = { };
+      "opencode_server/password" = { };
+      "cloudflare/start-tunnel-nixos" = { };
     };
   };
 }

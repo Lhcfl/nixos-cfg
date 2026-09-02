@@ -4,6 +4,7 @@
   config,
   pkgs,
   funkcia-utils,
+  osConfig,
   ...
 }:
 let
@@ -34,8 +35,6 @@ in
       gradia # 截图和编辑工具
       wl-clipboard-rs
       element-desktop
-      (inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default)
-
       netease-cloud-music-gtk
     ];
 
@@ -46,7 +45,7 @@ in
 
       chromium.enable = true;
 
-      obsidian.enable = true;
+      obsidian.enable = lib.mkIf (!osConfig.funkcia.os.new-cn-install) true;
 
       firefox.enable = true;
 
