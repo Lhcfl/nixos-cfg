@@ -28,6 +28,8 @@ in
       proxy = lib.mkIf (cfg.proxy != null) {
         default = cfg.proxy;
         noProxy = "127.0.0.1,localhost,internal.domain";
+        envVars.HTTP_PROXY = cfg.proxy;
+        envVars.HTTP_PROXYS = cfg.proxy;
       };
 
       networkmanager.enable = true;
