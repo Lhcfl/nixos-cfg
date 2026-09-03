@@ -19,5 +19,7 @@
       brightnessctl # brightness control
       playerctl # media player control
     ];
+
+    funkcia.os.gui.fonts.enable = lib.mkDefault true;
   };
 }

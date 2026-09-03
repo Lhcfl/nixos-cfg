@@ -20,25 +20,19 @@
       fontDir.enable = true;
 
       packages = with pkgs; [
-        nerd-fonts.liberation
-        maple-mono.NF-CN-unhinted
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
         noto-fonts-color-emoji
-        lxgw-wenkai-screen
-        hanazono # 花园明朝，覆盖了几乎所有的汉字
         source-han-sans
         source-han-serif
         source-serif
         source-serif-pro
-        lxgw-wenkai
-        lxgw-wenkai-screen
       ];
 
       fontconfig.enable = true;
       fontconfig.defaultFonts = {
-        # Sans serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
+        # Sans serif fonts: prefer Western fonts, then CJK variants
         sansSerif = [
           "Noto Sans"
           "Noto Sans CJK SC"
@@ -46,11 +40,9 @@
           "Noto Sans CJK JP"
           "Noto Sans CJK KR"
           "Noto Color Emoji"
-          "HanaMinA"
-          "HanaMinB"
         ];
 
-        # Serif fonts: prefer Western fonts, then CJK variants, fallback to HanaMin
+        # Serif fonts: prefer Western fonts, then CJK variants
         serif = [
           "Noto Serif"
           "Noto Serif CJK SC"
@@ -58,8 +50,6 @@
           "Noto Serif CJK JP"
           "Noto Serif CJK KR"
           "Noto Color Emoji"
-          "HanaMinA"
-          "HanaMinB"
         ];
 
         # Monospace fonts: Maple Mono for programming, fallback to Noto Sans Mono
