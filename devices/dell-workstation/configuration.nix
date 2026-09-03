@@ -13,6 +13,8 @@
 
   networking.hostName = "dell-workstation"; # Define your hostname.
 
+  environment.sessionVariables.NH_OS_FLAKE = funkcia-utils.projectPath ./.;
+
   funkcia.os = {
     preset = "pc";
     networking.proxy = "http://127.0.0.1:10808";
