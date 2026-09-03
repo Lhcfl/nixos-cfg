@@ -1,4 +1,8 @@
-{ ... }: {
+{ inputs, ... }:
+let
+  kdl = inputs.nix-kdl.kdl;
+in
+{
   funkcia.hm = {
     wine.enable = true;
     language-sdk = {
@@ -26,4 +30,12 @@
       addKeysToAgent = "yes";
     };
   };
+
+  funkcia.hm.gui.wms.niri.settings =
+    with kdl.extras.niri;
+    kdl.formats.v1 [
+      (output "HDMI-A-2" [
+        (scale 1.25)
+      ])
+    ];
 }
