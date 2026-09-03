@@ -43,6 +43,7 @@
           drawer = true;
           drawer_columns = 5;
           pinned = [
+            "wechat"
             "Telegram Desktop"
             "v2rayN"
             "Fcitx"
