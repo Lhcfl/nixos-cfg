@@ -13,7 +13,7 @@
 
   networking.hostName = "dell-workstation"; # Define your hostname.
 
-  environment.sessionVariables.NH_OS_FLAKE = funkcia-utils.projectPath ./.;
+  environment.sessionVariables.NH_OS_FLAKE = funkcia-utils.projectPath /.;
 
   funkcia.os = {
     preset = "pc";
