@@ -20,6 +20,7 @@
     networking.proxy = "http://127.0.0.1:10808";
   };
 
+  boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 50;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
   # Whether the installation process is allowed to modify EFI boot variables.

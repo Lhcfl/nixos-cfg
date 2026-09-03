@@ -31,6 +31,12 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/var/lib/docker/btrfs" =
+    { device = "/home/@/var/lib/docker/btrfs";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/e7b3785c-2c8b-4aa5-9a2c-fcf9a65a48c0"; }
     ];
