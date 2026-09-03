@@ -40,5 +40,6 @@
     p7zip # 7z
     htop
     openssl
+    funkcia.run0-gui
   ];
 }
