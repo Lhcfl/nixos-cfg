@@ -20,6 +20,8 @@
       # v2ray-rules-dat
     ];
 
-    xdg.configFile."v2rayN/bin/xray/xray".source = lib.getExe pkgs.xray;
+    xdg.dataFile."v2rayN/bin/xray/xray".source = lib.getExe pkgs.xray;
+    xdg.dataFile."v2rayN/bin/geoip.dat".source = "${pkgs.v2ray-rules-dat}/share/v2ray/geoip.dat";
+    xdg.dataFile."v2rayN/bin/geosite.dat".source = "${pkgs.v2ray-rules-dat}/share/v2ray/geosite.dat";
   };
 }
