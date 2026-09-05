@@ -35,7 +35,7 @@ in
     with kdl.extras.niri;
     kdl.formats.v1 [
       (output "HDMI-A-2" [
-        (scale 1.25)
+        (scale 1.2)
       ])
     ];
 }
