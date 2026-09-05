@@ -6,6 +6,8 @@
 }:
 {
   config = lib.mkIf config.linca.sops.enable {
+    sops.secrets."cloudflare/start-tunnel-nixos" = { };
+
     home.packages = [
       (pkgs.writeShellApplication {
         name = "start-cloudflare-tunnel";

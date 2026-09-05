@@ -43,6 +43,9 @@
         env_path = config.sops.templates."opencode_server_env".path;
       in
       {
+        sops.secrets."opencode_server/username" = { };
+        sops.secrets."opencode_server/password" = { };
+
         sops.templates."opencode_server_env".content = ''
           OPENCODE_SERVER_USERNAME=${config.sops.placeholder."opencode_server/username"}
           OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."opencode_server/password"}
