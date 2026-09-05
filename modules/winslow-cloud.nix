@@ -41,12 +41,16 @@
         services.tailscale = {
           enable = true;
 
+          useRoutingFeatures = "client";
+
           extraUpFlags = [
             "--login-server=https://hellonavi.winslow.cloud"
             "--accept-routes"
-            "--accept-dns=false"
+            "--accept-dns=true"
           ];
         };
+
+        systemd.network.enable = true;
 
         # to accept dns, i have to make networking.resolvconf false
         # networking.resolvconf.enable = false;
@@ -55,15 +59,6 @@
 
       # when nftables
       (lib.mkIf config.networking.nftables.enable {
-        # 1. Enable the service and the firewall
-        networking.firewall = {
-          enable = true;
-          # Always allow traffic from your Tailscale network
-          trustedInterfaces = [ config.services.tailscale.interfaceName ];
-          # Allow the Tailscale UDP port through the firewall
-          allowedUDPPorts = [ config.services.tailscale.port ];
-        };
-
         # 2. Force tailscaled to use nftables (Critical for clean nftables-only systems)
         # This avoids the "iptables-compat" translation layer issues.
         systemd.services.tailscaled.serviceConfig.Environment = [
