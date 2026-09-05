@@ -51,5 +51,10 @@ in
 
       thunderbird.enable = true;
     };
+
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+    };
   };
 }

@@ -33,17 +33,6 @@ in
         LC_TELEPHONE = "en_US.UTF-8";
         LC_TIME = "en_US.UTF-8";
       };
-
-      inputMethod = lib.mkIf config.funkcia.os.gui.enable {
-        enable = true;
-        type = "fcitx5";
-        fcitx5.waylandFrontend = true;
-        fcitx5.addons = with pkgs; [
-          fcitx5-rime
-          fcitx5-gtk
-          kdePackages.fcitx5-qt
-        ];
-      };
     };
   };
 }
