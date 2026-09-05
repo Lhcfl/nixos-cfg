@@ -25,15 +25,19 @@ in
 
     xdg.configFile."niri/config.kdl".text = cfg.settings;
 
+    services.polkit-gnome.enable = true;
+
     funkcia.hm.gui.wms.niri.settings = lib.mkMerge [
-      (lib.mkBefore (
-        config.lib.funkcia.niri.mkInclude "os-recommand" osConfig.funkcia.os.gui.niri.recommandSettings
-      ))
       (
         with kdl.extras.niri;
         kdl.formats.v1 [
           (spawn-at-startup (lib.getExe pkgs.funkcia.niri-follow-pip))
-
+          (xwayland-satellite [
+            (n "path" "${lib.getExe pkgs.xwayland-satellite}")
+          ])
+          (environment [
+            (n "QT_QPA_PLATFORM" "wayland")
+          ])
           (window-rule [
             (match { title = "Picture-in-Picture"; })
             (open-floating true)
