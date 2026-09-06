@@ -1,5 +1,27 @@
 command_timeout = 300
-format = '$shell$os$all $fill $time $cmd_duration$line_break$directory$character'
+format = """
+$shell\
+$os\
+$username\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$nats\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$fill\
+$all\
+$time\
+$cmd_duration\
+$line_break\
+$directory\
+$character\
+"""
 
 [os]
 style = "bold red"
@@ -190,3 +212,7 @@ symbol = " "
 
 [zig]
 symbol = " "
+
+[cmd_duration]
+min_time = 500
+format = ' took [$duration](bold yellow)'
