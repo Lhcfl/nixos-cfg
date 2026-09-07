@@ -47,7 +47,7 @@ in
 
       hooks = {
         theme_mode_changed = ''
-          dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
+          niri msg action do-screen-transition && dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
         '';
       };
     };

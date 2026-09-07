@@ -33,6 +33,7 @@ in
       ])
 
       (hotkey-overlay [
+        hide-not-bound
         skip-at-startup
       ])
 
@@ -122,10 +123,10 @@ in
           (n "Mod+Right" [
             focus-column-right
           ])
-          (n "Mod+Up" [
+          (n "Mod+Up" { hotkey-overlay-title = "Focus Up"; } [
             (spawn "nu" ./niri-mod-up-down.nu "true")
           ])
-          (n "Mod+Down" [
+          (n "Mod+Down" { hotkey-overlay-title = "Focus Down"; } [
             (spawn "nu" ./niri-mod-up-down.nu "false")
           ])
           (n "Mod+Shift+Left" [
@@ -134,10 +135,10 @@ in
           (n "Mod+Shift+Right" [
             move-column-right
           ])
-          (n "Mod+Shift+Up" [
+          (n "Mod+Shift+Up" { hotkey-overlay-title = "Move Window Down"; } [
             (spawn "nu" ./niri-mod-up-down.nu "true" "-m")
           ])
-          (n "Mod+Shift+Down" [
+          (n "Mod+Shift+Down" { hotkey-overlay-title = "Move Window Down"; } [
             (spawn "nu" ./niri-mod-up-down.nu "false" "-m")
           ])
           (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
@@ -152,7 +153,7 @@ in
           (n "Mod+S" [
             (spawn-sh "kitty nu")
           ])
-          (n "Mod+E" [
+          (n "Mod+E" { hotkey-overlay-title = "Open Home Folder"; } [
             (spawn-sh "xdg-open ~")
           ])
           (n "Mod+B" [
@@ -230,6 +231,12 @@ in
           ])
           (n "Mod+R" [
             switch-preset-column-width
+          ])
+          (n "Mod+L" [
+            (spawn "loginctl" "lock-session")
+          ])
+          (n "Mod+Slash" [
+            show-hotkey-overlay
           ])
         ]
       ))
