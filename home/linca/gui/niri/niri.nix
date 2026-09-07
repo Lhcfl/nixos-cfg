@@ -135,10 +135,10 @@ in
             move-column-right
           ])
           (n "Mod+Shift+Up" [
-            move-window-to-workspace-up
+            (spawn "nu" ./niri-mod-up-down.nu "true" "-m")
           ])
           (n "Mod+Shift+Down" [
-            move-window-to-workspace-down
+            (spawn "nu" ./niri-mod-up-down.nu "false" "-m")
           ])
           (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
             focus-workspace-down
