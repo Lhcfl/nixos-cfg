@@ -123,10 +123,10 @@ in
             focus-column-right
           ])
           (n "Mod+Up" [
-            focus-window-up
+            (spawn "nu" ./niri-mod-up-down.nu "true")
           ])
           (n "Mod+Down" [
-            focus-window-down
+            (spawn "nu" ./niri-mod-up-down.nu "false")
           ])
           (n "Mod+Shift+Left" [
             move-column-left
