@@ -126,6 +126,13 @@ in
       '')
     ];
 
+    funkcia.hm.gui.umbriel.settings = {
+      general.autostart = [
+        "noctalia"
+      ];
+      include.optional.files = [ "noctalia.toml" ];
+    };
+
     home.packages = lib.mkIf (osConfig.programs.noctalia.enable or false) [
       pkgs.noctalia
     ];

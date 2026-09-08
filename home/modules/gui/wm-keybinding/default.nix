@@ -131,6 +131,7 @@ in
 {
   options.funkcia.hm.gui.wm-keybinding = {
     niri.enable = lib.mkEnableOption "keybinding for Niri";
+    umbriel.enable = lib.mkEnableOption "keybinding for umbriel";
 
     utils = lib.mkOption {
       type = lib.types.anything;
