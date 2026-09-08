@@ -125,24 +125,6 @@ in
         (n "Mod+WheelScrollUp" { cooldown-ms = 150; } [
           focus-workspace-up
         ])
-        (n "Ctrl+Alt+T" [
-          (spawn "kitty")
-        ])
-        (n "Mod+S" [
-          (spawn-sh "kitty nu")
-        ])
-        (n "Mod+E" { hotkey-overlay-title = "Open Home Folder"; } [
-          (spawn-sh "xdg-open ~")
-        ])
-        # (n "XF86Favorites" [
-        #   (spawn "keepassxc")
-        # ])
-        (n "Mod+F" [
-          (spawn "vicinae" "toggle")
-        ])
-        (n "Print" [
-          (screenshot { show-pointer = false; })
-        ])
         (n "Ctrl+Alt+A" [
           # (spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png")
           (spawn-sh "noctalia msg screenshot-region")
@@ -153,41 +135,14 @@ in
         (n "XF86MonBrightnessDown" { allow-when-locked = true; } [
           (spawn-sh "noctalia msg brightness-down")
         ])
-        (n "Mod+Q" { hotkey-overlay-title = null; } [
-          close-window
-        ])
-        (n "Alt+F4" { hotkey-overlay-title = null; } [
-          close-window
-        ])
-        (n "Mod+Delete" { allow-inhibiting = false; } [
-          quit
-        ])
-        (n "Mod+Shift+F" [
-          toggle-window-floating
-        ])
         (n "Mod+G" [
           toggle-column-tabbed-display
-        ])
-        (n "Shift+F11" [
-          fullscreen-window
-        ])
-        (n "Mod+M" [
-          maximize-column
         ])
         (n "Mod+C" [
           center-column
         ])
         (n "Mod+Tab" [
           focus-workspace-previous
-        ])
-        (n "Mod+R" [
-          switch-preset-column-width
-        ])
-        (n "Mod+L" [
-          (spawn "loginctl" "lock-session")
-        ])
-        (n "Mod+Slash" [
-          show-hotkey-overlay
         ])
       ])
     ]

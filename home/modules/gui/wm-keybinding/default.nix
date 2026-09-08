@@ -20,15 +20,115 @@ let
         "Up"
         "Down"
       ];
+
+      unit-type = submodule { options = { }; };
     in
     {
-      spawn = listOf str;
-      spawn-sh = str;
-      focus-workspace = workspace-type;
-      focus-window-relative = direction-type;
-      move-window-relative = direction-type;
-      move-window-to-workspace = workspace-type;
+      spawn = {
+        description = ''
+          spawn command.
+        '';
+        type = listOf str;
+      };
+      spawn-sh = {
+        description = ''
+          spawn command, with `sh -c`
+        '';
+        type = str;
+      };
+      focus-workspace = {
+        description = ''
+          focus workspace by id
+        '';
+        type = workspace-type;
+      };
+      focus-window-relative = {
+        description = ''
+          focus window by direction
+        '';
+        type = direction-type;
+      };
+      move-window-relative = {
+        description = ''
+          move window by direction
+        '';
+        type = direction-type;
+      };
+      move-window-to-workspace = {
+        description = ''
+          move window to workspace by id
+        '';
+        type = workspace-type;
+      };
+      screenshot = {
+        description = ''
+          take a screenshot
+        '';
+        type = unit-type;
+      };
+      close-window = {
+        description = ''
+          close the focused window
+        '';
+        type = unit-type;
+      };
+      quit = {
+        description = ''
+          quit shell
+        '';
+        type = unit-type;
+      };
+      maximize = {
+        description = ''
+          maximize the window
+        '';
+        type = unit-type;
+      };
+      fullscreen = {
+        description = ''
+          fullscreen the window
+        '';
+        type = unit-type;
+      };
+      resize-preset = {
+        description = ''
+          resize the window
+        '';
+        type = unit-type;
+      };
+      show-help = {
+        description = ''
+          show help of commands
+        '';
+        type = unit-type;
+      };
+      toggle-window-floating = {
+        description = ''
+          toggle floating
+        '';
+        type = unit-type;
+      };
     };
+
+  bind-type = {
+    actions = lib.mapAttrs (
+      name: value:
+      lib.mkOption (
+        value
+        // {
+          type = lib.types.nullOr value.type;
+        }
+      )
+    ) actions;
+
+    allow-when-locked = lib.mkEnableOption "when locked";
+
+    title = lib.mkOption {
+      default = null;
+      type = lib.types.nullOr lib.types.str;
+      description = "help menu title";
+    };
+  };
 
 in
 {
@@ -43,13 +143,7 @@ in
       default = { };
       type = lib.types.attrsOf (
         lib.types.submodule {
-          options.actions = lib.mapAttrs (
-            name: value:
-            lib.mkOption {
-              type = lib.types.nullOr value;
-            }
-          ) actions;
-          options.allow-when-locked = lib.mkEnableOption "when locked";
+          options = bind-type;
         }
       );
       description = "binds <key> to actions";

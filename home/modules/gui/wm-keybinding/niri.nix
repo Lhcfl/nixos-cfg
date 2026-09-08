@@ -20,6 +20,7 @@ in
           bind,
           actions,
           allow-when-locked,
+          title,
           ...
         }:
         let
@@ -44,6 +45,14 @@ in
                 Down = n "move-window-down";
               };
               move-window-to-workspace = n "move-column-to-workspace" value;
+              screenshot = n "screenshot";
+              close-window = n "close-window";
+              quit = n "quit";
+              maximize = n "maximize-column";
+              fullscreen = n "fullscreen-window";
+              resize-preset = n "switch-preset-column-width";
+              show-help = n "show-hotkey-overlay";
+              toggle-window-floating = n "toggle-window-floating";
 
               # fallback
               "default" = throw (builtins.trace value "${name} not implemented");
@@ -52,13 +61,15 @@ in
 
           params = lib.foldl (acc: x: acc // x) { } [
             (if allow-when-locked != false then { allow-when-locked = allow-when-locked; } else { })
+            (if title != null then { hotkey-overlay-title = title; } else { })
           ];
         in
         n key params body
       ))
       niri.binds
       (x: kdl.formats.v1 [ x ])
-      # (config.lib.funkcia.niri.mkInclude "keybindings")
+      (config.lib.funkcia.niri.mkInclude "keybindings")
+      lib.mkBefore
     ]
   );
 }
