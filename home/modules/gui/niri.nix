@@ -8,11 +8,11 @@
   ...
 }:
 let
-  cfg = config.funkcia.hm.gui.wms.niri;
+  cfg = config.funkcia.hm.gui.niri;
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  options.funkcia.hm.gui.wms.niri = {
+  options.funkcia.hm.gui.niri = {
     settings = lib.mkOption {
       default = [ ];
       type = lib.types.lines;
@@ -27,7 +27,7 @@ in
 
     services.polkit-gnome.enable = true;
 
-    funkcia.hm.gui.wms.niri.settings = lib.mkMerge [
+    funkcia.hm.gui.niri.settings = lib.mkMerge [
       (
         with kdl.extras.niri;
         kdl.formats.v1 [

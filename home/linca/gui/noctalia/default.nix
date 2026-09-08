@@ -8,7 +8,7 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.hm.gui.wms.niri.settings =
+  funkcia.hm.gui.niri.settings =
     with kdl.extras.niri;
     kdl.formats.v1 [
       (spawn-at-startup "noctalia")

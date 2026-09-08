@@ -8,13 +8,12 @@ in
 {
   programs.vicinae = {
     enable = true;
+    systemd.enable = true;
   };
 
-  funkcia.hm.gui.wms.niri.settings =
+  funkcia.hm.gui.niri.settings =
     with kdl.extras.niri;
     kdl.formats.v1 [
-      (spawn-at-startup "vicinae" "server")
-
       (layer-rule [
         (match { namespace = "vicinae"; })
         (background-effect [

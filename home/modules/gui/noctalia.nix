@@ -65,7 +65,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    funkcia.hm.gui.wms.niri.settings = lib.mkMerge [
+    funkcia.hm.gui.niri.settings = lib.mkMerge [
       (
         with kdl.extras.niri;
         kdl.formats.v1 [

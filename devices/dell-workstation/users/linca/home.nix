@@ -31,7 +31,7 @@ in
     };
   };
 
-  funkcia.hm.gui.wms.niri.settings =
+  funkcia.hm.gui.niri.settings =
     with kdl.extras.niri;
     kdl.formats.v1 [
       (output "HDMI-A-2" [

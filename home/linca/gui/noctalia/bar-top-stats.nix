@@ -8,7 +8,7 @@ let
   barname = "top-stats";
 in
 {
-  funkcia.hm.gui.wms.niri.settings =
+  funkcia.hm.gui.niri.settings =
     with kdl.extras.niri;
     kdl.formats.v1 [
       (layer-rule [

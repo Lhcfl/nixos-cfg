@@ -40,7 +40,7 @@
   # Whether the installation process is allowed to modify EFI boot variables.
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # programs.umbriel.enable = true;
+  programs.umbriel.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
