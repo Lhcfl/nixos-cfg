@@ -113,7 +113,7 @@ let
   bind-type = {
     actions = lib.mkOption {
       type = lib.types.attrTag (lib.mapAttrs (_: lib.mkOption) actions);
-      descriotion = ''
+      description = ''
         The action binds to <key>. You can only select one action.
       '';
     };
