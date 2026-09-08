@@ -52,4 +52,15 @@ in
       };
     };
   };
+
+  funkcia.hm.gui.wm-keybinding.binds = {
+    "XF86MonBrightnessUp".allow-when-locked = true;
+    "XF86MonBrightnessUp".actions.spawn-sh = "noctalia msg brightness-up";
+
+    "XF86MonBrightnessDown".allow-when-locked = true;
+    "XF86MonBrightnessDown".actions.spawn-sh = "noctalia msg brightness-down";
+
+    "Ctrl+Alt+A".title = "Take Screenshot";
+    "Ctrl+Alt+A".actions.spawn-sh = "noctalia msg screenshot-region";
+  };
 }

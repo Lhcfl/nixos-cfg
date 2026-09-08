@@ -111,15 +111,19 @@ let
     };
 
   bind-type = {
-    actions = lib.mapAttrs (
-      name: value:
-      lib.mkOption (
-        value
-        // {
-          type = lib.types.nullOr value.type;
-        }
-      )
-    ) actions;
+    actions = lib.mkOption {
+      type = lib.types.attrTag (
+        lib.mapAttrs (
+          name: value:
+          lib.mkOption (
+            value
+            // {
+              type = lib.types.nullOr value.type;
+            }
+          )
+        ) actions
+      );
+    };
 
     allow-when-locked = lib.mkEnableOption "when locked";
 

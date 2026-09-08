@@ -125,16 +125,6 @@ in
         (n "Mod+WheelScrollUp" { cooldown-ms = 150; } [
           focus-workspace-up
         ])
-        (n "Ctrl+Alt+A" [
-          # (spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png")
-          (spawn-sh "noctalia msg screenshot-region")
-        ])
-        (n "XF86MonBrightnessUp" { allow-when-locked = true; } [
-          (spawn-sh "noctalia msg brightness-up")
-        ])
-        (n "XF86MonBrightnessDown" { allow-when-locked = true; } [
-          (spawn-sh "noctalia msg brightness-down")
-        ])
         (n "Mod+G" [
           toggle-column-tabbed-display
         ])
