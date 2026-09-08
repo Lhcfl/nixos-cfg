@@ -1,27 +1,23 @@
-{ config, lib, ... }:
-let
-  inherit (config.funkcia.hm.gui.wm-keybinding.utils) mkModBind;
-in
+{ lib, ... }:
 {
-  funkcia.hm.gui.wm-keybinding.binds = lib.flatten [
-    (lib.pipe 9 [
-      (builtins.genList (x: x + 1))
-      (map (id: [
-        (mkModBind [ id ] "focus-workspace" id)
-        (mkModBind [ "Shift" id ] "move-window-to-workspace" id)
-      ]))
-    ])
-    (map
-      (dir: [
-        (mkModBind [ dir ] "focus-window-relative" dir)
-        (mkModBind [ "Shift" dir ] "move-window-relative" dir)
-      ])
-      [
-        "Left"
-        "Right"
-        "Up"
-        "Down"
-      ]
-    )
-  ];
+  funkcia.hm.gui.wm-keybinding.binds = lib.mkMerge (
+    lib.concatLists [
+      (map (id: {
+        "Mod+${toString id}".actions.focus-workspace = id;
+        "Shift+Mod+${toString id}".actions.move-window-to-workspace = id;
+      }) (builtins.genList (x: x + 1) 9))
+      (map
+        (dir: {
+          "Mod+${dir}".actions.focus-window-relative = dir;
+          "Mod+Shift+${dir}".actions.move-window-relative = dir;
+        })
+        [
+          "Left"
+          "Right"
+          "Up"
+          "Down"
+        ]
+      )
+    ]
+  );
 }

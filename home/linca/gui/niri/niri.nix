@@ -8,6 +8,8 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
+  funkcia.hm.gui.wm-keybinding.niri.enable = true;
+
   funkcia.hm.gui.niri.settings = (
     with kdl.extras.niri;
     kdl.formats.v1 [
@@ -131,9 +133,6 @@ in
         ])
         (n "Mod+E" { hotkey-overlay-title = "Open Home Folder"; } [
           (spawn-sh "xdg-open ~")
-        ])
-        (n "Mod+B" [
-          (spawn "zen")
         ])
         # (n "XF86Favorites" [
         #   (spawn "keepassxc")

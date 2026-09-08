@@ -14,44 +14,51 @@ in
       kdl = inputs.nix-kdl.kdl;
       niri = kdl.extras.niri;
     in
-    lib.pipe cfg.binds [
+    lib.pipe cfg.utils.converted [
       (map (
         {
           bind,
-          action,
-          arguments,
+          actions,
+          allow-when-locked,
           ...
         }:
         let
-          key = builtins.concatStringsSep "+" bind;
+          key = bind;
           n = niri.n;
-          body = match action {
-            spawn = lib.foldl (f: x: f x) (n "spawn") arguments;
-            spawn-sh = n "spawn-sh" arguments;
-            focus-workspace = n "focus-workspace" arguments;
-            focus-window-relative = match arguments {
-              Left = n "focus-column-left";
-              Right = n "focus-column-right";
-              Up = n "focus-window-up";
-              Down = n "focus-window-down";
-            };
-            move-window-relative = match arguments {
-              Left = n "move-column-left";
-              Right = n "move-column-right";
-              Up = n "move-window-up";
-              Down = n "move-window-down";
-            };
-            move-window-to-workspace = n "move-column-to-workspace" arguments;
+          body = map (
+            { name, value }:
+            match name {
+              spawn = lib.foldl (f: x: f x) (n "spawn") value;
+              spawn-sh = n "spawn-sh" value;
+              focus-workspace = n "focus-workspace" value;
+              focus-window-relative = match value {
+                Left = n "focus-column-left";
+                Right = n "focus-column-right";
+                Up = n "focus-window-up";
+                Down = n "focus-window-down";
+              };
+              move-window-relative = match value {
+                Left = n "move-column-left";
+                Right = n "move-column-right";
+                Up = n "move-window-up";
+                Down = n "move-window-down";
+              };
+              move-window-to-workspace = n "move-column-to-workspace" value;
 
-            # fallback
-            "default" = throw (builtins.trace arguments "${action} not implemented");
-          };
+              # fallback
+              "default" = throw (builtins.trace value "${name} not implemented");
+            }
+          ) actions;
+
+          params = lib.foldl (acc: x: acc // x) { } [
+            (if allow-when-locked != false then { allow-when-locked = allow-when-locked; } else { })
+          ];
         in
-        niri.n key [ body ]
+        n key params body
       ))
       niri.binds
       (x: kdl.formats.v1 [ x ])
-      (config.lib.funkcia.niri.mkInclude "keybindings")
+      # (config.lib.funkcia.niri.mkInclude "keybindings")
     ]
   );
 }

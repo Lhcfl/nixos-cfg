@@ -1,8 +1,11 @@
 {
+  config,
   lib,
   ...
 }:
 let
+  cfg = config.funkcia.hm.gui.wm-keybinding;
+
   actions =
     with lib.types;
     let
@@ -27,42 +30,46 @@ let
       move-window-to-workspace = workspace-type;
     };
 
-  match = str: defs: if defs ? ${str} then defs.${str} else defs.default;
-
-  keybinding-type = lib.types.addCheck (lib.types.submodule {
-    options.bind = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-    };
-    options.action = lib.mkOption {
-      type = lib.types.enum (builtins.attrNames actions);
-    };
-    options.arguments = lib.mkOption {
-      type = lib.types.anything;
-    };
-    options.allow-when-locked = lib.mkEnableOption "when locked";
-  }) (x: (match x.action actions).check x);
-
 in
 {
   options.funkcia.hm.gui.wm-keybinding = {
     niri.enable = lib.mkEnableOption "keybinding for Niri";
 
     utils = lib.mkOption {
-      type = lib.types.raw;
+      type = lib.types.anything;
     };
 
     binds = lib.mkOption {
-      default = [ ];
-      type = lib.types.listOf keybinding-type;
-      description = "lines of niri config parts";
+      default = { };
+      type = lib.types.attrsOf (
+        lib.types.submodule {
+          options.actions = lib.mapAttrs (
+            name: value:
+            lib.mkOption {
+              type = lib.types.nullOr value;
+            }
+          ) actions;
+          options.allow-when-locked = lib.mkEnableOption "when locked";
+        }
+      );
+      description = "binds <key> to actions";
     };
   };
 
-  config.funkcia.hm.gui.wm-keybinding.utils = rec {
-    mkBind = bind: action: arguments: {
-      inherit action arguments;
-      bind = map toString bind;
-    };
-    mkModBind = bind: mkBind ([ "Mod" ] ++ bind);
+  config.funkcia.hm.gui.wm-keybinding.utils = {
+    converted = lib.pipe cfg.binds [
+      lib.attrsToList
+      (map (
+        { name, value }:
+        value
+        // {
+          bind = name;
+          actions = lib.pipe value.actions [
+            lib.attrsToList
+            (builtins.filter (x: x.value != null))
+          ];
+        }
+      ))
+    ];
   };
 }

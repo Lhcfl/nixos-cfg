@@ -1,52 +1,47 @@
-{ config, ... }:
-let
-  inherit (config.funkcia.hm.gui.wm-keybinding.utils) mkBind;
-in
+{ lib, ... }:
 {
   funkcia.hm.gui.wm-keybinding = {
-    niri.enable = true;
-
-    binds = map (x: x // { allow-when-locked = true; }) [
-      (mkBind [ "XF86AudioMute" ] "spawn" [
+    binds = lib.mapAttrs (_: x: x // { allow-when-locked = true; }) {
+      "XF86AudioMute".actions.spawn = [
         "wpctl"
         "set-mute"
         "@DEFAULT_AUDIO_SINK@"
         "toggle"
-      ])
-      (mkBind [ "XF86AudioMicMute" ] "spawn" [
+      ];
+      "XF86AudioMicMute".actions.spawn = [
         "wpctl"
         "set-mute"
         "@DEFAULT_AUDIO_SOURCE@"
         "toggle"
-      ])
-      (mkBind [ "XF86AudioLowerVolume" ] "spawn" [
+      ];
+      "XF86AudioLowerVolume".actions.spawn = [
         "wpctl"
         "set-volume"
         "@DEFAULT_AUDIO_SINK@"
         "5%-"
-      ])
-      (mkBind [ "XF86AudioRaiseVolume" ] "spawn" [
+      ];
+      "XF86AudioRaiseVolume".actions.spawn = [
         "wpctl"
         "set-volume"
         "@DEFAULT_AUDIO_SINK@"
         "5%+"
-      ])
-      (mkBind [ "XF86AudioPlay" ] "spawn" [
+      ];
+      "XF86AudioPlay".actions.spawn = [
         "playerctl"
         "play-pause"
-      ])
-      (mkBind [ "XF86AudioPause" ] "spawn" [
+      ];
+      "XF86AudioPause".actions.spawn = [
         "playerctl"
         "play-pause"
-      ])
-      (mkBind [ "XF86AudioNext" ] "spawn" [
+      ];
+      "XF86AudioNext".actions.spawn = [
         "playerctl"
         "next"
-      ])
-      (mkBind [ "XF86AudioPrev" ] "spawn" [
+      ];
+      "XF86AudioPrev".actions.spawn = [
         "playerctl"
         "previous"
-      ])
-    ];
+      ];
+    };
   };
 }
