@@ -42,22 +42,59 @@ in
     };
 
     bars = lib.mkOption {
+      default = { };
+      description = ''
+        声明式的 noctalia bar
+      '';
+
       type = lib.types.attrsOf (
         lib.types.submodule {
           options =
             let
-              colType = lib.types.listOf widgetType;
+              colType =
+                let
+                  t = lib.types.listOf widgetType;
+                in
+                t
+                // {
+                  description = "list of noctalia widgets (a.k.a. ${t.description})";
+                };
 
               widgetType = lib.types.submodule {
                 freeformType = lib.types.attrsOf lib.types.anything;
-                options.type = lib.mkOption { type = lib.types.str; };
+                options.type = lib.mkOption {
+                  type = lib.types.str;
+                  description = ''
+                    The type of the widget
+                  '';
+                };
               };
             in
             {
-              start = lib.mkOption { type = colType; };
-              center = lib.mkOption { type = colType; };
-              end = lib.mkOption { type = colType; };
-              settings = lib.mkOption { type = toml.type; };
+              start = lib.mkOption {
+                type = colType;
+                description = ''
+                  bar 前方的组件
+                '';
+              };
+              center = lib.mkOption {
+                type = colType;
+                description = ''
+                  bar 中间的组件
+                '';
+              };
+              end = lib.mkOption {
+                type = colType;
+                description = ''
+                  bar 末尾的组件
+                '';
+              };
+              settings = lib.mkOption {
+                type = toml.type;
+                description = ''
+                  bar 的设置
+                '';
+              };
             };
         }
       );

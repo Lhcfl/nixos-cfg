@@ -112,17 +112,10 @@ let
 
   bind-type = {
     actions = lib.mkOption {
-      type = lib.types.attrTag (
-        lib.mapAttrs (
-          name: value:
-          lib.mkOption (
-            value
-            // {
-              type = lib.types.nullOr value.type;
-            }
-          )
-        ) actions
-      );
+      type = lib.types.attrTag (lib.mapAttrs (_: lib.mkOption) actions);
+      descriotion = ''
+        The action binds to <key>. You can only select one action.
+      '';
     };
 
     allow-when-locked = lib.mkEnableOption "when locked";
@@ -145,11 +138,12 @@ in
 
     binds = lib.mkOption {
       default = { };
-      type = lib.types.attrsOf (
-        lib.types.submodule {
+      type = lib.types.attrsWith {
+        elemType = lib.types.submodule {
           options = bind-type;
-        }
-      );
+        };
+        placeholder = "key";
+      };
       description = "binds <key> to actions";
     };
   };
