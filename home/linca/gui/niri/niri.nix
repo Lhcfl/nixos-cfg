@@ -10,16 +10,6 @@ in
 {
   funkcia.hm.gui.niri.settings = (
     with kdl.extras.niri;
-    let
-      workspace-action = id: [
-        (n "Mod+${toString id}" [
-          (focus-workspace id)
-        ])
-        (n "Mod+Shift+${toString id}" [
-          (move-column-to-workspace id)
-        ])
-      ];
-    in
     kdl.formats.v1 [
       (spawn-at-startup "fcitx5")
 
@@ -108,138 +98,99 @@ in
         ])
       ])
 
-      (binds (
-        lib.flatten [
-          (map workspace-action (builtins.genList (x: x + 1) 9))
-          (n "Mod+N" [
-            (focus-workspace 255)
-          ])
-          (n "Mod+Shift+N" [
-            (move-column-to-workspace 255)
-          ])
-          (n "Mod+Left" [
-            focus-column-left
-          ])
-          (n "Mod+Right" [
-            focus-column-right
-          ])
-          (n "Mod+Up" { hotkey-overlay-title = "Focus Up"; } [
-            (spawn "nu" ./niri-mod-up-down.nu "true")
-          ])
-          (n "Mod+Down" { hotkey-overlay-title = "Focus Down"; } [
-            (spawn "nu" ./niri-mod-up-down.nu "false")
-          ])
-          (n "Mod+Shift+Left" [
-            move-column-left
-          ])
-          (n "Mod+Shift+Right" [
-            move-column-right
-          ])
-          (n "Mod+Shift+Up" { hotkey-overlay-title = "Move Window Down"; } [
-            (spawn "nu" ./niri-mod-up-down.nu "true" "-m")
-          ])
-          (n "Mod+Shift+Down" { hotkey-overlay-title = "Move Window Down"; } [
-            (spawn "nu" ./niri-mod-up-down.nu "false" "-m")
-          ])
-          (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
-            focus-workspace-down
-          ])
-          (n "Mod+WheelScrollUp" { cooldown-ms = 150; } [
-            focus-workspace-up
-          ])
-          (n "Ctrl+Alt+T" [
-            (spawn "kitty")
-          ])
-          (n "Mod+S" [
-            (spawn-sh "kitty nu")
-          ])
-          (n "Mod+E" { hotkey-overlay-title = "Open Home Folder"; } [
-            (spawn-sh "xdg-open ~")
-          ])
-          (n "Mod+B" [
-            (spawn "zen")
-          ])
-          # (n "XF86Favorites" [
-          #   (spawn "keepassxc")
-          # ])
-          (n "Mod+F" [
-            (spawn "vicinae" "toggle")
-          ])
-          (n "Print" [
-            (screenshot { show-pointer = false; })
-          ])
-          (n "Ctrl+Alt+A" [
-            # (spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png")
-            (spawn-sh "noctalia msg screenshot-region")
-          ])
-          (n "XF86AudioMute" { allow-when-locked = true; } [
-            (spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle")
-          ])
-          (n "XF86AudioMicMute" { allow-when-locked = true; } [
-            (spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle")
-          ])
-          (n "XF86AudioLowerVolume" { allow-when-locked = true; } [
-            (spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-")
-          ])
-          (n "XF86AudioRaiseVolume" { allow-when-locked = true; } [
-            (spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+")
-          ])
-          (n "XF86AudioPlay" { allow-when-locked = true; } [
-            (spawn "playerctl" "play-pause")
-          ])
-          (n "XF86AudioPause" { allow-when-locked = true; } [
-            (spawn "playerctl" "play-pause")
-          ])
-          (n "XF86AudioNext" { allow-when-locked = true; } [
-            (spawn "playerctl" "next")
-          ])
-          (n "XF86AudioPrev" { allow-when-locked = true; } [
-            (spawn "playerctl" "previous")
-          ])
-          (n "XF86MonBrightnessUp" { allow-when-locked = true; } [
-            (spawn-sh "noctalia msg brightness-up")
-          ])
-          (n "XF86MonBrightnessDown" { allow-when-locked = true; } [
-            (spawn-sh "noctalia msg brightness-down")
-          ])
-          (n "Mod+Q" { hotkey-overlay-title = null; } [
-            close-window
-          ])
-          (n "Alt+F4" { hotkey-overlay-title = null; } [
-            close-window
-          ])
-          (n "Mod+Delete" { allow-inhibiting = false; } [
-            quit
-          ])
-          (n "Mod+Shift+F" [
-            toggle-window-floating
-          ])
-          (n "Mod+G" [
-            toggle-column-tabbed-display
-          ])
-          (n "Shift+F11" [
-            fullscreen-window
-          ])
-          (n "Mod+M" [
-            maximize-column
-          ])
-          (n "Mod+C" [
-            center-column
-          ])
-          (n "Mod+Tab" [
-            focus-workspace-previous
-          ])
-          (n "Mod+R" [
-            switch-preset-column-width
-          ])
-          (n "Mod+L" [
-            (spawn "loginctl" "lock-session")
-          ])
-          (n "Mod+Slash" [
-            show-hotkey-overlay
-          ])
-        ]
-      ))
+      (binds [
+        (n "Mod+N" [
+          (focus-workspace 255)
+        ])
+        (n "Mod+Shift+N" [
+          (move-column-to-workspace 255)
+        ])
+        (n "Mod+Up" { hotkey-overlay-title = "Focus Up"; } [
+          (spawn "nu" ./niri-mod-up-down.nu "true")
+        ])
+        (n "Mod+Down" { hotkey-overlay-title = "Focus Down"; } [
+          (spawn "nu" ./niri-mod-up-down.nu "false")
+        ])
+        (n "Mod+Shift+Up" { hotkey-overlay-title = "Move Window Down"; } [
+          (spawn "nu" ./niri-mod-up-down.nu "true" "-m")
+        ])
+        (n "Mod+Shift+Down" { hotkey-overlay-title = "Move Window Down"; } [
+          (spawn "nu" ./niri-mod-up-down.nu "false" "-m")
+        ])
+        (n "Mod+WheelScrollDown" { cooldown-ms = 150; } [
+          focus-workspace-down
+        ])
+        (n "Mod+WheelScrollUp" { cooldown-ms = 150; } [
+          focus-workspace-up
+        ])
+        (n "Ctrl+Alt+T" [
+          (spawn "kitty")
+        ])
+        (n "Mod+S" [
+          (spawn-sh "kitty nu")
+        ])
+        (n "Mod+E" { hotkey-overlay-title = "Open Home Folder"; } [
+          (spawn-sh "xdg-open ~")
+        ])
+        (n "Mod+B" [
+          (spawn "zen")
+        ])
+        # (n "XF86Favorites" [
+        #   (spawn "keepassxc")
+        # ])
+        (n "Mod+F" [
+          (spawn "vicinae" "toggle")
+        ])
+        (n "Print" [
+          (screenshot { show-pointer = false; })
+        ])
+        (n "Ctrl+Alt+A" [
+          # (spawn-sh "grim -g \"$(slurp)\" -t png - | wl-copy -t image/png")
+          (spawn-sh "noctalia msg screenshot-region")
+        ])
+        (n "XF86MonBrightnessUp" { allow-when-locked = true; } [
+          (spawn-sh "noctalia msg brightness-up")
+        ])
+        (n "XF86MonBrightnessDown" { allow-when-locked = true; } [
+          (spawn-sh "noctalia msg brightness-down")
+        ])
+        (n "Mod+Q" { hotkey-overlay-title = null; } [
+          close-window
+        ])
+        (n "Alt+F4" { hotkey-overlay-title = null; } [
+          close-window
+        ])
+        (n "Mod+Delete" { allow-inhibiting = false; } [
+          quit
+        ])
+        (n "Mod+Shift+F" [
+          toggle-window-floating
+        ])
+        (n "Mod+G" [
+          toggle-column-tabbed-display
+        ])
+        (n "Shift+F11" [
+          fullscreen-window
+        ])
+        (n "Mod+M" [
+          maximize-column
+        ])
+        (n "Mod+C" [
+          center-column
+        ])
+        (n "Mod+Tab" [
+          focus-workspace-previous
+        ])
+        (n "Mod+R" [
+          switch-preset-column-width
+        ])
+        (n "Mod+L" [
+          (spawn "loginctl" "lock-session")
+        ])
+        (n "Mod+Slash" [
+          show-hotkey-overlay
+        ])
+      ])
     ]
   );
 }
