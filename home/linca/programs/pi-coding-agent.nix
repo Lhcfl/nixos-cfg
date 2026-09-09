@@ -17,30 +17,21 @@
         };
       }
 
-      (lib.mkIf (config.linca.sops.enable) (
-        let
-          template-name = "pi-auth-json";
-        in
-        {
-          sops.secrets.deepseek-api-key = { };
-          sops.secrets.zai-cn-api-key = { };
+      (lib.mkIf (config.linca.sops.enable) {
+        sops.secrets.deepseek-api-key = { };
+        sops.secrets.zai-cn-api-key = { };
 
-          sops.templates.${template-name}.content = builtins.toJSON {
-            deepseek = {
-              type = "api_key";
-              key = config.sops.placeholder."deepseek-api-key";
-            };
-            zai-coding-cn = {
-              type = "api_key";
-              key = config.sops.placeholder."zai-cn-api-key";
-            };
+        funkcia.hm.programs.pi.auth = {
+          deepseek = {
+            type = "api_key";
+            key-path = config.sops.secrets."deepseek-api-key".path;
           };
-
-          home.file.".pi/agent/auth.json".source =
-            config.lib.file.mkOutOfStoreSymlink
-              config.sops.templates.${template-name}.path;
-        }
-      ))
+          zai-coding-cn = {
+            type = "api_key";
+            key-path = config.sops.secrets."zai-cn-api-key".path;
+          };
+        };
+      })
     ]
   );
 }
