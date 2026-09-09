@@ -1,4 +1,9 @@
 { ... }: {
+  imports = [
+    ./fish/greeter.nix
+    ./systemd/my-tips.nix
+  ];
+
   funkcia.hm = {
     wine.enable = true;
     language-sdk = {
