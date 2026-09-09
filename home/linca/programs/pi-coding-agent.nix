@@ -1,16 +1,20 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
   config = lib.mkIf (config.linca.work.enable) (
     lib.mkMerge [
       {
-        home.packages = with pkgs; [
-          pi-coding-agent
-        ];
+        funkcia.hm.programs.pi = {
+          enable = true;
+          settings.packages = [
+            "npm:@xynogen/pix-sudo"
+            "npm:@monopi/extension-shell-format"
+            "npm:pi-agent-browser-native"
+          ];
+        };
       }
 
       (lib.mkIf (config.linca.sops.enable) (

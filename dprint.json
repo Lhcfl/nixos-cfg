@@ -1,0 +1,15 @@
+{
+  "markdown": {
+    "lineWidth": 80,
+    "wrapUnspacedScripts": true,
+    "textWrap": "always"
+  },
+  "toml": {},
+  "yaml": {},
+  "excludes": [],
+  "plugins": [
+    "npm:@dprint/markdown@0.23.3",
+    "npm:@dprint/toml@0.8.0",
+    "npm:dprint-plugin-yaml@0.6.0"
+  ]
+}

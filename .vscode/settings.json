@@ -40,4 +40,13 @@
     "nix.serverPath": [
         "nixd",
     ],
+    "[markdown]": {
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.rulers": [
+            80
+        ]
+    },
 }
