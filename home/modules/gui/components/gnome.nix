@@ -44,7 +44,6 @@ in
       gnome-themes-extra
 
       # Apps
-      gnome-photos
       gnome-video-effects
       gnome-clocks
       gnome-disk-utility
