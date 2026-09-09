@@ -5,7 +5,7 @@
     extraPackages = with pkgs; [
       lua-language-server
       typescript-language-server
-      typescript-go
+      typescript
       markdownlint-cli2
       markdown-oxide
     ];
