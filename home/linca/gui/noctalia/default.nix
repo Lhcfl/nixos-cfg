@@ -31,6 +31,42 @@ in
     enable = true;
 
     settings = {
+      idle = {
+        behavior = {
+          lock = {
+            action = "lock";
+            enabled = true;
+            timeout = 600;
+          };
+          lock-and-suspend = {
+            action = "lock_and_suspend";
+            enabled = true;
+            timeout = 900;
+          };
+          screen-off = {
+            action = "screen_off";
+            enabled = true;
+            timeout = 660;
+          };
+        };
+
+        behavior_order = [
+          "lock"
+          "screen-off"
+          "lock-and-suspend"
+        ];
+      };
+
+      theme = {
+        source = "wallpaper";
+        templates = {
+          builtin_ids = [
+            "niri"
+            "umbriel"
+          ];
+        };
+      };
+
       shell = {
         avatar_path = funkcia-utils.projectPath /home/linca/assets/avatar-trans.png;
         lang = "zh-Hans";
@@ -47,7 +83,7 @@ in
 
       hooks = {
         theme_mode_changed = ''
-          niri msg action do-screen-transition && dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
+          dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
         '';
       };
     };
