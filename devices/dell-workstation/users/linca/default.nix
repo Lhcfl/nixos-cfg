@@ -12,7 +12,13 @@
       "tss" # tss group has access to TPM devices
     ];
     shell = pkgs.fish;
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwHaPGjtqvGsYrO5NiGHoVMSS/Qj+63hv1QNBG+wnm+ linca@nixos"
+    ];
   };
+
+  services.openssh.settings.AllowUsers = [ "linca" ];
 
   home-manager.users.linca = {
     imports = [

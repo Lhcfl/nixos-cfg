@@ -20,6 +20,8 @@
     networking.proxy = "http://127.0.0.1:10808";
   };
 
+  funkcia.os.sshd.enable = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 50;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
