@@ -30,6 +30,9 @@ in
     set -l rendered (command env -C ${myTipsDir} bun src/index.ts --render 2>/dev/null | string collect)
     command env -C ${myTipsDir} bun src/index.ts --done >/dev/null 2>&1
 
-    test -n "$rendered"; and echo $rendered
+    if test -n "$rendered"
+        echo
+        echo $rendered
+    end
   '';
 }
