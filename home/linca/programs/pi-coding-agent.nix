@@ -13,6 +13,7 @@
             "npm:@xynogen/pix-sudo"
             "npm:@monopi/extension-shell-format"
             "npm:pi-agent-browser-native"
+            "npm:pi-background-tasks@latest"
           ];
         };
       }
