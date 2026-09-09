@@ -86,6 +86,13 @@
     powerOnBoot = true;
   };
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    open = true;
+    nvidiaSettings = true;
+  };
+
   # The internal display is driven by the Intel iGPU (Alder Lake P). Provide a
   # VA-API driver so browsers (Zen/Firefox) can hardware-decode video.
   hardware.graphics.extraPackages = [ pkgs.intel-media-driver ];

@@ -28,13 +28,6 @@
     networking.proxy = "http://127.0.0.1:10808";
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    open = true;
-    nvidiaSettings = true;
-  };
-
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
   # Whether the installation process is allowed to modify EFI boot variables.
