@@ -36,6 +36,7 @@
         nixos = {
           sharedModules = [
             ./home/home-manager.nix
+            (funkcia-utils.files.mkRecDirModule ./fixes)
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             lanzaboote.nixosModules.lanzaboote

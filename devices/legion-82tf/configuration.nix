@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./packages.nix
     (funkcia-utils.files.mkDirModule ./services)
     (funkcia-utils.files.mkDirModule ./users)
