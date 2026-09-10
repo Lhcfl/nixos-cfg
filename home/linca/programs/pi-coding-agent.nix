@@ -16,6 +16,7 @@
             "npm:pi-agent-browser-native"
             "npm:pi-background-tasks@latest"
             "npm:@pi-unipi/notify"
+            "npm:@agnishc/edb-session-manager"
           ];
         };
       }

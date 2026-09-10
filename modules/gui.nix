@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "GUI related options";
     isWayland = lib.mkOption {
       description = "is wayland";
-      types = lib.types.bool;
+      type = lib.types.bool;
     };
   };
 
