@@ -33,6 +33,7 @@
   imports = [
     ./xdg.nix
     (funkcia-utils.files.mkDirModule ./programs)
+    (funkcia-utils.files.mkRecDirModule ./gui)
     (funkcia-utils.files.mkRecDirModule ./modules)
   ];
 }

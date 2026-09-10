@@ -9,7 +9,7 @@
     default = true;
   };
 
-  config = lib.mkIf config.funkcia.hm.gui.v2rayn.enable {
+  config = lib.mkIf (config.funkcia.hm.gui.enable && config.funkcia.hm.gui.v2rayn.enable) {
     funkcia.hm.gui.niri.settings = ''
       spawn-at-startup "v2rayN"
     '';

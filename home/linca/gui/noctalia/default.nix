@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  config,
   funkcia-utils,
   ...
 }:
@@ -8,7 +9,7 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.hm.gui.niri.settings =
+  funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.noctalia.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
       (spawn-at-startup "noctalia")
@@ -25,10 +26,11 @@ in
         (match { namespace = "noctalia-wallpaper"; })
         (place-within-backdrop true)
       ])
-    ];
+    ]
+  );
 
   funkcia.hm.gui.noctalia = {
-    enable = true;
+    enable = config.funkcia.hm.gui.enable;
 
     settings = {
       idle = {
@@ -89,7 +91,7 @@ in
     };
   };
 
-  funkcia.hm.gui.wm-keybinding.binds = {
+  funkcia.hm.gui.wm-keybinding.binds = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
     "XF86MonBrightnessUp".allow-when-locked = true;
     "XF86MonBrightnessUp".actions.spawn-sh = "noctalia msg brightness-up";
 

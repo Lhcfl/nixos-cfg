@@ -10,10 +10,12 @@
         funkcia.hm.programs.pi = {
           enable = true;
           settings.packages = [
+            "pi-skills"
             "npm:@xynogen/pix-sudo"
             "npm:@monopi/extension-shell-format"
             "npm:pi-agent-browser-native"
             "npm:pi-background-tasks@latest"
+            "npm:@pi-unipi/notify"
           ];
         };
       }

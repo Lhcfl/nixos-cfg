@@ -2,12 +2,13 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }:
 {
-  funkcia.hm.gui.wm-keybinding.umbriel.enable = true;
+  funkcia.hm.gui.wm-keybinding.umbriel.enable = config.funkcia.hm.gui.enable;
 
-  funkcia.hm.gui.umbriel.settings = {
+  funkcia.hm.gui.umbriel.settings = lib.mkIf config.funkcia.hm.gui.enable {
     general.autostart = [
       "noctalia"
       "v2rayN"

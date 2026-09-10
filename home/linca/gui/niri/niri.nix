@@ -2,15 +2,16 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }:
 let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.hm.gui.wm-keybinding.niri.enable = true;
+  funkcia.hm.gui.wm-keybinding.niri.enable = config.funkcia.hm.gui.enable;
 
-  funkcia.hm.gui.niri.settings = (
+  funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
       (spawn-at-startup "fcitx5")

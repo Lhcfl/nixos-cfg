@@ -1,9 +1,7 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
-  funkcia-utils,
   osConfig,
   ...
 }:
@@ -11,21 +9,13 @@ let
   cfg = config.funkcia.hm.gui;
 in
 {
-  # 神奇魔法！
-  # 给 ./programs/gui 下的 nix 文件统一添加条件 lib.mkIf cfg.enable
-  imports = lib.pipe ../gui [
-    funkcia-utils.files.listNixFilesRec
-    (map (
-      funkcia-utils.magic.patchModule (
-        _: module: {
-          config = lib.mkIf cfg.enable module.config;
-        }
-      )
-    ))
-  ];
-
   config = lib.mkIf cfg.enable {
     funkcia.hm.gui.components.gnome.enable = true;
+
+    home.pointerCursor = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
 
     services.wl-clip-persist.enable = true;
 
@@ -36,6 +26,8 @@ in
       wl-clipboard-rs
       element-desktop
       netease-cloud-music-gtk
+      zen-browser
+      gparted
     ];
 
     programs = {

@@ -1,6 +1,6 @@
-{ lib, ... }: {
+{ lib, config, ... }: {
   programs.alacritty = {
-    enable = true;
+    enable = config.funkcia.hm.gui.enable;
     settings = {
       font.normal.family = "Maple Mono NF CN";
       window.padding = {

@@ -4,7 +4,7 @@
 
 - [`home.nix`](home.nix) 入口文件，声明 home 基础设置（用户名、shell、包列表），并 imports 其余所有模块
 - [`modules/`](modules/) 按功能划分的用户级 HM 模块（`gui`、`play`、`work`、`sops`、`ricing`），由 `home.nix` 递归自动导入
-- [`gui/`](gui/) GUI 程序模块，由 [`modules/gui.nix`](modules/gui.nix) 自动引入，并统一包裹 `funkcia.hm.gui.enable` 条件
+- [`gui/`](gui/) GUI 程序模块，由 [`modules/gui.nix`](modules/gui.nix) 递归自动引入；每个文件自行用 `funkcia.hm.gui.enable` 守护
 - [`programs/`](programs/) 按程序划分的 HM 配置，由 `home.nix` 自动导入（`mkDirModule` + `mkDirModule`）
 - [`xdg.nix`](xdg.nix) + [`xdg/`](xdg/) XDG 配置（mime 默认应用、`config/` 下的配置链接）
 - [`assets/`](assets/) 静态资源（如 avatar）
@@ -14,4 +14,4 @@
 
 - `home.nix` 在 `programs` 下同时使用 `mkDirModule`（顶层 `.nix`）与 `mkDirModule`（递归的 `default.nix`，如 [`programs/nushell/`](programs/nushell/)），对 `modules/` 则使用 `mkRecDirModule` 递归导入全部 `.nix`。
 - 部分模块通过 `linca.*.enable` 开关控制（如 `linca.play`、`linca.work`、`linca.sops`），可参考每个模块顶部的 `lib.mkEnableOption`。
-- GUI 相关的程序统一放在 [`gui/`](gui/) 而不是 `programs/`，由 `modules/gui.nix` 的 `funkcia-utils.magic.patchModule` 批量加上 `mkIf cfg.enable` 条件。
+- GUI 相关的程序统一放在 [`gui/`](gui/) 而不是 `programs/`，由 [`modules/gui.nix`](modules/gui.nix) 通过 `mkRecDirModule` 递归引入。每个文件自己负责开关：program 的 `enable` 绑定 `config.funkcia.hm.gui.enable`，跨子系统贡献（`funkcia.hm.gui.niri.settings`、`funkcia.hm.gui.umbriel.settings`、`funkcia.hm.gui.noctalia.*` 等）用目标模块的 enable 通过 `lib.mkIf` 守护，不再有统一的 `patchModule` 魔法。

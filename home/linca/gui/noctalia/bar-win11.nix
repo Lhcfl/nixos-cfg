@@ -1,6 +1,10 @@
-{ ... }:
 {
-  config = {
+  lib,
+  config,
+  ...
+}:
+{
+  config = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
     funkcia.hm.gui.noctalia.bars.win11 = {
       start = [
         { type = "wallpaper"; }

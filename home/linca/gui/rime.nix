@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  config,
   ...
 }:
 let
@@ -8,7 +9,7 @@ let
   inherit (inputs.plum-nix.patchUtils lib) replace mkPatch;
 in
 {
-  plum-nix = {
+  plum-nix = lib.mkIf config.funkcia.hm.gui.enable {
     enable = true;
     type = "fcitx5";
 

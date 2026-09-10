@@ -1,5 +1,7 @@
 {
   inputs,
+  lib,
+  config,
   ...
 }:
 let
@@ -7,11 +9,11 @@ let
 in
 {
   programs.vicinae = {
-    enable = true;
+    enable = config.funkcia.hm.gui.enable;
     systemd.enable = true;
   };
 
-  funkcia.hm.gui.niri.settings =
+  funkcia.hm.gui.niri.settings = lib.mkIf (config.programs.vicinae.enable) (
     with kdl.extras.niri;
     kdl.formats.v1 [
       (layer-rule [
@@ -20,5 +22,6 @@ in
           (xray false)
         ])
       ])
-    ];
+    ]
+  );
 }

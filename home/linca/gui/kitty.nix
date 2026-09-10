@@ -1,6 +1,6 @@
-{ lib, ... }: {
+{ lib, config, ... }: {
   programs.kitty = {
-    enable = true;
+    enable = config.funkcia.hm.gui.enable;
     font = {
       name = "Maple Mono NF CN";
       size = 10.5;

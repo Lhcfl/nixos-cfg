@@ -1,5 +1,11 @@
-{ pkgs, ... }: {
-  i18n.inputMethod.fcitx5 = {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  i18n.inputMethod.fcitx5 = lib.mkIf config.funkcia.hm.gui.enable {
     waylandFrontend = true;
 
     addons = with pkgs; [

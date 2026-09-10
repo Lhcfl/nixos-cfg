@@ -1,5 +1,7 @@
 {
   inputs,
+  lib,
+  config,
   ...
 }:
 let
@@ -8,7 +10,7 @@ let
   barname = "top-stats";
 in
 {
-  funkcia.hm.gui.niri.settings =
+  funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.noctalia.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
       (layer-rule [
@@ -17,7 +19,8 @@ in
           (blur false)
         ])
       ])
-    ];
+    ]
+  );
 
   funkcia.hm.gui.noctalia.bars.${barname} = {
     start = [
