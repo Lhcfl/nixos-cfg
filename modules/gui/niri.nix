@@ -28,12 +28,11 @@ in
       };
     };
 
+    funkcia.os.gui.isWayland = true;
     funkcia.os.gnome-keyring.enable = lib.mkDefault true;
 
     security.pam.services.niri = {
       enableGnomeKeyring = lib.mkIf config.services.gnome.gnome-keyring.enable true;
     };
-
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }

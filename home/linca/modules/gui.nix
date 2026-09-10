@@ -22,7 +22,6 @@ in
     home.packages = with pkgs; [
       telegram-desktop
       gradia # 截图和编辑工具
-      wl-clipboard-rs
       element-desktop
       gparted
     ];
