@@ -20,15 +20,17 @@ in
     services.wl-clip-persist.enable = true;
 
     home.packages = with pkgs; [
-      # noctalia-shell
       telegram-desktop
       gradia # 截图和编辑工具
       wl-clipboard-rs
       element-desktop
-      netease-cloud-music-gtk
-      zen-browser
       gparted
     ];
+
+    funkcia.hm.gui = {
+      zen-browser.enable = true;
+      zen-browser.isDefaultBrowser = true;
+    };
 
     programs = {
       zed-editor.enable = true;
