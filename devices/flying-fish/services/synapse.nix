@@ -64,6 +64,8 @@ in
 
   services.postgresql = {
     enable = true;
+    # Synapse 要求数据库 collation 为 'C'
+    initdbArgs = [ "--locale=C" ];
     ensureDatabases = [ "matrix-synapse" ];
     ensureUsers = [
       {
