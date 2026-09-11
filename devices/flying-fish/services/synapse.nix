@@ -48,7 +48,35 @@ in
       registration_requires_token = true;
 
       url_preview_enabled = true;
+
+      # 本机 PostgreSQL，走 unix socket + peer auth（不需要密码）
+      database.args = {
+        host = "/run/postgresql";
+        database = "matrix-synapse";
+        user = "matrix-synapse";
+      };
     };
+
+    # secrets (registration_shared_secret / macaroon_secret_key / form_secret)
+    # 放在机器上的文件里，不进 nix store / git
+    extraConfigFiles = [ "/var/lib/matrix-synapse/secrets.yaml" ];
+  };
+
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "matrix-synapse" ];
+    ensureUsers = [
+      {
+        name = "matrix-synapse";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
+
+  # 确保 synapse 在 postgres 之后就绪
+  systemd.services.matrix-synapse = {
+    requires = [ "postgresql.target" ];
+    after = [ "postgresql.target" ];
   };
 
   services.nginx = {
