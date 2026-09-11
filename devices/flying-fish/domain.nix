@@ -9,7 +9,7 @@
     };
   };
 
-  config.flying-fish.prefix-domain = name: "${name}.placeholder.com";
+  config.flying-fish.prefix-domain = name: "${name}.stelpolva.moe";
 
   config.sops.templates."security-acme-envfile".content = ''
     CF_API_EMAIL=${config.sops.placeholder."cloudflare/email"}
