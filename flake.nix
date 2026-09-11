@@ -53,6 +53,7 @@
             ];
 
             flying-fish.imports = [
+              disko.nixosModules.disko
               ./devices/flying-fish/configuration.nix
             ];
 

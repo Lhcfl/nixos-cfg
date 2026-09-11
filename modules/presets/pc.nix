@@ -5,6 +5,8 @@
 }:
 {
   config = lib.mkIf (config.funkcia.os.preset == "pc") {
+    networking.networkmanager.enable = lib.mkDefault true;
+
     funkcia.os = lib.mkDefault {
       tpm.enable = true;
       nix-mirrors.enable = true;
