@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  domain = config.flying-fish.prefix-domain "mat";
+  domain = config.flying-fish.prefix-domain "mp";
   port = 3027;
 in
 {
