@@ -53,6 +53,7 @@
     map (domain: {
       ${domain} = {
         dnsProvider = "cloudflare";
+        webroot = lib.mkForce null;
       };
     }) config.flying-fish.domains
   );
