@@ -11,6 +11,11 @@
 
   config.flying-fish.prefix-domain = name: "${name}.stelpolva.moe";
 
+  config.sops.secrets = {
+    "cloudflare/email" = { };
+    "cloudflare/dns-api-token" = { };
+  };
+
   config.sops.templates."security-acme-envfile".content = ''
     CF_API_EMAIL=${config.sops.placeholder."cloudflare/email"}
     CF_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/dns-api-token"}
