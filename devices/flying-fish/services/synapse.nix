@@ -13,7 +13,7 @@ let
   # 2. enableSynapse=true：启动 synapse
   # 3. enableNginx=true：恢复矩阵对外 nginx
   enableSynapse = true;
-  enableNginx = false;
+  enableNginx = true;
 in
 {
   flying-fish.domains = lib.mkIf enableNginx [ domain ];
