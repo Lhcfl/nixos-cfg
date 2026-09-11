@@ -50,6 +50,10 @@
   );
 
   config.security.acme.certs = lib.mkMerge (
-    map (domain: { ${domain} = { }; }) config.flying-fish.domains
+    map (domain: {
+      ${domain} = {
+        dnsProvider = "cloudflare";
+      };
+    }) config.flying-fish.domains
   );
 }
