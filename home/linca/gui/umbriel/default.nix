@@ -10,7 +10,6 @@
 
   funkcia.hm.gui.umbriel.settings = lib.mkIf config.funkcia.hm.gui.enable {
     general.autostart = [
-      "noctalia"
       "v2rayN"
     ];
 

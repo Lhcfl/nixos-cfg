@@ -130,7 +130,8 @@ in
       general.autostart = [
         "noctalia"
       ];
-      include.optional.files = [ "noctalia.toml" ];
+      # include.optional.files = [ "noctalia.toml" ];
+      include.files = [ "noctalia.toml" ];
     };
 
     home.packages = lib.mkIf (osConfig.programs.noctalia.enable or false) [

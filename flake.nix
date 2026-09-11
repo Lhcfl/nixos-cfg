@@ -80,8 +80,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+    #nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    #nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
     yazi-everforest-medium.url = "github:Chromium-3-Oxide/everforest-medium.yazi";
     yazi-everforest-medium.flake = false;
