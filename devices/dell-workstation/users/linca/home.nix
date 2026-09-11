@@ -4,7 +4,6 @@ let
 in
 {
   funkcia.hm = {
-    wine.enable = true;
     language-sdk = {
       cpp.enable = true;
       javascript.enable = true;
