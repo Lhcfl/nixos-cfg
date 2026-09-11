@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   funkcia-utils,
+  pkgs,
   ...
 }:
 {
@@ -28,6 +29,13 @@
     enable = true;
     efiSupport = false;
   };
+
+  # disko 的 mdadm 设备会打开 boot.swraid.enable；mdadm 包里的
+  # mdmonitor.service 需要 /etc/mdadm.conf 里有 MAILADDR 或 PROGRAM，
+  # 否则 `mdadm --monitor --scan` 会直接失败退出。这里用一个空操作
+  # PROGRAM 消除该 warning（RAID0 也没有冗余可监控）。
+  # 想真正告警可把 PROGRAM 换成自己的脚本。
+  boot.swraid.mdadmConf = "PROGRAM ${pkgs.coreutils}/bin/true";
 
   users.users.root = {
     openssh.authorizedKeys.keys = [
