@@ -12,7 +12,7 @@ let
   # 1. 都关：仅暴露矩阵但不服务（迁移前）
   # 2. enableSynapse=true：启动 synapse
   # 3. enableNginx=true：恢复矩阵对外 nginx
-  enableSynapse = false;
+  enableSynapse = true;
   enableNginx = false;
 in
 {
