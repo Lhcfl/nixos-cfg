@@ -89,7 +89,7 @@ in
         forceSSL = true;
         enableACME = true;
 
-        locations."^/.well-known/matrix/server" = {
+        locations."~ ^/\\.well-known/matrix/server" = {
           extraConfig = ''
             default_type application/json;
           '';
@@ -100,7 +100,7 @@ in
           }'";
         };
 
-        locations."^(/_matrix|/_synapse/client|/_synapse/admin)" = {
+        locations."~ ^/(_matrix|_synapse/client|_synapse/admin)" = {
           proxyPass = "http://127.0.0.1:${toString port}";
           recommendedProxySettings = true;
 
