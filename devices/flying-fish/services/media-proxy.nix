@@ -27,4 +27,7 @@ in
       };
     };
   };
+
+  # nginx 的 enableACME 会创建 cert，但不会继承 defaults.dnsProvider，显式设置
+  security.acme.certs.${domain}.dnsProvider = "cloudflare";
 }
