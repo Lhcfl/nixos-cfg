@@ -179,6 +179,29 @@
         "type": "github"
       }
     },
+    "misskey-media-proxy": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789138801,
+        "narHash": "sha256-ycvvGvFneyu3wBHsHEumBPJ3Y0iHwOSpCxCbSabIsO0=",
+        "owner": "Lhcfl",
+        "repo": "media-proxy",
+        "rev": "c789b65501daf4ca00ceffb65ed81c8930ad2023",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "media-proxy",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -420,6 +443,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
+        "misskey-media-proxy": "misskey-media-proxy",
         "nix-index-database": "nix-index-database",
         "nix-kdl": "nix-kdl",
         "nixpkgs": "nixpkgs",

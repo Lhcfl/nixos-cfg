@@ -12,6 +12,7 @@
       home-manager,
       sops-nix,
       disko,
+      misskey-media-proxy,
       ...
     }:
     let
@@ -54,6 +55,7 @@
 
             flying-fish.imports = [
               disko.nixosModules.disko
+              misskey-media-proxy.nixosModules.default
               ./devices/flying-fish/configuration.nix
             ];
 
@@ -105,5 +107,9 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    misskey-media-proxy.url = "github:Lhcfl/media-proxy";
+    misskey-media-proxy.inputs.nixpkgs.follows = "nixpkgs";
+    misskey-media-proxy.inputs.flake-parts.follows = "flake-parts";
   };
 }
