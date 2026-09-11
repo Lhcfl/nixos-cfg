@@ -117,14 +117,20 @@ in
             lib.attrsToList
             (map (
               { name, value }: {
-                "configure-ip-for-${name}".content = ''
-                  [Match]
-                  Name=${name}
+                "configure-ip-for-${name}" = {
+                  content = ''
+                    [Match]
+                    Name=${name}
 
-                  [Network]
-                  Address=${getValue value.addr}/${getValue value.mask}
-                  Gateway=${getValue value.gateway}
-                '';
+                    [Network]
+                    Address=${getValue value.addr}/${getValue value.mask}
+                    Gateway=${getValue value.gateway}
+                  '';
+                  # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
+                  mode = "0644";
+                  # 模板变化后重新加载 networkd
+                  restartUnits = [ "systemd-networkd.service" ];
+                };
               }
             ))
             lib.mkMerge
