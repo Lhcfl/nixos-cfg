@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   host = config.funkcia.server.domains.write.value;
 in
