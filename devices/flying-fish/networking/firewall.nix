@@ -73,11 +73,12 @@ in
   systemd.services.cloudflare-ips-refresh = {
     description = "Refresh Cloudflare IP ranges used by the nftables firewall";
     after = [
-      "firewall.service"
+      "nftables.service"
       "network-online.target"
     ];
     wants = [ "network-online.target" ];
-    requires = [ "firewall.service" ];
+    # nftables 后端下规则由 nftables.service 加载，不存在 firewall.service。
+    requires = [ "nftables.service" ];
     # 脚本用 nushell 原生 http 拉取，只需 PATH 里有 nft。
     path = [ pkgs.nftables ];
     serviceConfig = {
@@ -93,7 +94,6 @@ in
       Unit = "cloudflare-ips-refresh.service";
       OnBootSec = "2min";
       OnUnitActiveSec = "12h";
-      Persistent = true;
     };
   };
 }
