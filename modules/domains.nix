@@ -11,6 +11,7 @@
             options.value = lib.mkOption {
               type = lib.types.str;
               default = "${name}.${config.funkcia.server.domain.suffix}";
+              defaultText = lib.literalMD "`<name>.<funkcia.server.domain.suffix>`";
             };
           }
         )
