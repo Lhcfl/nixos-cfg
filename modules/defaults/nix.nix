@@ -29,6 +29,15 @@
       "flakes"
     ];
 
+    # my substituter
+    settings.substituters = [
+      "https://lhcfl.cachix.org"
+    ];
+
+    settings.trusted-public-keys = [
+      "lhcfl.cachix.org-1:hf4kin1zCbaeLWygZlwhYms/oqB0I8/8ZZsPkezpFms="
+    ];
+
     # https://github.com/NixOS/nixpkgs/blob/nixos-25.11/nixos/modules/services/misc/nix-gc.nix
     gc = {
       automatic = true;

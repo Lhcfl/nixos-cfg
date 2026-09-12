@@ -1,0 +1,42 @@
+name: Build flying-fish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 同一分支只保留最新一次构建，避免堆积。
+concurrency:
+  group: build-flying-fish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      # NixOS 的 system closure 很大，默认 runner 的磁盘往往不够，
+      # 先删掉用不到的语言 SDK / Android 等，能腾出 ~20GB。
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: false
+          swap-storage: false
+
+      - uses: actions/checkout@v7
+
+      - uses: cachix/install-nix-action@v31
+
+      # cachix-action 会把 cache 配成 substituter（下载），
+      # 并在 job 结束时把本次新构建出来的 store path 自动 push 上去。
+      # push 需要 CACHIX_AUTH_TOKEN（仓库 secret）。
+      - uses: cachix/cachix-action@v17
+        with:
+          name: lhcfl # 若改名，请同步修改 devices/flying-fish/configuration.nix
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build flying-fish
+        run: |
+          nix build -L --no-link \
+            .#nixosConfigurations.flying-fish.config.system.build.toplevel
