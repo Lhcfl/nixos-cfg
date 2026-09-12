@@ -20,7 +20,7 @@
     networking.proxy = "http://127.0.0.1:10808";
   };
 
-  funkcia.os.sshd.enable = true;
+  services.openssh.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 50;

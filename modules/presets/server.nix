@@ -5,22 +5,17 @@
 }:
 {
   config = lib.mkIf (config.funkcia.os.preset == "server") {
-    funkcia.os = {
-      fonts.enable = false;
-      sshd.enable = true;
-    };
+    funkcia.os.fonts.enable = false;
+    services.openssh.enable = true;
 
     nix.settings.trusted-users = [
       "root"
       "@wheel"
     ];
 
-    networking.firewall.allowedTCPPorts = lib.mkMerge [
-      [
-        80 # HTTP
-        443 # HTTPS
-      ]
-      (lib.mkIf config.services.openssh.enable config.services.openssh.ports)
+    networking.firewall.allowedTCPPorts = [
+      80 # HTTP
+      443 # HTTPS
     ];
 
     systemd.network.enable = lib.mkDefault true;

@@ -19,7 +19,7 @@
 
   networking.hostName = "flying-fish"; # Define your hostname.
   funkcia.os.preset = "server";
-  funkcia.os.sshd.ports = [ 8023 ];
+  services.openssh.ports = [ 8023 ];
 
   # 从 kitty/foot/ghostty 等终端 SSH 登录时，远端需要对应的 terminfo 条目，
   # 否则 ncurses 程序会报 “cannot initialize terminal type”。
