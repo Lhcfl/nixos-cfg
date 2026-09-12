@@ -31,7 +31,7 @@ in
       DATABASE_PATH=/var/lib/linquebot/data.db
       AI_API_URL="https://api.deepseek.com/chat/completions"
       AI_API_MODEL="deepseek-flash"
-      AI_API_KEY=${config.sops.placeholder."linquebot/deepseek-token"}
+      AI_API_TOKEN=${config.sops.placeholder."linquebot/deepseek-token"}
     '';
     owner = "linquebot";
     restartUnits = [ "linquebot.service" ];
