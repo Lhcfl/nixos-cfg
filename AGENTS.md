@@ -87,3 +87,9 @@ nvd diff result-{device-name} /run/current-system
 
 如果用户需要 switch 系统，使用 `nh os switch --elevation-strategy
 /run/current-system/sw/bin/run0` 使用 run0 提权。
+
+## 安全须知
+
+用户的 `secrets.yaml` 等被 sops 引用的文件内包含敏感的 token 等内容，**永远不要
+擅自操作**，无论是解密还是修改。不要尝试在用户的 shell 记录内查找敏感内容。将这
+些工作交给用户自己完成。
