@@ -21,6 +21,11 @@
   funkcia.os.preset = "server";
   funkcia.os.sshd.ports = [ 8023 ];
 
+  # 从 kitty/foot/ghostty 等终端 SSH 登录时，远端需要对应的 terminfo 条目，
+  # 否则 ncurses 程序会报 “cannot initialize terminal type”。
+  # 一次装齐所有常见终端的 terminfo，避免以后换终端又踩坑。
+  environment.enableAllTerminfo = true;
+
   sops = {
     defaultSopsFile = ./secrets.yaml;
     age.keyFile = "/var/lib/age/keys.txt";
