@@ -10,6 +10,11 @@ in
       description = "the port that sshd listen; will automately add in networking.firewall.allowedTCPPorts";
       default = [ 22 ];
     };
+    openFirewall = lib.mkOption {
+      description = "open the port in firewall";
+      type = lib.types.bool;
+      default = true;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -23,6 +28,6 @@ in
       };
     };
 
-    networking.firewall.allowedTCPPorts = cfg.ports;
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall cfg.ports;
   };
 }

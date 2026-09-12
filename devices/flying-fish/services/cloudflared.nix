@@ -5,6 +5,9 @@
   ...
 }:
 {
+  # only allow cloudflared to ssh
+  funkcia.os.sshd.openFirewall = false;
+
   sops.secrets."cloudflare/tunnel-token" = { };
   sops.templates."cloudflare-tunnel-connect" = {
     content = ''
