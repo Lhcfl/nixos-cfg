@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ./fish/greeter.nix
     ./systemd/my-tips.nix
@@ -37,6 +37,9 @@
     "gitcode.com" = {
       identityFile = "~/.ssh/id_ed25519.gitcode";
       addKeysToAgent = "yes";
+    };
+    "s.stelpolva.moe" = {
+      "ProxyCommand" = "${lib.getExe pkgs.cloudflared} access ssh --hostname %h";
     };
   };
 
