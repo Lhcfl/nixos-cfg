@@ -16,6 +16,7 @@ in
       postgresql.preStart = nocow config.services.postgresql.dataDir;
       vaultwarden.preStart = nocow "/var/lib/vaultwarden";
       writefreely.preStart = nocow "/var/lib/writefreely";
+      linquebot.preStart = nocow "/var/lib/linquebot";
     }
     (lib.mkIf config.services.matrix-synapse.enable {
       # 媒体库（大文件，减少碎片）

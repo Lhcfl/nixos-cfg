@@ -16,6 +16,8 @@ in
     content = ''
       TELOXIDE_TOKEN=${config.sops.placeholder."linquebot/teloxide-token"}
       DATABASE_PATH=/var/lib/linquebot/data.db
+      AI_API_URL="https://api.deepseek.com/chat/completions"
+      AI_API_MODEL="deepseek-flash"
     '';
     owner = "linquebot";
     restartUnits = [ "linquebot.service" ];
