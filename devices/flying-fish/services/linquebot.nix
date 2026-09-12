@@ -8,8 +8,20 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   linquebot = inputs.linquebot_rs.packages.${system}.linquebot_rs;
+  enable = false;
 in
 {
+  nix.settings = {
+    substituters = [
+      "https://nix-community.cachix.org"
+      "https://beiyanyunyi.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "beiyanyunyi.cachix.org-1:iCC1rwPPRGilc/0OS7Im2mP6karfpptTCnqn9sPtwls="
+    ];
+  };
+
   sops.secrets."linquebot/teloxide-token" = { };
 
   sops.templates."linquebot-env" = {
@@ -30,7 +42,7 @@ in
     home = "/var/lib/linquebot";
   };
 
-  systemd.services.linquebot = {
+  systemd.services.linquebot = lib.mkIf enable {
     description = "Linquebot RS (Telegram bot)";
     documentation = [ "https://github.com/Lhcfl/Linquebot_rs" ];
 
