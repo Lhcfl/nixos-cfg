@@ -19,6 +19,7 @@
 
   networking.hostName = "flying-fish"; # Define your hostname.
   funkcia.os.preset = "server";
+  funkcia.os.sshd.ports = [ 8023 ];
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
