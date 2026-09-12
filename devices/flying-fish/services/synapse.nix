@@ -14,14 +14,33 @@ let
   # 3. enableNginx=true：恢复矩阵对外 nginx
   enableSynapse = true;
   enableNginx = true;
+
+  owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in
 {
+  sops.secrets."synapse/registration_shared_secret" = { };
+  sops.secrets."synapse/macaroon_secret_key" = { };
+  sops.secrets."synapse/form_secret" = { };
+  sops.secrets."synapse/signing-key" = {
+    inherit owner;
+  };
+
+  sops.templates."synapse-secrets.yaml".content = lib.generators.toYAML { } {
+    registration_shared_secret = config.sops.placeholder."synapse/registration_shared_secret";
+    macaroon_secret_key = config.sops.placeholder."synapse/macaroon_secret_key";
+    form_secret = config.sops.placeholder."synapse/form_secret";
+  };
+
+  sops.templates."synapse-secrets.yaml".owner = owner;
+
   funkcia.server.domains.mat = { };
 
   services.matrix-synapse = {
     enable = enableSynapse;
     settings = {
       server_name = domain;
+
+      signing_key_path = config.sops.secrets."synapse/signing-key".path;
 
       listeners = [
         {
@@ -59,7 +78,9 @@ in
 
     # secrets (registration_shared_secret / macaroon_secret_key / form_secret)
     # 放在机器上的文件里，不进 nix store / git
-    extraConfigFiles = [ "/var/lib/matrix-synapse/secrets.yaml" ];
+    extraConfigFiles = [
+      config.sops.templates."synapse-secrets.yaml".path
+    ];
   };
 
   services.postgresql = {
