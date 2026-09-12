@@ -88,6 +88,21 @@ nvd diff result-{device-name} /run/current-system
 如果用户需要 switch 系统，使用 `nh os switch --elevation-strategy
 /run/current-system/sw/bin/run0` 使用 run0 提权。
 
+## Commit 格式规范
+
+- 作为 NixOS 配置仓库，传统的 `feat` `refactor` 之类的 type 没有意义，不些
+- 使用 `part (scope): subject` 作为格式
+- part 是改动的哪个部位。下面列出一些例子：
+  - 改动 device/legion-82tf 时，part 是 legion-82tf
+  - 改动 device/legion-82tf/home/linca 时，part 是 legion-82tf/linca
+  - 改动 packages/commit 时，part 是 package
+  - 改动 parts/doc 时，part 是 parts
+- 最前面加一个与改动最贴切的 emoji，后接一个空格
+- subject 的语言与改动内容保持一致，不超过 72 个字符
+- 确有需要时，空一行后补充正文
+
+例如：`✨ package (commit): 生成带 emoji 前缀的 commit message`
+
 ## 安全须知
 
 用户的 `secrets.yaml` 等被 sops 引用的文件内包含敏感的 token 等内容，**永远不要
