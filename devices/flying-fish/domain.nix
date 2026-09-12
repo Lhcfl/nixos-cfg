@@ -1,15 +1,11 @@
 { lib, config, ... }: {
-  options.flying-fish = {
-    prefix-domain = lib.mkOption {
-      type = lib.types.raw;
-    };
-
-    domains = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-    };
-  };
-
-  config.flying-fish.prefix-domain = name: "${name}.stelpolva.moe";
+  config.funkcia.server.domain.suffix = "${
+    builtins.concatStringsSep "l" [
+      "ste"
+      "po"
+      "va"
+    ]
+  }.moe";
 
   config.sops.secrets = {
     "cloudflare/email" = { };
@@ -32,29 +28,45 @@
     };
   };
 
-  config.services.nginx.virtualHosts = lib.mkMerge (
-    map (domain: {
-      "${domain}" = {
-        forceSSL = true;
-        enableACME = true;
+  config.services.nginx.virtualHosts = lib.pipe config.funkcia.server.domains [
+    lib.attrsToList
+    (map (
+      { value, ... }:
+      let
+        domain = value.value;
+      in
+      {
+        "${domain}" = {
+          forceSSL = true;
+          enableACME = true;
 
-        listen = [
-          {
-            addr = "0.0.0.0";
-            port = 443;
-            ssl = true;
-          }
-        ];
-      };
-    }) config.flying-fish.domains
-  );
+          listen = [
+            {
+              addr = "0.0.0.0";
+              port = 443;
+              ssl = true;
+            }
+          ];
+        };
+      }
+    ))
+    lib.mkMerge
+  ];
 
-  config.security.acme.certs = lib.mkMerge (
-    map (domain: {
-      ${domain} = {
-        dnsProvider = "cloudflare";
-        webroot = lib.mkForce null;
-      };
-    }) config.flying-fish.domains
-  );
+  config.security.acme.certs = lib.pipe config.funkcia.server.domains [
+    lib.attrsToList
+    (map (
+      { value, ... }:
+      let
+        domain = value.value;
+      in
+      {
+        ${domain} = {
+          dnsProvider = "cloudflare";
+          webroot = lib.mkForce null;
+        };
+      }
+    ))
+    lib.mkMerge
+  ];
 }

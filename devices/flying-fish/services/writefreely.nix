@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  host = config.flying-fish.prefix-domain "write";
+  host = config.funkcia.server.domains.write.value;
 in
 {
-  flying-fish.domains = [ host ];
+  funkcia.server.domains.write = { };
 
   services.writefreely = {
     inherit host;

@@ -37,12 +37,6 @@
   # 想真正告警可把 PROGRAM 换成自己的脚本。
   boot.swraid.mdadmConf = "PROGRAM ${pkgs.coreutils}/bin/true";
 
-  users.users.root = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwHaPGjtqvGsYrO5NiGHoVMSS/Qj+63hv1QNBG+wnm+ linca@nixos"
-    ];
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

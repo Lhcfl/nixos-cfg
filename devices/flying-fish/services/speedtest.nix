@@ -1,10 +1,10 @@
 { config, ... }:
 let
-  domain = config.flying-fish.prefix-domain "speedtest";
+  domain = config.funkcia.server.domains."speedtest".value;
   port = 11451;
 in
 {
-  flying-fish.domains = [ domain ];
+  funkcia.server.domains."speedtest" = { };
 
   services.nginx = {
     enable = true;

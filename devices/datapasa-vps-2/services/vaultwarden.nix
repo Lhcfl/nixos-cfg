@@ -1,9 +1,9 @@
 { lib, config, ... }:
 let
-  domain = config.flying-fish.prefix-domain "vw";
+  domain = config.funkcia.server.domains.vw.value;
 in
 {
-  flying-fish.domains = [ domain ];
+  funkcia.server.domains = [ domain ];
 
   services.vaultwarden = {
     domain = domain;

@@ -1,5 +1,5 @@
 { lib, config, ... }: {
-  options.flying-fish = {
+  options.funkcia.server.= {
     prefix-domain = lib.mkOption {
       type = lib.types.raw;
     };
@@ -9,7 +9,7 @@
     };
   };
 
-  config.flying-fish.prefix-domain = name: "${name}.placeholder.com";
+  config.funkcia.server.prefix-domain = name: "${name}.placeholder.com";
 
   config.sops.templates."security-acme-envfile".content = ''
     CF_API_EMAIL=${config.sops.placeholder."cloudflare/email"}
@@ -41,10 +41,10 @@
           }
         ];
       };
-    }) config.flying-fish.domains
+    }) config.funkcia.server.domains
   );
 
   config.security.acme.certs = lib.mkMerge (
-    map (domain: { ${domain} = { }; }) config.flying-fish.domains
+    map (domain: { ${domain} = { }; }) config.funkcia.server.domains
   );
 }

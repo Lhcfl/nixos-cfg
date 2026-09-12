@@ -5,7 +5,7 @@
   ...
 }:
 let
-  domain = config.flying-fish.prefix-domain "mat";
+  domain = config.funkcia.server.domains.mat.value;
   port = 8008;
 
   # ===== 迁移开关（分阶段切换）=====
@@ -16,7 +16,7 @@ let
   enableNginx = true;
 in
 {
-  flying-fish.domains = lib.mkIf enableNginx [ domain ];
+  funkcia.server.domains.mat = { };
 
   services.matrix-synapse = {
     enable = enableSynapse;

@@ -1,10 +1,10 @@
 { config, ... }:
 let
-  domain = config.flying-fish.prefix-domain "mp";
+  domain = config.funkcia.server.domains."mp".value;
   port = 3027;
 in
 {
-  flying-fish.domains = [ domain ];
+  funkcia.server.domains.mp = { };
 
   services.misskey-media-proxy = {
     enable = true;

@@ -1,4 +1,4 @@
-# flying-fish 的磁盘布局 (disko)
+# funkcia.server.的磁盘布局 (disko)
 #
 # 机器实际拓扑 (见 lsblk)：
 #   xvda  7G      -> 系统盘: 1M BIOS-boot + 1G /boot(vfat/FAT32)

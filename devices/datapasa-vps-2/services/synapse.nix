@@ -4,11 +4,11 @@
   ...
 }:
 let
-  domain = config.flying-fish.prefix-domain "mat";
+  domain = config.funkcia.server.domains.mat.value;
   port = 8008;
 in
 {
-  flying-fish.domains = [ domain ];
+  funkcia.server.domains = [ domain ];
 
   services.matrix-synapse = {
     enable = true;
