@@ -113,6 +113,5 @@
     misskey-media-proxy.inputs.flake-parts.follows = "flake-parts";
 
     linquebot_rs.url = "github:Lhcfl/Linquebot_rs";
-    linquebot_rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

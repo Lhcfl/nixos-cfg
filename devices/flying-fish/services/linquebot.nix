@@ -8,7 +8,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   linquebot = inputs.linquebot_rs.packages.${system}.linquebot_rs;
-  enable = false;
+  enable = true;
 in
 {
   nix.settings = {
