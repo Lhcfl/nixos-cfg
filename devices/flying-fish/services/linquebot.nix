@@ -23,6 +23,7 @@ in
   };
 
   sops.secrets."linquebot/teloxide-token" = { };
+  sops.secrets."linquebot/deepseek-token" = { };
 
   sops.templates."linquebot-env" = {
     content = ''
