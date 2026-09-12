@@ -11,6 +11,7 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     ./domain.nix
+    ./networking/firewall.nix
     ./networking.nix
     ./nocow.nix
     (funkcia-utils.files.mkDirModule ./services)
