@@ -58,11 +58,6 @@
               misskey-media-proxy.nixosModules.default
               ./devices/flying-fish/configuration.nix
             ];
-
-            datapasa-vps-2.imports = [
-              disko.nixosModules.disko
-              ./devices/datapasa-vps-2/configuration.nix
-            ];
           };
         };
 
