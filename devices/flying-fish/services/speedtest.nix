@@ -1,7 +1,7 @@
 { config, ... }:
 let
   domain = config.flying-fish.prefix-domain "speedtest";
-  port = 11452;
+  port = 11451;
 in
 {
   flying-fish.domains = [ domain ];
