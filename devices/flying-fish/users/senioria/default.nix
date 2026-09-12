@@ -6,7 +6,9 @@
 
   users.users.senioria = {
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = [ ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbBUHBnQMnKUpWMS5bM5mXYOu9ilTjo41y6W2AklDxk senioria@mail.stelpolva.moe"
+    ];
   };
 
   home-manager.users.senioria = {
