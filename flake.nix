@@ -111,5 +111,8 @@
     misskey-media-proxy.url = "github:Lhcfl/media-proxy";
     misskey-media-proxy.inputs.nixpkgs.follows = "nixpkgs";
     misskey-media-proxy.inputs.flake-parts.follows = "flake-parts";
+
+    linquebot_rs.url = "github:Lhcfl/Linquebot_rs";
+    linquebot_rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 }
