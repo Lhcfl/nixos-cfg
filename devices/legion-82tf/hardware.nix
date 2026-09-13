@@ -95,7 +95,8 @@
 
   # The internal display is driven by the Intel iGPU (Alder Lake P). Provide a
   # VA-API driver so browsers (Zen/Firefox) can hardware-decode video.
-  hardware.graphics.extraPackages = [ pkgs.intel-media-driver ];
+  # hardware.graphics.extraPackages = [ pkgs.intel-media-driver ];
+  # added by nixos-hardware.nixosModules.lenovo-legion-16iah7h
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

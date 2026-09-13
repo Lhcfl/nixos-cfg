@@ -13,6 +13,7 @@
       sops-nix,
       disko,
       misskey-media-proxy,
+      nixos-hardware,
       ...
     }:
     let
@@ -47,6 +48,7 @@
           devices = {
             legion-82tf.imports = [
               ./devices/legion-82tf/configuration.nix
+              nixos-hardware.nixosModules.lenovo-legion-16iah7h
             ];
 
             dell-workstation.imports = [
@@ -108,5 +110,8 @@
     misskey-media-proxy.inputs.flake-parts.follows = "flake-parts";
 
     linquebot_rs.url = "github:Lhcfl/Linquebot_rs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

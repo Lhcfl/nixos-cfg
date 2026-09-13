@@ -24,6 +24,8 @@ in
 
   config = lib.mkIf config.funkcia.os.networking.enable {
     networking = {
+      wireless.enable = true;
+
       # Configure network proxy if necessary
       proxy = lib.mkIf (cfg.proxy != null) {
         default = cfg.proxy;
