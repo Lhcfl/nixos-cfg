@@ -12,6 +12,7 @@
     settings = {
       window_padding_width = 2;
       cursor_trail = 1;
+      scrollback_lines = 100000;
       background_opacity = lib.mkDefault 0.8;
     };
   };

@@ -9,6 +9,8 @@
       };
       window.blur = true;
       window.opacity = lib.mkDefault 0.8;
+      scrolling.history = 100000;
+      selection.save_to_clipboard = true;
     };
   };
 }
