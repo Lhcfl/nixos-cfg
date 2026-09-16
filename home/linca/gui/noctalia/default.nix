@@ -78,6 +78,7 @@ in
           transparency_mode = "soft";
         };
         screenshot = {
+          annotate = true;
           directory = "~/Pictures/Screenshots";
         };
         settings_show_advanced = true;
