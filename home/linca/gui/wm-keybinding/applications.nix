@@ -2,6 +2,7 @@
 {
   funkcia.hm.gui.wm-keybinding.binds = {
     "Ctrl+Alt+T".actions.spawn = [ "kitty" ];
+    "Mod+A".actions.spawn = [ "alacritty" ];
 
     "Mod+B".actions.spawn = [ "zen" ];
 

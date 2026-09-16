@@ -23,20 +23,23 @@
   };
 
   nix = {
-    # nix configuration
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      keep-going = true; # 一个 path 失败别把整个 build 拖死
 
-    # my substituter
-    settings.substituters = [
-      "https://lhcfl.cachix.org"
-    ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
-    settings.trusted-public-keys = [
-      "lhcfl.cachix.org-1:hf4kin1zCbaeLWygZlwhYms/oqB0I8/8ZZsPkezpFms="
-    ];
+      # my substituter
+      substituters = [
+        "https://lhcfl.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "lhcfl.cachix.org-1:hf4kin1zCbaeLWygZlwhYms/oqB0I8/8ZZsPkezpFms="
+      ];
+    };
 
     # https://github.com/NixOS/nixpkgs/blob/nixos-25.11/nixos/modules/services/misc/nix-gc.nix
     gc = {
@@ -46,7 +49,7 @@
       randomizedDelaySec = "45min";
     };
 
-    # lix!
+    # use lix
     package = pkgs.lixPackageSets.stable.lix;
 
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
