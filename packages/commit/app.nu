@@ -39,7 +39,7 @@ def gen_prompt [extra: string] {
         $"额外提示（用户要求，请优先考虑）：($extra)"
     }
 
-    let prompt = ([
+    [
         '你是 git commit message 生成器。请根据下面的 git 仓库状态，生成一条 commit message。
 
 规则：
@@ -59,7 +59,7 @@ def gen_prompt [extra: string] {
         ""
         "git diff:"
         $diff
-    ] | str join "\n")
+    ] | str join "\n"
 }
 
 def handle_event [event] {
@@ -109,16 +109,26 @@ def handle_event [event] {
 }
 
 export def main [...extra: string] {
+    let prompt = gen_prompt ($extra | str join " ")
+
+    if $env.COMMIT_DEBUG? == "1" {
+        print $prompt
+    }
+
     let assistant = (
-        gen_prompt ($extra | str join " ")
-        | ^pi --mode json --no-session --no-skills --tools read,grep,find,ls
+        $prompt
+        | pi --mode json --no-session --no-skills --tools read,grep,find,ls
         | lines
         | each {|line|
+            if $env.COMMIT_DEBUG? == "1" {
+                print $line
+            }
+
             let event = try { $line | from json } catch { null }
             if $event == null {
                 null
             } else {
-                handle_event event
+                handle_event $event
             }
         }
         | where {|message| $message != null }
