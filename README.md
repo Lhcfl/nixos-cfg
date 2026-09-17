@@ -6,40 +6,24 @@
 
 ## 路径约定
 
-```sh
- .
-├── flake.nix             # flakeroot
-├── AGENTS.md             # markdown for agents
-├── apply.sh              # activator for some non-nix symbollinks
-├── devices/${name}       # device specific settings for ${name}
-│   ├── configuration.nix # configutation for ${name}
-│   ├── services          # device specific services
-│   └── users/${username} # user settings for ${username}
-│       ├── home.nix      # home-manager options
-│       └── default.nix        # nixos options
-├── home
-│   ├── home-manager.nix  # global home-manager module
-│   ├── linca
-│   │   ├── ... other files            
-│   │   └── home.nix      # home-manager settings for linca
-│   ├── modules           # home-manager modules
-│   └── README.md
-├── modules               # NixOS modules
-├── packages              # Nix packages
-├── parts                 # flake parts modules
-├── README.md
-└── utils                 # nix utils
-    ├── files.nix
-    └── magic.nix
-```
+<!-- BEGIN_GEN_README_TREE -->
 
-- [`devices/`](devices/) 下的文件存放设备特定的配置
-- [`modules/`](modules/) 下的文件存放 NixOS 模块
-- [`home`](home/README.md) 下的文件存放 Home Manager 配置
-- [`parts`](parts/) 下的文件存放 flake-parts 模块
-- [`utils/`](utils/) 下存放工具函数，在 `funkcia-utils` 中可用。
-- [`packages/`](packages/) 下存放 Nix packages.
-- [`fixes`](fixes/) 下存放对某些包的临时修复
+| # |                       path                        |                                  description                                  |
+|---|---------------------------------------------------|-------------------------------------------------------------------------------|
+| 0 | [`devices/`](devices/README.md)                   | 存放设备特定的 nix 配置                                                       |
+| 1 | [`fixes/`](fixes/README.md)                       | 存放对所有设备、用户生效的“修复”。一般存放上游包有错误的时候，`overrideAttrs` |
+| 2 | [`home/`](home/README.md)                         | Home Manager 用户和模块定义                                                   |
+| 3 | [`home/linca/`](home/linca/README.md)             | Linca 的用户配置                                                              |
+| 4 | [`home/modules/`](home/modules/README.md)         | 对所有用户生效的 Home Manager 模块                                            |
+| 5 | [`modules/`](modules/README.md)                   | 所有设备都可使用的 NixOS module                                               |
+| 6 | [`modules/defaults/`](modules/defaults/README.md) | 该目录下的模块默认被开启                                                      |
+| 7 | [`packages/`](packages/README.md)                 | 存放一些 nix 包                                                               |
+| 8 | [`parts/`](parts/README.md)                       | flake-parts 模块                                                              |
+| 9 | [`scripts/`](scripts/README.md)                   | 存放专属于本仓库开发用途的脚本文件。                                          |
+
+
+<!-- END_GEN_README_TREE -->
+
 
 ## 名称约定
 

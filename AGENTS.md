@@ -100,7 +100,13 @@ nvd diff result-{device-name} /run/current-system
 如果用户需要 switch 系统，使用 `nh os switch --elevation-strategy
 /run/current-system/sw/bin/run0` 使用 run0 提权。
 
-## Commit 格式规范
+## 提交
+
+### 更新 README.md
+
+在提交前，使用 `nu -c scripts/readme-tree-gen/app.nu` 自动重新生成“路径约定”章节
+
+### Commit 格式规范
 
 - 作为 NixOS 配置仓库，传统的 `feat` `refactor` 之类的 type 没有意义，不些
 - 使用 `part (scope): subject` 作为格式

@@ -1,3 +1,7 @@
+---
+description: Linca 的用户配置
+---
+
 # Linca 的用户配置
 
 ## 路径约定

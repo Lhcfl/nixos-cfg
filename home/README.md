@@ -1,3 +1,7 @@
+---
+description: Home Manager 用户和模块定义
+---
+
 # Home Manager Configuration
 
 ## 路径约定
