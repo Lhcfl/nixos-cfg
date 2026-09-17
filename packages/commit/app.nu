@@ -58,33 +58,14 @@ def gen_prompt [extra: string] {
     ] | str join "\n"
 }
 
-def handle_event [state, event] {
-    def delta [x: string] {
-        print -n $x
-        $state
-    }
-
-    def newline [icon: string] {
-        print ""
-        $icon | print -n
-        $state | update line { "" } | update icon { $icon }
-    }
-
-    def noop [] {
-        $state
-    }
-
-    def result [x] {
-        $state | update result { $x }
-    }
-
+def handle_event [event] {
     match $event.type {
         "message_update" => {
             let delta = $event.assistantMessageEvent
             match $delta.type {
-                "text_delta" => { delta $delta.delta }
-                "thinking_start" => { newline "🧠 " }
-                _ => { noop }
+                "text_delta" => { print -n $delta.delta }
+                "thinking_start" => { print "🧠 Thinking..." }
+                _ => { return null }
             }
         }
         "tool_execution_start" => {
@@ -95,16 +76,16 @@ def handle_event [state, event] {
                     | default ($event.args.pattern? | default "")
                 )
             )
-            newline $"\n🔧 ($event.toolName) ($arg)\n"
+            print $"🔧 ($event.toolName) ($arg)\n"
         }
         "message_end" => {
-            if ($event.message.role? | default "") == "assistant" {
-                result $event.message
+            if $event.message.role? == "assistant" {
+                return $event.message
             } else {
-                result null
+                return null
             }
         }
-        _ => { noop }
+        _ => { return null }
     }
 }
 
@@ -117,26 +98,26 @@ export def main [...extra: string] {
 
     let result = (
         $prompt
-        | pi --mode json --no-session --no-skills --tools read,grep,find,ls
+        | pi --mode json --no-session --no-skills --tools read,grep,find,ls --thinking low
         | lines
-        | reduce --fold { icon: "", line: "", result: null } {|line, state|
+        | each {|line|
             let ev = ($line | from json)
             if $env.COMMIT_DEBUG? == "1" {
                 $line | print
-                print "current state = "
-                print ($state)
                 sleep 100ms
             }
-            handle_event $state ($line | from json)
+            handle_event ($line | from json)
         }
+        | where $in != null
+        | first
     )
 
-    if $result.result == null {
+    if $result == null {
         print --stderr $"\ncommit: 未能成功生成"
         exit 1
     }
 
-    let message = $result.result | get content | where type == text | get text | first
+    let message = $result | get content | where type == text | get text | first
 
     print "\n\n";
 
