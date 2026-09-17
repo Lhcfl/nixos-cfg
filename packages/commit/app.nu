@@ -59,16 +59,24 @@ def gen_prompt [extra: string] {
 }
 
 def handle_event [state, event] {
-    def delta [str: string] {
-        let x = $str | str replace "\n" ""
-        $x | print -n
-        $state | update line { $in + $x }
+    def delta [x: string] {
+        let new = $state | update line {
+            let appended = $in + $x
+            let len = $appended | str length
+            if $len > 80 {
+                $appended | str substring ($len - 80)..
+            } else {
+                $appended
+            }
+        }
+        print -n ($"\r($new.icon) ($new.line)" | str replace -a "\n" "")
+        $new    
     }
 
-    def newline [str: string] {
+    def newline [icon: string] {
         print ""
-        $str | print -n
-        $state | update line { $str }
+        $icon | print -n
+        $state | update line { "" } | update icon { $icon }
     }
 
     def noop [] {
@@ -121,11 +129,15 @@ export def main [...extra: string] {
         $prompt
         | pi --mode json --no-session --no-skills --tools read,grep,find,ls
         | lines
-        | reduce --fold { line: "", result: null } {|line, state|
+        | reduce --fold { icon: "", line: "", result: null } {|line, state|
+            let ev = ($line | from json)
             if $env.COMMIT_DEBUG? == "1" {
-                print $line
+                $line | print
+                print "current state = "
+                print ($state)
+                sleep 100ms
             }
-            handle_event state ($line | from json)
+            handle_event $state ($line | from json)
         }
     )
 
@@ -134,6 +146,9 @@ export def main [...extra: string] {
         exit 1
     }
 
-    # git commit -m $result.result
-    print $result.result
+    let message = $result.result | get content | where type == text | get text | first
+
+    print "\n\n";
+
+    git commit -m $message
 }
