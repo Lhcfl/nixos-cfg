@@ -15,7 +15,11 @@ export def main [...extra: string] {
     }
 
     let status = (git status --short | complete | get stdout)
-    let diff = (git diff --cached | complete | get stdout)
+    mut diff = (git diff --cached | complete | get stdout)
+
+    if ($diff | str length) > 10000 {
+        $diff = "(diff太长，请自行调用工具选择性查看)"
+    }
 
     let extra_hint = if ($extra | is-empty) {
         ""
