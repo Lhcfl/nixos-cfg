@@ -60,6 +60,12 @@ let
         '';
         type = workspace-type;
       };
+      move-workspace-relative = {
+        description = ''
+          move workspace by direction
+        '';
+        type = workspace-type;
+      };
       screenshot = {
         description = ''
           take a screenshot

@@ -39,6 +39,13 @@ in
               Down = "window-move-down";
             };
 
+            move-workspace-relative = match arguments {
+              Left = "spawn:notify-send \"Cannot Move Workspace Left!\"";
+              Right = "spawn:notify-send \"Cannot Move Workspace Right!\"";
+              Up = "workspace-move-up";
+              Down = "workspace-move-down";
+            };
+
             move-window-to-workspace = "window-move-to-workspace:${toString arguments}";
 
             screenshot = "spawn:notify-send no-screenshot-action";

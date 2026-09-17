@@ -18,6 +18,15 @@
           "Down"
         ]
       )
+      (map
+        (dir: {
+          "Mod+Ctrl+Shift+${dir}".actions.move-workspace-relative = dir;
+        })
+        [
+          "Up"
+          "Down"
+        ]
+      )
     ]
   );
 }

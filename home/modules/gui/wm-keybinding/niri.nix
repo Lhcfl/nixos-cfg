@@ -44,6 +44,12 @@ in
                 Up = n "move-window-up";
                 Down = n "move-window-down";
               };
+              move-workspace-relative = match value {
+                Left = n "spawn" "notify-send" "Cannot Move Workspace Left!";
+                Right = n "spawn" "notify-send" "Cannot Move Workspace Right!";
+                Up = n "move-workspace-up";
+                Down = n "move-workspace-down";
+              };
               move-window-to-workspace = n "move-column-to-workspace" value;
               screenshot = n "screenshot";
               close-window = n "close-window";
