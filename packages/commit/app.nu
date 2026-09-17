@@ -60,17 +60,8 @@ def gen_prompt [extra: string] {
 
 def handle_event [state, event] {
     def delta [x: string] {
-        let new = $state | update line {
-            let appended = $in + $x
-            let len = $appended | str length
-            if $len > 80 {
-                $appended | str substring ($len - 80)..
-            } else {
-                $appended
-            }
-        }
-        print -n ($"\r($new.icon) ($new.line)" | str replace -a "\n" "")
-        $new    
+        print -n $x
+        $state
     }
 
     def newline [icon: string] {
@@ -92,8 +83,7 @@ def handle_event [state, event] {
             let delta = $event.assistantMessageEvent
             match $delta.type {
                 "text_delta" => { delta $delta.delta }
-                "thinking_delta" => { delta $delta.delta }
-                "thinking_start" => { newline "\n🧠 " }
+                "thinking_start" => { newline "🧠 " }
                 _ => { noop }
             }
         }
