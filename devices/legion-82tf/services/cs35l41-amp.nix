@@ -17,16 +17,25 @@
 #
 #
 # ── 修复原理 ──────────────────────────────────────────────────────────────
-# 关键点：**不要单独 unbind/bind 某一路功放**（i2c 设备）。
-# 单独重绑会与仍占用的 codec 抢同一个 IRQ，触发
-#     genirq: Flags mismatch ... cs35l41 IRQ1 Controller
-#     cs35l41-hda.1: IRQ Config Failed ... not recoverable without reboot
-# 反而把另一路也弄哑。
+# 故障分两类，判定与自愈逻辑都在同目录的 cs35l41-amp.nu（nushell）里。
 #
-# 正确且安全的做法是**重载整块 SOF 声卡 PCI 设备**：
-#     /sys/bus/pci/drivers/sof-audio-pci-intel-tgl/{unbind,bind}
-# 这会完整拆除并重新探测 HDA codec 与两颗功放，干净地释放并重建 IRQ，
-# 左右功放都会重新加载固件（日志出现 "Firmware Loaded ... FW EN: 1"）。
+#  soft（可恢复）：IRQ 冲突、resume -121、-16 等。关键点：**不要单独
+#  unbind/bind 某一路功放**（i2c 设备）。单独重绑会与仍占用的 codec 抢同一个
+#  IRQ，触发 `genirq: Flags mismatch ... cs35l41 IRQ1 Controller`，反而把另一路
+#  也弄哑。正确且安全的做法是**重载整块 SOF 声卡 PCI 设备**：
+#      /sys/bus/pci/drivers/sof-audio-pci-intel-tgl/{unbind,bind}
+#  这会完整拆除并重新探测 HDA codec 与两颗功放，干净地释放并重建 IRQ，左右功放
+#  都会重新加载固件（日志出现 "Firmware Loaded ... FW EN: 1"）。
+#
+#  hard（不可恢复）：功放本身 / 其 i2c 控制器卡死。日志表现为：
+#      cs35l41-hda ...: Falling back to default firmware.
+#      cs35l41-hda ...: Unable to find firmware and tuning
+#      cs35l41-hda ...: Cannot Initialize Firmware. Error: -2
+#  外加 PUP/PDN/SCRATCH 读取 -16(EBUSY)。此时重载声卡无效（声卡与功放的 i2c
+#  控制器是两个独立 PCI 设备）。**不要尝试 unbind i2c 控制器**
+#  （`i2c_designware.N`）——实测会让内核任务永久卡死在 D 状态，并挂起整次
+#  `nh os switch`。这种状态只能靠重启（必要时关机冷启动）恢复，因此脚本只
+#  记录日志并通过 notify-send 给已登录用户发桌面通知，不做任何破坏性操作。
 #
 # 本模块在以下时机检测并自愈：
 #   1. 开机后（multi-user.target）：检查本次启动内核日志，发现失败才修复；
@@ -45,139 +54,27 @@
 # =============================================================================
 
 {
-  config,
   lib,
   pkgs,
   ...
 }:
 let
-  # CS35L41 功放的 i2c 驱动目录（存在则说明是本机此类硬件）。
-  i2cDriver = "/sys/bus/i2c/drivers/cs35l41-hda";
-  # Intel Alder Lake SOF HDA 声卡 PCI 驱动目录。
-  pciDriver = "/sys/bus/pci/drivers/sof-audio-pci-intel-tgl";
-  # 用户会话内 systemctl 的绝对路径（用于唤醒后重启 WirePlumber）。
-  systemctl = "${config.systemd.package}/bin/systemctl";
-
-  # 功放初始化 / 恢复失败的“原因”片段（脚本按声道前缀 cs35l41-hda.<ch>: 匹配）。
-  failAlt = lib.concatStringsSep "|" [
-    "Cannot Initialize Firmware"
-    "Cannot Run Firmware"
-    "Failed waiting for OTP_BOOT_DONE"
-    "Failed to read SCRATCH0"
-    "IRQ Config Failed"
-    "cs35l41_system_resume.*returns -121"
-  ];
-
-  fixup = pkgs.writeShellApplication {
-    name = "cs35l41-amp-fixup";
-    runtimeInputs = with pkgs; [
-      systemd
-      coreutils
-      gnugrep
-      util-linux
+  # 自愈逻辑（nushell 脚本）在同目录的 cs35l41-amp.nu。
+  fixup = pkgs.writers.writeNu "cs35l41-amp-fixup" {
+    # 脚本用到的外部命令：journalctl/systemctl (systemd)、id/date (coreutils)、
+    # runuser (util-linux)、notify-send (libnotify)；nushell 由 writeNu 作解释器。
+    makeWrapperArgs = [
+      "--prefix"
+      "PATH"
+      ":"
+      (lib.makeBinPath [
+        pkgs.systemd
+        pkgs.coreutils
+        pkgs.util-linux
+        pkgs.libnotify
+      ])
     ];
-    # 显式排除易在 `set -e` 场景误报的检查，避免构建期 shellcheck 失败。
-    excludeShellChecks = [
-      "SC2310"
-      "SC2312"
-      "SC2317"
-    ];
-    text = ''
-      log() { echo "cs35l41-amp-fixup: $*"; }
-
-      # 需要修复吗？逐个声道取“最后一次失败”与“最后一次固件加载成功”的行号：
-      # 若某声道最后一次失败晚于最后一次成功（或从未成功），则判定需要修复。
-      # 参数原样透传给 journalctl（如 -b，或 --since "@<epoch>"）。
-      # 这样可避免因日志里存在“历史失败但后来已恢复”而误触发。
-      needs_fix() {
-        local klog
-        local ch
-        local last_fail
-        local last_ok
-        klog="$(journalctl -k "$@" --no-pager 2>/dev/null || true)"
-        for ch in 0 1; do
-          last_fail="$(printf '%s\n' "$klog" | grep -nE "cs35l41-hda[.]$ch:.*(${failAlt})" | tail -1 | cut -d: -f1 || true)"
-          last_ok="$(printf '%s\n' "$klog" | grep -nE "cs35l41-hda[.]$ch:.*Firmware Loaded" | tail -1 | cut -d: -f1 || true)"
-          if [ -n "$last_fail" ]; then
-            if [ -z "$last_ok" ] || [ "$last_fail" -gt "$last_ok" ]; then
-              return 0
-            fi
-          fi
-        done
-        return 1
-      }
-
-      # 找出绑定在 SOF 驱动上的声卡 PCI 地址（形如 0000:00:1f.3）。
-      find_card() {
-        local dev
-        for dev in "${pciDriver}"/*; do
-          dev="$(basename "$dev")"
-          case "$dev" in
-            0000:*) printf '%s' "$dev"; return 0 ;;
-          esac
-        done
-        return 1
-      }
-
-      # 重载整块声卡（安全做法，避免单功放 rebind 的 IRQ 冲突）。
-      reload_card() {
-        local dev
-        dev="$(find_card)" || { log "no SOF HDA card bound to ${pciDriver}"; return 1; }
-        log "reloading SOF HDA card $dev"
-        printf '%s' "$dev" > "${pciDriver}/unbind" || return 1
-        sleep 2
-        printf '%s' "$dev" > "${pciDriver}/bind" || return 1
-        sleep 3
-      }
-
-      # 让每个已登录用户会话的 WirePlumber 重新识别重建后的声卡。
-      restart_user_audio() {
-        local uid
-        local user
-        while read -r uid _; do
-          [ -n "$uid" ] || continue
-          user="$(id -un "$uid" 2>/dev/null)" || continue
-          runuser -u "$user" -- env XDG_RUNTIME_DIR="/run/user/$uid" \
-            "${systemctl}" --user restart wireplumber.service 2>/dev/null || true
-        done < <(loginctl list-users --no-legend 2>/dev/null)
-      }
-
-      main() {
-        # 无该硬件则空跑退出（本模块为全局共享模块）。
-        if [ ! -d "${i2cDriver}" ]; then
-          log "no CS35L41 amp on this host, nothing to do"
-          return 0
-        fi
-
-        # 等声卡/功放探测日志落盘。
-        sleep 2
-
-        if ! needs_fix -b; then
-          log "no CS35L41 init failure detected"
-          return 0
-        fi
-
-        log "detected CS35L41 init failure, recovering"
-        local start
-        start="$(date +%s)"
-
-        if ! reload_card; then
-          log "sound card reload failed"
-          return 1
-        fi
-        sleep 2
-        restart_user_audio || true
-
-        if needs_fix --since "@$start"; then
-          log "amps still failing after reload"
-          return 1
-        fi
-        log "recovery complete, speaker amps re-initialized"
-      }
-
-      main "$@"
-    '';
-  };
+  } (builtins.readFile ./cs35l41-amp.nu);
 in
 {
   # 开机后自愈。
@@ -185,10 +82,15 @@ in
     description = "Re-initialize CS35L41 speaker amps if firmware load failed";
     after = [ "sound.target" ];
     wantedBy = [ "multi-user.target" ];
+    # NixOS 约定：让 switch-to-configuration 跳过本单元（不因 rebuild/switch 而启停/重启），
+    # 仅由 systemd 在开机（multi-user.target）时拉起。systemd 本身忽略该 X- 字段。
+    unitConfig.X-OnlyManualStart = true;
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${fixup}/bin/cs35l41-amp-fixup";
+      ExecStart = "${fixup}";
       RemainAfterExit = false;
+      # 防止任何情况下卡住调用方（如误在 switch 期间启动）。
+      TimeoutStartSec = "60s";
     };
   };
 
@@ -205,10 +107,13 @@ in
       "hibernate.target"
       "hybrid-sleep.target"
     ];
+    # 同上：switch 时跳过，仅在唤醒（suspend.target 等）时由 systemd 拉起。
+    unitConfig.X-OnlyManualStart = true;
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${fixup}/bin/cs35l41-amp-fixup";
+      ExecStart = "${fixup}";
       RemainAfterExit = false;
+      TimeoutStartSec = "60s";
     };
   };
 }
