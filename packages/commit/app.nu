@@ -6,10 +6,6 @@
 # 其余情况（普通终端、管道）照常流式输出。
 let can_stream = not ((is-terminal --stdout) and (term size).columns == 0)
 
-let emit = {|text|
-    if $can_stream { print -n $text }
-}
-
 def gen_prompt [extra: string] {
     if (git rev-parse --is-inside-work-tree | complete).exit_code != 0 {
         print --stderr "commit: 当前目录不是 git 仓库"
@@ -62,17 +58,36 @@ def gen_prompt [extra: string] {
     ] | str join "\n"
 }
 
-def handle_event [event] {
+def handle_event [state, event] {
+    def delta [str: string] {
+        let x = $str | str replace "\n" ""
+        $x | print -n
+        $state | update line { $in + $x }
+    }
+
+    def newline [str: string] {
+        print ""
+        $str | print -n
+        $state | update line { $str }
+    }
+
+    def noop [] {
+        $state
+    }
+
+    def result [x] {
+        $state | update result { $x }
+    }
+
     match $event.type {
         "message_update" => {
             let delta = $event.assistantMessageEvent
             match $delta.type {
-                "text_delta" => { do $emit $delta.delta }
-                "thinking_delta" => { do $emit $delta.delta }
-                "thinking_start" => { do $emit "\n🧠 " }
-                _ => { }
+                "text_delta" => { delta $delta.delta }
+                "thinking_delta" => { delta $delta.delta }
+                "thinking_start" => { newline "\n🧠 " }
+                _ => { noop }
             }
-            null
         }
         "tool_execution_start" => {
             let arg = (
@@ -82,29 +97,16 @@ def handle_event [event] {
                     | default ($event.args.pattern? | default "")
                 )
             )
-            do $emit $"\n🔧 ($event.toolName) ($arg)\n"
-            null
-        }
-        "tool_execution_end" => {
-            do $emit $"(if $event.isError { '❌' } else { '✅' }) ($event.toolName)\n"
-            null
-        }
-        "compaction_start" => {
-            do $emit "\n🗜  压缩上下文…\n"
-            null
-        }
-        "auto_retry_start" => {
-            do $emit $"\n🔁 重试 ($event.attempt)/($event.maxAttempts)…\n"
-            null
+            newline $"\n🔧 ($event.toolName) ($arg)\n"
         }
         "message_end" => {
             if ($event.message.role? | default "") == "assistant" {
-                $event.message
+                result $event.message
             } else {
-                null
+                result null
             }
         }
-        _ => null
+        _ => { noop }
     }
 }
 
@@ -115,65 +117,23 @@ export def main [...extra: string] {
         print $prompt
     }
 
-    let assistant = (
+    let result = (
         $prompt
         | pi --mode json --no-session --no-skills --tools read,grep,find,ls
         | lines
-        | each {|line|
+        | reduce --fold { line: "", result: null } {|line, state|
             if $env.COMMIT_DEBUG? == "1" {
                 print $line
             }
-
-            let event = try { $line | from json } catch { null }
-            if $event == null {
-                null
-            } else {
-                handle_event $event
-            }
-        }
-        | where {|message| $message != null }
-    )
-
-    let last_message = (
-        if ($assistant | is-empty) { null } else {
-            $assistant | last
+            handle_event state ($line | from json)
         }
     )
 
-    if $last_message != null and (($last_message.stopReason? | default "") == "error") {
-        print --stderr $"\ncommit: agent 出错：($last_message.errorMessage? | default '未知错误')"
+    if $result.result == null {
+        print --stderr $"\ncommit: 未能成功生成"
         exit 1
     }
 
-    let texts = (
-        $assistant
-        | each {|message|
-            $message.content
-            | where {|block| ($block.type? | default "") == "text" }
-            | each {|block| $block.text }
-            | str join "\n"
-        }
-        | where {|text| ($text | str trim) != "" }
-    )
-
-    if ($texts | is-empty) {
-        print --stderr "\ncommit: 无法生成 commit message"
-        exit 1
-    }
-
-    let message = (
-        ($texts | last)
-        | lines
-        | where {|line| not ($line | str trim | str starts-with '```') }
-        | str join "\n"
-        | str trim
-    )
-
-    if $message == "" {
-        print --stderr "\ncommit: 无法生成 commit message"
-        exit 1
-    }
-
-    print $"\n($message)\n"
-    git commit -m $message
+    # git commit -m $result.result
+    print $result.result
 }
