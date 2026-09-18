@@ -557,6 +557,7 @@
         "nixpkgs": "nixpkgs_2",
         "nuschtos-search": "nuschtos-search",
         "plum-nix": "plum-nix",
+        "shell-auto-pi": "shell-auto-pi",
         "sops-nix": "sops-nix",
         "yazi-everforest-medium": "yazi-everforest-medium",
         "zen-browser": "zen-browser"
@@ -601,6 +602,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "shell-auto-pi": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789731165,
+        "narHash": "sha256-4uCYIexWMne2Cg5M8hNQ8Hnu7cCelOZejg/Pe0zC9yA=",
+        "owner": "Lhcfl",
+        "repo": "shell-auto-pi",
+        "rev": "8cd8792cd19a378acee778b4b83d0349c827fa86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "shell-auto-pi",
         "type": "github"
       }
     },

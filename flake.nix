@@ -111,6 +111,9 @@
 
     linquebot_rs.url = "github:Lhcfl/Linquebot_rs";
 
+    shell-auto-pi.url = "github:Lhcfl/shell-auto-pi";
+    shell-auto-pi.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
   };
