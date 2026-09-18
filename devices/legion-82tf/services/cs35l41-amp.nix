@@ -56,6 +56,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -77,43 +78,50 @@ let
   } (builtins.readFile ./cs35l41-amp.nu);
 in
 {
-  # 开机后自愈。
-  systemd.services.cs35l41-amp-fixup = {
-    description = "Re-initialize CS35L41 speaker amps if firmware load failed";
-    after = [ "sound.target" ];
-    wantedBy = [ "multi-user.target" ];
-    # NixOS 约定：让 switch-to-configuration 跳过本单元（不因 rebuild/switch 而启停/重启），
-    # 仅由 systemd 在开机（multi-user.target）时拉起。systemd 本身忽略该 X- 字段。
-    unitConfig.X-OnlyManualStart = true;
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${fixup}";
-      RemainAfterExit = false;
-      # 防止任何情况下卡住调用方（如误在 switch 期间启动）。
-      TimeoutStartSec = "60s";
+  options = {
+    legion-82tf.cs35l41-amp-fix.enable = lib.mkEnableOption "Enable Audio Fix";
+  };
+
+  config = lib.mkIf config.legion-82tf.cs35l41-amp-fix.enable {
+    # 开机后自愈。
+    systemd.services.cs35l41-amp-fixup = {
+      description = "Re-initialize CS35L41 speaker amps if firmware load failed";
+      after = [ "sound.target" ];
+      wantedBy = [ "multi-user.target" ];
+      # NixOS 约定：让 switch-to-configuration 跳过本单元（不因 rebuild/switch 而启停/重启），
+      # 仅由 systemd 在开机（multi-user.target）时拉起。systemd 本身忽略该 X- 字段。
+      unitConfig.X-OnlyManualStart = true;
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${fixup}";
+        RemainAfterExit = false;
+        # 防止任何情况下卡住调用方（如误在 switch 期间启动）。
+        TimeoutStartSec = "60s";
+      };
+    };
+
+    # 休眠/挂起唤醒后自愈（最易触发的场景）。
+    systemd.services.cs35l41-amp-fixup-resume = {
+      description = "Re-initialize CS35L41 speaker amps after resume";
+      after = [
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "systemd-hybrid-sleep.service"
+      ];
+      wantedBy = [
+        "suspend.target"
+        "hibernate.target"
+        "hybrid-sleep.target"
+      ];
+      # 同上：switch 时跳过，仅在唤醒（suspend.target 等）时由 systemd 拉起。
+      unitConfig.X-OnlyManualStart = true;
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${fixup}";
+        RemainAfterExit = false;
+        TimeoutStartSec = "60s";
+      };
     };
   };
 
-  # 休眠/挂起唤醒后自愈（最易触发的场景）。
-  systemd.services.cs35l41-amp-fixup-resume = {
-    description = "Re-initialize CS35L41 speaker amps after resume";
-    after = [
-      "systemd-suspend.service"
-      "systemd-hibernate.service"
-      "systemd-hybrid-sleep.service"
-    ];
-    wantedBy = [
-      "suspend.target"
-      "hibernate.target"
-      "hybrid-sleep.target"
-    ];
-    # 同上：switch 时跳过，仅在唤醒（suspend.target 等）时由 systemd 拉起。
-    unitConfig.X-OnlyManualStart = true;
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${fixup}";
-      RemainAfterExit = false;
-      TimeoutStartSec = "60s";
-    };
-  };
 }
