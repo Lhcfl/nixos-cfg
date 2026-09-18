@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   shell-auto-pi = inputs.shell-auto-pi.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
@@ -8,7 +14,7 @@ in
       nd = "nix develop -c $SHELL";
     };
 
-    functions.fish_command_not_found = ''
+    functions.fish_command_not_found = lib.mkIf config.funkcia.hm.programs.pi.enable ''
       ${lib.getExe shell-auto-pi} auto $argv
     '';
   };
