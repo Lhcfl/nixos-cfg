@@ -12,7 +12,7 @@
   config = lib.mkMerge [
     {
       programs.opencode = {
-        enable = true;
+        enable = config.linca.work.enable;
         settings = {
           plugin = [ "superpowers@git+https://github.com/obra/superpowers.git" ];
           provider.agent-router = {
