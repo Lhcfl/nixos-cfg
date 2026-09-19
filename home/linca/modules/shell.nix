@@ -15,7 +15,11 @@ in
     };
 
     functions.fish_command_not_found = lib.mkIf config.funkcia.hm.programs.pi.enable ''
-      ${lib.getExe shell-auto-pi} auto $argv
+      if status is-interactive
+        ${lib.getExe shell-auto-pi} auto $argv
+      else
+        __fish_default_command_not_found_handler $argv
+      end
     '';
   };
 }
