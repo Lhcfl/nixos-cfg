@@ -27,6 +27,7 @@
       zoxide # `cd` replacement
       helix # `vim` replacement
       fzf # fuzzy finder
+      zellij # terminal multiplexer
       gdu # better `du`
       btop # better htop
     ];
