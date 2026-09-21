@@ -3,6 +3,7 @@
   lib,
   config,
   funkcia-utils,
+  osConfig,
   ...
 }:
 let
@@ -40,15 +41,15 @@ in
             enabled = true;
             timeout = 600;
           };
-          lock-and-suspend = {
-            action = "lock_and_suspend";
-            enabled = true;
-            timeout = 900;
-          };
           screen-off = {
             action = "screen_off";
             enabled = true;
             timeout = 660;
+          };
+          lock-and-suspend = {
+            action = "lock_and_suspend";
+            enabled = osConfig.funkcia.os.laptop.enable; # 笔记本电脑才 lock and suspend; 台式机只锁屏
+            timeout = 900;
           };
         };
 
