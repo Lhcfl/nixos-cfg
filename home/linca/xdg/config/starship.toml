@@ -15,6 +15,7 @@ $git_state\
 $git_metrics\
 $git_status\
 $fill\
+${custom.zellij}\
 $all\
 $time\
 $cmd_duration\
@@ -216,3 +217,8 @@ symbol = " "
 [cmd_duration]
 min_time = 500
 format = ' took [$duration](bold yellow)'
+
+[custom.zellij]
+command = 'printf "🐈"'
+when = 'test -n "$ZELLIJ"'
+description = "You're in a zellij terminal"
