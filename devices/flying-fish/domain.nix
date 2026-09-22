@@ -1,5 +1,5 @@
 { lib, config, ... }: {
-  config.funkcia.server.domain.suffix = "${
+  config.funkcia.os.domain.suffix = "${
     builtins.concatStringsSep "l" [
       "ste"
       "po"
@@ -28,7 +28,7 @@
     };
   };
 
-  config.services.nginx.virtualHosts = lib.pipe config.funkcia.server.domains [
+  config.services.nginx.virtualHosts = lib.pipe config.funkcia.os.domains [
     lib.attrsToList
     (map (
       { value, ... }:
@@ -53,7 +53,7 @@
     lib.mkMerge
   ];
 
-  config.security.acme.certs = lib.pipe config.funkcia.server.domains [
+  config.security.acme.certs = lib.pipe config.funkcia.os.domains [
     lib.attrsToList
     (map (
       { value, ... }:

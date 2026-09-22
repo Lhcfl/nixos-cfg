@@ -5,7 +5,7 @@
   ...
 }:
 let
-  domain = config.funkcia.server.domains.mat.value;
+  domain = config.funkcia.os.domains.mat.value;
   port = 8008;
 
   # ===== 迁移开关（分阶段切换）=====
@@ -33,7 +33,7 @@ in
 
   sops.templates."synapse-secrets.yaml".owner = owner;
 
-  funkcia.server.domains.mat = { };
+  funkcia.os.domains.mat = { };
 
   services.matrix-synapse = {
     enable = enableSynapse;

@@ -1,9 +1,9 @@
 { lib, config, ... }:
 let
-  domain = config.funkcia.server.domains.vw.value;
+  domain = config.funkcia.os.domains.vw.value;
 in
 {
-  funkcia.server.domains.vw = { };
+  funkcia.os.domains.vw = { };
 
   services.vaultwarden = {
     domain = domain;

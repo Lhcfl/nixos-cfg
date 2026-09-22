@@ -1,4 +1,4 @@
-# funkcia.server.的硬件配置。
+# flying-fish 的硬件配置。
 # 由 nixos-generate-config 在该机原本的 Ubuntu 上生成，
 # 已去掉 fileSystems / swapDevices / boot.swraid（这些由 disko 的 disk-config.nix 负责）。
 {

@@ -1,9 +1,9 @@
 { config, ... }:
 let
-  host = config.funkcia.server.domains.write.value;
+  host = config.funkcia.os.domains.write.value;
 in
 {
-  funkcia.server.domains.write = { };
+  funkcia.os.domains.write = { };
 
   services.writefreely = {
     inherit host;

@@ -1,10 +1,10 @@
 { config, ... }:
 let
-  domain = config.funkcia.server.domains."speedtest".value;
+  domain = config.funkcia.os.domains."speedtest".value;
   port = 11451;
 in
 {
-  funkcia.server.domains."speedtest" = { };
+  funkcia.os.domains."speedtest" = { };
 
   services.nginx = {
     enable = true;

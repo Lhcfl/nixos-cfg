@@ -1,5 +1,5 @@
 { config, lib, ... }: {
-  options.funkcia.server = {
+  options.funkcia.os = {
     domain.suffix = lib.mkOption {
       type = lib.types.str;
     };
@@ -10,8 +10,8 @@
           { name, ... }: {
             options.value = lib.mkOption {
               type = lib.types.str;
-              default = "${name}.${config.funkcia.server.domain.suffix}";
-              defaultText = lib.literalMD "`<name>.<funkcia.server.domain.suffix>`";
+              default = "${name}.${config.funkcia.os.domain.suffix}";
+              defaultText = lib.literalMD "`<name>.<funkcia.os.domain.suffix>`";
             };
           }
         )
