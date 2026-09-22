@@ -15,6 +15,7 @@
   funkcia.os = {
     presets.pc.enable = true;
     presets.laptop.enable = true;
+    presets.cn.enable = true;
 
     secure-boot.enable = true;
     gui.hyprland.enable = true;

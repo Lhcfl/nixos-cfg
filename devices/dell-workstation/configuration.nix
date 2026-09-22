@@ -16,6 +16,8 @@
 
   funkcia.os = {
     presets.pc.enable = true;
+    presets.cn.enable = true;
+
     networking.proxy = "http://127.0.0.1:10808";
   };
 

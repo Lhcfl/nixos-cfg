@@ -10,7 +10,6 @@
     # funkcia modules
     funkcia.os = {
       tpm.enable = true;
-      nix-mirrors.enable = true;
       gui = {
         enable = true;
         niri.enable = true;
