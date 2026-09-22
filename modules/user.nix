@@ -26,7 +26,7 @@ in
         ${name} = lib.mkMerge [
           {
             isNormalUser = true;
-            description = "user ${name}";
+            description = lib.mkDefault "user ${name}";
             initialPassword = "change-this-password-after-login";
           }
 
@@ -50,10 +50,8 @@ in
     lib.mkMerge
   ];
 
-  config.nix.settings.trusted-users = lib.pipe cfg [
-    lib.attrsToList
-    (builtins.filter ({ value, ... }: value.is-admin))
-    (map (x: x.name))
+  config.nix.settings.trusted-users = [
+    "@wheel"
   ];
 
   config.services.openssh.settings.AllowUsers = lib.pipe cfg [

@@ -15,11 +15,6 @@
     # 一次装齐所有常见终端的 terminfo，避免以后换终端又踩坑。
     environment.enableAllTerminfo = true;
 
-    nix.settings.trusted-users = [
-      "root"
-      "@wheel"
-    ];
-
     networking.firewall.allowedTCPPorts = [
       80 # HTTP
       443 # HTTPS
