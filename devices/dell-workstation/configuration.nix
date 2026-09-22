@@ -15,7 +15,7 @@
   environment.sessionVariables.NH_OS_FLAKE = "/home/linca/nixos-cfg";
 
   funkcia.os = {
-    preset = "pc";
+    presets.pc.enable = true;
     networking.proxy = "http://127.0.0.1:10808";
   };
 

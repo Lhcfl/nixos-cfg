@@ -4,7 +4,9 @@
   ...
 }:
 {
-  config = lib.mkIf (config.funkcia.os.preset == "pc") {
+  options.funkcia.os.presets.pc.enable = lib.mkEnableOption "这台机器是日用机器";
+
+  config = lib.mkIf config.funkcia.os.presets.pc.enable {
     networking.networkmanager.enable = lib.mkDefault true;
 
     funkcia.os = lib.mkDefault {

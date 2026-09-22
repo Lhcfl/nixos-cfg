@@ -13,7 +13,9 @@
   networking.hostName = "legion-82tf"; # Define your hostname.
 
   funkcia.os = {
-    preset = "pc";
+    presets.pc.enable = true;
+    presets.laptop.enable = true;
+
     secure-boot.enable = true;
     gui.hyprland.enable = true;
 
@@ -21,8 +23,6 @@
       enable = true;
       todDriver = pkgs.libfprint-2-tod1-elan;
     };
-
-    laptop.enable = true;
 
     networking.proxy = "http://127.0.0.1:10808";
   };

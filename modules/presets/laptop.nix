@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.funkcia.os.laptop;
+  cfg = config.funkcia.os.presets.laptop;
 in
 {
-  options.funkcia.os.laptop = {
-    enable = lib.mkEnableOption "标记这台机器为笔记本电脑";
+  options.funkcia.os.presets.laptop = {
+    enable = lib.mkEnableOption "这台机器为笔记本电脑";
 
     using = lib.mkOption {
       type = lib.types.enum [

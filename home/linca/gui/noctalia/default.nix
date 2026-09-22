@@ -48,7 +48,7 @@ in
           };
           lock-and-suspend = {
             action = "lock_and_suspend";
-            enabled = osConfig.funkcia.os.laptop.enable; # 笔记本电脑才 lock and suspend; 台式机只锁屏
+            enabled = osConfig.funkcia.os.presets.laptop.enable; # 笔记本电脑才 lock and suspend; 台式机只锁屏
             timeout = 900;
           };
         };
