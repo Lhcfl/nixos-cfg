@@ -1,10 +1,10 @@
 { config, ... }:
 let
-  domain = config.funkcia.server.domains."mp".value;
+  domain = config.funkcia.os.domains."mp".value;
   port = 3027;
 in
 {
-  funkcia.server.domains.mp = { };
+  funkcia.os.domains.mp = { };
 
   services.misskey-media-proxy = {
     enable = true;
