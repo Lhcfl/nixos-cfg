@@ -42,6 +42,26 @@
 
     programs.ripgrep.enable = true;
 
+    programs.btop = {
+      enable = true;
+      settings = {
+        # 按瞬时 CPU% 严格重排，方便抓发热元凶（默认 "cpu lazy" 列表更稳）
+        proc_sorting = "cpu direct";
+        # 树状显示，看清 Nix wrapper 底下的真实进程
+        proc_tree = true;
+        # 关掉透明化
+        proc_gradient = false;
+        # 聚合 process 资源
+        proc_aggregate = true;
+        # 隐藏 kworker 之类的内核线程
+        proc_filter_kernel = true;
+        # 四个框都显示（尤其 mem）
+        shown_boxes = "cpu mem net proc";
+        # 配置由 home-manager 管理，不要让 btop 退出时回写只读文件
+        save_config_on_exit = false;
+      };
+    };
+
     # programs.atuin.enable = true;
   };
 }

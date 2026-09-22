@@ -6,7 +6,6 @@
 {
   imports = [
     ./hardware.nix
-    ./packages.nix
     (funkcia-utils.files.mkDirModule ./services)
     (funkcia-utils.files.mkDirModule ./users)
   ];
