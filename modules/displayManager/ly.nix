@@ -4,12 +4,15 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.funkcia.os.displayManager.ly;
+in
 {
-  options.funkcia.os.dm.ly = {
+  options.funkcia.os.displayManager.ly = {
     enable = lib.mkEnableOption "ly module, which is a TUI login manager (or display manager).";
   };
 
-  config = lib.mkIf config.funkcia.os.dm.ly.enable {
+  config = lib.mkIf cfg.enable {
     services.displayManager.ly = {
       settings = {
         animation = "dur_file";

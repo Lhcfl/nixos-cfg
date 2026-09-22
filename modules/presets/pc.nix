@@ -14,7 +14,7 @@
         enable = true;
         niri.enable = true;
       };
-      dm.noctalia-greeter.enable = true;
+      displayManager.noctalia-greeter.enable = true;
     };
 
     # 使用 network manager

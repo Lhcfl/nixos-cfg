@@ -4,12 +4,15 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.funkcia.os.displayManager.noctalia-greeter;
+in
 {
-  options.funkcia.os.dm.noctalia-greeter = {
+  options.funkcia.os.displayManager.noctalia-greeter = {
     enable = lib.mkEnableOption "noctalia-greeter module, which is a TUI login manager (or display manager).";
   };
 
-  config = lib.mkIf config.funkcia.os.dm.noctalia-greeter.enable {
+  config = lib.mkIf cfg.enable {
     services.accounts-daemon.enable = true;
 
     services.displayManager.noctalia-greeter = {
