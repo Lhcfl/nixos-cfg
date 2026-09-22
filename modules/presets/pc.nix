@@ -7,9 +7,8 @@
   options.funkcia.os.presets.pc.enable = lib.mkEnableOption "这台机器是日用机器";
 
   config = lib.mkIf config.funkcia.os.presets.pc.enable {
-    networking.networkmanager.enable = lib.mkDefault true;
-
-    funkcia.os = lib.mkDefault {
+    # funkcia modules
+    funkcia.os = {
       tpm.enable = true;
       nix-mirrors.enable = true;
       gui = {
@@ -19,21 +18,23 @@
       dm.noctalia-greeter.enable = true;
     };
 
-    services.displayManager.sddm.settings = lib.mkDefault {
-      General = {
-        GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell,QT_SCALE_FACTOR=1.5";
-      };
-    };
+    # 使用 network manager
+    networking.networkmanager.enable = true;
 
-    services.accounts-daemon.enable = lib.mkDefault true;
-    services.blueman.enable = lib.mkDefault true;
-    services.flatpak.enable = lib.mkDefault true;
+    # accounts daemon 管理用户相关配置
+    services.accounts-daemon.enable = true;
 
-    programs.steam.enable = lib.mkDefault true;
-
-    hardware.bluetooth = lib.mkDefault {
+    # 蓝牙
+    services.blueman.enable = true;
+    hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
     };
+
+    # flatpak 非 Nix 软件的安装
+    services.flatpak.enable = true;
+
+    # 游戏
+    programs.steam.enable = true;
   };
 }
