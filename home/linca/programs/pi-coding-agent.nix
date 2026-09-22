@@ -30,6 +30,7 @@
       (lib.mkIf (config.linca.sops.enable) {
         sops.secrets.deepseek-api-key = { };
         sops.secrets.zai-cn-api-key = { };
+        sops.secrets.mimo-api-key = { };
 
         funkcia.hm.programs.pi.auth = {
           deepseek = {
@@ -39,6 +40,10 @@
           zai-coding-cn = {
             type = "api_key";
             key-path = config.sops.secrets."zai-cn-api-key".path;
+          };
+          xiaomi = {
+            type = "api_key";
+            key-path = config.sops.secrets."mimo-api-key".path;
           };
         };
       })

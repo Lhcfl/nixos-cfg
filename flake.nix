@@ -101,6 +101,7 @@
 
     nuschtos-search.url = "github:NuschtOS/search";
     nuschtos-search.inputs.nixpkgs.follows = "nixpkgs";
+    nuschtos-search.inputs.nix-index-database.follows = "nix-index-database";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
