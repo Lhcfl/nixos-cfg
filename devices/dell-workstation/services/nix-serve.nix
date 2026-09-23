@@ -35,7 +35,7 @@ in
   };
 
   services.nix-serve = {
-    enable = true;
+    enable = false;
     package = pkgs.nix-serve-ng;
     openFirewall = true;
     secretKeyFile = secretKeyFile;
