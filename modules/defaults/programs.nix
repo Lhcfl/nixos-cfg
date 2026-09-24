@@ -36,6 +36,7 @@
 
     htop
     openssl
+    jq
     funkcia.run0-gui
   ];
 }

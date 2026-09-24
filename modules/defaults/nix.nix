@@ -34,10 +34,12 @@
       # my substituter
       substituters = [
         "https://lhcfl.cachix.org"
+        "https://nix-community.cachix.org"
       ];
 
       trusted-public-keys = [
         "lhcfl.cachix.org-1:hf4kin1zCbaeLWygZlwhYms/oqB0I8/8ZZsPkezpFms="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
 
@@ -48,6 +50,9 @@
       dates = "Sun 19:00";
       randomizedDelaySec = "45min";
     };
+
+    settings.auto-optimise-store = true;
+    optimise.automatic = true;
 
     # use lix
     package = pkgs.lixPackageSets.stable.lix;

@@ -39,9 +39,28 @@
       binfmt = true;
     };
 
+    # PipeWire is a relatively new (first release in 2017) low-level multimedia framework.
+    # rtkit is optional but recommended
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+    };
+
     # 游戏
     programs.steam.enable = true;
 
+    # 固件更新
+    services.fwupd.enable = true;
+
+    # 供桌面自动挂载 U 盘/移动盘
+    services.udisks2.enable = true;
+
+    # xdg user dir
     environment.systemPackages = with pkgs; [
       xdg-user-dirs
     ];

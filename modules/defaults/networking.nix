@@ -65,5 +65,10 @@ in
       firewall.enable = true;
       nftables.enable = true;
     };
+
+    # TODO
+    # services.resolved.enable = true;
+    # services.resolved.dnsovertls = true;
+    # networking.networkmanager.dns = "systemd-resolved"
   };
 }

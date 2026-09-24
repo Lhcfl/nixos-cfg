@@ -22,5 +22,8 @@
 
     systemd.network.enable = lib.mkDefault true;
     networking.useDHCP = false; # server's ip ususally is manually configured
+
+    # 把中断分散到多核
+    services.irqbalance.enable = true;
   };
 }
