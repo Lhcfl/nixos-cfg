@@ -49,7 +49,7 @@ in
         default = cfg.proxy;
         noProxy = lib.concatStringsSep "," cfg.noProxy;
         envVars.HTTP_PROXY = cfg.proxy;
-        envVars.HTTP_PROXYS = cfg.proxy;
+        envVars.HTTPS_PROXY = cfg.proxy;
         envVars.NO_PROXY = lib.concatStringsSep "," cfg.noProxy;
       };
 
