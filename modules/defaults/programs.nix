@@ -1,43 +1,45 @@
 { pkgs, ... }:
 {
-  # Some programs need SUID wrappers, can be configured further or are
-  programs = {
-    # allow appimage
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-
-    # nix-ld helps you to run non-nix executables in a nix environment
-    # https://nix.dev/guides/faq#how-to-run-non-nix-executables
-    nix-ld = {
-      enable = true;
-      # libraries = with pkgs; [ ];
-    };
-
-    # traceroute and ping
-    mtr.enable = true;
-
-    #gunpg
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = false; # ssh agent
-    };
-
-    # use default ssh agent
-    ssh.startAgent = true;
-
-    neovim.enable = true;
+  # allow appimage
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
   };
 
-  # system wide packages.
-  # to search run `nix search wget`
+  # nix-ld helps you to run non-nix executables in a nix environment
+  # https://nix.dev/guides/faq#how-to-run-non-nix-executables
+  programs.nix-ld = {
+    enable = true;
+    # libraries = with pkgs; [ ];
+  };
+
+  # traceroute and ping
+  programs.mtr.enable = true;
+
+  #gunpg
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = false; # ssh agent
+  };
+
+  # use default ssh agent
+  programs.ssh.startAgent = true;
+
+  programs.neovim.enable = true;
+
+  programs.nh.enable = true;
+
+  programs.git.enable = true;
+
   environment.systemPackages = with pkgs; [
     wget
-    git
     bun # js runtime
+
+    # 压缩文件
+    zip
     unzip
-    p7zip # 7z
+    unar
+
     htop
     openssl
     funkcia.run0-gui

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -35,5 +36,9 @@
 
     # 游戏
     programs.steam.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      xdg-user-dirs
+    ];
   };
 }
