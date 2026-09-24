@@ -1,11 +1,5 @@
 { pkgs, ... }:
 {
-  # allow appimage
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
-
   # nix-ld helps you to run non-nix executables in a nix environment
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
   programs.nix-ld = {

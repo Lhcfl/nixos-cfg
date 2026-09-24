@@ -16,6 +16,8 @@
         niri.enable = true;
       };
       displayManager.noctalia-greeter.enable = true;
+      # flatpak 非 Nix 软件的安装
+      flatpak.enable = true;
     };
 
     # 使用 network manager
@@ -31,8 +33,11 @@
       powerOnBoot = true;
     };
 
-    # flatpak 非 Nix 软件的安装
-    services.flatpak.enable = true;
+    # allow appimage
+    programs.appimage = {
+      enable = true;
+      binfmt = true;
+    };
 
     # 游戏
     programs.steam.enable = true;
