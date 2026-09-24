@@ -26,6 +26,8 @@ in
   options.funkcia.os.flatpak.enable = lib.mkEnableOption "flatpak";
 
   config = lib.mkIf cfg.enable {
+    services.flatpak.enable = true;
+
     # 不能软链接，flatpak 访问不到
     fileSystems."/usr/share/icons" = mkRoSymBind (config.system.path + "/share/icons");
     fileSystems."/usr/share/fonts" = mkRoSymBind (aggregatedFonts + "/share/fonts");
