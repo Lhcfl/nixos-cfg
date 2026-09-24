@@ -20,7 +20,8 @@
       443 # HTTPS
     ];
 
-    systemd.network.enable = lib.mkDefault true;
+    networking.useNetworkd = true;
+    systemd.network.enable = true;
     networking.useDHCP = false; # server's ip ususally is manually configured
 
     # 把中断分散到多核

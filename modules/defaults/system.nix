@@ -29,6 +29,12 @@ in
       # zswap 是一个内核功能，它为交换页提供了一个压缩的内存缓存。
       boot.zswap.enable = true;
 
+      # panic 后 60s 自动重启；
+      boot.kernelParams = [
+        "panic=60"
+        "drm.panic_screen=qr_code"
+      ];
+
       # OOM Killer
       systemd.oomd = {
         enable = true;

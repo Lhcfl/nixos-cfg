@@ -54,21 +54,20 @@ in
       };
 
       nameservers = [
-        "1.1.1.1"
-        "8.8.8.8"
+        "1.1.1.1#one.one.one.one"
+        "8.8.8.8#dns.google"
       ];
-
-      # Open ports in the firewall.
-      # networking.firewall.allowedTCPPorts = [ ... ];
-      # networking.firewall.allowedUDPPorts = [ ... ];
 
       firewall.enable = true;
       nftables.enable = true;
     };
 
-    # TODO
-    # services.resolved.enable = true;
-    # services.resolved.dnsovertls = true;
-    # networking.networkmanager.dns = "systemd-resolved"
+    # systemd-resolved DNS
+    services.resolved = {
+      enable = true;
+      settings.Resolve.DNSOverTLS = true;
+    };
+
+    networking.networkmanager.dns = "systemd-resolved";
   };
 }
