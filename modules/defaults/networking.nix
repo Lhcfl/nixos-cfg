@@ -63,11 +63,7 @@ in
     };
 
     # systemd-resolved DNS
-    services.resolved = {
-      enable = true;
-      settings.Resolve.DNSOverTLS = true;
-    };
-
+    services.resolved.enable = true;
     networking.networkmanager.dns = "systemd-resolved";
   };
 }
