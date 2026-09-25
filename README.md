@@ -6,6 +6,7 @@
 
 ## 路径约定
 
+<!-- dprint-ignore-start -->
 <!-- BEGIN_GEN_README_TREE -->
 
 | # |                       path                        |                                  description                                  |
@@ -23,12 +24,14 @@
 
 
 <!-- END_GEN_README_TREE -->
+<!-- dprint-ignore-end -->
 
 
 ## 名称约定
 
-`funkcia.os.xxx` 存放 NixOS 范围的配置
-`funkcia.hm.xxx` 存放 Home Manager 模块的配置
+- `funkcia.os.xxx` 存放 NixOS 范围的配置
+
+- `funkcia.hm.xxx` 存放 Home Manager 模块的配置
 
 ## Installation Documentations
 
