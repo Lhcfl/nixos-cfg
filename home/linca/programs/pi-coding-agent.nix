@@ -23,6 +23,7 @@
             "npm:@pi-unipi/notify"
             "npm:@agnishc/edb-session-manager"
             "npm:pi-interactive-shell"
+            "npm:pi-commandcode-provider"
           ];
         };
       }
@@ -31,6 +32,7 @@
         sops.secrets.deepseek-api-key = { };
         sops.secrets.zai-cn-api-key = { };
         sops.secrets.mimo-api-key = { };
+        sops.secrets.command-code-api-key = { };
 
         funkcia.hm.programs.pi.auth = {
           deepseek = {
@@ -44,6 +46,10 @@
           xiaomi = {
             type = "api_key";
             key-path = config.sops.secrets."mimo-api-key".path;
+          };
+          command-code = {
+            type = "api_key";
+            key-path = config.sops.secrets."command-code-api-key".path;
           };
         };
       })
