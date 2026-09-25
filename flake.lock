@@ -424,11 +424,11 @@
         "rime-prelude": "rime-prelude"
       },
       "locked": {
-        "lastModified": 1786104973,
-        "narHash": "sha256-dJRlobdi5fHUtWY0phrcdJoABUC84+kxUj5v7tLl/FM=",
+        "lastModified": 1790330885,
+        "narHash": "sha256-5efrNms30oBy6FIoN88rJk/kZDnosfvoHYVX6fYSdcg=",
         "owner": "Lhcfl",
         "repo": "plum-nix",
-        "rev": "659f2bd47ffd4a1771c088940e0a1ebe4166f8cb",
+        "rev": "47194b44e887388111b175d28acd1a7cf20dd241",
         "type": "github"
       },
       "original": {
@@ -479,11 +479,11 @@
     "rime-essay": {
       "flake": false,
       "locked": {
-        "lastModified": 1783954308,
-        "narHash": "sha256-WPutZuxoLQfNk0devhGb2ooAZ7zJt0Ta7OiUtuveJ00=",
+        "lastModified": 1790160623,
+        "narHash": "sha256-K98ezXSFQYxcEUZ2EzTZwdA+JljAgrsGax4Wth73F80=",
         "owner": "rime",
         "repo": "rime-essay",
-        "rev": "e9b1a374a6ea015fca5bdd04318924b4483ac35a",
+        "rev": "054920de4f54c9e5994276a96a4fc2a35cb51aa3",
         "type": "github"
       },
       "original": {

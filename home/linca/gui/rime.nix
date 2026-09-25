@@ -11,7 +11,6 @@ in
 {
   plum-nix = lib.mkIf config.funkcia.hm.gui.enable {
     enable = true;
-    type = "fcitx5";
 
     schemas = [
       "luna_pinyin_simp"
