@@ -4,7 +4,13 @@
       "Shell(git:*)",
       "Shell(nix:*)",
       "Shell(nh:*)",
-      "Shell(fd:*)"
+      "Shell(fd:*)",
+      "Shell(rg:*)",
+      "Shell(sed:*)",
+      "Shell(eza:*)",
+      "Shell(mv:*)",
+      "Shell(nu:*)",
+      "Shell(grep:*)"
     ],
     "deny": [],
     "defaultMode": "default"

@@ -5,108 +5,131 @@ description: Guides creating a NixOS / Home Manager `mkOption` by reusing existi
 
 # Write Option
 
-When creating a Nix option, DO NOT invent a type or a serializer. nixpkgs already ships
-the right primitives. This skill encodes the lessons from a real mistake: writing a
-`settings` option as `lib.types.lines` (raw text) for a format that already had a native
-Nix type and generator.
+写 option 的目的，是让**同一份配置被多处复用**。所以先判断该不该写，再照仓库既有
+风格去写，最后求值验证。
 
-## The core lesson
+## 1. 先确认必要性
 
-Before writing an option, **check what nixpkgs already provides**:
+- 只有当同一份配置**明确至少有两处复用**（两台设备、两个用户，或同一模块内两份重复
+  配置）时，才值得抽成 option。
+- 只有一处使用 → **不要**写 option，直接写在该设备的 `configuration.nix` 或用户的
+  `home.nix` 里。
 
-1. `lib.types.*` — for the **option type** (validates the value).
-2. `pkgs.formats.<fmt> {}` — gives you a **paired `.type` and `.generate`** so the
-   option's type and the serializer stay consistent.
+命名空间见 `AGENTS.md`：`funkcia.os.*`（NixOS 范围）、`funkcia.hm.*`（Home Manager
+范围）、用户级用 `<username>.*`。
 
-These are meant to be used together. Use that pairing; never hand-roll a converter or
-fall back to generic types (`anything`, `str`, `coercedTo`) when a real type exists.
+## 2. 读现有 module，照它的风格写
 
-## Step 1: Search before you build
+不要凭空设计。先找到同类模块，跟着它的写法来：
 
 ```bash
-# Is there an existing nixpkgs option for this program?
-nh search options {program-name} --scope=home-manager   # or --scope=nixpkgs
-
-# Does a format type exist?
-# In-repo: search for existing usage to follow module conventions
-rg "formats\." modules/ home/ --type nix | head
+rg -l 'mkEnableOption|mkOption' modules home --type nix
+rg -n 'funkcia\.(os|hm)\.' modules home --type nix | head
 ```
 
-## Step 2: Pick the right type for the data shape
+可参考的范本：
 
-- Program config already has a real type → use `pkgs.formats.<fmt> {}.type`
-  (e.g. `toml`, `json`, `yaml`, `ini`, `nixconf`). Check what actually exists:
-  ```bash
-  nix eval --json --impure --expr 'let pkgs = import <nixpkgs> {}; in builtins.attrNames pkgs.formats'
-  ```
-- Plain list of lines → `lib.types.lines` (only when no format converter applies, e.g. KDL).
-- Boolean switch → `lib.mkEnableOption "..."`.
-- String/int/bool/etc. → the specific `lib.types.{str,int,bool}`.
+- NixOS 开关：`modules/btrbk.nix`、`modules/flatpak.nix`、`modules/gui/default.nix`
+- Home Manager 开关（`enable` 默认跟随 `osConfig`）：
+  `home/modules/gui/gui.nix`、`home/modules/gui/umbriel.nix`
+- 结构化 `settings`（配 `pkgs.formats`）：`home/modules/gui/noctalia.nix`
+- 子模块 / 自由格式：`home/modules/programs/pi.nix`、`modules/user.nix`
+- 用户级开关：`home/linca/modules/work.nix`
 
-Choose the most specific type. `lib.types.anything` and `lib.types.str` are last resorts.
-
-## Step 3: Use the paired generator
-
-Define the format once, use both `.type` and `.generate`:
+骨架与风格：
 
 ```nix
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
-  cfg = config.funkcia.hm.gui.foo;
-  toml = pkgs.formats.toml { };   # or json { }, yaml { }, ini { }, ...
+  cfg = config.funkcia.os.xxx;          # 或 config.funkcia.hm.xxx / config.<username>.xxx
 in
 {
-  options.funkcia.hm.gui.foo = {
-    settings = lib.mkOption {
-      type = toml.type;           # validates the attrset
-      default = { };
-      description = "Config for foo.";
-    };
+  options.funkcia.os.xxx = {
+    enable = lib.mkEnableOption "一句话说明这个开关做什么";
   };
 
   config = lib.mkIf cfg.enable {
-    xdg.configFile."foo/config.toml".source = toml.generate "foo-config.toml" cfg.settings;
+    # ...
   };
 }
 ```
 
-`.type` and `.generate` describe the **same** value, so they stay in sync automatically.
+- `enable` 用 `lib.mkEnableOption`；需要默认跟随上游时用
+  `lib.mkEnableOption "..." // { default = osConfig... or false; defaultText = lib.literalExpression "..."; }`。
+- `description` 写清楚用途；能给出 `example` 就给。
 
-## Step 4: Know the conversions you get for free
+## 3. 确认 option 的类型，不要造轮子
 
-`pkgs.formats.<fmt>` (backed by `lib.generators.toTOML`/`json2x` etc.) convert:
-
-- nested attrset → table (`{ theme.mode = "dark"; }` → `[theme]\nmode = "dark"`)
-- list of attrsets → array of tables (`[ { name = "clock"; } ]` → `[[...]]`)
-- lists of scalars / basic scalars → plain values
-
-## Step 5: Verify with `evalModules`
-
-Test the option's type is actually enforced and generation works. Do NOT just trust the
-standalone `.type.check` (it can be lenient); run it through the module system:
+先搜有没有现成的选项，再决定类型：
 
 ```bash
-nix eval --json --impure --expr '
-let
-  pkgs = import (builtins.getFlake (toString ./.)).inputs.nixpkgs {};
-  lib = pkgs.lib;
-  res = lib.evalModules {
-    modules = [
-      { options.xdg.configFile = lib.mkOption { type = lib.types.attrsOf lib.types.anything; default = {}; }; }
-      ./path/to/module.nix
-      { funkcia.hm.gui.foo = { enable = true; settings = { theme.mode = "dark"; }; }; }
-    ];
-    specialArgs = { inherit pkgs; osConfig = { programs.foo.enable = true; }; };
-  };
-in (builtins.toJSON (builtins.mapAttrs (k: v: v.text or (builtins.readFile v.source)) res.config.xdg.configFile))'
+nh search options {keyword} --scope=home-manager   # 或 --scope=nixpkgs
 ```
 
-Check it produces the expected output and that invalid values fail.
+类型选择（优先用最具体的，`anything` / 裸 `str` 是最后手段）：
 
-## Checklist (use this every time)
+- 程序的结构化配置 → `pkgs.formats.<fmt> { }.type`，并配 `.generate` 一起用，例如
+  `inherit (toml) type;`（见 `noctalia.nix`）。现有格式：`json`、`toml`、`yaml`、
+  `yaml_1_1`、`yaml_1_2`、`ini`、`iniWithGlobalSection`、`gitIni`、`nixConf`。
+- KDL → 用 `inputs.nix-kdl.kdl` 的 `kdl.formats.v1 [ ... ]`，**不是** `lib.types.lines`。
+- 需要跨模块拼接的纯文本 → `lib.types.lines`（仅此场景）。
+- 开关 → `lib.mkEnableOption`；标量 → `lib.types.{str,int,bool,port,path,…}`。
+- 自定义结构 → `lib.types.attrsOf (lib.types.submodule { … })`，需要透传额外键时加
+  `freeformType = lib.types.attrsOf lib.types.anything;`。
 
-- [ ] Searched for an existing option / format before writing.
-- [ ] Used the most specific `lib.types.*` available — not a generic fallback.
-- [ ] Used `pkgs.formats.<fmt> {}.type` + `.generate` as a pair when a format applies.
-- [ ] Confirmed `mkMerge`/`mapAttrs'` structure is nested correctly (bad nesting is the #1 silent bug).
-- [ ] Verified via `evalModules`, not just a happy-path hunch.
+库函数 / 类型拿不准时，用 noogle 查（配合 agent-browser）：
+
+```bash
+agent-browser open 'https://noogle.dev/q/?term=submodule' \
+  && agent-browser wait 2000 \
+  && agent-browser get text body
+```
+
+## 4. 用 test-module 求值验证
+
+写完用仓库自带的隔离求值脚本确认它能求值、类型能生效：
+
+```bash
+nu scripts/test-module/app.nu /tmp/example.nix
+```
+
+harness 只注入 `pkgs` 和 `lib`，所以：
+
+- 只依赖 `pkgs`/`lib` 的模块，直接把模块写进 `/tmp/example.nix` 就能测。
+- 依赖 `osConfig`、`inputs` 或别的模块选项时，在**同一个输入文件**里用 `imports` 拼
+  上「目标模块 + 最小 stub + 用例」。注意：一个 module 里一旦出现 `options`，就不能
+  在顶层再放 `_module` 之类的属性，`_module.args` 必须单独放一个 module。
+
+已实测可用的例子：
+
+```nix
+{
+  imports = [
+    (_: {
+      _module.args.osConfig = {
+        programs.umbriel.enable = true;
+      };
+    })
+    ({ lib, ... }: {
+      options.xdg.configFile = lib.mkOption {
+        type = lib.types.attrsOf lib.types.anything;
+        default = { };
+      };
+      options.services.polkit-gnome.enable = lib.mkEnableOption "polkit gnome";
+    })
+    ./home/modules/gui/umbriel.nix
+    {
+      funkcia.hm.gui.umbriel.settings.general.autostart = [ "noctalia" ];
+    }
+  ];
+}
+```
+
+不要用 `nix eval --expr` 手搓求值——容易写错，也没有必要。
+
+## Checklist
+
+- [ ] 至少两处复用才写 option；只有一处就直接写在设备/用户配置里。
+- [ ] 照着同类现有 module 的风格写（`options.` + `lib.mkIf cfg.enable`）。
+- [ ] 搜过现成的 option 与类型，没有再自己定义。
+- [ ] 用 `nu scripts/test-module/app.nu` 求值通过。
