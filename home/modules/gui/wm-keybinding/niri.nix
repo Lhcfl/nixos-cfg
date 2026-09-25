@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.funkcia.hm.gui.wm-keybinding;
-  match = str: defs: if defs ? ${str} then defs.${str} else defs.default;
+  match = str: defs: defs.${str} or defs.default;
 in
 {
   config.funkcia.hm.gui.niri.settings = lib.mkIf cfg.niri.enable (
@@ -25,11 +25,11 @@ in
         }:
         let
           key = bind;
-          n = niri.n;
+          inherit (niri) n;
           body = map (
             { name, value }:
             match name {
-              spawn = lib.foldl (f: x: f x) (n "spawn") value;
+              spawn = lib.foldl (f: f) (n "spawn") value;
               spawn-sh = n "spawn-sh" value;
               focus-workspace = n "focus-workspace" value;
               focus-window-relative = match value {
@@ -66,7 +66,7 @@ in
           ) actions;
 
           params = lib.foldl (acc: x: acc // x) { } [
-            (if allow-when-locked != false then { allow-when-locked = allow-when-locked; } else { })
+            (if allow-when-locked != false then { inherit allow-when-locked; } else { })
             (if title != null then { hotkey-overlay-title = title; } else { })
           ];
         in

@@ -6,7 +6,7 @@ in
   funkcia.os.domains.vw = { };
 
   services.vaultwarden = {
-    domain = domain;
+    inherit domain;
     enable = true;
     configureNginx = true;
     dbBackend = "sqlite";

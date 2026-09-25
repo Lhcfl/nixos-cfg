@@ -56,7 +56,7 @@ in
         home.file.".pi/agent/auth.json".text = lib.pipe cfg.auth [
           (lib.mapAttrs (
             _: value: {
-              type = value.type;
+              inherit (value) type;
               key = "!cat \"${value.key-path}\"";
             }
           ))

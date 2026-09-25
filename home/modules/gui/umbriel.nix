@@ -14,7 +14,7 @@ in
   options.funkcia.hm.gui.umbriel = {
     settings = lib.mkOption {
       default = { };
-      type = toml.type;
+      inherit (toml) type;
       description = "lines of umbriel config parts";
     };
   };

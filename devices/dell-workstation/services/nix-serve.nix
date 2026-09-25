@@ -38,6 +38,6 @@ in
     enable = false;
     package = pkgs.nix-serve-ng;
     openFirewall = true;
-    secretKeyFile = secretKeyFile;
+    inherit secretKeyFile;
   };
 }

@@ -26,8 +26,7 @@ in
       cfg = config.funkcia.hm.ricing.transparency;
     in
     lib.mkIf cfg.enable {
-      funkcia.hm.gui.niri.settings = (
-        with kdl.extras.niri;
+      funkcia.hm.gui.niri.settings = with kdl.extras.niri;
         kdl.formats.v1 [
           (window-rule [
             (match { app-id = "code"; })
@@ -39,8 +38,7 @@ in
               (blur true)
             ])
           ])
-        ]
-      );
+        ];
 
       programs.alacritty.settings.window.opacity = cfg.opacity * 0.9;
       programs.kitty.settings.background_opacity = cfg.opacity * 0.9;

@@ -10,7 +10,7 @@ let
   maybeSecretOption =
     description:
     let
-      types = lib.types;
+      inherit (lib) types;
     in
     lib.mkOption {
       description = ''
@@ -112,7 +112,7 @@ in
           };
         })
 
-        (lib.mkIf (config.systemd.network.enable) {
+        (lib.mkIf config.systemd.network.enable {
           sops.templates = lib.pipe cfg.v4 [
             lib.attrsToList
             (map (

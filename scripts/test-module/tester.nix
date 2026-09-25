@@ -1,7 +1,7 @@
 let
   flake = builtins.getFlake (toString ../..);
   inherit (flake.inputs) nixpkgs;
-  lib = nixpkgs.lib;
+  inherit (nixpkgs) lib;
   pkgs = import nixpkgs { system = "x86_64-linux"; };
 in
 (lib.evalModules {

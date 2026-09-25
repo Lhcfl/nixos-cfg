@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.funkcia.hm.gui.wm-keybinding;
-  match = str: defs: if defs ? ${str} then defs.${str} else defs.default;
+  match = str: defs: defs.${str} or defs.default;
 in
 {
   config.funkcia.hm.gui.umbriel.settings.keybinds = lib.mkIf cfg.umbriel.enable (

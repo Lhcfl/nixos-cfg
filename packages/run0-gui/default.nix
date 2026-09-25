@@ -5,7 +5,7 @@ in
 {
   perSystem = { pkgs, config, ... }: {
     packages.${name} = pkgs.writeShellApplication {
-      name = name;
+      inherit name;
       text = ''
         exec run0 \
           --setenv=DISPLAY="$DISPLAY" \

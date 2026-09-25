@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf (config.linca.work.enable) (
+  config = lib.mkIf config.linca.work.enable (
     lib.mkMerge [
       {
         home.packages = [
@@ -28,7 +28,7 @@
         };
       }
 
-      (lib.mkIf (config.linca.sops.enable) {
+      (lib.mkIf config.linca.sops.enable {
         sops.secrets.deepseek-api-key = { };
         sops.secrets.zai-cn-api-key = { };
         sops.secrets.mimo-api-key = { };

@@ -26,7 +26,7 @@
         lib.pipe fs [
           (map builtins.functionArgs)
           (map lib.attrsToList)
-          (builtins.concatLists)
+          builtins.concatLists
           lib.listToAttrs
         ];
 

@@ -147,7 +147,7 @@ in
         # `withFFmpeg` wiring, and enable VA-API hardware decoding via prefs.
         zen-browser =
           let
-            unwrapped = (inputs.zen-browser.packages.${system}.zen-browser-unwrapped).overrideAttrs (old: {
+            unwrapped = inputs.zen-browser.packages.${system}.zen-browser-unwrapped.overrideAttrs (old: {
               __intentionallyOverridingVersion = true;
               version = "155.0.1";
               passthru = (old.passthru or { }) // { withFFmpeg = true; };

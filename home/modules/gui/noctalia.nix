@@ -21,7 +21,7 @@ in
     };
 
     settings = lib.mkOption {
-      type = toml.type;
+      inherit (toml) type;
       default = { };
       example = {
         theme.mode = "dark";
@@ -90,7 +90,7 @@ in
                 '';
               };
               settings = lib.mkOption {
-                type = toml.type;
+                inherit (toml) type;
                 description = ''
                   bar 的设置
                 '';
@@ -154,13 +154,13 @@ in
                   idx:
                   data@{ type, ... }:
                   {
-                    idx = idx;
+                    inherit idx;
                     id =
                       if type == "group" then
                         "group:${path}-g${toString idx}"
                       else
                         "${name}-${path}-${toString idx}--${type}";
-                    data = data;
+                    inherit data;
                   }
                 ) arr;
 
@@ -189,7 +189,7 @@ in
                     inherit (collectWidgets' "${path}-g${toString idx}" data.members) widgets results;
                   in
                   {
-                    widgets = widgets;
+                    inherit widgets;
                     data = (removeAttrs data [ "type" ]) // {
                       id = "${path}-g${toString idx}";
                       members = results;

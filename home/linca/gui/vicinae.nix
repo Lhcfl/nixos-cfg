@@ -13,7 +13,7 @@ in
     systemd.enable = true;
   };
 
-  funkcia.hm.gui.niri.settings = lib.mkIf (config.programs.vicinae.enable) (
+  funkcia.hm.gui.niri.settings = lib.mkIf config.programs.vicinae.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
       (layer-rule [
