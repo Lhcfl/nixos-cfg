@@ -1,5 +1,5 @@
 <!-- This documentation is AUTO-GENERATED -->
-<!-- by  -->
+<!-- by nix build .#funkcia-options-doc-md && install -m0644 result docs.md -->
 <!-- NEVER EDIT this documentation -->
 # NixOS Modules
 ## funkcia\.os\.btrbk\.home\.enable
