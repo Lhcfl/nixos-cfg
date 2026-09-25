@@ -1,3 +1,6 @@
+<!-- This documentation is AUTO-GENERATED -->
+<!-- by  -->
+<!-- NEVER EDIT this documentation -->
 # NixOS Modules
 ## funkcia\.os\.btrbk\.home\.enable
 

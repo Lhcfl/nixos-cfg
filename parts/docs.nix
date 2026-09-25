@@ -95,7 +95,12 @@
               ];
         in
         pkgs.runCommand "docs.md" { } ''
+          echo "<!-- This documentation is AUTO-GENERATED -->" > $out
+          echo "<!-- by `nix build .#funkcia-options-doc-md && install -m0644 result docs.md` -->" >> $out
+          echo "<!-- NEVER EDIT this documentation -->" >> $out
+
           ${builtins.concatStringsSep "\n" (map genMarkdown list)}
+
           substituteInPlace $out ${
             lib.concatMapStrings (
               { from, to }: "--replace-fail ${lib.escapeShellArg from} ${lib.escapeShellArg to} "
