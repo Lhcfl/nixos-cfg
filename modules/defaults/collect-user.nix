@@ -3,22 +3,17 @@
   config,
   ...
 }:
-let
-  eachHomeManagerUser =
-    f:
-    lib.pipe config.home-manager.users [
-      (lib.attrsToList)
-      (map f)
-    ];
-in
 {
-  config.systemd.tmpfiles.rules = builtins.filter (x: x != null) (
-    eachHomeManagerUser (
-      { name, value }:
-      if (value.funkcia.avatar != null) then
-        "L+ /var/lib/AccountsService/icons/${name} - - - - ${value.funkcia.avatar}"
-      else
-        null
-    )
-  );
+  config.systemd.tmpfiles.settings.funkcia-users = lib.pipe config.home-manager.users [
+    (lib.attrsets.filterAttrs (name: value: value.funkcia.avatar != null))
+    (lib.attrsets.mapAttrs' (
+      name: user: {
+        name = "/var/lib/AccountsService/icons/${name}";
+        value."L+" = {
+          mode = "0444";
+          argument = toString user.funkcia.avatar;
+        };
+      }
+    ))
+  ];
 }

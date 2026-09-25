@@ -35,7 +35,8 @@ in
         settings.experimental-features = [
           "nix-command"
           "flakes"
-          "pipe-operator"
+          (lib.mkIf cfg.lix.enable "pipe-operator")
+          (lib.mkIf (!cfg.lix.enable) "pipe-operators")
         ];
 
         gc = {
