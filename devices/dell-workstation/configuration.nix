@@ -19,6 +19,8 @@
     presets.cn.enable = true;
 
     networking.proxy = "http://127.0.0.1:10808";
+
+    btrbk.home.enable = true;
   };
 
   services.openssh.enable = true;
