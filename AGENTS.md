@@ -121,6 +121,18 @@ nvd diff result-{device-name} /run/current-system
 
 例如：`✨ package (commit): 生成带 emoji 前缀的 commit message`
 
+### Agent 共同作者
+
+当且仅当当前改动的**内容**而非 commit message 是由 Agent 生成的时候，commit 记录
+
+```
+Co-Authored-By: 模型名 <使用的 agent 对应的 github bot（如果你知道自己是谁）>
+```
+
+例如，`Co-Authored-By: Claude Sonnet 4`
+
+如果你不知道自己对应的 Github bot，则不添加邮箱
+
 ## 安全须知
 
 用户的 `secrets.yaml` 等被 sops 引用的文件内包含敏感的 token 等内容，**永远不要
