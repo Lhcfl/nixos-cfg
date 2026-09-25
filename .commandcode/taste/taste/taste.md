@@ -8,3 +8,4 @@
 - When `lint -f` autofix produces format changes to unrelated files, prefers to keep and commit them ("全部commit") rather than revert to keep the diff minimal. Confidence: 0.55
 - Wants such workflow conventions spelled out in the repo's `AGENTS.md` so agents follow them. Confidence: 0.65
 - Repo tooling/scripts are written in Nushell (`nu`), living under `scripts/`. Confidence: 0.6
+- Commit `Co-authored-by` trailers should use the agent's model name (e.g. `deepseek-flash`), not a fabricated bot identity, and omit an email when the corresponding GitHub bot is unknown. Confidence: 0.75

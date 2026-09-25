@@ -14,7 +14,7 @@ let table = $metadatas
 | update path { $"[`($in)`]\(($in)README.md\)" }
 | update content { get description }
 | rename path description
-| table --theme markdown
+| table --theme markdown --width 500
 
 print $table
 

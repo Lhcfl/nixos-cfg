@@ -121,7 +121,7 @@ nu scripts/lint/app.nu -f
 
 ### 更新 README.md
 
-在提交前，使用 `nu -c scripts/readme-tree-gen/app.nu` 自动重新生成“路径约定”章节
+在提交前，使用 `nu scripts/readme-tree-gen/app.nu` 自动重新生成“路径约定”章节
 
 ### Commit 格式规范
 
