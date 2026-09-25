@@ -50,7 +50,7 @@
           ];
         };
 
-        systemd.network.enable = true;
+        # systemd.network.enable = true;
 
         # to accept dns, i have to make networking.resolvconf false
         # networking.resolvconf.enable = false;
