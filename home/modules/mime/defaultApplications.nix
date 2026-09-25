@@ -192,6 +192,9 @@ let
       "inode/directory"
       "x-scheme-handler/file"
     ];
+    mailFormats = [
+      "x-scheme-handler/mailto"
+    ];
   };
 
   cfg = config.funkcia.hm.xdg.mime.defaultApplications;

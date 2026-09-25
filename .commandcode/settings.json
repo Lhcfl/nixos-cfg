@@ -3,7 +3,8 @@
     "allow": [
       "Shell(git:*)",
       "Shell(nix:*)",
-      "Shell(nh:*)"
+      "Shell(nh:*)",
+      "Shell(fd:*)"
     ],
     "deny": [],
     "defaultMode": "default"

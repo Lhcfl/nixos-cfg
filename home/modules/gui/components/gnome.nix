@@ -67,5 +67,10 @@ in
       audioFormats = [ "org.gnome.Decibels.desktop" ];
       videoFormats = [ "org.gnome.Totem.desktop" ];
     };
+
+    xdg.mimeApps.defaultApplications = {
+      "text/plain" = [ "org.gnome.TextEditor.desktop" ];
+      "application/pdf" = [ "org.gnome.Papers.desktop" ];
+    };
   };
 }

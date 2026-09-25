@@ -41,9 +41,10 @@ in
       obsidian.enable = lib.mkIf (!osConfig.funkcia.os.new-cn-install) true;
 
       firefox.enable = true;
-
-      thunderbird.enable = true;
     };
+
+    programs.thunderbird.enable = true;
+    funkcia.hm.xdg.mime.defaultApplications.mailFormats = [ "thunderbird.desktop" ];
 
     i18n.inputMethod = {
       enable = true;
