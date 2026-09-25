@@ -8,6 +8,7 @@ let
 in
 {
   options.funkcia.os.user = lib.mkOption {
+    description = "包了一层用户";
     type = lib.types.attrsOf (
       lib.types.submodule {
         options = {

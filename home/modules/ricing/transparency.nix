@@ -14,6 +14,7 @@ in
     };
 
     opacity = lib.mkOption {
+      description = "透明度";
       type = lib.types.float;
       default = 0.85;
     };

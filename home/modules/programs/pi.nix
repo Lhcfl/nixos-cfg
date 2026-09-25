@@ -27,8 +27,14 @@ in
       description = "auth keys for pi";
       type = lib.types.attrsOf (
         lib.types.submodule {
-          options.type = lib.mkOption { type = lib.types.enum [ "api_key" ]; };
-          options.key-path = lib.mkOption { type = lib.types.str; };
+          options.type = lib.mkOption {
+            description = "auth type";
+            type = lib.types.enum [ "api_key" ];
+          };
+          options.key-path = lib.mkOption {
+            description = "API key 的实际存储位置。可以是 sops 的路径。";
+            type = lib.types.str;
+          };
         }
       );
     };

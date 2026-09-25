@@ -140,6 +140,7 @@ in
     umbriel.enable = lib.mkEnableOption "keybinding for umbriel";
 
     utils = lib.mkOption {
+      visible = false;
       type = lib.types.anything;
     };
 

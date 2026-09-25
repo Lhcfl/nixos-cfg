@@ -347,7 +347,7 @@ string
 
 
 
-This option has no description\.
+域名后缀
 
 
 
@@ -363,7 +363,7 @@ string
 
 
 
-This option has no description\.
+域名前缀对应的实际域名列表
 
 
 
@@ -379,7 +379,7 @@ attribute set of (submodule)
 
 
 
-This option has no description\.
+实际的域名
 
 
 
@@ -1270,7 +1270,7 @@ true
 
 
 
-This option has no description\.
+包了一层用户
 
 
 
@@ -2240,22 +2240,6 @@ true
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.utils
-
-
-
-This option has no description\.
-
-
-
-*Type:*
-anything
-
-*Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
-
-
-
 ## funkcia\.hm\.gui\.zen-browser\.enable
 
 
@@ -2541,7 +2525,7 @@ attribute set of (submodule)
 
 
 
-This option has no description\.
+API key 的实际存储位置。可以是 sops 的路径。
 
 
 
@@ -2557,7 +2541,7 @@ string
 
 
 
-This option has no description\.
+auth type
 
 
 
@@ -2677,7 +2661,7 @@ true
 
 
 
-This option has no description\.
+透明度
 
 
 
