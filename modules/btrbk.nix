@@ -10,7 +10,8 @@ let
   cfg = config.funkcia.os.btrbk.home;
 in
 {
-  options.funkcia.os.btrbk.home.enable = lib.mkEnableOption "btrbk snapshot backup of the home subvolume";
+  options.funkcia.os.btrbk.home.enable =
+    lib.mkEnableOption "btrbk snapshot backup of the home subvolume";
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.btrbk ];

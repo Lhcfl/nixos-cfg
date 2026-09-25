@@ -26,7 +26,8 @@ in
       cfg = config.funkcia.hm.ricing.transparency;
     in
     lib.mkIf cfg.enable {
-      funkcia.hm.gui.niri.settings = with kdl.extras.niri;
+      funkcia.hm.gui.niri.settings =
+        with kdl.extras.niri;
         kdl.formats.v1 [
           (window-rule [
             (match { app-id = "code"; })

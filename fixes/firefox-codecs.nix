@@ -129,15 +129,19 @@ let
 in
 {
   nixpkgs.overlays = [
-    (final: prev:
+    (
+      final: prev:
       let
         inherit (final.stdenv.hostPlatform) system;
 
         # Wire the system FFmpeg into a Firefox-family binary browser so the
         # proprietary H.264 / HEVC / AAC software decoders are available.
-        enableCodecs = browser:
+        enableCodecs =
+          browser:
           browser.overrideAttrs (old: {
-            passthru = (old.passthru or { }) // { withFFmpeg = true; };
+            passthru = (old.passthru or { }) // {
+              withFFmpeg = true;
+            };
           });
 
         # zen-browser (zen-browser-flake) is based on Firefox 155, which dlopens
@@ -150,7 +154,9 @@ in
             unwrapped = inputs.zen-browser.packages.${system}.zen-browser-unwrapped.overrideAttrs (old: {
               __intentionallyOverridingVersion = true;
               version = "155.0.1";
-              passthru = (old.passthru or { }) // { withFFmpeg = true; };
+              passthru = (old.passthru or { }) // {
+                withFFmpeg = true;
+              };
             });
             extraPrefs = ''
               pref("media.ffmpeg.vaapi.enabled", true);
@@ -174,6 +180,7 @@ in
         # Fixed zen-browser package (from the zen-browser-flake), consumable as
         # `pkgs.zen-browser`.
         inherit zen-browser;
-      })
+      }
+    )
   ];
 }

@@ -6,7 +6,9 @@
   },
   "toml": {},
   "yaml": {},
-  "excludes": [],
+  "excludes": [
+    ".commandcode/**/*"
+  ],
   "plugins": [
     "npm:@dprint/markdown@0.23.3",
     "npm:@dprint/toml@0.8.0",

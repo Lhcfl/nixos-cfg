@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # btrfs 上对数据库目录关闭 COW：
   #  - PostgreSQL 官方建议 PGDATA 关 COW（否则写放大/碎片化）
@@ -6,9 +11,11 @@ let
   # 注意：chattr +C 只对「新建文件」生效；目录打上 C 后，其下新文件自动继承。
   # 已存在的数据需一次性重写（见 migration 脚本）。
   chattr = "${pkgs.e2fsprogs.bin}/bin/chattr";
-  nocow = dir: lib.mkBefore ''
-    ${chattr} +C "${dir}" 2>/dev/null || true
-  '';
+  nocow =
+    dir:
+    lib.mkBefore ''
+      ${chattr} +C "${dir}" 2>/dev/null || true
+    '';
 in
 {
   systemd.services = lib.mkMerge [

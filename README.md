@@ -26,7 +26,6 @@
 <!-- END_GEN_README_TREE -->
 <!-- dprint-ignore-end -->
 
-
 ## 名称约定
 
 - `funkcia.os.xxx` 存放 NixOS 范围的配置
@@ -35,4 +34,5 @@
 
 ## Installation Documentations
 
-Here is a [`apply.sh`](./apply.sh) file to build nixos and apply some extra syncs
+Here is a [`apply.sh`](./apply.sh) file to build nixos and apply some extra
+syncs
