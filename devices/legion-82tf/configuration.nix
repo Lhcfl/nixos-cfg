@@ -28,7 +28,6 @@
     networking.proxy = "http://127.0.0.1:10808";
 
     btrbk.home.enable = true;
-    winslow-cloud.enable = true;
   };
 
   boot.loader.systemd-boot.configurationLimit = 10;

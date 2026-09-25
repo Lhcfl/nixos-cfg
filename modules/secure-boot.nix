@@ -15,7 +15,7 @@
       i don't know, but if it didn't works, you may need to prepare your system and 
       create the necessary keys manually if you prefer.
 
-      ## PREPARE YOUR SYSTEM
+      **PREPARE YOUR SYSTEM**
 
       Exit "User Mode" in your firmware settings, and enable "Setup Mode".
 
