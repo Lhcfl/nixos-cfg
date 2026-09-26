@@ -2,7 +2,39 @@
 <!-- by nix build .#funkcia-options-doc-md && install -m0644 result docs.md -->
 <!-- NEVER EDIT this documentation -->
 # NixOS Modules
+## funkcia\.nix\.lix\.enable
+
+Whether to enable Lix, a fork of Nix\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/nix.nix)
+
+
+
 ## funkcia\.os\.btrbk\.home\.enable
+
+
 
 Whether to enable btrbk snapshot backup of the home subvolume\.
 
@@ -518,7 +550,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/fonts.nix)
+ - [/nixos/presets/pc/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/pc/fonts.nix)
 
 
 
@@ -763,7 +795,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/locale.nix)
+ - [/nixos/presets/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/locale.nix)
 
 
 
@@ -798,7 +830,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/modern-cli-tools.nix)
+ - [/nixos/presets/host/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/modern-cli-tools.nix)
 
 
 
@@ -830,7 +862,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
+ - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
 
 
 
@@ -871,7 +903,7 @@ list of string
 ```
 
 *Declared by:*
- - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
+ - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
 
 
 
@@ -903,7 +935,7 @@ null
 ```
 
 *Declared by:*
- - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
+ - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
 
 
 
@@ -970,6 +1002,294 @@ true
 
 *Declared by:*
  - [/nixos/presets/cn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/cn.nix)
+
+
+
+## funkcia\.os\.presets\.container\.enable
+
+
+
+Whether to enable 该系统是一个容器\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/container\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/container.nix)
+
+
+
+## funkcia\.os\.presets\.host\.enable
+
+
+
+Whether to enable 该系统是一台主机\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host.nix)
+
+
+
+## funkcia\.os\.presets\.host\.btrfs-tools\.enable
+
+
+
+Whether to enable btrfs tools\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/btrfs-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/btrfs-tools.nix)
+
+
+
+## funkcia\.os\.presets\.host\.collect-user\.enable
+
+
+
+Whether to enable collect user services\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/collect-user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/collect-user.nix)
+
+
+
+## funkcia\.os\.presets\.host\.programs\.enable
+
+
+
+Whether to enable 常用程序与开发工具\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/programs\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/programs.nix)
+
+
+
+## funkcia\.os\.presets\.host\.root\.enable
+
+
+
+Whether to enable root 用户相关设置\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/root\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/root.nix)
+
+
+
+## funkcia\.os\.presets\.host\.security\.enable
+
+
+
+Whether to enable 安全相关设置\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/security\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/security.nix)
+
+
+
+## funkcia\.os\.presets\.host\.services\.enable
+
+
+
+Whether to enable 基础系统服务\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/services\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/services.nix)
+
+
+
+## funkcia\.os\.presets\.host\.shell\.enable
+
+
+
+Whether to enable shell 相关设置\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/host/shell\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/shell.nix)
 
 
 
@@ -1194,7 +1514,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/sops.nix)
+ - [/nixos/presets/host/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/sops.nix)
 
 
 
@@ -1228,7 +1548,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/defaults/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/system.nix)
+ - [/nixos/presets/host/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/system.nix)
 
 
 
@@ -1375,38 +1695,6 @@ true
 
 *Declared by:*
  - [/nixos/winslow-cloud\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/winslow-cloud.nix)
-
-
-
-## funkica\.nix\.lix\.enable
-
-
-
-Whether to enable Lix, a fork of Nix\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/defaults/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/nix.nix)
 
 
 # Home Manager Modules
