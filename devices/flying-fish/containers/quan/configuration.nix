@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   funkcia.os.presets.container.enable = true;
+  funkcia.os.modern-cli-tools.enable = true;
 
   services.tailscale.enable = true;
 

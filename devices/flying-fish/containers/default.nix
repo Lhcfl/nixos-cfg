@@ -1,4 +1,10 @@
-{ self, inputs, ... }: {
+{
+  self,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   networking.nat = {
     enable = true;
     # Use "ve-*" when using nftables instead of iptables
@@ -20,6 +26,8 @@
         self.nixosModules.default
         ./quan/configuration.nix
       ];
+
+      boot.kernelPackages = pkgs.linuxPackages_latest;
     };
   };
 }
