@@ -14,6 +14,7 @@
     ./networking/firewall.nix
     ./networking.nix
     ./nocow.nix
+    ./containers
     (funkcia-utils.files.mkDirModule ./services)
     (funkcia-utils.files.mkDirModule ./users)
   ];
