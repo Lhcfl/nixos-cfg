@@ -10,6 +10,7 @@
   containers.quan = {
     autoStart = true;
     privateNetwork = true;
+    privateUsers = "pick";
     hostAddress = "172.25.0.1";
     localAddress = "172.25.0.2";
     specialArgs = { inherit inputs; };

@@ -1,15 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ lib, ... }:
 {
   funkcia.os.presets.container.enable = true;
 
+  services.tailscale.enable = true;
+
   services.sshd.enable = true;
+
   networking.firewall.enable = lib.mkForce false;
-  system.stateVersion = "26.11";
 
   users.users.linca = {
     isNormalUser = true;
@@ -21,4 +18,6 @@
   };
 
   services.openssh.settings.AllowUsers = [ "linca" ];
+
+  system.stateVersion = "26.11";
 }
