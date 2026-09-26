@@ -64,7 +64,7 @@
         };
 
         flake = {
-          nixosModules.default = funkcia-utils.files.mkRecDirModule ./modules;
+          nixosModules.default = funkcia-utils.files.mkRecDirModule ./nixos;
           homeModules.default = funkcia-utils.files.mkRecDirModule ./home/modules;
         };
       };

@@ -28,7 +28,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/btrbk\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/btrbk.nix)
+ - [/nixos/btrbk\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/btrbk.nix)
 
 
 
@@ -60,7 +60,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/configure-ip.nix)
+ - [/nixos/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/configure-ip.nix)
 
 
 
@@ -76,7 +76,7 @@ match the device
 attribute set of (submodule)
 
 *Declared by:*
- - [/modules/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/configure-ip.nix)
+ - [/nixos/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/configure-ip.nix)
 
 
 
@@ -112,7 +112,7 @@ string or (submodule)
 ```
 
 *Declared by:*
- - [/modules/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/configure-ip.nix)
+ - [/nixos/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/configure-ip.nix)
 
 
 
@@ -148,7 +148,7 @@ string or (submodule)
 ```
 
 *Declared by:*
- - [/modules/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/configure-ip.nix)
+ - [/nixos/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/configure-ip.nix)
 
 
 
@@ -184,7 +184,7 @@ string or (submodule)
 ```
 
 *Declared by:*
- - [/modules/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/configure-ip.nix)
+ - [/nixos/configure-ip\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/configure-ip.nix)
 
 
 
@@ -216,7 +216,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/displayManager/ly\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/displayManager/ly.nix)
+ - [/nixos/displayManager/ly\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/ly.nix)
 
 
 
@@ -248,7 +248,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/displayManager/noctalia-greeter\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/displayManager/noctalia-greeter.nix)
+ - [/nixos/displayManager/noctalia-greeter\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/noctalia-greeter.nix)
 
 
 
@@ -280,7 +280,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/displayManager/sddm.nix)
+ - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
 
 
 
@@ -315,7 +315,7 @@ JSON value
 ```
 
 *Declared by:*
- - [/modules/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/displayManager/sddm.nix)
+ - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
 
 
 
@@ -339,7 +339,7 @@ string
 ```
 
 *Declared by:*
- - [/modules/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/displayManager/sddm.nix)
+ - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
 
 
 
@@ -355,7 +355,7 @@ string
 string
 
 *Declared by:*
- - [/modules/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/domains.nix)
+ - [/nixos/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/domains.nix)
 
 
 
@@ -371,7 +371,7 @@ string
 attribute set of (submodule)
 
 *Declared by:*
- - [/modules/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/domains.nix)
+ - [/nixos/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/domains.nix)
 
 
 
@@ -392,7 +392,7 @@ string
 ` <name>.<funkcia.os.domain.suffix> `
 
 *Declared by:*
- - [/modules/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/domains.nix)
+ - [/nixos/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/domains.nix)
 
 
 
@@ -424,7 +424,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/fingerprint\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/fingerprint.nix)
+ - [/nixos/fingerprint\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/fingerprint.nix)
 
 
 
@@ -454,7 +454,7 @@ null
 ```
 
 *Declared by:*
- - [/modules/fingerprint\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/fingerprint.nix)
+ - [/nixos/fingerprint\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/fingerprint.nix)
 
 
 
@@ -486,7 +486,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/flatpak.nix)
+ - [/nixos/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/flatpak.nix)
 
 
 
@@ -518,7 +518,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/fonts.nix)
+ - [/nixos/defaults/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/fonts.nix)
 
 
 
@@ -554,7 +554,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gnome-keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gnome-keyring.nix)
+ - [/nixos/gnome-keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gnome-keyring.nix)
 
 
 
@@ -586,7 +586,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/default.nix)
+ - [/nixos/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/default.nix)
 
 
 
@@ -618,7 +618,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gui/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/fonts.nix)
+ - [/nixos/gui/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/fonts.nix)
 
 
 
@@ -651,7 +651,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gui/hyprland\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/hyprland.nix)
+ - [/nixos/gui/hyprland\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/hyprland.nix)
 
 
 
@@ -667,7 +667,7 @@ is wayland
 boolean
 
 *Declared by:*
- - [/modules/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/default.nix)
+ - [/nixos/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/default.nix)
 
 
 
@@ -699,7 +699,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/niri.nix)
+ - [/nixos/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/niri.nix)
 
 
 
@@ -731,7 +731,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/gui/niri.nix)
+ - [/nixos/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/niri.nix)
 
 
 
@@ -763,7 +763,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/locale.nix)
+ - [/nixos/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/locale.nix)
 
 
 
@@ -798,7 +798,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/modern-cli-tools.nix)
+ - [/nixos/defaults/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/modern-cli-tools.nix)
 
 
 
@@ -830,7 +830,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/networking.nix)
+ - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
 
 
 
@@ -871,7 +871,7 @@ list of string
 ```
 
 *Declared by:*
- - [/modules/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/networking.nix)
+ - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
 
 
 
@@ -903,7 +903,7 @@ null
 ```
 
 *Declared by:*
- - [/modules/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/networking.nix)
+ - [/nixos/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/networking.nix)
 
 
 
@@ -937,7 +937,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/new-install\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/new-install.nix)
+ - [/nixos/new-install\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/new-install.nix)
 
 
 
@@ -969,7 +969,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/presets/cn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/presets/cn.nix)
+ - [/nixos/presets/cn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/cn.nix)
 
 
 
@@ -1001,7 +1001,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/presets/laptop\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/presets/laptop.nix)
+ - [/nixos/presets/laptop\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/laptop.nix)
 
 
 
@@ -1025,7 +1025,7 @@ one of “power-profiles-daemon”, “tlp”
 ```
 
 *Declared by:*
- - [/modules/presets/laptop\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/presets/laptop.nix)
+ - [/nixos/presets/laptop\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/laptop.nix)
 
 
 
@@ -1057,7 +1057,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/presets/pc\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/presets/pc.nix)
+ - [/nixos/presets/pc\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/pc.nix)
 
 
 
@@ -1089,7 +1089,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/presets/server\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/presets/server.nix)
+ - [/nixos/presets/server\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/server.nix)
 
 
 
@@ -1162,7 +1162,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/secure-boot\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/secure-boot.nix)
+ - [/nixos/secure-boot\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/secure-boot.nix)
 
 
 
@@ -1194,7 +1194,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/sops.nix)
+ - [/nixos/defaults/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/sops.nix)
 
 
 
@@ -1228,7 +1228,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/system.nix)
+ - [/nixos/defaults/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/system.nix)
 
 
 
@@ -1262,7 +1262,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/tpm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/tpm.nix)
+ - [/nixos/tpm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/tpm.nix)
 
 
 
@@ -1278,7 +1278,7 @@ true
 attribute set of (submodule)
 
 *Declared by:*
- - [/modules/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/user.nix)
+ - [/nixos/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/user.nix)
 
 
 
@@ -1310,7 +1310,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/user.nix)
+ - [/nixos/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/user.nix)
 
 
 
@@ -1342,7 +1342,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/user.nix)
+ - [/nixos/user\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/user.nix)
 
 
 
@@ -1374,7 +1374,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/winslow-cloud\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/winslow-cloud.nix)
+ - [/nixos/winslow-cloud\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/winslow-cloud.nix)
 
 
 
@@ -1406,7 +1406,7 @@ true
 ```
 
 *Declared by:*
- - [/modules/defaults/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/modules/defaults/nix.nix)
+ - [/nixos/defaults/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/defaults/nix.nix)
 
 
 # Home Manager Modules

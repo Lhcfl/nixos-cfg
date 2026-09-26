@@ -6,7 +6,7 @@
 inputs、 CI、可用的 skill 这类事实会变，不要靠记忆，先现查：
 
 ```bash
-ls parts/ packages/ devices/ modules/ home/ scripts/  # 各层有什么
+ls parts/ packages/ devices/ nixos/ home/ scripts/  # 各层有什么
 cat flake.nix                                         # inputs 与设备接线
 nix flake show                                        # flake 的所有输出
 ls .github/workflows/                                 # CI
@@ -23,7 +23,7 @@ fd 'secrets\.yaml$'                                   # sops 加密文件的位�
 
 flake 用 flake-parts 组织。分层决定了改动该放哪：
 
-- 共享 NixOS 模块 → `modules/`（导出 `nixosModules.default`）
+- 共享 NixOS 模块 → `nixos/`（导出 `nixosModules.default`）
 - 共享 Home Manager 模块 → `home/modules/`（导出 `homeModules.default`）
 - 设备专属 → `devices/<hostname>/`
 - 用户专属 → `home/<user>/`
@@ -33,7 +33,7 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 子目录是一个 `perSystem.packages.<name>` 并导出同名 overlay。两者都由
 `flake.nix` 自动导入。
 
-`modules/`、`home/modules/`、`fixes/` 都是递归自动导入（`mkRecDirModule`）；
+`nixos/`、`home/modules/`、`fixes/` 都是递归自动导入（`mkRecDirModule`）；
 `devices/<name>/configuration.nix` 与 `home/<user>/home.nix` 用
 `funkcia-utils.files.mkDirModule` / `mkRecDirModule` 导入同层目录。这些工具的具
 体行为看 `utils/files.nix`。
