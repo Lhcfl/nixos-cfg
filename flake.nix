@@ -14,6 +14,7 @@
       disko,
       misskey-media-proxy,
       nixos-hardware,
+      filesystem-modules,
       ...
     }:
     let
@@ -64,7 +65,13 @@
         };
 
         flake = {
-          nixosModules.default = funkcia-utils.files.mkDirModule ./nixos;
+          nixosModules.default = filesystem-modules.mkModule {
+            directory = ./nixos;
+            base = [
+              "funkcia"
+              "os"
+            ];
+          };
           homeModules.default = funkcia-utils.files.mkRecDirModule ./home/modules;
         };
       };
@@ -73,6 +80,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    filesystem-modules.url = "github:Lhcfl/filesystem-modules";
+    filesystem-modules.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     lanzaboote.url = "github:nix-community/lanzaboote/v1.1.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";

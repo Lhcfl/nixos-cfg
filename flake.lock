@@ -50,6 +50,26 @@
         "type": "github"
       }
     },
+    "filesystem-modules": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790439310,
+        "narHash": "sha256-gKWe71yrRNeOQyRwt8Kl3y7ZBtY6B5KH8AvaUxtwdAU=",
+        "owner": "Lhcfl",
+        "repo": "filesystem-modules",
+        "rev": "957b3a873d7a91632b210c18ab21c394e7644ede",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "filesystem-modules",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -68,7 +88,9 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1788450739,
@@ -86,7 +108,7 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_2"
+        "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
         "lastModified": 1788450739,
@@ -343,21 +365,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib_2": {
-      "locked": {
-        "lastModified": 1788057806,
-        "narHash": "sha256-DTQSMxzDWmT0zhguthvegnVkn7CFqGCv4IHCzk5ZUpM=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "596e2e3940e09b2abbeb03f75fa1828c57fcd72c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1789286504,
@@ -527,6 +534,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "filesystem-modules": "filesystem-modules",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",

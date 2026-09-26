@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  this,
   ...
 }:
 let
@@ -10,10 +11,13 @@ let
   );
 in
 {
-  environment.systemPackages = lib.mkIf cond (
-    with pkgs;
-    [
-      btdu
-    ]
-  );
+  this.options.enable = lib.mkEnableOption "btrfs tools";
+  config = lib.mkIf this.config.enable {
+    environment.systemPackages = lib.mkIf cond (
+      with pkgs;
+      [
+        btdu
+      ]
+    );
+  };
 }

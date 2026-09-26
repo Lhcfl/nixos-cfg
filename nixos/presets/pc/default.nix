@@ -5,9 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ./fonts.nix
-  ];
 
   options.funkcia.os.presets.pc.enable = lib.mkEnableOption "这台机器是日用机器";
 
