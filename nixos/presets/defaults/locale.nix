@@ -1,20 +1,11 @@
 {
-  pkgs,
-  config,
+  this,
   lib,
   ...
 }:
-let
-  cfg = config.funkcia.os.locale;
-in
 {
-  options.funkcia.os.locale = {
-    enable = lib.mkEnableOption "locale and input settings" // {
-      default = true;
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
+  this.options.enable = lib.mkEnableOption "locale and input settings";
+  config = lib.mkIf this.config.enable {
     # Set your time zone.
     time.timeZone = "Asia/Shanghai";
 

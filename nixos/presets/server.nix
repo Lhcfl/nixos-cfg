@@ -8,8 +8,6 @@
 
   config = lib.mkIf config.funkcia.os.presets.server.enable {
     funkcia.os.presets.host.enable = true;
-
-    funkcia.os.fonts.enable = false;
     services.openssh.enable = true;
 
     # 从 kitty/foot/ghostty 等终端 SSH 登录时，远端需要对应的 terminfo 条目，

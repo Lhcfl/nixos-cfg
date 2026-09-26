@@ -1,15 +1,13 @@
 {
+  this,
   pkgs,
   lib,
-  config,
   ...
 }:
 {
-  options.funkcia.os.fonts.enable = lib.mkEnableOption "字体相关设置" // {
-    default = true;
-  };
+  this.options.enable = lib.mkEnableOption "额外的字体";
 
-  config = lib.mkIf config.funkcia.os.fonts.enable {
+  config = lib.mkIf this.config.enable {
     fonts = {
       # when set to true, causes some "basic" fonts to be installed for reasonable
       # Unicode coverage. Set to true if you are unsure about what languages

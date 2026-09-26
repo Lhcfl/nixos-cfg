@@ -8,9 +8,7 @@ let
 in
 {
   options.funkcia.os.networking = {
-    enable = lib.mkEnableOption "networking related settings" // {
-      default = true;
-    };
+    enable = lib.mkEnableOption "networking related settings";
 
     proxy = lib.mkOption {
       type = lib.types.nullOr lib.types.str;

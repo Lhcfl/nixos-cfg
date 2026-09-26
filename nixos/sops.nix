@@ -9,9 +9,7 @@ let
 in
 {
   options.funkcia.os.sops-support = {
-    enable = lib.mkEnableOption "sops support. disabling it will disable all sops encryptions" // {
-      default = true;
-    };
+    enable = lib.mkEnableOption "sops support. disabling it will disable all sops encryptions";
   };
 
   config = lib.mkIf cfg.enable {

@@ -28,7 +28,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/presets/defaults/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/nix.nix)
+ - [/nixos/nix\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/nix.nix)
 
 
 
@@ -428,6 +428,38 @@ string
 
 
 
+## funkcia\.os\.extra-fonts\.enable
+
+
+
+Whether to enable 额外的字体\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/extra-fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/extra-fonts.nix)
+
+
+
 ## funkcia\.os\.fingerprint\.enable
 
 
@@ -519,38 +551,6 @@ true
 
 *Declared by:*
  - [/nixos/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/flatpak.nix)
-
-
-
-## funkcia\.os\.fonts\.enable
-
-
-
-Whether to enable 字体相关设置\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/presets/pc/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/pc/fonts.nix)
 
 
 
@@ -767,38 +767,6 @@ true
 
 
 
-## funkcia\.os\.locale\.enable
-
-
-
-Whether to enable locale and input settings\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/presets/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/locale.nix)
-
-
-
 ## funkcia\.os\.modern-cli-tools\.enable
 
 
@@ -818,7 +786,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 
@@ -830,7 +798,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/presets/host/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/modern-cli-tools.nix)
+ - [/nixos/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/modern-cli-tools.nix)
 
 
 
@@ -850,7 +818,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 
@@ -862,7 +830,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
+ - [/nixos/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/networking.nix)
 
 
 
@@ -903,7 +871,7 @@ list of string
 ```
 
 *Declared by:*
- - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
+ - [/nixos/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/networking.nix)
 
 
 
@@ -935,7 +903,7 @@ null
 ```
 
 *Declared by:*
- - [/nixos/presets/defaults/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/networking.nix)
+ - [/nixos/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/networking.nix)
 
 
 
@@ -1034,6 +1002,70 @@ true
 
 *Declared by:*
  - [/nixos/presets/container\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/container.nix)
+
+
+
+## funkcia\.os\.presets\.defaults\.enable
+
+
+
+Whether to enable 全局默认值\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults.nix)
+
+
+
+## funkcia\.os\.presets\.defaults\.locale\.enable
+
+
+
+Whether to enable locale and input settings\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/locale\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/locale.nix)
 
 
 
@@ -1502,7 +1534,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 
@@ -1514,7 +1546,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/presets/host/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/sops.nix)
+ - [/nixos/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/sops.nix)
 
 
 

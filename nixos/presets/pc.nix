@@ -10,6 +10,7 @@
 
   config = lib.mkIf config.funkcia.os.presets.pc.enable {
     funkcia.os.presets.host.enable = true;
+    funkcia.os.extra-fonts.enable = true;
 
     # funkcia modules
     funkcia.os = {

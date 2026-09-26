@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    funkcia.os.presets.host = lib.mapAttrs (_: lib.mkDefault) {
+    funkcia.os.presets.host = {
       btrfs-tools.enable = true;
       collect-user.enable = true;
       programs.enable = true;
@@ -17,5 +17,8 @@ in
       services.enable = true;
       shell.enable = true;
     };
+
+    funkcia.os.modern-cli-tools.enable = true;
+    funkcia.os.sops-support.enable = lib.mkDefault true;
   };
 }

@@ -5,15 +5,11 @@
   ...
 }:
 {
-  options.funkcia.os.modern-cli-tools.enable =
-    lib.mkEnableOption ''
-      现代化的 CLI 工具，包括 fzf, ripgrep 等
+  options.funkcia.os.modern-cli-tools.enable = lib.mkEnableOption ''
+    现代化的 CLI 工具，包括 fzf, ripgrep 等
 
-      对于所有用户生效
-    ''
-    // {
-      default = true;
-    };
+    对于所有用户生效
+  '';
 
   config = lib.mkIf config.funkcia.os.modern-cli-tools.enable {
     programs.zoxide.enable = true;
