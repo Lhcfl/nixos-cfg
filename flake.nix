@@ -38,11 +38,7 @@
 
         nixos = {
           sharedModules = [
-            ./home/home-manager.nix
-            (funkcia-utils.files.mkRecDirModule ./fixes)
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-            lanzaboote.nixosModules.lanzaboote
+            self.nixosModules.shared
             self.nixosModules.default
           ];
 
@@ -70,6 +66,15 @@
             base = [
               "funkcia"
               "os"
+            ];
+          };
+          nixosModules.shared = {
+            imports = [
+              ./home/home-manager.nix
+              (funkcia-utils.files.mkRecDirModule ./fixes)
+              home-manager.nixosModules.home-manager
+              sops-nix.nixosModules.sops
+              lanzaboote.nixosModules.lanzaboote
             ];
           };
           homeModules.default = funkcia-utils.files.mkRecDirModule ./home/modules;

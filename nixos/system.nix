@@ -9,6 +9,7 @@ let
 in
 {
   options.funkcia.os.system = {
+    enableRecommand = lib.mkEnableOption "系统推荐设置";
     bbr.enable =
       lib.mkEnableOption ''
         replace CUBIC with BBR.
@@ -21,7 +22,7 @@ in
   };
 
   config = lib.mkMerge [
-    {
+    (lib.mkIf cfg.enableRecommand {
       # use latest kernel package
       boot.kernelPackages = pkgs.linuxPackages_latest;
       # 启用 SysRq 全部功能，卡死时可用 Alt+SysRq 组合键抢救
@@ -42,7 +43,7 @@ in
         enableSystemSlice = true;
         enableUserSlices = true;
       };
-    }
+    })
 
     (lib.mkIf cfg.bbr.enable {
       boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";

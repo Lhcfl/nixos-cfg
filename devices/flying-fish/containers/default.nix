@@ -1,4 +1,4 @@
-{ ... }: {
+{ self, inputs, ... }: {
   networking.nat = {
     enable = true;
     # Use "ve-*" when using nftables instead of iptables
@@ -12,6 +12,13 @@
     privateNetwork = true;
     hostAddress = "172.25.0.1";
     localAddress = "172.25.0.2";
-    config = ./quan/configuration.nix;
+    specialArgs = { inherit inputs; };
+    config = {
+      imports = [
+        self.nixosModules.shared
+        self.nixosModules.default
+        ./quan/configuration.nix
+      ];
+    };
   };
 }

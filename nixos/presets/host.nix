@@ -20,5 +20,6 @@ in
 
     funkcia.os.modern-cli-tools.enable = true;
     funkcia.os.sops-support.enable = lib.mkDefault true;
+    funkcia.os.system.enableRecommand = true;
   };
 }

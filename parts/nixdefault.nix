@@ -57,7 +57,7 @@ in
         { name, value }: {
           nixosConfigurations.${name} = inputs.nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs funkcia-utils;
+              inherit inputs funkcia-utils self;
             };
 
             modules = cfg.sharedModules ++ [ value ];
