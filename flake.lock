@@ -243,11 +243,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1789215995,
-        "narHash": "sha256-I1a3tMRlupI97MGSqw5xxLozHjw9GNRDbM+vudJ+Ids=",
+        "lastModified": 1790348514,
+        "narHash": "sha256-rvo4YwubPt9+J3ihMNK9b4edTpJ3/n1Dmjqok5OUj2I=",
         "owner": "Lhcfl",
         "repo": "Linquebot_rs",
-        "rev": "303eb4eeda2550151eaf4b828eaf3545413b1943",
+        "rev": "9a3f49d0d432ed1831fd11b789ce6c9245b63da5",
         "type": "github"
       },
       "original": {
