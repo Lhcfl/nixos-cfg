@@ -8,10 +8,10 @@
   ...
 }:
 let
-  cfg = config.funkica.nix;
+  cfg = config.funkcia.nix;
 in
 {
-  options.funkica.nix.lix.enable = lib.mkEnableOption "Lix, a fork of Nix" // {
+  options.funkcia.nix.lix.enable = lib.mkEnableOption "Lix, a fork of Nix" // {
     default = true;
   };
 

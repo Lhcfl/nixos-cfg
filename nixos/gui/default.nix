@@ -8,6 +8,12 @@ let
   cfg = config.funkcia.os.gui;
 in
 {
+  imports = [
+    ./fonts.nix
+    ./hyprland.nix
+    ./niri.nix
+  ];
+
   options.funkcia.os.gui = {
     enable = lib.mkEnableOption "GUI related options";
     isWayland = lib.mkOption {

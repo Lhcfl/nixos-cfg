@@ -7,6 +7,8 @@
   options.funkcia.os.presets.server.enable = lib.mkEnableOption "这台机器是服务器机器";
 
   config = lib.mkIf config.funkcia.os.presets.server.enable {
+    funkcia.os.presets.host.enable = true;
+
     funkcia.os.fonts.enable = false;
     services.openssh.enable = true;
 

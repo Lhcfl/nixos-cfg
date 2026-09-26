@@ -5,9 +5,15 @@
   ...
 }:
 {
+  imports = [
+    ./fonts.nix
+  ];
+
   options.funkcia.os.presets.pc.enable = lib.mkEnableOption "这台机器是日用机器";
 
   config = lib.mkIf config.funkcia.os.presets.pc.enable {
+    funkcia.os.presets.host.enable = true;
+
     # funkcia modules
     funkcia.os = {
       tpm.enable = true;
