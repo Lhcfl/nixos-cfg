@@ -17,10 +17,6 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };
-
-      journald.settings.Journal = {
-        SystemMaxUse = "1G";
-      };
     };
   };
 }

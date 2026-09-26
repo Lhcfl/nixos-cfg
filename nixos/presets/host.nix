@@ -13,7 +13,6 @@ in
       collect-user.enable = true;
       programs.enable = true;
       root.enable = true;
-      security.enable = true;
       services.enable = true;
       shell.enable = true;
     };
@@ -21,5 +20,7 @@ in
     funkcia.os.modern-cli-tools.enable = true;
     funkcia.os.sops-support.enable = lib.mkDefault true;
     funkcia.os.system.enableRecommand = true;
+
+    security.auditd.enable = true;
   };
 }
