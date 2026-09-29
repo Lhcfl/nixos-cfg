@@ -15,9 +15,6 @@
     gateway.secret = "network/enX0/gateway";
   };
 
-  networking.firewall.allowedTCPPorts = lib.mkForce [
-    80
-    443
-    4430
-  ];
+  networking.firewall.allowedTCPPorts = [ 4430 ];
+  networking.firewall.allowedUDPPorts = [ 4430 ];
 }

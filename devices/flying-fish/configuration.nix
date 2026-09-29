@@ -20,6 +20,7 @@
 
   networking.hostName = "flying-fish"; # Define your hostname.
   services.openssh.ports = [ 8023 ];
+  services.openssh.openFirewall = false;
 
   funkcia.os.presets.server.enable = true;
 
