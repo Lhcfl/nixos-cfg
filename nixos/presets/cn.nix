@@ -10,5 +10,10 @@
     nix.settings.substituters = [
       "https://mirrors.cernet.edu.cn/nix-channels/store" # cernet 自动选择 nix channels
     ];
+
+    networking.nameservers = lib.mkBefore [
+      "223.5.5.5"
+      "114.114.114.114"
+    ];
   };
 }
