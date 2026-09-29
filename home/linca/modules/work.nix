@@ -20,6 +20,7 @@ in
       devenv
       ast-grep
       typst
+      poppler-utils
       agent-browser # headless browser automation CLI for AI agents
     ];
 

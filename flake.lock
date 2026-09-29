@@ -601,11 +601,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789731165,
-        "narHash": "sha256-4uCYIexWMne2Cg5M8hNQ8Hnu7cCelOZejg/Pe0zC9yA=",
+        "lastModified": 1790420947,
+        "narHash": "sha256-RBBsbJrc2g0TgKvMp/+rnr3FV4WjVrbF5nWqWC0wPU4=",
         "owner": "Lhcfl",
         "repo": "shell-auto-pi",
-        "rev": "8cd8792cd19a378acee778b4b83d0349c827fa86",
+        "rev": "d3f5d64b273d3f1a04dd01f2c521324eed8ca219",
         "type": "github"
       },
       "original": {
