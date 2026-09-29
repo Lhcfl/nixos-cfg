@@ -12,6 +12,7 @@ in
   programs.fish = {
     shellAliases = {
       nd = "nix develop -c $SHELL";
+      cat = "bat -p --no-paging --binary as-text";
     };
 
     functions.fish_command_not_found = lib.mkIf config.funkcia.hm.programs.pi.enable ''
