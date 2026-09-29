@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   networking.useDHCP = false;
   systemd.network.enable = true;
 
@@ -14,4 +14,10 @@
     mask.secret = "network/enX0/mask";
     gateway.secret = "network/enX0/gateway";
   };
+
+  networking.firewall.allowedTCPPorts = lib.mkForce [
+    80
+    443
+    4430
+  ];
 }
