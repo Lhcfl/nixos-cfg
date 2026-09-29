@@ -15,4 +15,6 @@
     imports = [ ./home.nix ];
     home.stateVersion = "26.05";
   };
+
+  networking.firewall.allowedTCPPorts = [ 4430 ];
 }

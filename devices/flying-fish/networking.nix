@@ -14,7 +14,4 @@
     mask.secret = "network/enX0/mask";
     gateway.secret = "network/enX0/gateway";
   };
-
-  networking.firewall.allowedTCPPorts = [ 4430 ];
-  networking.firewall.allowedUDPPorts = [ 4430 ];
 }
