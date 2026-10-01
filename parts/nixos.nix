@@ -2,16 +2,12 @@
   self,
   inputs,
   lib,
-  config,
+  this,
   funkcia-utils,
   ...
 }:
-let
-  cfg = config.nixos;
-in
 {
-  options.nixos = {
-
+  this.options = {
     devices = lib.mkOption {
       type = lib.types.attrsOf lib.types.raw;
       default = { };
@@ -49,26 +45,19 @@ in
     };
   };
 
-  config = {
-    flake = lib.pipe cfg.devices [
-      lib.attrsets.attrsToList
+  config.flake.nixosConfigurations = lib.mapAttrs (
+    name: value:
+    inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs funkcia-utils self;
+      };
 
-      (map (
-        { name, value }: {
-          nixosConfigurations.${name} = inputs.nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs funkcia-utils self;
-            };
+      modules = this.config.sharedModules ++ [ value ];
+    }
+  ) this.config.devices;
 
-            modules = cfg.sharedModules ++ [ value ];
-          };
-
-          checks.x86_64-linux."${name} topLevel" =
-            self.nixosConfigurations.${name}.config.system.build.toplevel;
-        }
-      ))
-
-      (lib.foldl lib.recursiveUpdate { })
-    ];
-  };
+  config.flake.checks.x86_64-linux = lib.mapAttrs' (name: value: {
+    name = "${name} topLevel";
+    value = self.nixosConfigurations.${name}.config.system.build.toplevel;
+  }) this.config.devices;
 }

@@ -32,7 +32,7 @@
       {
         imports = [
           flake-parts.flakeModules.easyOverlay
-          (funkcia-utils.files.mkRecDirModule ./parts)
+          (filesystem-modules.mkModule { directory = ./parts; })
           (funkcia-utils.files.mkDirModule ./packages)
         ];
 
