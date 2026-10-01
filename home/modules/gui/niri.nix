@@ -25,8 +25,6 @@ in
 
     xdg.configFile."niri/config.kdl".text = cfg.settings;
 
-    services.polkit-gnome.enable = true;
-
     funkcia.hm.gui.niri.settings = lib.mkMerge [
       (
         with kdl.extras.niri;

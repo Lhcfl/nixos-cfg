@@ -77,6 +77,7 @@ in
 
       shell = {
         avatar_path = funkcia-utils.projectPath /home/linca/assets/avatar-trans.png;
+        polkit_agent = true;
         lang = "zh-Hans";
         panel = {
           control_center_placement = "floating";
