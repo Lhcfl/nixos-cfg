@@ -1,5 +1,5 @@
 <!-- This documentation is AUTO-GENERATED -->
-<!-- by nix build .#funkcia-options-doc-md && install -m0644 result docs.md -->
+<!-- by nix build .#funkcia-options-doc-md -o result-doc && install -m0644 result-doc docs.md -->
 <!-- NEVER EDIT this documentation -->
 # NixOS Modules
 ## funkcia\.nix\.lix\.enable
@@ -2800,7 +2800,7 @@ attribute set of (JSON value)
 *Default:*
 
 ```nix
-[ ]
+{ }
 ```
 
 *Declared by:*

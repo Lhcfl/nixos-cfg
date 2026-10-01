@@ -11,7 +11,7 @@
       placeholder = "path";
       elemType = lib.types.json;
     };
-    default = [ ];
+    default = { };
     description = ''
       使用 nushell 的 merge deep 命令将 Nix 生成的 JSON 文件与指定 path 的文件进行深度合并。
     '';
