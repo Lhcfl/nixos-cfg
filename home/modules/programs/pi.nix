@@ -47,15 +47,16 @@ in
           pi-coding-agent
         ];
 
-        home.activation.piMergeSettings =
-          let
-            path = "${config.home.homeDirectory}/.pi/agent/settings.json";
-            settings = pkgs.writeText "pi-settings.json" (builtins.toJSON cfg.settings);
-          in
-          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-            ${lib.getExe pkgs.nushell} -c \
-              "try { open ${path} } catch {{}}  | merge deep (open ${settings}) | save --force ${path}"
-          '';
+        funkcia.hm.merge-files.".pi/agent/settings.json" = cfg.settings;
+        # home.activation.piMergeSettings =
+        #   let
+        #     path = "${config.home.homeDirectory}/.pi/agent/settings.json";
+        #     settings = pkgs.writeText "pi-settings.json" (builtins.toJSON cfg.settings);
+        #   in
+        #   lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        #     ${lib.getExe pkgs.nushell} -c \
+        #       "try { open ${path} } catch {{}}  | merge deep (open ${settings}) | save --force ${path}"
+        #   '';
       }
 
       (lib.mkIf (cfg.auth != { }) {

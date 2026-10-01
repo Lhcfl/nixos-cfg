@@ -77,7 +77,13 @@
               lanzaboote.nixosModules.lanzaboote
             ];
           };
-          homeModules.default = funkcia-utils.files.mkRecDirModule ./home/modules;
+          homeModules.default = filesystem-modules.mkModule {
+            directory = ./home/modules;
+            base = [
+              "funkcia"
+              "hm"
+            ];
+          };
         };
       };
 

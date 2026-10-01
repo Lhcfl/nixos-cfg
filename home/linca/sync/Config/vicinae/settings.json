@@ -55,7 +55,12 @@
             "autoIndexing": true,
             "excludedPaths": "",
             "paths": "/home/linca;/media",
-            "watcherPaths": ""
+            "watcherPaths": "",
+            "excludedIndexingPaths": [],
+            "indexingPaths": [
+               "/home/linca",
+               "/media/share"
+            ]
          }
       }
    }
