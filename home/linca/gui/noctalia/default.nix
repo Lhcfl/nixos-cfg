@@ -66,6 +66,8 @@ in
           builtin_ids = [
             "niri"
             "umbriel"
+            "kitty"
+            "alacritty"
           ];
 
           community_ids = [
@@ -109,4 +111,6 @@ in
     "Ctrl+Alt+A".title = "Take Screenshot";
     "Ctrl+Alt+A".actions.spawn-sh = "noctalia msg screenshot-region";
   };
+
+  programs.alacritty.settings.general.import = [ "themes/noctalia.toml" ];
 }

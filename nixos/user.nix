@@ -43,6 +43,7 @@ in
               "wheel"
               "docker"
               "tss" # tss group has access to TPM devices
+              "input" # input group has access to input devices
             ];
           })
         ];
