@@ -202,8 +202,10 @@ nix build .#funkcia-options-doc-md && install -m0644 result docs.md
 
 例如：`✨ package (commit): 生成带 emoji 前缀的 commit message`
 
-仓库自带 `commit` 命令可用来按上述格式生成 commit message，用法看
-`packages/commit/`。
+**不要调用仓库自带的 `commit` 命令**（`packages/commit/`，即 `shell-auto-pi
+commit`，也包括 `nu packages/commit/app.nu`）：它本身只是再唤起一个 AI 去猜
+commit message。你自己就是 Agent，commit message 必须由**你亲自**按上面的格式撰
+写，然后直接 `git commit`。只有用户明确要求时才使用该命令。
 
 ### Agent 共同作者
 
