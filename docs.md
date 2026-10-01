@@ -1069,6 +1069,38 @@ true
 
 
 
+## funkcia\.os\.presets\.defaults\.security\.enable
+
+
+
+Whether to enable 全局安全相关设置\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/security\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/security.nix)
+
+
+
 ## funkcia\.os\.presets\.host\.enable
 
 
@@ -1226,38 +1258,6 @@ true
 
 *Declared by:*
  - [/nixos/presets/host/root\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/root.nix)
-
-
-
-## funkcia\.os\.presets\.host\.security\.enable
-
-
-
-Whether to enable 安全相关设置\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/presets/host/security\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/security.nix)
 
 
 
@@ -1550,6 +1550,38 @@ true
 
 
 
+## funkcia\.os\.system\.enableRecommand
+
+
+
+Whether to enable 系统推荐设置\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/system.nix)
+
+
+
 ## funkcia\.os\.system\.bbr\.enable
 
 
@@ -1580,7 +1612,7 @@ true
 ```
 
 *Declared by:*
- - [/nixos/presets/host/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/host/system.nix)
+ - [/nixos/system\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/system.nix)
 
 
 
