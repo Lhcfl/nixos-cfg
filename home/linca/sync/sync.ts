@@ -9,7 +9,6 @@ const dir = path.join(here, "Config/");
 const DIR_MAP = {
   "Config/hypr": ".config/hypr",
   "Config/nvim": ".config/nvim",
-  "Config/vicinae": ".config/vicinae",
 }
 
 const red = (s: string) => `\x1b[31m${s}\x1b[0m`;

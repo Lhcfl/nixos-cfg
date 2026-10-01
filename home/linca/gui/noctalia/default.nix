@@ -67,6 +67,11 @@ in
             "niri"
             "umbriel"
           ];
+
+          community_ids = [
+            "zed"
+            "vicinae"
+          ];
         };
       };
 
