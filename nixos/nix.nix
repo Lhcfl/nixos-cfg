@@ -50,7 +50,7 @@ in
         settings.auto-optimise-store = true;
         optimise.automatic = true;
 
-        nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+        settings.nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
       };
     }
 
