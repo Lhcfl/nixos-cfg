@@ -44,5 +44,7 @@ def main [
         | to json
         | save -f $tmp
         | print $"Full report saved to ($tmp)"
+    } else {
+        print "All checks or fixes passed!"
     }
 }
