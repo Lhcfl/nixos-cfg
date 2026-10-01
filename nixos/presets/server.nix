@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -13,7 +14,19 @@
     # 从 kitty/foot/ghostty 等终端 SSH 登录时，远端需要对应的 terminfo 条目，
     # 否则 ncurses 程序会报 “cannot initialize terminal type”。
     # 一次装齐所有常见终端的 terminfo，避免以后换终端又踩坑。
-    environment.enableAllTerminfo = true;
+    # environment.enableAllTerminfo = true;
+
+    # 2026-10-01: rxvt-unicode-unwrapped 在当前版本的 GCC 16 下默认编译失败。只保留需要的 terminfo。
+    environment.systemPackages = map (x: x.terminfo) (
+      with pkgs.pkgsBuildBuild;
+      [
+        alacritty
+        ghostty
+        kitty
+        tmux
+        wezterm
+      ]
+    );
 
     networking.firewall.allowedTCPPorts = [
       80 # HTTP
