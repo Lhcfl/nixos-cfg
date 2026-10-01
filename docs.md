@@ -2784,6 +2784,30 @@ true
 
 
 
+## funkcia\.hm\.merge-files
+
+
+
+使用 nushell 的 merge deep 命令将 Nix 生成的 JSON 文件与指定 path 的文件进行深度合并。
+
+
+
+*Type:*
+attribute set of (JSON value)
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+*Declared by:*
+ - [/home/modules/merge-files\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/merge-files.nix)
+
+
+
 ## funkcia\.hm\.modern-cli-tools\.enable
 
 
@@ -2942,6 +2966,94 @@ list of string
 
 *Declared by:*
  - [/home/modules/programs/pi\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/pi.nix)
+
+
+
+## funkcia\.hm\.programs\.vicinae\.enable
+
+
+
+Whether to enable vicinae\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
+
+
+
+## funkcia\.hm\.programs\.vicinae\.settings
+
+
+
+vicinae settings
+
+
+
+*Type:*
+JSON value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Declared by:*
+ - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
+
+
+
+## funkcia\.hm\.programs\.vicinae\.systemd\.enable
+
+
+
+Whether to enable vicinae systemd service\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
 
 
 

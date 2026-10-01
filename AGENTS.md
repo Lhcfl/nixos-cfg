@@ -181,7 +181,7 @@ nu scripts/lint/app.nu -f
 在提交前，重新生成 `docs.md`：
 
 ```bash
-nix build .#funkcia-options-doc-md && install -m0644 result docs.md
+nix build .#funkcia-options-doc-md -o result-doc && install -m0644 result-doc docs.md
 ```
 
 `nix build` 只生成指向 store 的 `result` 符号链接（且 store 里的文件是只读的），
