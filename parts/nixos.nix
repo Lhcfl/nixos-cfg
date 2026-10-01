@@ -56,8 +56,9 @@
     }
   ) this.config.devices;
 
+  # TODO? 现在还没有不是 x86_64-linux 的设备，所以暂时不需要做别的
   config.flake.checks.x86_64-linux = lib.mapAttrs' (name: value: {
-    name = "${name} topLevel";
+    name = "${name}_topLevel";
     value = self.nixosConfigurations.${name}.config.system.build.toplevel;
   }) this.config.devices;
 }
