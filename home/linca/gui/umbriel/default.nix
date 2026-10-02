@@ -23,6 +23,16 @@
 
     window_rule = [
       { blur = true; }
+      {
+        match.is_floating = true;
+        blur_optimized = false;
+      }
     ];
+
+    hot_corners.top_left = {
+      enabled = true;
+      delay_ms = 500;
+      action = "overview-open";
+    };
   };
 }

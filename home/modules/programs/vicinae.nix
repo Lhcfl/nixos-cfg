@@ -39,5 +39,12 @@
           ])
         ])
       ];
+
+    funkcia.hm.gui.umbriel.settings.layer_rule = [
+      {
+        match.namespace = "vicinae";
+        blur = true;
+      }
+    ];
   };
 }

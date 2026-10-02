@@ -48,7 +48,10 @@ in
 
             move-window-to-workspace = "window-move-to-workspace:${toString arguments}";
 
-            screenshot = "spawn:notify-send no-screenshot-action";
+            screenshot = lib.mkMerge [
+              (lib.mkIf (config.funkcia.hm.gui.noctalia.enable) "spawn:noctalia msg screenshot-fullscreen")
+              (lib.mkIf (!config.funkcia.hm.gui.noctalia.enable) "spawn:notify-send no-screenshot-action")
+            ];
 
             close-window = "window-close";
 
@@ -58,7 +61,7 @@ in
 
             fullscreen = "window-toggle-fullscreen";
 
-            resize-preset = "window-cycle-width";
+            resize-preset = "window-cycle-primary-extent";
 
             show-help = "cheatsheet-toggle";
 
