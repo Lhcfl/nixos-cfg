@@ -10,7 +10,7 @@ in
 {
   config.funkcia.hm.gui.umbriel.settings = lib.mkIf cfg.umbriel.enable {
     general.autostart = cfg.spawn-at-startup;
-    environment = cfg.environment;
+    inherit (cfg) environment;
 
     input.focus = {
       follows_mouse = cfg.input.follow-mouse;
@@ -55,7 +55,7 @@ in
           move-window-to-workspace = "window-move-to-workspace:${toString arguments}";
 
           screenshot = lib.mkMerge [
-            (lib.mkIf (config.funkcia.hm.gui.noctalia.enable) "spawn:noctalia msg screenshot-fullscreen")
+            (lib.mkIf config.funkcia.hm.gui.noctalia.enable "spawn:noctalia msg screenshot-fullscreen")
             (lib.mkIf (!config.funkcia.hm.gui.noctalia.enable) "spawn:notify-send no-screenshot-action")
           ];
 

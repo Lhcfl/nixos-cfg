@@ -64,8 +64,8 @@ let
       );
 
       params = lib.foldl (acc: x: acc // x) { } [
-        (if allow-when-locked != false then { inherit allow-when-locked; } else { })
-        (if title != null then { hotkey-overlay-title = title; } else { })
+        (lib.optionalAttrs (allow-when-locked != false) { inherit allow-when-locked; })
+        (lib.optionalAttrs (title != null) { hotkey-overlay-title = title; })
       ];
     in
     n key params body
@@ -79,7 +79,7 @@ in
           lib.flatten [
             (rmap cfg.spawn-at-startup (n "spawn-sh-at-startup"))
             (lib.mkIf (cfg.environment != { }) (
-              (n "environment" (lib.mapAttrsToList (name: value: n name value) cfg.environment))
+              n "environment" (lib.mapAttrsToList (name: value: n name value) cfg.environment)
             ))
             (n "input" [
               (raw "// input settings")
