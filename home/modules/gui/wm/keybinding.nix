@@ -135,41 +135,14 @@ let
 
 in
 {
-  options.funkcia.hm.gui.wm.keybinding = {
-    niri.enable = lib.mkEnableOption "keybinding for Niri";
-    umbriel.enable = lib.mkEnableOption "keybinding for umbriel";
-
-    utils = lib.mkOption {
-      visible = false;
-      type = lib.types.anything;
-    };
-
-    binds = lib.mkOption {
-      default = { };
-      type = lib.types.attrsWith {
-        elemType = lib.types.submodule {
-          options = bind-type;
-        };
-        placeholder = "key";
+  options.funkcia.hm.gui.wm.keybinding = lib.mkOption {
+    default = { };
+    type = lib.types.attrsWith {
+      elemType = lib.types.submodule {
+        options = bind-type;
       };
-      description = "binds <key> to actions";
+      placeholder = "key";
     };
-  };
-
-  config.funkcia.hm.gui.wm.keybinding.utils = {
-    converted = lib.pipe cfg.binds [
-      lib.attrsToList
-      (map (
-        { name, value }:
-        value
-        // {
-          bind = name;
-          actions = lib.pipe value.actions [
-            lib.attrsToList
-            (builtins.filter (x: x.value != null))
-          ];
-        }
-      ))
-    ];
+    description = "binds <key> to actions";
   };
 }

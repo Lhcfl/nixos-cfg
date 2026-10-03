@@ -301,11 +301,11 @@
     },
     "nix-kdl": {
       "locked": {
-        "lastModified": 1788764683,
-        "narHash": "sha256-oO5FvEOKmMizu9ZNRR6gBu7VMeQ8stT0aF5654ONETc=",
+        "lastModified": 1791014130,
+        "narHash": "sha256-bK8zm1QxroMbnhOYJAMrDa85mQqaRug1J6NdHiUR2rs=",
         "owner": "Lhcfl",
         "repo": "nix-kdl",
-        "rev": "a0016adcf0e4a373962c92f87e6ff5398c283cf2",
+        "rev": "f53cdd251e281a7f2d3d0aed6ee2747f55721475",
         "type": "github"
       },
       "original": {

@@ -9,7 +9,7 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
-  funkcia.hm.gui.wm.keybinding.niri.enable = config.funkcia.hm.gui.enable;
+  funkcia.hm.gui.wm.niri.enable = config.funkcia.hm.gui.enable;
 
   funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.enable (
     with kdl.extras.niri;

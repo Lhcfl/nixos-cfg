@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  funkcia.hm.gui.wm.keybinding.binds = {
+  funkcia.hm.gui.wm.keybinding = {
     "Print".actions.screenshot = { };
     "Ctrl+Alt+A".actions = lib.mkDefault { screenshot = { }; };
     "Mod+Q".actions.close-window = { };

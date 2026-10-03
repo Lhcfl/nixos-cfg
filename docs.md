@@ -2229,7 +2229,56 @@ TOML value
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds
+## funkcia\.hm\.gui\.wm\.input\.follow-mouse
+
+
+
+Focus the window under the mouse pointer\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.input\.follow-mouse-max-scroll
+
+
+
+Refuse focus-follows-mouse when focusing would scroll the view
+farther than this many viewport widths\.
+
+
+
+*Type:*
+floating point number
+
+
+
+*Default:*
+
+```nix
+0.5
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding
 
 
 
@@ -2249,11 +2298,11 @@ attribute set of (submodule)
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions
 
 
 
@@ -2265,11 +2314,11 @@ The action binds to \<key>\. You can only select one action\.
 attribute-tagged union with choices: close-window, focus-window-relative, focus-workspace, fullscreen, maximize, move-window-relative, move-window-to-workspace, move-workspace-relative, quit, resize-preset, screenshot, show-help, spawn, spawn-sh, toggle-window-floating
 
 *Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.close-window
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.close-window
 
 
 
@@ -2282,7 +2331,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.focus-window-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.focus-window-relative
 
 
 
@@ -2295,7 +2344,7 @@ one of “Left”, “Right”, “Up”, “Down”
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.focus-workspace
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.focus-workspace
 
 
 
@@ -2308,7 +2357,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.fullscreen
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.fullscreen
 
 
 
@@ -2321,7 +2370,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.maximize
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.maximize
 
 
 
@@ -2334,7 +2383,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-window-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.move-window-relative
 
 
 
@@ -2347,7 +2396,7 @@ one of “Left”, “Right”, “Up”, “Down”
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-window-to-workspace
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.move-window-to-workspace
 
 
 
@@ -2360,7 +2409,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-workspace-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.move-workspace-relative
 
 
 
@@ -2373,7 +2422,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.quit
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.quit
 
 
 
@@ -2386,7 +2435,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.resize-preset
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.resize-preset
 
 
 
@@ -2399,7 +2448,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.screenshot
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.screenshot
 
 
 
@@ -2412,7 +2461,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.show-help
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.show-help
 
 
 
@@ -2425,7 +2474,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.spawn
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.spawn
 
 
 
@@ -2446,7 +2495,7 @@ list of string
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.spawn-sh
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.spawn-sh
 
 
 
@@ -2459,7 +2508,7 @@ string
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.toggle-window-floating
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-window-floating
 
 
 
@@ -2472,7 +2521,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.allow-when-locked
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.allow-when-locked
 
 
 
@@ -2500,11 +2549,11 @@ true
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.title
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.title
 
 
 
@@ -2524,47 +2573,15 @@ null
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
-## funkcia\.hm\.gui\.wm\.keybinding\.niri\.enable
+## funkcia\.hm\.gui\.wm\.niri\.enable
 
 
 
-Whether to enable keybinding for Niri\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
-
-
-
-## funkcia\.hm\.gui\.wm\.keybinding\.umbriel\.enable
-
-
-
-Whether to enable keybinding for umbriel\.
+Whether to enable 统一的 WM 设置 for Niri\.
 
 
 
@@ -2588,7 +2605,73 @@ true
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.spawn-at-startup
+
+
+
+Shell commands to run when the WM session starts\.
+
+
+
+*Type:*
+list of string
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+
+
+*Example:*
+
+```nix
+[
+  "fcitx5"
+]
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.umbriel\.enable
+
+
+
+Whether to enable 统一的 WM 设置 for umbriel\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
 
 
 

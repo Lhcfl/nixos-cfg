@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  funkcia.hm.gui.wm.keybinding.binds = lib.mkMerge (
+  funkcia.hm.gui.wm.keybinding = lib.mkMerge (
     lib.concatLists [
       (map (id: {
         "Mod+${toString id}".actions.focus-workspace = id;
