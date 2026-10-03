@@ -1,7 +1,5 @@
 {
-  inputs,
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -19,6 +17,11 @@
       tap = true;
       natural_scroll = true;
       disable_while_typing = true;
+    };
+
+    input.focus = {
+      follows_mouse = true;
+      follows_mouse_max_scroll = 0.5;
     };
 
     window_rule = [
