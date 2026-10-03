@@ -10,6 +10,16 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
+  # umbriel has a bug, so we disable the blur effect for noctalia panels in umbriel
+  funkcia.hm.gui.umbriel.settings = lib.mkIf false {
+    layer_rule = [
+      {
+        match.namespace = "^noctalia.*(panel).*";
+        blur = true;
+      }
+    ];
+  };
+
   funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.noctalia.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
@@ -17,7 +27,6 @@ in
 
       (layer-rule [
         (match { namespace = "^noctalia.*(panel).*"; })
-        (match { namespace = "vicinae"; })
         (background-effect [
           (xray false)
         ])

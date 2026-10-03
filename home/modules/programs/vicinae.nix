@@ -44,6 +44,7 @@
       {
         match.namespace = "vicinae";
         blur = true;
+        blur_optimized = false;
       }
     ];
   };

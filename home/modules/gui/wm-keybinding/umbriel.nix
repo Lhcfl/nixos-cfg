@@ -35,8 +35,8 @@ in
             move-window-relative = match arguments {
               Left = "column-move-left";
               Right = "column-move-right";
-              Up = "window-move-up";
-              Down = "window-move-down";
+              Up = "window-move-or-workspace-up";
+              Down = "window-move-or-workspace-down";
             };
 
             move-workspace-relative = match arguments {
