@@ -78,6 +78,9 @@ in
         kdl.formats.v1 (
           lib.flatten [
             (rmap cfg.spawn-at-startup (n "spawn-sh-at-startup"))
+            (lib.mkIf (cfg.environment != { }) (
+              (n "environment" (lib.mapAttrsToList (name: value: n name value) cfg.environment))
+            ))
             (n "input" [
               (raw "// input settings")
               (lib.mkIf cfg.input.follow-mouse (

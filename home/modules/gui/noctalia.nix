@@ -102,12 +102,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    funkcia.hm.gui.wm.spawn-at-startup = [ "noctalia" ];
+
     funkcia.hm.gui.niri.settings = lib.mkMerge [
       (
         with kdl.extras.niri;
         kdl.formats.v1 [
-          (spawn-at-startup "noctalia")
-
           (layer-rule [
             (match { namespace = "^noctalia.*(panel).*"; })
             (background-effect [
@@ -127,11 +127,7 @@ in
     ];
 
     funkcia.hm.gui.umbriel.settings = {
-      general.autostart = [
-        "noctalia"
-      ];
-      # include.optional.files = [ "noctalia.toml" ];
-      include.files = [ "noctalia.toml" ];
+      include.optional.files = [ "noctalia.toml" ];
     };
 
     home.packages = lib.mkIf (osConfig.programs.noctalia.enable or false) [

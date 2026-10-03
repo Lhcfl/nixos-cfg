@@ -10,6 +10,7 @@ in
 {
   config.funkcia.hm.gui.umbriel.settings = lib.mkIf cfg.umbriel.enable {
     general.autostart = cfg.spawn-at-startup;
+    environment = cfg.environment;
 
     input.focus = {
       follows_mouse = cfg.input.follow-mouse;

@@ -33,9 +33,6 @@ in
           (xwayland-satellite [
             (n "path" "${lib.getExe pkgs.xwayland-satellite}")
           ])
-          (environment [
-            (n "QT_QPA_PLATFORM" "wayland")
-          ])
           (window-rule [
             (match { title = "Picture-in-Picture"; })
             (open-floating true)
