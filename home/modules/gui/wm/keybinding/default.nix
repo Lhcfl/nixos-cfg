@@ -4,7 +4,7 @@
   ...
 }:
 let
-  cfg = config.funkcia.hm.gui.wm-keybinding;
+  cfg = config.funkcia.hm.gui.wm.keybinding;
 
   actions =
     with lib.types;
@@ -135,7 +135,7 @@ let
 
 in
 {
-  options.funkcia.hm.gui.wm-keybinding = {
+  options.funkcia.hm.gui.wm.keybinding = {
     niri.enable = lib.mkEnableOption "keybinding for Niri";
     umbriel.enable = lib.mkEnableOption "keybinding for umbriel";
 
@@ -156,7 +156,7 @@ in
     };
   };
 
-  config.funkcia.hm.gui.wm-keybinding.utils = {
+  config.funkcia.hm.gui.wm.keybinding.utils = {
     converted = lib.pipe cfg.binds [
       lib.attrsToList
       (map (

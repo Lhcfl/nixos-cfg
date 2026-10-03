@@ -4,7 +4,7 @@
   ...
 }:
 {
-  funkcia.hm.gui.wm-keybinding.umbriel.enable = config.funkcia.hm.gui.enable;
+  funkcia.hm.gui.wm.keybinding.umbriel.enable = config.funkcia.hm.gui.enable;
 
   funkcia.hm.gui.umbriel.settings = lib.mkIf config.funkcia.hm.gui.enable {
     general.autostart = [

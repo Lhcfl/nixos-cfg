@@ -110,7 +110,7 @@ in
     };
   };
 
-  funkcia.hm.gui.wm-keybinding.binds = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
+  funkcia.hm.gui.wm.keybinding.binds = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
     "XF86MonBrightnessUp".allow-when-locked = true;
     "XF86MonBrightnessUp".actions.spawn-sh = "noctalia msg brightness-up";
 

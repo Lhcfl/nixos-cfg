@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.funkcia.hm.gui.wm-keybinding;
+  cfg = config.funkcia.hm.gui.wm.keybinding;
   match = str: defs: defs.${str} or defs.default;
 in
 {

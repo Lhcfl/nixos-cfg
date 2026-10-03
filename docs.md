@@ -2229,7 +2229,7 @@ TOML value
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds
+## funkcia\.hm\.gui\.wm\.keybinding\.binds
 
 
 
@@ -2249,11 +2249,11 @@ attribute set of (submodule)
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions
 
 
 
@@ -2265,11 +2265,11 @@ The action binds to \<key>\. You can only select one action\.
 attribute-tagged union with choices: close-window, focus-window-relative, focus-workspace, fullscreen, maximize, move-window-relative, move-window-to-workspace, move-workspace-relative, quit, resize-preset, screenshot, show-help, spawn, spawn-sh, toggle-window-floating
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.close-window
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.close-window
 
 
 
@@ -2282,7 +2282,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.focus-window-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.focus-window-relative
 
 
 
@@ -2295,7 +2295,7 @@ one of “Left”, “Right”, “Up”, “Down”
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.focus-workspace
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.focus-workspace
 
 
 
@@ -2308,7 +2308,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.fullscreen
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.fullscreen
 
 
 
@@ -2321,7 +2321,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.maximize
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.maximize
 
 
 
@@ -2334,7 +2334,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.move-window-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-window-relative
 
 
 
@@ -2347,7 +2347,7 @@ one of “Left”, “Right”, “Up”, “Down”
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.move-window-to-workspace
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-window-to-workspace
 
 
 
@@ -2360,7 +2360,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.move-workspace-relative
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.move-workspace-relative
 
 
 
@@ -2373,7 +2373,7 @@ string or signed integer
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.quit
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.quit
 
 
 
@@ -2386,7 +2386,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.resize-preset
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.resize-preset
 
 
 
@@ -2399,7 +2399,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.screenshot
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.screenshot
 
 
 
@@ -2412,7 +2412,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.show-help
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.show-help
 
 
 
@@ -2425,7 +2425,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.spawn
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.spawn
 
 
 
@@ -2446,7 +2446,7 @@ list of string
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.spawn-sh
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.spawn-sh
 
 
 
@@ -2459,7 +2459,7 @@ string
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.actions\.toggle-window-floating
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.actions\.toggle-window-floating
 
 
 
@@ -2472,7 +2472,7 @@ submodule
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.allow-when-locked
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.allow-when-locked
 
 
 
@@ -2500,11 +2500,11 @@ true
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.binds\.\<key>\.title
+## funkcia\.hm\.gui\.wm\.keybinding\.binds\.\<key>\.title
 
 
 
@@ -2524,11 +2524,11 @@ null
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.niri\.enable
+## funkcia\.hm\.gui\.wm\.keybinding\.niri\.enable
 
 
 
@@ -2556,11 +2556,11 @@ true
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 
-## funkcia\.hm\.gui\.wm-keybinding\.umbriel\.enable
+## funkcia\.hm\.gui\.wm\.keybinding\.umbriel\.enable
 
 
 
@@ -2588,7 +2588,7 @@ true
 ```
 
 *Declared by:*
- - [/home/modules/gui/wm-keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm-keybinding/default.nix)
+ - [/home/modules/gui/wm/keybinding/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding/default.nix)
 
 
 

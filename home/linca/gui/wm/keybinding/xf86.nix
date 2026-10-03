@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  funkcia.hm.gui.wm-keybinding = {
+  funkcia.hm.gui.wm.keybinding = {
     binds = lib.mapAttrs (_: x: x // { allow-when-locked = true; }) {
       "XF86AudioMute".actions.spawn-sh = lib.mkDefault "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
       "XF86AudioMicMute".actions.spawn-sh = lib.mkDefault "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
