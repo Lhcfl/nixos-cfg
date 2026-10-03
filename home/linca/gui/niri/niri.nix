@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -14,8 +13,6 @@ in
   funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.enable (
     with kdl.extras.niri;
     kdl.formats.v1 [
-      (spawn-at-startup "fcitx5")
-
       prefer-no-csd
 
       (screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png")

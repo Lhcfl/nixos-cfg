@@ -75,17 +75,20 @@ in
   config.funkcia.hm.gui.niri.settings = lib.mkIf cfg.niri.enable (
     lib.mkBefore (
       config.lib.funkcia.niri.mkInclude "funkcia.gui.wm" (
-        kdl.formats.v1 [
-          (n "input" [
-            (raw "// input settings")
-            (lib.mkIf cfg.input.follow-mouse (
-              n "focus-follows-mouse" {
-                max-scroll-amount = percentage cfg.input.follow-mouse-max-scroll;
-              }
-            ))
-          ])
-          (n "binds" binding)
-        ]
+        kdl.formats.v1 (
+          lib.flatten [
+            (rmap cfg.spawn-at-startup (n "spawn-sh-at-startup"))
+            (n "input" [
+              (raw "// input settings")
+              (lib.mkIf cfg.input.follow-mouse (
+                n "focus-follows-mouse" {
+                  max-scroll-amount = percentage cfg.input.follow-mouse-max-scroll;
+                }
+              ))
+            ])
+            (n "binds" binding)
+          ]
+        )
       )
     )
   );

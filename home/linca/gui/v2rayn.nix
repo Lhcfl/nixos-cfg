@@ -10,9 +10,7 @@
   };
 
   config = lib.mkIf (config.funkcia.hm.gui.enable && config.funkcia.hm.gui.v2rayn.enable) {
-    funkcia.hm.gui.niri.settings = ''
-      spawn-at-startup "v2rayN"
-    '';
+    funkcia.hm.gui.wm.spawn-at-startup = [ "v2rayN" ];
 
     home.packages = with pkgs; [
       v2rayn

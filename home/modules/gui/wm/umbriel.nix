@@ -9,6 +9,8 @@ let
 in
 {
   config.funkcia.hm.gui.umbriel.settings = lib.mkIf cfg.umbriel.enable {
+    general.autostart = cfg.spawn-at-startup;
+
     input.focus = {
       follows_mouse = cfg.input.follow-mouse;
       follows_mouse_max_scroll = cfg.input.follow-mouse-max-scroll;
