@@ -44,63 +44,32 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable (
-    lib.mkMerge [
-      (lib.mkIf (!config.systemd.network.enable) {
-        warnings = [
-          "`configure-ip` with `config.systemd.network.enable` = false is not tested"
-        ];
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.systemd.network.enable;
+        message = "You must enable systemd-networkd (`systemd.network.enable = true`) to configure-ip!";
+      }
+    ];
 
-        sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
-          lib.attrsToList
-          (map (
-            { name, value }:
-            ''
-              nmcli connection modify "${name}" \
-                ipv4.method manual \
-                ipv4.addresses ${value.addr}/${value.mask} \
-                ipv4.gateway "" \
-                ipv4.routes "0.0.0.0/0 ${value.gateway} onlink=true" \
-                ipv4.never-default no \
-                connection.autoconnect yes
-            ''
-          ))
-          (builtins.concatStringsSep "\n")
-          (x: "set +e\n${x}\ntrue") # todo: ip addr add 可能重复而忽略错误；或许有什么改善方法？
-        ];
-
-        systemd.services."configure-ip" = {
-          script = "bash ${config.sops.templates."configure-ip.sh".path}";
-          path = with pkgs; [
-            bash
-            networkmanager
-          ];
-          wantedBy = [ "network.target" ];
-          after = [ "NetworkManager.service" ];
+    sops.templates = lib.flip lib.mapAttrs' cfg.v4 (
+      name: value: {
+        name = "configure-ip-for-${name}";
+        # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
+        value.mode = "0644";
+        # 模板变化后重新加载 networkd
+        value.restartUnits = [ "systemd-networkd.service" ];
+        value.content = lib.generators.toINI { } {
+          Match.Name = name;
+          Network.Address = "${value.addr}/${value.mask}";
+          Network.Gateway = value.gateway;
         };
-      })
+      }
+    );
 
-      (lib.mkIf config.systemd.network.enable {
-        sops.templates = lib.flip lib.mapAttrs' cfg.v4 (
-          name: value: {
-            name = "configure-ip-for-${name}";
-            # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
-            value.mode = "0644";
-            # 模板变化后重新加载 networkd
-            value.restartUnits = [ "systemd-networkd.service" ];
-            value.content = lib.generators.toINI { } {
-              Match.Name = name;
-              Network.Address = "${value.addr}/${value.mask}";
-              Network.Gateway = value.gateway;
-            };
-          }
-        );
-
-        environment.etc = lib.mapAttrs' (name: value: {
-          name = "systemd/network/45-configure-ip-for-${name}.network";
-          value.source = config.sops.templates."configure-ip-for-${name}".path;
-        }) cfg.v4;
-      })
-    ]
-  );
+    environment.etc = lib.mapAttrs' (name: value: {
+      name = "systemd/network/45-configure-ip-for-${name}.network";
+      value.source = config.sops.templates."configure-ip-for-${name}".path;
+    }) cfg.v4;
+  };
 }
