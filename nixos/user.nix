@@ -38,12 +38,17 @@ in
           })
 
           (lib.mkIf value.is-admin {
-            extraGroups = [
-              "networkmanager"
-              "wheel"
-              "docker"
-              "tss" # tss group has access to TPM devices
-              "input" # input group has access to input devices
+            extraGroups = builtins.concatLists [
+              [
+                "wheel"
+                "input" # input group has access to input devices
+              ]
+              # tss group has access to TPM devices
+              (lib.optional config.security.tpm2.enable "tss")
+              # Users in the “incus-admin” group can interact with the daemon
+              (lib.optional config.virtualisation.incus.enable "incus-admin")
+              (lib.optional config.virtualisation.docker.enable "docker")
+              (lib.optional config.networking.networkmanager.enable "networkmanager")
             ];
           })
         ];

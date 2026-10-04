@@ -7,7 +7,7 @@
 {
   this.options.enable = lib.mkEnableOption "v2rayn, a GUI for v2ray";
 
-  config = lib.mkIf (this.config.enable) {
+  config = lib.mkIf this.config.enable {
     funkcia.hm.gui.wm.spawn-at-startup = [ "v2rayN" ];
 
     home.packages = with pkgs; [

@@ -121,26 +121,19 @@ IPv4 地址。例如 123\.45\.67\.89
 可能为机密的值。设置为下列两种值的一种。
 
  - **明文**：此时直接设置值，比如 ` "123.45.67.89" `
-
- - **密文**：此时设置 secret = key，比如，如果 ` config.sops.placeholder.key-name ` 是对应了 ` "123.45.67.89" ` 的 sops，则设置为：
-
-```nix
-{ secret = "key-name"; }
-```
+ - **密文**：此时设置 ` config.sops.placeholder.<key> ` 即可
 
 
 
 *Type:*
-string or (submodule)
+string
 
 
 
 *Example:*
 
 ```nix
-{
-  secret = "key-name";
-}
+config.sops.placeholder."network/ens3/ipv4"
 ```
 
 *Declared by:*
@@ -157,26 +150,19 @@ string or (submodule)
 可能为机密的值。设置为下列两种值的一种。
 
  - **明文**：此时直接设置值，比如 ` "123.45.67.89" `
-
- - **密文**：此时设置 secret = key，比如，如果 ` config.sops.placeholder.key-name ` 是对应了 ` "123.45.67.89" ` 的 sops，则设置为：
-
-```nix
-{ secret = "key-name"; }
-```
+ - **密文**：此时设置 ` config.sops.placeholder.<key> ` 即可
 
 
 
 *Type:*
-string or (submodule)
+string
 
 
 
 *Example:*
 
 ```nix
-{
-  secret = "key-name";
-}
+config.sops.placeholder."network/ens3/ipv4"
 ```
 
 *Declared by:*
@@ -193,26 +179,19 @@ string or (submodule)
 可能为机密的值。设置为下列两种值的一种。
 
  - **明文**：此时直接设置值，比如 ` "123.45.67.89" `
-
- - **密文**：此时设置 secret = key，比如，如果 ` config.sops.placeholder.key-name ` 是对应了 ` "123.45.67.89" ` 的 sops，则设置为：
-
-```nix
-{ secret = "key-name"; }
-```
+ - **密文**：此时设置 ` config.sops.placeholder.<key> ` 即可
 
 
 
 *Type:*
-string or (submodule)
+string
 
 
 
 *Example:*
 
 ```nix
-{
-  secret = "key-name";
-}
+config.sops.placeholder."network/ens3/ipv4"
 ```
 
 *Declared by:*
@@ -558,10 +537,12 @@ true
 
 
 
-Whether to enable GNOME Keyring module\.  
-这个模块是为了在 *不使用* GNOME 的情况下启用 Keyring 及其相关服务。
-如果使用 GNOME 桌面环境，则不需要此模块。
-最初目的是为了在 Hyprland 上使用 Keyring
+Whether to enable GNOME Keyring module\.
+
+在不使用GNOME 的情况下，为了让各种软件安全的存储机密，需要用到
+Secret Service。此模块将 gnome-keyring 用在任何桌面环境中。
+
+see [https://wiki\.nixos\.org/wiki/Secret_Service](https://wiki\.nixos\.org/wiki/Secret_Service)
 \.
 
 
@@ -2229,6 +2210,38 @@ TOML value
 
 
 
+## funkcia\.hm\.gui\.v2rayn\.enable
+
+
+
+Whether to enable v2rayn, a GUI for v2ray\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/gui/v2rayn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/v2rayn.nix)
+
+
+
 ## funkcia\.hm\.gui\.vicinae\.enable
 
 
@@ -2441,6 +2454,9 @@ close the focused window
 *Type:*
 submodule
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.focus-window-relative
@@ -2453,6 +2469,9 @@ focus window by direction
 
 *Type:*
 one of “Left”, “Right”, “Up”, “Down”
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2467,6 +2486,9 @@ focus workspace by id
 *Type:*
 string or signed integer
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.fullscreen
@@ -2479,6 +2501,9 @@ fullscreen the window
 
 *Type:*
 submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2493,6 +2518,9 @@ maximize the window
 *Type:*
 submodule
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.move-window-relative
@@ -2505,6 +2533,9 @@ move window by direction
 
 *Type:*
 one of “Left”, “Right”, “Up”, “Down”
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2519,6 +2550,9 @@ move window to workspace by id
 *Type:*
 string or signed integer
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.move-workspace-relative
@@ -2531,6 +2565,9 @@ move workspace by direction
 
 *Type:*
 string or signed integer
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2545,6 +2582,9 @@ quit shell
 *Type:*
 submodule
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.resize-preset
@@ -2557,6 +2597,9 @@ resize the window
 
 *Type:*
 submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2571,6 +2614,9 @@ take a screenshot
 *Type:*
 submodule
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.show-help
@@ -2583,6 +2629,9 @@ show help of commands
 
 *Type:*
 submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -2605,6 +2654,9 @@ list of string
 [ ]
 ```
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.spawn-sh
@@ -2618,6 +2670,9 @@ spawn command, with ` sh -c `
 *Type:*
 string
 
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
 
 
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-window-floating
@@ -2630,6 +2685,9 @@ toggle floating
 
 *Type:*
 submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
 
 
 
@@ -3771,39 +3829,7 @@ list of string
 
 
 # User Modules for linca
-## funkcia\.hm\.gui\.v2rayn\.enable
-
-Whether to enable v2rayn, a GUI for v2ray\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/home/linca/gui/v2rayn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/gui/v2rayn.nix)
-
-
-
 ## linca\.play\.enable
-
-
 
 Whether to enable packages for play\.
 
