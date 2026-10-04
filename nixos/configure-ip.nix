@@ -14,27 +14,17 @@ let
     in
     lib.mkOption {
       description = ''
-        ${description}
+        ${description} 
 
         可能为机密的值。设置为下列两种值的一种。
 
         - **明文**：此时直接设置值，比如 `"123.45.67.89"`
-
-        - **密文**：此时设置 secret = key，比如，如果 `config.sops.placeholder.key-name` 是对应了 `"123.45.67.89"` 的 sops，则设置为：
-
-        ```nix
-        { secret = "key-name"; }
-        ```
+        - **密文**：此时设置 `config.sops.placeholder.<key>` 即可
       '';
       type = types.oneOf [
         types.str
-        (types.submodule {
-          options.secret = lib.mkOption { type = types.str; };
-        })
       ];
-      example = {
-        secret = "key-name";
-      };
+      example = lib.literalExpression "config.sops.placeholder.\"network/ens3/ipv4\"";
     };
 in
 {
@@ -54,93 +44,63 @@ in
     };
   };
 
-  config =
-    let
-      mkPlaceholder = x: "<SOPS:${builtins.hashString "sha256" x.secret}:PLACEHOLDER>";
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+      (lib.mkIf (!config.systemd.network.enable) {
+        warnings = [
+          "`configure-ip` with `config.systemd.network.enable` = false is not tested"
+        ];
 
-      getValue = x: if x ? "secret" then mkPlaceholder x else x;
-    in
-    lib.mkIf cfg.enable (
-      lib.mkMerge [
-        {
-          sops.placeholder = lib.pipe cfg.v4 [
-            lib.attrsToList
-            (builtins.concatMap (
-              { value, ... }:
-              let
-                gen =
-                  key:
-                  (lib.mkIf (value.${key} ? "secret") { "${value.${key}.secret}" = mkPlaceholder value.${key}; });
-              in
-              [
-                (gen "addr")
-                (gen "mask")
-                (gen "gateway")
-              ]
-            ))
-            lib.mkMerge
+        sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
+          lib.attrsToList
+          (map (
+            { name, value }:
+            ''
+              nmcli connection modify "${name}" \
+                ipv4.method manual \
+                ipv4.addresses ${value.addr}/${value.mask} \
+                ipv4.gateway "" \
+                ipv4.routes "0.0.0.0/0 ${value.gateway} onlink=true" \
+                ipv4.never-default no \
+                connection.autoconnect yes
+            ''
+          ))
+          (builtins.concatStringsSep "\n")
+          (x: "set +e\n${x}\ntrue") # todo: ip addr add 可能重复而忽略错误；或许有什么改善方法？
+        ];
+
+        systemd.services."configure-ip" = {
+          script = "bash ${config.sops.templates."configure-ip.sh".path}";
+          path = with pkgs; [
+            bash
+            networkmanager
           ];
-        }
+          wantedBy = [ "network.target" ];
+          after = [ "NetworkManager.service" ];
+        };
+      })
 
-        (lib.mkIf (!config.systemd.network.enable) {
-          sops.templates."configure-ip.sh".content = lib.pipe cfg.v4 [
-            lib.attrsToList
-            (map (
-              { name, value }:
-              ''
-                nmcli connection modify "${name}" \
-                  ipv4.method manual \
-                  ipv4.addresses ${getValue value.addr}/${getValue value.mask} \
-                  ipv4.gateway "" \
-                  ipv4.routes "0.0.0.0/0 ${getValue value.gateway} onlink=true" \
-                  ipv4.never-default no \
-                  connection.autoconnect yes
-              ''
-            ))
-            (builtins.concatStringsSep "\n")
-            (x: "set +e\n${x}\ntrue") # todo: ip addr add 可能重复而忽略错误；或许有什么改善方法？
-          ];
+      (lib.mkIf config.systemd.network.enable {
+        sops.templates = lib.flip lib.mapAttrs' cfg.v4 (
+          name: value: {
+            name = "configure-ip-for-${name}";
+            # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
+            value.mode = "0644";
+            # 模板变化后重新加载 networkd
+            value.restartUnits = [ "systemd-networkd.service" ];
+            value.content = lib.generators.toINI { } {
+              Match.Name = name;
+              Network.Address = "${value.addr}/${value.mask}";
+              Network.Gateway = value.gateway;
+            };
+          }
+        );
 
-          systemd.services."configure-ip" = {
-            script = "bash ${config.sops.templates."configure-ip.sh".path}";
-            path = with pkgs; [
-              bash
-              networkmanager
-            ];
-            wantedBy = [ "network.target" ];
-            after = [ "NetworkManager.service" ];
-          };
-        })
-
-        (lib.mkIf config.systemd.network.enable {
-          sops.templates = lib.pipe cfg.v4 [
-            lib.attrsToList
-            (map (
-              { name, value }: {
-                "configure-ip-for-${name}" = {
-                  content = ''
-                    [Match]
-                    Name=${name}
-
-                    [Network]
-                    Address=${getValue value.addr}/${getValue value.mask}
-                    Gateway=${getValue value.gateway}
-                  '';
-                  # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
-                  mode = "0644";
-                  # 模板变化后重新加载 networkd
-                  restartUnits = [ "systemd-networkd.service" ];
-                };
-              }
-            ))
-            lib.mkMerge
-          ];
-
-          environment.etc = lib.mapAttrs' (name: value: {
-            name = "systemd/network/45-configure-ip-for-${name}.network";
-            value.source = config.sops.templates."configure-ip-for-${name}".path;
-          }) cfg.v4;
-        })
-      ]
-    );
+        environment.etc = lib.mapAttrs' (name: value: {
+          name = "systemd/network/45-configure-ip-for-${name}.network";
+          value.source = config.sops.templates."configure-ip-for-${name}".path;
+        }) cfg.v4;
+      })
+    ]
+  );
 }
