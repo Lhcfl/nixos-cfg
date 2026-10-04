@@ -54,12 +54,7 @@
     "/media/c" = {
       device = "/dev/disk/by-uuid/F654E4A954E46E35";
       fsType = "ntfs3";
-      options = [
-        "ro"
-        # not work?
-        # "fmask=0222"
-        # "dmask=0222"
-      ];
+      options = [ "ro" ];
     };
     "/media/d" = {
       device = "/dev/disk/by-uuid/04374294FD1C96EA";
@@ -69,11 +64,11 @@
     "/media/share" = {
       device = "/dev/disk/by-uuid/72C7-B373";
       fsType = "exfat";
-
-      # "gid=wheel"
-      # "dmask=007"
-      # "fmask=117"
-
+      options = [
+        "gid=${toString config.users.groups.wheel.gid}"
+        "dmask=002"
+        "fmask=113"
+      ];
     };
   };
 
