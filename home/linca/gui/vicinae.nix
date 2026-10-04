@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  funkcia.hm.programs.vicinae = {
+  funkcia.hm.gui.vicinae = {
     enable = config.funkcia.hm.gui.enable;
 
     settings = {
