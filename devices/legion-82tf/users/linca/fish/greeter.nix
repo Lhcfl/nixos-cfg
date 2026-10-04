@@ -8,7 +8,7 @@ in
   #   - 若 ${myTipsDir}/tip.md 存在，则用 bun 渲染一次，输出追加到 greeting，
   #     然后调用 `bun src/index.ts --done` 把它归档（即只显示一次）。
   # 仅交互式 shell 会调用 fish_greeting，所以非交互场景不受影响。
-  programs.fish.functions.fish_greeting = ''
+  programs.fish.functions.fish_greeting = /* shell */ ''
     # fish 默认 greeting（与内置 fish_greeting 行为一致）
     if not set -q fish_greeting
         set -l line1 (_ 'Welcome to fish, the friendly interactive shell')

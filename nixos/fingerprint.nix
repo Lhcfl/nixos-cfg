@@ -39,7 +39,7 @@ in
     security = {
       polkit.enable = true;
 
-      polkit.extraConfig = ''
+      polkit.extraConfig = /* js */ ''
         polkit.addRule(function(action, subject) {
           if (action.id == "net.reactivated.fprint.device.enroll" &&
               subject.isInGroup("users")) {

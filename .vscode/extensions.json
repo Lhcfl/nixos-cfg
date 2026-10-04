@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "jnoortheen.nix-ide",
+        "coopermaruyama.nix-embedded-languages",
+        "TheNuProjectContributors.vscode-nushell-lang",
+    ]
+}
