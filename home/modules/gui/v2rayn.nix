@@ -1,21 +1,18 @@
 {
+  this,
   pkgs,
   lib,
-  config,
   ...
 }:
 {
-  options.funkcia.hm.gui.v2rayn.enable = lib.mkEnableOption "v2rayn, a GUI for v2ray" // {
-    default = true;
-  };
+  this.options.enable = lib.mkEnableOption "v2rayn, a GUI for v2ray";
 
-  config = lib.mkIf (config.funkcia.hm.gui.enable && config.funkcia.hm.gui.v2rayn.enable) {
+  config = lib.mkIf (this.config.enable) {
     funkcia.hm.gui.wm.spawn-at-startup = [ "v2rayN" ];
 
     home.packages = with pkgs; [
       v2rayn
       xray
-      # v2ray-rules-dat
     ];
 
     xdg.dataFile."v2rayN/bin/xray/xray".source = lib.getExe pkgs.xray;

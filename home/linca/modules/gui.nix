@@ -29,6 +29,8 @@ in
     funkcia.hm.gui = {
       zen-browser.enable = true;
       zen-browser.isDefaultBrowser = true;
+
+      v2rayn.enable = true;
     };
 
     programs = {
