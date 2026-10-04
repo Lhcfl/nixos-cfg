@@ -1,16 +1,11 @@
 {
-  self,
   inputs,
-  funkcia-utils,
+  self,
   lib,
+  funkcia-utils,
   ...
 }:
-
 {
-  systems = [
-    "x86_64-linux"
-  ];
-
   perSystem =
     { pkgs, system, ... }:
     let
@@ -19,7 +14,7 @@
       mkUserModule = name: {
         inherit urlPrefix;
         name = "User Modules for ${name}";
-        modules = [ ../home/${name}/home.nix ];
+        modules = [ (funkcia-utils.projectPath /home/${name}/home.nix) ];
         specialArgs = {
           inherit inputs pkgs funkcia-utils;
           osConfig = null;

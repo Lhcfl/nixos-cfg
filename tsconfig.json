@@ -1,6 +1,7 @@
 {
   "include": [
-    "home/linca/sync/sync.ts"
+    "home/linca/sync/sync.ts",
+    "packages/**/*.{js,ts,tsx,jsx}"
   ],
   "compilerOptions": {
     // Environment setup & latest features

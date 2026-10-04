@@ -36,6 +36,8 @@
           (funkcia-utils.files.mkDirModule ./packages)
         ];
 
+        systems = [ "x86_64-linux" ];
+
         nixos = {
           sharedModules = [
             self.nixosModules.shared
