@@ -6,7 +6,7 @@
 {
   programs.home-manager.enable = true;
 
-  funkcia.avatar = ./assets/avatar-trans.png;
+  funkcia.hm.avatar = ./assets/avatar-trans.png;
   funkcia.hm.modern-cli-tools.enable = true;
 
   home = {
