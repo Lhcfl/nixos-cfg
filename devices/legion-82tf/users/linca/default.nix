@@ -14,4 +14,10 @@
     ];
     home.stateVersion = "26.05";
   };
+
+  # 为什么安装在这里而不是 home manager
+  # 因为这样才有 polkit policy
+  environment.systemPackages = with pkgs; [
+    bitwarden-desktop
+  ];
 }
