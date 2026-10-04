@@ -18,37 +18,38 @@ let
   binding = lib.flip lib.mapAttrsToList cfg.keybinding (
     key: value:
     let
-      inherit (value) title allow-when-locked;
-      actions = lib.pipe value.actions [
-        lib.attrsToList
-        (builtins.filter (x: x.value != null))
+      inherit (value) title allow-when-locked actions;
+
+      params = lib.foldl (acc: x: acc // x) { } [
+        (lib.optionalAttrs (allow-when-locked != false) { inherit allow-when-locked; })
+        (lib.optionalAttrs (title != null) { hotkey-overlay-title = title; })
       ];
 
-      body = rmap actions (
-        { name, value }:
+      body = lib.flip lib.mapAttrsToList actions (
+        name: param:
         match name {
-          spawn = lib.foldl (f: f) (n "spawn") value;
-          spawn-sh = n "spawn-sh" value;
-          focus-workspace = n "focus-workspace" value;
-          focus-window-relative = match value {
+          spawn = lib.foldl (f: f) (n "spawn") param;
+          spawn-sh = n "spawn-sh" param;
+          focus-workspace = n "focus-workspace" param;
+          focus-window-relative = match param {
             Left = n "focus-column-left";
             Right = n "focus-column-right";
             Up = n "focus-window-up";
             Down = n "focus-window-down";
           };
-          move-window-relative = match value {
+          move-window-relative = match param {
             Left = n "move-column-left";
             Right = n "move-column-right";
             Up = n "move-window-up";
             Down = n "move-window-down";
           };
-          move-workspace-relative = match value {
+          move-workspace-relative = match param {
             Left = n "spawn" "notify-send" "Cannot Move Workspace Left!";
             Right = n "spawn" "notify-send" "Cannot Move Workspace Right!";
             Up = n "move-workspace-up";
             Down = n "move-workspace-down";
           };
-          move-window-to-workspace = n "move-column-to-workspace" value;
+          move-window-to-workspace = n "move-column-to-workspace" param;
           screenshot = n "screenshot";
           close-window = n "close-window";
           quit = n "quit";
@@ -59,14 +60,9 @@ let
           toggle-window-floating = n "toggle-window-floating";
 
           # fallback
-          "default" = throw (builtins.trace value "${name} not implemented");
+          "default" = throw (builtins.trace param "${name} not implemented");
         }
       );
-
-      params = lib.foldl (acc: x: acc // x) { } [
-        (lib.optionalAttrs (allow-when-locked != false) { inherit allow-when-locked; })
-        (lib.optionalAttrs (title != null) { hotkey-overlay-title = title; })
-      ];
     in
     n key params body
   );

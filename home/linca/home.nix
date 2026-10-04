@@ -30,8 +30,13 @@
     dotenv-cli # load .env
   ];
 
+  xdg.configFile.funkcia-dotfiles = {
+    target = ".";
+    source = ./xdg/config;
+    recursive = true;
+  };
+
   imports = [
-    ./xdg.nix
     (funkcia-utils.files.mkDirModule ./programs)
     (funkcia-utils.files.mkRecDirModule ./gui)
     (funkcia-utils.files.mkRecDirModule ./modules)

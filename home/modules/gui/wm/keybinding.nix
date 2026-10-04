@@ -1,11 +1,5 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ lib, ... }:
 let
-  cfg = config.funkcia.hm.gui.wm.keybinding;
-
   actions =
     with lib.types;
     let
@@ -24,125 +18,124 @@ let
       unit-type = submodule { options = { }; };
     in
     {
-      spawn = {
+      spawn = lib.mkOption {
         description = ''
           spawn command.
         '';
         type = listOf str;
       };
-      spawn-sh = {
+      spawn-sh = lib.mkOption {
         description = ''
           spawn command, with `sh -c`
         '';
         type = str;
       };
-      focus-workspace = {
+      focus-workspace = lib.mkOption {
         description = ''
           focus workspace by id
         '';
         type = workspace-type;
       };
-      focus-window-relative = {
+      focus-window-relative = lib.mkOption {
         description = ''
           focus window by direction
         '';
         type = direction-type;
       };
-      move-window-relative = {
+      move-window-relative = lib.mkOption {
         description = ''
           move window by direction
         '';
         type = direction-type;
       };
-      move-window-to-workspace = {
+      move-window-to-workspace = lib.mkOption {
         description = ''
           move window to workspace by id
         '';
         type = workspace-type;
       };
-      move-workspace-relative = {
+      move-workspace-relative = lib.mkOption {
         description = ''
           move workspace by direction
         '';
         type = workspace-type;
       };
-      screenshot = {
+      screenshot = lib.mkOption {
         description = ''
           take a screenshot
         '';
         type = unit-type;
       };
-      close-window = {
+      close-window = lib.mkOption {
         description = ''
           close the focused window
         '';
         type = unit-type;
       };
-      quit = {
+      quit = lib.mkOption {
         description = ''
           quit shell
         '';
         type = unit-type;
       };
-      maximize = {
+      maximize = lib.mkOption {
         description = ''
           maximize the window
         '';
         type = unit-type;
       };
-      fullscreen = {
+      fullscreen = lib.mkOption {
         description = ''
           fullscreen the window
         '';
         type = unit-type;
       };
-      resize-preset = {
+      resize-preset = lib.mkOption {
         description = ''
           resize the window
         '';
         type = unit-type;
       };
-      show-help = {
+      show-help = lib.mkOption {
         description = ''
           show help of commands
         '';
         type = unit-type;
       };
-      toggle-window-floating = {
+      toggle-window-floating = lib.mkOption {
         description = ''
           toggle floating
         '';
         type = unit-type;
       };
     };
-
-  bind-type = {
-    actions = lib.mkOption {
-      type = lib.types.attrTag (lib.mapAttrs (_: lib.mkOption) actions);
-      description = ''
-        The action binds to <key>. You can only select one action.
-      '';
-    };
-
-    allow-when-locked = lib.mkEnableOption "when locked";
-
-    title = lib.mkOption {
-      default = null;
-      type = lib.types.nullOr lib.types.str;
-      description = "help menu title";
-    };
-  };
-
 in
 {
   options.funkcia.hm.gui.wm.keybinding = lib.mkOption {
     default = { };
-    type = lib.types.attrsWith {
-      elemType = lib.types.submodule {
-        options = bind-type;
-      };
-      placeholder = "key";
-    };
     description = "binds <key> to actions";
+
+    type = lib.types.attrsWith {
+      placeholder = "key";
+
+      elemType = lib.types.submodule {
+        options = {
+          actions = lib.mkOption {
+            type = lib.types.attrTag actions;
+            description = ''
+              The action binds to <key>. You can only select one action.
+            '';
+          };
+
+          allow-when-locked = lib.mkEnableOption "when locked";
+
+          title = lib.mkOption {
+            default = null;
+            type = lib.types.nullOr lib.types.str;
+            description = "help menu title";
+          };
+        };
+      };
+    };
   };
 }
