@@ -36,9 +36,23 @@ in
         "example.internal"
       ];
     };
+
+    environment = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
+    };
   };
 
   config = lib.mkIf config.funkcia.os.networking.enable {
+    funkcia.os.networking.environment = lib.mkIf (cfg.proxy != null) {
+      http_proxy = cfg.proxy;
+      https_proxy = cfg.proxy;
+      no_proxy = lib.concatStringsSep "," cfg.noProxy;
+      HTTP_PROXY = cfg.proxy;
+      HTTPS_PROXY = cfg.proxy;
+      NO_PROXY = lib.concatStringsSep "," cfg.noProxy;
+    };
+
     networking = {
       wireless.enable = true;
 
