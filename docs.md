@@ -1762,7 +1762,7 @@ true
 
 
 # Home Manager Modules
-## funkcia\.avatar
+## funkcia\.hm\.avatar
 
 path of your avatar
 
@@ -2039,7 +2039,7 @@ attribute set of (submodule)
 ```
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2047,15 +2047,15 @@ attribute set of (submodule)
 
 
 
-bar 中间的组件
+bar 中间段的组件
 
 
 
 *Type:*
-list of (open submodule of attribute set of anything)
+list of (open submodule of attribute set of (TOML value))
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2063,7 +2063,7 @@ list of (open submodule of attribute set of anything)
 
 
 
-The type of the widget
+widget 的类型，例如 ` launcher `, ` tray ` 等
 
 
 
@@ -2071,7 +2071,7 @@ The type of the widget
 string
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2079,15 +2079,15 @@ string
 
 
 
-bar 末尾的组件
+bar 末尾段的组件
 
 
 
 *Type:*
-list of (open submodule of attribute set of anything)
+list of (open submodule of attribute set of (TOML value))
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2095,7 +2095,7 @@ list of (open submodule of attribute set of anything)
 
 
 
-The type of the widget
+widget 的类型，例如 ` launcher `, ` tray ` 等
 
 
 
@@ -2103,7 +2103,7 @@ The type of the widget
 string
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2119,7 +2119,7 @@ bar 的设置
 TOML value
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2127,15 +2127,15 @@ TOML value
 
 
 
-bar 前方的组件
+bar 前段的组件
 
 
 
 *Type:*
-list of (open submodule of attribute set of anything)
+list of (open submodule of attribute set of (TOML value))
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2143,7 +2143,7 @@ list of (open submodule of attribute set of anything)
 
 
 
-The type of the widget
+widget 的类型，例如 ` launcher `, ` tray ` 等
 
 
 
@@ -2151,7 +2151,7 @@ The type of the widget
 string
 
 *Declared by:*
- - [/home/modules/gui/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia.nix)
+ - [/home/modules/gui/noctalia/bars\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/noctalia/bars.nix)
 
 
 
@@ -2226,6 +2226,118 @@ TOML value
 
 *Declared by:*
  - [/home/modules/gui/umbriel\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/umbriel.nix)
+
+
+
+## funkcia\.hm\.gui\.vicinae\.enable
+
+
+
+Whether to enable vicinae\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/gui/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/vicinae.nix)
+
+
+
+## funkcia\.hm\.gui\.vicinae\.settings
+
+
+
+vicinae settings
+
+
+
+*Type:*
+JSON value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Declared by:*
+ - [/home/modules/gui/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/vicinae.nix)
+
+
+
+## funkcia\.hm\.gui\.vicinae\.systemd\.enable
+
+
+
+Whether to enable vicinae systemd service\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/gui/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/vicinae.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.environment
+
+
+
+Environment variables to set for the WM session\.
+
+
+
+*Type:*
+attribute set of string
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
 
 
 
@@ -2775,7 +2887,71 @@ true
 
 
 
-Whether to enable javascript SDK\.
+Whether to enable javascript/typescript SDK\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/language-sdk/javascript\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/language-sdk/javascript.nix)
+
+
+
+## funkcia\.hm\.language-sdk\.javascript\.bun\.enable
+
+
+
+Whether to enable bun runtime\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/language-sdk/javascript\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/language-sdk/javascript.nix)
+
+
+
+## funkcia\.hm\.language-sdk\.javascript\.nodejs\.enable
+
+
+
+Whether to enable nodejs runtime\.
 
 
 
@@ -3049,94 +3225,6 @@ list of string
 
 *Declared by:*
  - [/home/modules/programs/pi\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/pi.nix)
-
-
-
-## funkcia\.hm\.programs\.vicinae\.enable
-
-
-
-Whether to enable vicinae\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
-
-
-
-## funkcia\.hm\.programs\.vicinae\.settings
-
-
-
-vicinae settings
-
-
-
-*Type:*
-JSON value
-
-
-
-*Default:*
-
-```nix
-{ }
-```
-
-*Declared by:*
- - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
-
-
-
-## funkcia\.hm\.programs\.vicinae\.systemd\.enable
-
-
-
-Whether to enable vicinae systemd service\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/home/modules/programs/vicinae\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/vicinae.nix)
 
 
 
