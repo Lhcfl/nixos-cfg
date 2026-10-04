@@ -6,10 +6,12 @@
 }:
 {
   options.funkcia.os.gnome-keyring.enable = lib.mkEnableOption ''
-    GNOME Keyring module.  
-    这个模块是为了在 *不使用* GNOME 的情况下启用 Keyring 及其相关服务。
-    如果使用 GNOME 桌面环境，则不需要此模块。
-    最初目的是为了在 Hyprland 上使用 Keyring
+    GNOME Keyring module.
+
+    在不使用GNOME 的情况下，为了让各种软件安全的存储机密，需要用到
+    Secret Service。此模块将 gnome-keyring 用在任何桌面环境中。
+
+    see <https://wiki.nixos.org/wiki/Secret_Service>
   '';
 
   config = lib.mkIf config.funkcia.os.gnome-keyring.enable {
@@ -21,6 +23,7 @@
     services.gnome.gnome-keyring.enable = true;
     # disable gcr-ssh-agent because it can conflict with other ssh agents
     services.gnome.gcr-ssh-agent.enable = false;
-    # security.pam.services.<yourDisplayManager>.enableGnomeKeyring = true;
+
+    security.pam.services.login.enableGnomeKeyring = true;
   };
 }
