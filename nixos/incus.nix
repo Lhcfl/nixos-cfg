@@ -21,6 +21,9 @@ let
     # 指到宿主 daemon 后，build/install 都交给宿主做。
     export NIX_REMOTE=daemon
 
+    # 容器缺 xterm-kitty 等 terminfo，从挂进来的 /mnt/host/terminfo 找补。
+    export TERMINFO_DIRS="/mnt/host/terminfo:''${TERMINFO_DIRS:-/etc/terminfo:/lib/terminfo:/usr/share/terminfo}"
+
     # source 官方 nix profile.d，不覆盖容器自身的 /etc/profile.d。
     if [ -d /mnt/host/nix/etc/profile.d ]; then
       for i in $(run-parts --list --regex '^[a-zA-Z0-9_][a-zA-Z0-9._-]*\.sh$' /mnt/host/nix/etc/profile.d); do
@@ -38,6 +41,8 @@ let
     mkdir -p $out
     ln -s ${config.nix.package} $out/nix
     ln -s ${nixPathScript} $out/00-nix-path.sh
+    # 容器里没有 xterm-kitty 等 terminfo，带上 kitty 的
+    ln -s ${pkgs.kitty.terminfo}/share/terminfo $out/terminfo
   '';
 in
 {
