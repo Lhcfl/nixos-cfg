@@ -177,5 +177,26 @@ in
       53
       67
     ];
+
+    # 让宿主把 `.incus` 域名解析交给桥上 dnsmasq（172.24.0.1），于是可直接
+    # `ssh debian.incus`（跟随容器动态 IP），且不污染全局 DNS。
+    systemd.services.incus-dns = {
+      description = "Route .incus DNS queries to the Incus bridge";
+      after = [
+        "incus.service"
+        "systemd-resolved.service"
+      ];
+      requires = [ "systemd-resolved.service" ];
+      partOf = [ "systemd-resolved.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      script = ''
+        ${pkgs.systemd}/bin/resolvectl dns incusbr0 172.24.0.1
+        ${pkgs.systemd}/bin/resolvectl domain incusbr0 '~incus'
+      '';
+    };
   };
 }
