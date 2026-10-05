@@ -1,10 +1,15 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
 let
+  proxy = config.funkcia.os.networking.proxy;
+  # 从 http://host:port 里取端口
+  proxyPort = lib.last (lib.splitString ":" proxy);
+
   # 让登录 shell（incus shell）找到 /opt/nix/bin 里的 nix 客户端，
   # 并把 <nixpkgs> 指向仓库 flake 里那份 pinned nixpkgs。
   # 00- 前缀保证它在 /etc/profile.d 里最早被 source。
@@ -28,6 +33,9 @@ in
         {
           name = "default";
           driver = "btrfs";
+          # 直接建在宿主 btrfs 上的子卷，不用 loop 文件，
+          # 避免 btrfs-in-file-on-btrfs 的嵌套 CoW 写放大。
+          config.source = "/var/lib/incus/storage-pools/default";
         }
       ];
 
@@ -95,6 +103,17 @@ in
               source = "/etc/nix/nix.conf";
               path = "/etc/nix/nix.conf";
               readonly = true;
+            };
+          }
+          // lib.optionalAttrs (proxy != null) {
+            # 把宿主（loopback）上的代理端口转发进容器，使容器内
+            # http://127.0.0.1:<port> 能走宿主的代理。
+            # bind=instance：监听在容器侧、连到宿主侧。
+            proxy = {
+              type = "proxy";
+              bind = "instance";
+              listen = "tcp::${proxyPort}";
+              connect = "tcp::${proxyPort}";
             };
           };
         }
