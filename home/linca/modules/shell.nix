@@ -3,12 +3,17 @@
   pkgs,
   lib,
   inputs,
+  osConfig,
   ...
 }:
 let
   shell-auto-pi = inputs.shell-auto-pi.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
+  programs.bash = {
+    enable = lib.mkIf (osConfig == null) true;
+  };
+
   programs.fish = {
     shellAliases = {
       nd = "nix develop -c $SHELL";
