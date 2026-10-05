@@ -20,6 +20,11 @@
       description = "profiles";
       type = lib.types.attrsOf lib.types.json;
     };
+
+    network.ipv4.address = lib.mkOption {
+      default = "172.24.0.1/24";
+      type = lib.types.str;
+    };
   };
 
   config = lib.mkIf this.config.enable (
@@ -47,7 +52,7 @@
                 name = "incusbr0";
                 type = "bridge";
                 config = {
-                  "ipv4.address" = "172.24.0.1/24";
+                  "ipv4.address" = this.config.network.ipv4.address;
                   "ipv4.nat" = "true";
                 };
               }
@@ -84,14 +89,16 @@
 
         # 默认防火墙会丢弃容器发往宿主 dnsmasq 的 DHCPv4(67)/DNS(53)，
         # 实例因此拿不到 IPv4。放行这两个端口，或者信任整个网桥
-        networking.firewall.interfaces.incusbr0.allowedTCPPorts = [
-          53
-          67
-        ];
-        networking.firewall.interfaces.incusbr0.allowedUDPPorts = [
-          53
-          67
-        ];
+        networking.firewall.interfaces.incusbr0 = {
+          allowedTCPPorts = [
+            53
+            67
+          ];
+          allowedUDPPorts = [
+            53
+            67
+          ];
+        };
 
         # 让宿主把 `.incus` 域名解析交给桥上 dnsmasq（172.24.0.1），于是可直接
         # `ssh debian.incus`（跟随容器动态 IP），且不污染全局 DNS。
@@ -109,10 +116,12 @@
             RemainAfterExit = true;
           };
           script = ''
-            ${pkgs.systemd}/bin/resolvectl dns incusbr0 172.24.0.1
+            ${pkgs.systemd}/bin/resolvectl dns incusbr0 ${builtins.head (lib.splitString "/" this.config.network.ipv4.address)}
             ${pkgs.systemd}/bin/resolvectl domain incusbr0 '~incus'
           '';
         };
+
+        funkcia.os.networking.noProxy = [ ".incus" ];
       }
 
       (lib.mkIf this.config.mountNix (
@@ -203,6 +212,9 @@
         }
       ))
 
+      # 把宿主（loopback）上的代理端口转发进容器，使容器内
+      # http://127.0.0.1:<port> 能走宿主的代理。
+      # bind=instance：监听在容器侧、连到宿主侧。
       (
         let
           proxy = config.funkcia.os.networking.proxy;
@@ -210,9 +222,6 @@
           proxyPort = lib.last (lib.splitString ":" proxy);
         in
         lib.mkIf (proxy != null) {
-          # 把宿主（loopback）上的代理端口转发进容器，使容器内
-          # http://127.0.0.1:<port> 能走宿主的代理。
-          # bind=instance：监听在容器侧、连到宿主侧。
           funkcia.os.incus.profiles.default.proxy = {
             type = "proxy";
             bind = "instance";
