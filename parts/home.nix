@@ -11,10 +11,7 @@ let
 in
 {
   this.options = lib.mkOption {
-    description = ''
-      Device-specific Home Manager configurations. Each attribute name becomes a
-      `homeConfigurations.<name>` output
-    '';
+    visible = "transparent";
 
     type = lib.types.attrsOf (
       lib.types.submodule (
@@ -31,7 +28,8 @@ in
             type = lib.types.raw;
             default = { };
             description = ''
-              Home Manager configurations config
+              Device-specific Home Manager configurations. Each attribute name becomes a
+              `homeConfigurations.<name>` output
             '';
 
             example = lib.literalExpression ''

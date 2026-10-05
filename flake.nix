@@ -25,6 +25,8 @@
         files = import ./utils/files.nix { inherit (nixpkgs) lib; };
         magic = import ./utils/magic.nix { inherit (nixpkgs) lib; };
       };
+
+      flakeModules.default = (filesystem-modules.mkModule { directory = ./parts; });
     in
     inputs.flake-parts.lib.mkFlake
       {
@@ -35,7 +37,7 @@
         imports = [
           flake-parts.flakeModules.easyOverlay
           home-manager.flakeModules.home-manager
-          (filesystem-modules.mkModule { directory = ./parts; })
+          flakeModules.default
           (funkcia-utils.files.mkDirModule ./packages)
         ];
 
@@ -78,6 +80,8 @@
         };
 
         flake = {
+          inherit flakeModules;
+
           nixosModules.default = filesystem-modules.mkModule {
             directory = ./nixos;
             base = [

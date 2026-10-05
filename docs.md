@@ -1,6 +1,138 @@
 <!-- This documentation is AUTO-GENERATED -->
 <!-- by nix build .#funkcia-options-doc-md -o result-doc && install -m0644 result-doc docs.md -->
 <!-- NEVER EDIT this documentation -->
+# Flake Parts Modules
+## home\.\<name>\.config
+
+Device-specific Home Manager configurations\. Each attribute name becomes a
+` homeConfigurations.<name> ` output
+
+
+
+*Type:*
+raw value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+
+
+*Example:*
+
+```nix
+{
+  imports = [
+    ./devices/my-laptop/configuration.nix
+  ];
+}
+
+```
+
+*Declared by:*
+ - [/parts/home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/parts/home.nix)
+
+
+
+## home\.\<name>\.system
+
+
+
+system of ‹name›
+
+
+
+*Type:*
+value “x86_64-linux” (singular enum)
+
+*Declared by:*
+ - [/parts/home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/parts/home.nix)
+
+
+
+## nixos\.devices
+
+
+
+Device-specific NixOS configurations\. Each attribute name becomes a
+` nixosConfigurations.<name> ` output, with a corresponding
+` checks.<system>.<name> topLevel ` check\.
+
+
+
+*Type:*
+attribute set of raw value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+
+
+*Example:*
+
+```nix
+{
+  my-laptop.imports = [
+    ./devices/my-laptop/configuration.nix
+  ];
+  my-server.imports = [
+    ./devices/my-server/configuration.nix
+  ];
+}
+
+```
+
+*Declared by:*
+ - [/parts/nixos\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/parts/nixos.nix)
+
+
+
+## nixos\.sharedModules
+
+
+
+NixOS modules shared across all devices\. These are prepended to each
+device’s module list before being passed to ` nixosSystem `\.
+
+
+
+*Type:*
+list of raw value
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+
+
+*Example:*
+
+```nix
+[
+  ./home/home-manager.nix
+  home-manager.nixosModules.home-manager
+  sops-nix.nixosModules.sops
+]
+
+```
+
+*Declared by:*
+ - [/parts/nixos\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/parts/nixos.nix)
+
+
 # NixOS Modules
 ## funkcia\.nix\.lix\.enable
 
@@ -915,7 +1047,7 @@ true
 
 
 
-This option has no description\.
+rendered proxy environment attrset
 
 
 

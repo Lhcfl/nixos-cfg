@@ -24,6 +24,12 @@
       list = [
         {
           inherit urlPrefix;
+          name = "Flake Parts Modules";
+          modules = [ self.flakeModules.default ];
+          specialArgs = { inherit inputs; };
+        }
+        {
+          inherit urlPrefix;
           name = "NixOS Modules";
           modules = [ self.nixosModules.default ];
           specialArgs = { inherit inputs; };
