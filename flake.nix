@@ -15,6 +15,8 @@
       misskey-media-proxy,
       nixos-hardware,
       filesystem-modules,
+      nix-index-database,
+      plum-nix,
       ...
     }:
     let
@@ -32,6 +34,7 @@
       {
         imports = [
           flake-parts.flakeModules.easyOverlay
+          home-manager.flakeModules.home-manager
           (filesystem-modules.mkModule { directory = ./parts; })
           (funkcia-utils.files.mkDirModule ./packages)
         ];
@@ -70,15 +73,15 @@
               "os"
             ];
           };
-          nixosModules.shared = {
-            imports = [
-              ./home/home-manager.nix
-              (funkcia-utils.files.mkRecDirModule ./fixes)
-              home-manager.nixosModules.home-manager
-              sops-nix.nixosModules.sops
-              lanzaboote.nixosModules.lanzaboote
-            ];
-          };
+
+          nixosModules.shared.imports = [
+            ./home/home-manager.nix
+            (funkcia-utils.files.mkRecDirModule ./fixes)
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+            lanzaboote.nixosModules.lanzaboote
+          ];
+
           homeModules.default = filesystem-modules.mkModule {
             directory = ./home/modules;
             base = [
@@ -86,6 +89,12 @@
               "hm"
             ];
           };
+
+          homeModules.shared.imports = [
+            nix-index-database.homeModules.default
+            plum-nix.homeModules.default
+            sops-nix.homeManagerModules.sops
+          ];
         };
       };
 
