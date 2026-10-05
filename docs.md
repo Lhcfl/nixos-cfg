@@ -944,6 +944,54 @@ true
 
 
 
+## funkcia\.os\.incus\.network\.ipv4\.address
+
+
+
+给 incus 分配的 ipv4 address 范围
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+
+```nix
+"172.24.0.1/24"
+```
+
+*Declared by:*
+ - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
+## funkcia\.os\.incus\.profiles
+
+
+
+profiles
+
+
+
+*Type:*
+attribute set of (JSON value)
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Declared by:*
+ - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
 ## funkcia\.os\.incus\.trustInterface
 
 

@@ -24,6 +24,7 @@
     network.ipv4.address = lib.mkOption {
       default = "172.24.0.1/24";
       type = lib.types.str;
+      description = "给 incus 分配的 ipv4 address 范围";
     };
   };
 
@@ -222,7 +223,7 @@
           proxyPort = lib.last (lib.splitString ":" proxy);
         in
         lib.mkIf (proxy != null) {
-          funkcia.os.incus.profiles.default.proxy = {
+          funkcia.os.incus.profiles.default.devices.proxy = {
             type = "proxy";
             bind = "instance";
             listen = "tcp::${proxyPort}";
