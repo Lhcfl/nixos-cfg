@@ -7,6 +7,7 @@
   imports = [
     (funkcia-utils.files.mkDirModule ./hardware)
     (funkcia-utils.files.mkDirModule ./services)
+    (funkcia-utils.files.mkDirModule ./containers)
     (funkcia-utils.files.mkDirModule ./users)
   ];
 

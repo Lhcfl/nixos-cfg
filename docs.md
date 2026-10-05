@@ -748,6 +748,102 @@ true
 
 
 
+## funkcia\.os\.incus\.enable
+
+
+
+Whether to enable incus to manage containers\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
+## funkcia\.os\.incus\.mountNix
+
+
+
+Whether to enable mound /nix/store and other nix things into container\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
+## funkcia\.os\.incus\.trustInterface
+
+
+
+Whether to enable trust the whole ` incusbr0 ` interface in firewall\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
 ## funkcia\.os\.modern-cli-tools\.enable
 
 
@@ -808,6 +904,30 @@ false
 
 ```nix
 true
+```
+
+*Declared by:*
+ - [/nixos/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/networking.nix)
+
+
+
+## funkcia\.os\.networking\.environment
+
+
+
+This option has no description\.
+
+
+
+*Type:*
+attribute set of string
+
+
+
+*Default:*
+
+```nix
+{ }
 ```
 
 *Declared by:*
