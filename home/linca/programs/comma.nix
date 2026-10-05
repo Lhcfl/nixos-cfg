@@ -3,8 +3,12 @@
   ...
 }:
 {
-  config = {
-    programs.nix-index-database.comma.enable = !osConfig.funkcia.os.new-cn-install;
-    programs.nix-index.enable = !osConfig.funkcia.os.new-cn-install;
-  };
+  config =
+    let
+      enabled = !(osConfig.funkcia.os.new-cn-install or false);
+    in
+    {
+      programs.nix-index-database.comma.enable = enabled;
+      programs.nix-index.enable = enabled;
+    };
 }

@@ -19,7 +19,7 @@ in
     };
   };
 
-  config = lib.mkIf osConfig.programs.umbriel.enable {
+  config = lib.mkIf (osConfig.programs.umbriel.enable or false) {
     xdg.configFile."umbriel/config.toml".source = toml.generate "umbriel-config" cfg.settings;
   };
 }

@@ -24,6 +24,7 @@ in
       gradia # 截图和编辑工具
       element-desktop
       gparted
+      funkcia.show-tray-items
     ];
 
     funkcia.hm.gui = {

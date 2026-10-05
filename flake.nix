@@ -65,6 +65,18 @@
           };
         };
 
+        # ======================================
+        #  Home Manager Configurations
+        # ======================================
+        home = {
+          debian-82tf.system = "x86_64-linux";
+          debian-82tf.config = { ... }: {
+            imports = [ ./home/linca/home.nix ];
+            home.stateVersion = "26.05";
+            linca.sops.enable = false;
+          };
+        };
+
         flake = {
           nixosModules.default = filesystem-modules.mkModule {
             directory = ./nixos;

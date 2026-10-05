@@ -20,7 +20,7 @@ in
     };
   };
 
-  config = lib.mkIf osConfig.programs.niri.enable {
+  config = lib.mkIf (osConfig.programs.niri.enable or false) {
     lib.funkcia.niri.mkInclude = name: text: ''include "${pkgs.writeText "${name}.kdl" text}"'';
 
     xdg.configFile."niri/config.kdl".text = cfg.settings;
