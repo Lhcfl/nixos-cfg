@@ -26,7 +26,7 @@
         magic = import ./utils/magic.nix { inherit (nixpkgs) lib; };
       };
 
-      flakeModules.default = (filesystem-modules.mkModule { directory = ./parts; });
+      flakeModules.default = filesystem-modules.mkModule { directory = ./parts; };
     in
     inputs.flake-parts.lib.mkFlake
       {
