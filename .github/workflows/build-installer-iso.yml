@@ -1,0 +1,63 @@
+name: Build installer ISO
+
+# 手动触发，按架构各构建一个 installer-iso 并上传 zstd 压缩产物。
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: build-installer-iso-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: installer-iso (${{ matrix.system }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # x86_64 与 aarch64 都有 GitHub 原生 runner，直接原生构建。
+          - system: x86_64-linux
+            runner: ubuntu-latest
+          - system: aarch64-linux
+            runner: ubuntu-26.04-arm
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+    steps:
+      # ISO 的 system closure 较大，默认 runner 磁盘往往不够，先清理腾空间。
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: false
+          swap-storage: false
+
+      - uses: actions/checkout@v7
+
+      - uses: cachix/install-nix-action@v31
+
+      # 只用 cachix 做 substituter（只读）。不传 authToken，因此不会把本次
+      # 构建出的 store path push 上去——避免 ~3G 的 ISO 占用缓存配额。
+      - uses: cachix/cachix-action@v17
+        with:
+          name: lhcfl
+
+      - name: Build installer ISO
+        run: |
+          nix build -L --no-link \
+            ".#packages.${{ matrix.system }}.installer-iso" \
+            -o result-iso
+
+      - name: Compress with zstd
+        run: |
+          mkdir -p dist
+          zstd -T0 -19 --no-progress \
+            -o "dist/installer-${{ matrix.system }}.iso.zst" \
+            result-iso/iso/*.iso
+          ls -lh dist
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: installer-iso-${{ matrix.system }}
+          path: dist/*.iso.zst
+          if-no-files-found: error
+          retention-days: 90

@@ -41,7 +41,12 @@
           (funkcia-utils.files.mkDirModule ./packages)
         ];
 
-        systems = [ "x86_64-linux" ];
+        # aarch64-linux 只用于构建 installer-iso（见 packages/installer-iso）；
+        # 设备与 home 配置仍只针对 x86_64-linux。
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
 
         nixos = {
           sharedModules = [
