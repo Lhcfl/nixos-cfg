@@ -4,11 +4,11 @@
   ...
 }:
 {
-  imports = [
-    (funkcia-utils.files.mkDirModule ./hardware)
-    (funkcia-utils.files.mkDirModule ./services)
-    (funkcia-utils.files.mkDirModule ./containers)
-    (funkcia-utils.files.mkDirModule ./users)
+  imports = map funkcia-utils.files.mkDirModule [
+    ./containers
+    ./hardware
+    ./services
+    ./users
   ];
 
   networking.hostName = "legion-82tf"; # Define your hostname.

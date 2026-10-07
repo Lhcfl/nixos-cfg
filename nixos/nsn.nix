@@ -1,7 +1,6 @@
 {
   this,
   lib,
-  options,
   self,
   inputs,
   funkcia-utils,
@@ -41,20 +40,15 @@
 
     containers = lib.pipe this.config.containers [
       lib.attrsToList
-      (lib.imap1 (i: v: v // { idx = i; }))
-      (map (
-        {
-          name,
-          value,
-          idx,
-        }:
-        lib.nameValuePair name (
-          lib.mkMerge [
+      (lib.imap1 (
+        idx: { name, value }: {
+          inherit name;
+          value = lib.mkMerge [
             value
             (lib.mapAttrs (_: lib.mkDefault) {
-              autoStart = false;
+              autoStart = true;
               privateNetwork = true;
-
+              # for safety
               privateUsers = "pick";
 
               hostAddress = "172.24.1.1";
@@ -67,13 +61,13 @@
                 inherit inputs funkcia-utils;
               };
 
-              config = { ... }: {
+              config = {
                 imports = [ self.nixosModules.default ];
                 config.funkcia.os.presets.container.enable = true;
               };
             }
-          ]
-        )
+          ];
+        }
       ))
       lib.listToAttrs
     ];
