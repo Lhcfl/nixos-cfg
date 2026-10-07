@@ -55,7 +55,7 @@ jobs:
             result-iso/iso/*.iso
           ls -lh dist
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: installer-iso-${{ matrix.system }}
           path: dist/*.iso.zst
