@@ -52,6 +52,7 @@
           devices = {
             legion-82tf.imports = [
               ./devices/legion-82tf/configuration.nix
+              lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.lenovo-legion-16iah7h
             ];
 
@@ -95,7 +96,6 @@
             (funkcia-utils.files.mkRecDirModule ./fixes)
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
-            lanzaboote.nixosModules.lanzaboote
           ];
 
           homeModules.default = filesystem-modules.mkModule {
