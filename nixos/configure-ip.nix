@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  options,
   ...
 }:
 let
@@ -44,32 +45,44 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    assertions = [
+  config = lib.mkIf cfg.enable (
+    if options.sops or null == null then
       {
-        assertion = config.systemd.network.enable;
-        message = "You must enable systemd-networkd (`systemd.network.enable = true`) to configure-ip!";
+        assertions = [
+          {
+            assertion = false;
+            message = "You must import sops to configure-ip!";
+          }
+        ];
       }
-    ];
+    else
+      {
+        assertions = [
+          {
+            assertion = config.systemd.network.enable;
+            message = "`funkcia.os.configure-ip.enable` requires `sops-nix`. Please import sops-nix.";
+          }
+        ];
 
-    sops.templates = lib.flip lib.mapAttrs' cfg.v4 (
-      name: value: {
-        name = "configure-ip-for-${name}";
-        # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
-        value.mode = "0644";
-        # 模板变化后重新加载 networkd
-        value.restartUnits = [ "systemd-networkd.service" ];
-        value.content = lib.generators.toINI { } {
-          Match.Name = name;
-          Network.Address = "${value.addr}/${value.mask}";
-          Network.Gateway = value.gateway;
-        };
+        sops.templates = lib.flip lib.mapAttrs' cfg.v4 (
+          name: value: {
+            name = "configure-ip-for-${name}";
+            # systemd-networkd 以非特权用户运行，模板默认 0400 会导致其无法读取
+            value.mode = "0644";
+            # 模板变化后重新加载 networkd
+            value.restartUnits = [ "systemd-networkd.service" ];
+            value.content = lib.generators.toINI { } {
+              Match.Name = name;
+              Network.Address = "${value.addr}/${value.mask}";
+              Network.Gateway = value.gateway;
+            };
+          }
+        );
+
+        environment.etc = lib.mapAttrs' (name: value: {
+          name = "systemd/network/45-configure-ip-for-${name}.network";
+          value.source = config.sops.templates."configure-ip-for-${name}".path;
+        }) cfg.v4;
       }
-    );
-
-    environment.etc = lib.mapAttrs' (name: value: {
-      name = "systemd/network/45-configure-ip-for-${name}.network";
-      value.source = config.sops.templates."configure-ip-for-${name}".path;
-    }) cfg.v4;
-  };
+  );
 }

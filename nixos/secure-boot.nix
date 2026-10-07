@@ -58,7 +58,7 @@
         assertions = [
           {
             assertion = false;
-            message = "you can't enable `funkcia.os.secure-boot.enable` when lanzaboote in not imported";
+            message = "`funkcia.os.secure-boot.enable` requires `lanzaboote`. Please import lanzaboote.";
           }
         ];
       }

@@ -1222,6 +1222,82 @@ true
 
 
 
+## funkcia\.os\.nsn\.enable
+
+
+
+Whether to enable NSN, ~~NixOS Subsystem of NixOS~~
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/nsn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/nsn.nix)
+
+
+
+## funkcia\.os\.nsn\.containers
+
+
+
+该选项只是为 NixOS 的 ` config.containers ` 添加了一些默认值。
+会整体合并到 ` config.containers `
+
+具体参见 NixOS Module 的 [` config.containers `](https://github\.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/virtualisation/nixos-containers\.nix)
+
+
+
+*Type:*
+attribute set of raw value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+*Declared by:*
+ - [/nixos/nsn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/nsn.nix)
+
+
+
+## funkcia\.os\.nsn\.externalInterface
+
+
+
+NAT 对外的 interface
+
+
+
+*Type:*
+string
+
+*Declared by:*
+ - [/nixos/nsn\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/nsn.nix)
+
+
+
 ## funkcia\.os\.presets\.cn\.enable
 
 
