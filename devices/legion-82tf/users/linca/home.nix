@@ -51,4 +51,8 @@
     scale = 1.5;
     # hdr = "on";
   };
+
+  xresources.properties = {
+    "Xft.dpi" = 144;
+  };
 }
