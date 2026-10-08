@@ -25,6 +25,7 @@ in
       element-desktop
       gparted
       funkcia.show-tray-items
+      qq
     ];
 
     funkcia.hm.gui = {
