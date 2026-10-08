@@ -36,5 +36,17 @@
       default = { };
       description = "Environment variables to set for the WM session.";
     };
+
+    layout = {
+      preset-column-widths = lib.mkOption {
+        type = lib.types.listOf lib.types.number;
+        default = [
+          0.333
+          0.5
+          0.667
+        ];
+        description = "Fractions used by `resize-preset` actions.";
+      };
+    };
   };
 }

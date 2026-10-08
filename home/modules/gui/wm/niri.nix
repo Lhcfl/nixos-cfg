@@ -86,6 +86,9 @@ in
               ))
             ])
             (n "binds" binding)
+            (n "layout" [
+              (n "preset-column-widths" (map (n "proportion") cfg.layout.preset-column-widths))
+            ])
           ]
         )
       )

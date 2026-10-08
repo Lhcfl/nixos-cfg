@@ -20,6 +20,10 @@ in
   };
 
   config = lib.mkIf (osConfig.programs.umbriel.enable or false) {
+    funkcia.hm.gui.umbriel.settings = {
+      include.optional.files = [ "customize.toml" ];
+    };
+
     xdg.configFile."umbriel/config.toml".source = toml.generate "umbriel-config" cfg.settings;
   };
 }

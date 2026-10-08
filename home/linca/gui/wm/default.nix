@@ -10,5 +10,13 @@
       follow-mouse-max-scroll = 0.5;
     };
     environment.QT_QPA_PLATFORM = "wayland";
+    layout = {
+      preset-column-widths = [
+        0.33
+        0.49
+        0.65
+        0.98
+      ];
+    };
   };
 }

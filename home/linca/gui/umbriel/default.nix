@@ -26,5 +26,12 @@
       delay_ms = 500;
       action = "overview-open";
     };
+
+    layout.struts.top = -3;
+
+    general = {
+      xwayland = true;
+      xwayland_native_resolution = true;
+    };
   };
 }
