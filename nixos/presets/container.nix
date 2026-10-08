@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -15,17 +14,6 @@ in
   config = lib.mkIf cfg.enable {
     networking.firewall.enable = lib.mkDefault false;
     systemd.network.enable = true;
-
-    environment.systemPackages = map (x: x.terminfo) (
-      with pkgs.pkgsBuildBuild;
-      [
-        alacritty
-        ghostty
-        kitty
-        tmux
-        wezterm
-      ]
-    );
 
     # Use systemd-resolved inside the container
     # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
