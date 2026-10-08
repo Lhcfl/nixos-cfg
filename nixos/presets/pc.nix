@@ -37,12 +37,6 @@
       powerOnBoot = true;
     };
 
-    # allow appimage
-    programs.appimage = {
-      enable = true;
-      binfmt = true;
-    };
-
     # PipeWire is a relatively new (first release in 2017) low-level multimedia framework.
     # rtkit is optional but recommended
     security.rtkit.enable = true;
