@@ -49,4 +49,10 @@
             80
         ]
     },
+    "nix-embedded-languages.include": {
+        "xml": {
+            "name": "XML",
+            "scopeName": "text.xml",
+        }
+    }
 }

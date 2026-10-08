@@ -8,6 +8,10 @@
 
   funkcia.hm.avatar = ./assets/avatar-trans.png;
   funkcia.hm.modern-cli-tools.enable = true;
+  funkcia.hm.flatpak = {
+    enable = true;
+    mountNixStore = true;
+  };
 
   home = {
     username = "linca";
