@@ -5,6 +5,13 @@
 }:
 let
   cfg = config.funkcia.os.networking;
+
+  no_proxy_default = [
+    "127.0.0.1"
+    "localhost"
+    "internal.domain"
+    ".local"
+  ];
 in
 {
   options.funkcia.os.networking = {
@@ -21,12 +28,7 @@ in
 
     noProxy = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [
-        "127.0.0.1"
-        "localhost"
-        "internal.domain"
-        ".local"
-      ];
+      default = no_proxy_default;
       description = ''
         `no_proxy` 列表：命中的主机不走代理。以 `.` 开头表示整个域及其子域，
         例如 `.local` 覆盖所有 mDNS 名字。
@@ -45,13 +47,18 @@ in
   };
 
   config = lib.mkIf config.funkcia.os.networking.enable {
-    funkcia.os.networking.environment = lib.mkIf (cfg.proxy != null) {
-      http_proxy = cfg.proxy;
-      https_proxy = cfg.proxy;
-      no_proxy = lib.concatStringsSep "," cfg.noProxy;
-      HTTP_PROXY = cfg.proxy;
-      HTTPS_PROXY = cfg.proxy;
-      NO_PROXY = lib.concatStringsSep "," cfg.noProxy;
+    funkcia.os.networking = {
+
+      environment = lib.mkIf (cfg.proxy != null) {
+        http_proxy = cfg.proxy;
+        https_proxy = cfg.proxy;
+        no_proxy = lib.concatStringsSep "," cfg.noProxy;
+        HTTP_PROXY = cfg.proxy;
+        HTTPS_PROXY = cfg.proxy;
+        NO_PROXY = lib.concatStringsSep "," cfg.noProxy;
+      };
+
+      noProxy = no_proxy_default;
     };
 
     networking = {
