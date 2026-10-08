@@ -1,4 +1,10 @@
-{ this, lib, ... }: {
+{
+  this,
+  lib,
+  pkgs,
+  ...
+}:
+{
   this.options.enable = lib.mkEnableOption "全局默认值" // {
     default = true;
   };
@@ -16,5 +22,9 @@
     services.journald.settings.Journal = {
       SystemMaxUse = "1G";
     };
+
+    environment.systemPackages = with pkgs; [
+      busybox
+    ];
   };
 }

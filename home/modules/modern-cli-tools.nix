@@ -44,7 +44,7 @@
 
     programs.btop = {
       enable = true;
-      settings = {
+      settings = lib.mapAttrs (_: lib.mkDefault) {
         # 按瞬时 CPU% 严格重排，方便抓发热元凶（默认 "cpu lazy" 列表更稳）
         proc_sorting = "cpu direct";
         # 树状显示，看清 Nix wrapper 底下的真实进程
@@ -59,6 +59,8 @@
         shown_boxes = "cpu mem net proc";
         # 配置由 home-manager 管理，不要让 btop 退出时回写只读文件
         save_config_on_exit = false;
+        # 一秒两刷新
+        update_ms = 500;
       };
     };
 
