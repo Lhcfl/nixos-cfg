@@ -8,6 +8,7 @@
     input = {
       follow-mouse = true;
       follow-mouse-max-scroll = 0.5;
+      mouse-follows-focus = true;
     };
     environment.QT_QPA_PLATFORM = "wayland";
     layout = {

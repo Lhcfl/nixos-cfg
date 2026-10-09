@@ -17,6 +17,10 @@ in
       follows_mouse_max_scroll = cfg.input.follow-mouse-max-scroll;
     };
 
+    input.cursor = {
+      follows_focus = cfg.input.mouse-follows-focus;
+    };
+
     layout = {
       extent_presets = cfg.layout.preset-column-widths;
     };

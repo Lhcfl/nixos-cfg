@@ -29,6 +29,8 @@
           farther than this many viewport widths.
         '';
       };
+
+      mouse-follows-focus = lib.mkEnableOption "moves the cursor to a newly focused window after keyboard-driven focus and transfer actions.";
     };
 
     environment = lib.mkOption {
