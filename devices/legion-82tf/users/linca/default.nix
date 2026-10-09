@@ -19,5 +19,6 @@
   # 因为这样才有 polkit policy
   environment.systemPackages = with pkgs; [
     bitwarden-desktop
+    gparted
   ];
 }
