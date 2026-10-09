@@ -80,6 +80,24 @@ in
           show-help = "cheatsheet-toggle";
 
           toggle-window-floating = "window-toggle-floating";
+
+          toggle-window-pinned = "window-toggle-pinned";
+
+          toggle-column-tabbed = "column-toggle-tabbed";
+
+          focus-column-tab-relative = match arguments {
+            Previous = "column-focus-tab-previous";
+            Next = "column-focus-tab-next";
+          };
+
+          focus-workspace-relative = match arguments {
+            Previous = "workspace-previous";
+            Next = "workspace-next";
+          };
+
+          toggle-window-scratchpad = "window-toggle-scratchpad";
+
+          toggle-scratchpad = "scratchpad-toggle";
         };
 
         allow_when_locked = allow-when-locked;

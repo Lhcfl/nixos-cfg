@@ -15,6 +15,11 @@ let
         "Down"
       ];
 
+      step-type = enum [
+        "Previous"
+        "Next"
+      ];
+
       unit-type = submodule { options = { }; };
     in
     {
@@ -105,6 +110,42 @@ let
       toggle-window-floating = lib.mkOption {
         description = ''
           toggle floating
+        '';
+        type = unit-type;
+      };
+      toggle-window-pinned = lib.mkOption {
+        description = ''
+          Pin the focused window above other windows
+        '';
+        type = unit-type;
+      };
+      toggle-column-tabbed = lib.mkOption {
+        description = ''
+          Tab the rows around the focused window, or stack its tabs
+        '';
+        type = unit-type;
+      };
+      focus-column-tab-relative = lib.mkOption {
+        description = ''
+          Focus the previous or next tab in the focused tab group
+        '';
+        type = step-type;
+      };
+      focus-workspace-relative = lib.mkOption {
+        description = ''
+          Switch to the previous or next workspace on this output
+        '';
+        type = step-type;
+      };
+      toggle-window-scratchpad = lib.mkOption {
+        description = ''
+          Move the focused window to or from a scratchpad
+        '';
+        type = unit-type;
+      };
+      toggle-scratchpad = lib.mkOption {
+        description = ''
+          Show or hide the selected scratchpad windows
         '';
         type = unit-type;
       };

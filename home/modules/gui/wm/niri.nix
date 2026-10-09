@@ -15,6 +15,13 @@ let
   match = str: defs: defs.${str} or defs.default;
   rmap = lib.flip map;
 
+  # Umbriel-style wheel names are the shared notation; niri spells them
+  # WheelScroll*.
+  niriKey =
+    lib.replaceStrings
+      [ "WheelUp" "WheelDown" "WheelLeft" "WheelRight" ]
+      [ "WheelScrollUp" "WheelScrollDown" "WheelScrollLeft" "WheelScrollRight" ];
+
   binding = lib.flip lib.mapAttrsToList cfg.keybinding (
     key: value:
     let
@@ -59,12 +66,30 @@ let
           show-help = n "show-hotkey-overlay";
           toggle-window-floating = n "toggle-window-floating";
 
+          toggle-window-pinned = n "spawn" "notify-send" "niri does not support pinning windows";
+
+          toggle-column-tabbed = n "toggle-column-tabbed-display";
+
+          focus-column-tab-relative = match param {
+            Previous = n "focus-window-up";
+            Next = n "focus-window-down";
+          };
+
+          focus-workspace-relative = match param {
+            Previous = n "focus-workspace-up";
+            Next = n "focus-workspace-down";
+          };
+
+          toggle-window-scratchpad = n "spawn" "notify-send" "niri does not support scratchpads";
+
+          toggle-scratchpad = n "spawn" "notify-send" "niri does not support scratchpads";
+
           # fallback
           "default" = throw (builtins.trace param "${name} not implemented");
         }
       );
     in
-    n key params body
+    n (niriKey key) params body
   );
 in
 {
