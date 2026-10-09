@@ -56,9 +56,58 @@ in
 
 - `enable` 用 `lib.mkEnableOption`；需要默认跟随上游时用
   `lib.mkEnableOption "..." // { default = osConfig... or false; defaultText = lib.literalExpression "..."; }`。
-- `description` 写清楚用途；能给出 `example` 就给。
+- `description` / `example` 的写法见下一节。
+- `let` 绑定放到它用到的位置，不要全部提到文件顶部；只在多处复用时才上提。
 
-## 3. 确认 option 的类型，不要造轮子
+## 3. 写 description
+
+`description` 是使用者在 `nh search options` 和文档里读到的**描述**，不是手册。它只
+回答「这是什么、有什么关键限制、去哪看」；取舍分析、实现细节、教程都不属于它。
+
+- 一句话说清是什么。短到只有产品名（“用 oo7”）没有信息量：
+
+  ```nix
+  oo7 = lib.mkOption {
+    description = ''
+      用 oo7, 一个 Rust 编写的 D-Bus Secret Service 提供程序，旨在作为 gnome-keyring
+      的轻量级跨桌面替代方案。see <https://github.com/linux-credentials/oo7>
+    '';
+  };
+  ```
+
+- 有**影响选择**的关键行为就补一句，接在「是什么」后面；没有就省略：
+
+  ```nix
+  description = ''
+    用 gnome-keyring, GNOME 的 Secret Service 实现。只能靠登录口令解锁 keyring，
+    指纹登录不行。see <https://wiki.nixos.org/wiki/Secret_Service>
+  '';
+  ```
+
+- 外部项目 / 上游 wiki 用 nixpkgs 的写法 `see <https://...>`。
+- 文档内部引用用角色：`{option}`、`{command}`、`{env}`、`{manpage}`、`{file}`，例如
+  ``{option}`funkcia.os.keyring.provider.oo7.tpm2.enable` ``、``{command}`nixos-rebuild` ``。
+- `lib.mkEnableOption "..."` 里只写「做什么」，不要再自己写 “Whether to enable …”：
+
+  ```nix
+  enable = lib.mkEnableOption "Secret Service（org.freedesktop.secrets）";
+  ```
+
+- 实现细节、安全权衡、为什么这么设计 → 写代码注释（`#`），必要时写进
+  `assertions[].message`，不要塞进 `description`：
+
+  ```nix
+  # --user 把口令绑到 (TPM2, machine-id, uid, username)，本机本人和 root 解得开，
+  # 也就是把「知道口令」弱化成「本机 + TPM 可访问」；解密由 user manager 做，
+  # 用户得能访问 /dev/tpmrm0（tss 组）。
+  ```
+
+- `attrTag` / 子模块：每个 tag 按上面的规则各写各的；父级只写「是什么 + 约束」
+  （例如「Secret Service 的实现，只能选一个。」），不要和 tag 重复。
+- 能给 `example` 就给，用 `lib.literalExpression` 包住 Nix 表达式（attrTag 的
+  example 只能给一个 tag）。
+
+## 4. 确认 option 的类型，不要造轮子
 
 先搜有没有现成的选项，再决定类型：
 
@@ -85,7 +134,7 @@ agent-browser open 'https://noogle.dev/q/?term=submodule' \
   && agent-browser get text body
 ```
 
-## 4. 用 test-module 求值验证
+## 5. 用 test-module 求值验证
 
 写完用仓库自带的隔离求值脚本确认它能求值、类型能生效：
 
@@ -131,5 +180,6 @@ harness 只注入 `pkgs` 和 `lib`，所以：
 
 - [ ] 至少两处复用才写 option；只有一处就直接写在设备/用户配置里。
 - [ ] 照着同类现有 module 的风格写（`options.` + `lib.mkIf cfg.enable`）。
+- [ ] `description` 是「是什么 + 关键限制 + `see <url>`」，细节写注释；给了 `example`。
 - [ ] 搜过现成的 option 与类型，没有再自己定义。
 - [ ] 用 `nu scripts/test-module/app.nu` 求值通过。
