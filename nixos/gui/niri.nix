@@ -18,7 +18,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     programs = {
       niri.enable = true;
 
@@ -29,10 +28,6 @@ in
     };
 
     funkcia.os.gui.isWayland = true;
-    funkcia.os.gnome-keyring.enable = lib.mkDefault true;
-
-    security.pam.services.niri = {
-      enableGnomeKeyring = lib.mkIf config.services.gnome.gnome-keyring.enable true;
-    };
+    funkcia.os.keyring.enable = lib.mkDefault true;
   };
 }

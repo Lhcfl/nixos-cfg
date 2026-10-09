@@ -665,44 +665,6 @@ true
 
 
 
-## funkcia\.os\.gnome-keyring\.enable
-
-
-
-Whether to enable GNOME Keyring module\.
-
-在不使用GNOME 的情况下，为了让各种软件安全的存储机密，需要用到
-Secret Service。此模块将 gnome-keyring 用在任何桌面环境中。
-
-see [https://wiki\.nixos\.org/wiki/Secret_Service](https://wiki\.nixos\.org/wiki/Secret_Service)
-\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gnome-keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gnome-keyring.nix)
-
-
-
 ## funkcia\.os\.gui\.enable
 
 
@@ -1021,6 +983,144 @@ true
 
 *Declared by:*
  - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
+
+
+
+## funkcia\.os\.keyring\.enable
+
+
+
+Whether to enable Secret Service, an API on D-Bus to allow applications to store secrets securely…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
+
+
+
+## funkcia\.os\.keyring\.provider
+
+
+
+Secret Service 的实现，只能选一个。
+
+
+
+*Type:*
+attribute-tagged union with choices: gnome-keyring, oo7
+
+
+
+*Default:*
+
+```nix
+{
+  gnome-keyring = { };
+}
+```
+
+
+
+*Example:*
+
+```nix
+{
+  oo7 = {
+    tpm2 = {
+      enable = true;
+    };
+  };
+}
+```
+
+*Declared by:*
+ - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
+
+
+
+## funkcia\.os\.keyring\.provider\.gnome-keyring
+
+
+
+用 gnome-keyring, GNOME 的 Secret Service 实现。只能靠登录口令解锁 keyring，
+指纹登录不行。see [https://wiki\.nixos\.org/wiki/Secret_Service](https://wiki\.nixos\.org/wiki/Secret_Service)
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
+
+
+
+## funkcia\.os\.keyring\.provider\.oo7
+
+
+
+用 oo7, 一个 Rust 编写的 D-Bus Secret Service 提供程序，旨在作为 gnome-keyring
+的轻量级跨桌面替代方案。see [https://github\.com/linux-credentials/oo7](https://github\.com/linux-credentials/oo7)
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
+
+
+
+## funkcia\.os\.keyring\.provider\.oo7\.tpm2\.enable
+
+
+
+Whether to enable 用 TPM2 封装的 systemd credential 解锁 keyring（会装一个 ` oo7-store-keyring-password `，跑一次即可）\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
 
 
 
@@ -1455,6 +1555,106 @@ true
 
 *Declared by:*
  - [/nixos/presets/defaults/security\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/security.nix)
+
+
+
+## funkcia\.os\.presets\.defaults\.security\.replacePkexec
+
+
+
+Whether to enable replace pkexec with run0-pkexec-wrapper\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/security\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/security.nix)
+
+
+
+## funkcia\.os\.presets\.defaults\.terminfo\.enable
+
+
+
+Whether to enable automatelly add necessary terminfos\.
+
+从 kitty/foot/ghostty 等终端 SSH 登录时，远端需要对应的 terminfo 条目，
+否则许多程序会警告终端功能不全
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/terminfo\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/terminfo.nix)
+
+
+
+## funkcia\.os\.presets\.defaults\.terminfo\.allTerminfo
+
+
+
+Whether to enable ALL terminfo\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/presets/defaults/terminfo\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/presets/defaults/terminfo.nix)
 
 
 
@@ -2138,6 +2338,153 @@ null
 
 *Declared by:*
  - [/home/modules/avatar\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/avatar.nix)
+
+
+
+## funkcia\.hm\.flatpak\.enable
+
+
+
+Whether to enable manage the user-level Flatpak overrides under ` ~/.local/share/flatpak/overrides ` declaratively\.
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+osConfig.funkcia.os.flatpak.enable or false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/flatpak.nix)
+
+
+
+## funkcia\.hm\.flatpak\.mountFontConfig
+
+
+
+Whether to enable make the host’s ` fonts.fontconfig.defaultFonts ` preferences
+visible to every Flatpak sandbox through a global override\.
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+true
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/flatpak.nix)
+
+
+
+## funkcia\.hm\.flatpak\.mountNixStore
+
+
+
+Whether to enable expose the host ` /nix/store ` read-only inside every Flatpak
+sandbox through a global override\.
+
+NixOS keeps themes, cursors and other resources under ` /nix/store `, which
+is invisible to Flatpak sandboxes by default\. Mounting it fixes issues
+such as missing X11 cursor themes; the trade-off is that every sandboxed
+application gains read access to the whole store\.
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/flatpak.nix)
+
+
+
+## funkcia\.hm\.flatpak\.overrides
+
+
+
+Flatpak overrides keyed by application ID, or ` global ` to apply to every
+application\. Each entry is written to
+` ~/.local/share/flatpak/overrides/<name> ` in Flatpak’s INI format\.
+
+
+
+*Type:*
+attribute set of (JSON value)
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+
+
+*Example:*
+
+```nix
+{
+  "com.tencent.WeChat" = {
+    Environment = {
+      LANG = "zh_CN.UTF-8";
+      LC_CTYPE = "zh_CN.UTF-8";
+    };
+  };
+}
+```
+
+*Declared by:*
+ - [/home/modules/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/flatpak.nix)
 
 
 
@@ -3120,6 +3467,34 @@ null
 
 *Declared by:*
  - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.layout\.preset-column-widths
+
+
+
+Fractions used by ` resize-preset ` actions\.
+
+
+
+*Type:*
+list of (signed integer or floating point number)
+
+
+
+*Default:*
+
+```nix
+[
+  0.333
+  0.5
+  0.667
+]
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
 
 
 
