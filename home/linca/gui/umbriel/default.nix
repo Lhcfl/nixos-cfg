@@ -19,6 +19,16 @@
         match.is_floating = true;
         blur_optimized = false;
       }
+      {
+        match.title = "^(Picture-in-Picture|Picture in picture)$";
+        default_floating = true;
+        default_maximize = false;
+        default_position = {
+          x = 20;
+          y = 20;
+          anchor = "bottom_right";
+        };
+      }
     ];
 
     hot_corners.top_left = {
@@ -32,6 +42,10 @@
     general = {
       xwayland = true;
       xwayland_native_resolution = true;
+    };
+
+    layout.scrolling = {
+      default_extent_fraction = 0.5;
     };
   };
 }
