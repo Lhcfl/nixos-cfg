@@ -3126,6 +3126,38 @@ floating point number
 
 
 
+## funkcia\.hm\.gui\.wm\.input\.mouse-follows-focus
+
+
+
+Whether to enable moves the cursor to a newly focused window after keyboard-driven focus and transfer actions…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/gui/wm/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/default.nix)
+
+
+
 ## funkcia\.hm\.gui\.wm\.keybinding
 
 
@@ -3159,7 +3191,7 @@ The action binds to \<key>\. You can only select one action\.
 
 
 *Type:*
-attribute-tagged union with choices: close-window, focus-window-relative, focus-workspace, fullscreen, maximize, move-window-relative, move-window-to-workspace, move-workspace-relative, quit, resize-preset, screenshot, show-help, spawn, spawn-sh, toggle-window-floating
+attribute-tagged union with choices: close-window, focus-column-tab-relative, focus-window-relative, focus-workspace, focus-workspace-relative, fullscreen, maximize, move-window-relative, move-window-to-workspace, move-workspace-relative, quit, resize-preset, screenshot, show-help, spawn, spawn-sh, toggle-column-tabbed, toggle-scratchpad, toggle-window-floating, toggle-window-pinned, toggle-window-scratchpad
 
 *Declared by:*
  - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
@@ -3176,6 +3208,22 @@ close the focused window
 
 *Type:*
 submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.focus-column-tab-relative
+
+
+
+Focus the previous or next tab in the focused tab group
+
+
+
+*Type:*
+one of “Previous”, “Next”
 
 *Declared by:*
  - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
@@ -3208,6 +3256,22 @@ focus workspace by id
 
 *Type:*
 string or signed integer
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.focus-workspace-relative
+
+
+
+Switch to the previous or next workspace on this output
+
+
+
+*Type:*
+one of “Previous”, “Next”
 
 *Declared by:*
  - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
@@ -3398,11 +3462,75 @@ string
 
 
 
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-column-tabbed
+
+
+
+Tab the rows around the focused window, or stack its tabs
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-scratchpad
+
+
+
+Show or hide the selected scratchpad windows
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
 ## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-window-floating
 
 
 
 toggle floating
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-window-pinned
+
+
+
+Pin the focused window above other windows
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+
+
+
+## funkcia\.hm\.gui\.wm\.keybinding\.\<key>\.actions\.toggle-window-scratchpad
+
+
+
+Move the focused window to or from a scratchpad
 
 
 
