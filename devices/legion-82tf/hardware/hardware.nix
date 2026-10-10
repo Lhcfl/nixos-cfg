@@ -62,7 +62,7 @@
       options = [ "ro" ];
     };
     "/media/share" = {
-      device = "/dev/disk/by-uuid/72C7-B373";
+      device = "/dev/disk/by-uuid/6ED9-FBF2";
       fsType = "exfat";
       options = [
         "gid=${toString config.users.groups.wheel.gid}"
@@ -73,7 +73,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/dc0f5ad4-f124-4050-a75f-11558f7c82fe"; }
+    { device = "/dev/disk/by-uuid/8d199324-a195-4f75-98c4-5e9f4e57f4ca"; }
   ];
 
   hardware.bluetooth = {
