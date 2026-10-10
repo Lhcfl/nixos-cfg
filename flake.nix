@@ -17,6 +17,7 @@
       filesystem-modules,
       nix-index-database,
       plum-nix,
+      flake-cloudreve,
       ...
     }:
     let
@@ -68,6 +69,7 @@
             flying-fish.imports = [
               disko.nixosModules.disko
               misskey-media-proxy.nixosModules.default
+              flake-cloudreve.nixosModules.default
               ./devices/flying-fish/configuration.nix
             ];
           };
@@ -171,5 +173,9 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-cloudreve.url = "github:Lhcfl/flake-cloudreve";
+    flake-cloudreve.inputs.nixpkgs.follows = "nixpkgs";
+    flake-cloudreve.inputs.flake-parts.follows = "flake-parts";
   };
 }

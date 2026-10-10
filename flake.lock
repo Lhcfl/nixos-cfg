@@ -70,6 +70,29 @@
         "type": "github"
       }
     },
+    "flake-cloudreve": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791651935,
+        "narHash": "sha256-DJJXzvlrtMUstK7R/LKKUjCmm+h87SA1erO+aKHSExU=",
+        "owner": "Lhcfl",
+        "repo": "flake-cloudreve",
+        "rev": "858f37fc8e03c08253297286d69d62b84759dea3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "flake-cloudreve",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -535,6 +558,7 @@
       "inputs": {
         "disko": "disko",
         "filesystem-modules": "filesystem-modules",
+        "flake-cloudreve": "flake-cloudreve",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
