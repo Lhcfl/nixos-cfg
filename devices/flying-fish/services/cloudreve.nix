@@ -12,6 +12,8 @@ in
   services.cloudreve = {
     enable = true;
 
+    port = 5212;
+
     nginx = {
       inherit host;
       enable = true;
