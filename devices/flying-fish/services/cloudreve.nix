@@ -14,6 +14,8 @@ in
 
     port = 5212;
 
+    enableExtraPackages = true;
+
     nginx = {
       inherit host;
       enable = true;
