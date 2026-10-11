@@ -28,7 +28,7 @@ in
         # 运行模式，可选值为 master/slave
         Mode = "master";
         # 是否开启 Debug 模式，默认为 false
-        Debug = true;
+        Debug = false;
         # 呈递客户端 IP 时使用的 Header，默认为空。如果该 Header 由多个使用 `,` 分隔的 IP 构成，Cloudreve 会取用首个作为客户端 IP
         # 对于配置反向代理的部署，可以取值为 X-Forwarded-For。但是，请注意，由于潜在的 XFF 注入问题，仅在确认可信的情况下使用
         ProxyHeader = "X-Forwarded-For";
