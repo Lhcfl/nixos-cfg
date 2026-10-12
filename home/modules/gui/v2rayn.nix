@@ -22,6 +22,7 @@
     funkcia.hm.gui.umbriel.settings.window_rule = [
       {
         match.app_id = "v2rayN";
+        match.is_floating = false;
         default_scratchpad = "default";
       }
     ];
