@@ -34,6 +34,8 @@
     dotenv-cli # load .env
   ];
 
+  xdg.enable = true;
+
   xdg.configFile.funkcia-dotfiles = {
     target = ".";
     source = ./xdg/config;
