@@ -80,7 +80,19 @@ in
       (lib.mkIf cfg.mountFontConfig {
         funkcia.hm.flatpak.overrides.global =
           let
-            defaults = osConfig.fonts.fontconfig.defaultFonts;
+            defaults =
+              lib.genAttrs
+                [
+                  "sansSerif"
+                  "serif"
+                  "monospace"
+                  "emoji"
+                ]
+                (
+                  key:
+                  config.fonts.fontconfig.defaultFonts.${key}
+                  ++ (osConfig.fonts.fontconfig.defaultFonts.${key} or [ ])
+                );
 
             mkGenericAlias = generic: families: ''
               <alias binding="same">
