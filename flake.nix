@@ -18,6 +18,7 @@
       nix-index-database,
       plum-nix,
       flake-cloudreve,
+      llm-agents,
       ...
     }:
     let
@@ -55,19 +56,24 @@
 
         nixos = {
           sharedModules = [
-            self.nixosModules.shared
+            ./home/home-manager.nix
+            (funkcia-utils.files.mkRecDirModule ./fixes)
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
             self.nixosModules.default
           ];
 
           devices = {
             legion-82tf.imports = [
               ./devices/legion-82tf/configuration.nix
+              self.nixosModules.llm-agents
               lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.lenovo-legion-16iah7h
             ];
 
             dell-workstation.imports = [
               ./devices/dell-workstation/configuration.nix
+              self.nixosModules.llm-agents
             ];
 
             flying-fish.imports = [
@@ -93,21 +99,6 @@
 
         flake = {
           inherit flakeModules;
-
-          nixosModules.default = filesystem-modules.mkModule {
-            directory = ./nixos;
-            base = [
-              "funkcia"
-              "os"
-            ];
-          };
-
-          nixosModules.shared.imports = [
-            ./home/home-manager.nix
-            (funkcia-utils.files.mkRecDirModule ./fixes)
-            home-manager.nixosModules.home-manager
-            sops-nix.nixosModules.sops
-          ];
 
           homeModules.default = filesystem-modules.mkModule {
             directory = ./home/modules;
@@ -181,5 +172,7 @@
     flake-cloudreve.url = "github:Lhcfl/flake-cloudreve";
     flake-cloudreve.inputs.nixpkgs.follows = "nixpkgs";
     flake-cloudreve.inputs.flake-parts.follows = "flake-parts";
+
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 }

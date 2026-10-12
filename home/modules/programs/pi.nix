@@ -44,7 +44,7 @@ in
     lib.mkMerge [
       {
         home.packages = with pkgs; [
-          pi-coding-agent
+          llm-agents.pi
         ];
 
         funkcia.hm = {
