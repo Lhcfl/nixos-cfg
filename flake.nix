@@ -21,11 +21,15 @@
       ...
     }:
     let
+      inherit (nixpkgs) lib;
+
       funkcia-utils = {
         projectPath = path: ./. + path;
-        files = import ./utils/files.nix { inherit (nixpkgs) lib; };
-        magic = import ./utils/magic.nix { inherit (nixpkgs) lib; };
-      };
+      }
+      // (lib.packagesFromDirectoryRecursive {
+        callPackage = file: _: import file { inherit lib; };
+        directory = ./utils;
+      });
 
       flakeModules.default = filesystem-modules.mkModule { directory = ./parts; };
     in

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, funkcia-utils, ... }: {
   funkcia.os.nsn = {
     enable = true;
 
@@ -20,9 +20,7 @@
         users.users.root = {
           shell = pkgs.fish;
 
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwHaPGjtqvGsYrO5NiGHoVMSS/Qj+63hv1QNBG+wnm+ linca@nixos"
-          ];
+          openssh.authorizedKeys.keys = funkcia-utils.linca.keys;
         };
 
         system.stateVersion = "26.11";

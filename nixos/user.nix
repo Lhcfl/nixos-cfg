@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  funkcia-utils,
   ...
 }:
 let
@@ -32,9 +33,7 @@ in
           }
 
           (lib.mkIf value.ssh-login.enable {
-            openssh.authorizedKeys.keys = [
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJwHaPGjtqvGsYrO5NiGHoVMSS/Qj+63hv1QNBG+wnm+ linca@nixos"
-            ];
+            openssh.authorizedKeys.keys = funkcia-utils.linca.keys;
           })
 
           (lib.mkIf value.is-admin {
