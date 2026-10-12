@@ -1,6 +1,10 @@
 { pkgs, funkcia-utils, ... }: {
-  funkcia.os.user.linca = {
-    is-admin = true;
+  funkcia.os = {
+    cache-outside-home.linca.enable = true;
+
+    user.linca = {
+      is-admin = true;
+    };
   };
 
   users.users.linca = {
