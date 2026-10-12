@@ -9,6 +9,7 @@
 
   users.users.linca = {
     shell = pkgs.fish;
+    description = "Calorie Zero";
   };
 
   home-manager.users.linca = {

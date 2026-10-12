@@ -15,6 +15,8 @@
     # funkcia modules
     funkcia.os = {
       tpm.enable = true;
+      tpm.tpm-fido.enable = true;
+
       gui = {
         enable = true;
         niri.enable = true;
