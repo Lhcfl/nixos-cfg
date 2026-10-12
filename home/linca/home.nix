@@ -1,6 +1,5 @@
 {
   inputs,
-  funkcia-utils,
   pkgs,
   ...
 }:
