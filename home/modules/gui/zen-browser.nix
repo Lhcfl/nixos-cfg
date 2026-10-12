@@ -21,5 +21,8 @@ in
     funkcia.hm.xdg.mime.defaultApplications.webFormats = lib.mkIf cfg.isDefaultBrowser [
       "zen.desktop"
     ];
+
+    # 奇怪的是，zen browser 如果没有 .mime.types，在某些我难以复现的时候会进入无限循环里吃满 CPU
+    home.file.".mime.types".source = "${pkgs.mailcap}/etc/mime.types";
   };
 }
