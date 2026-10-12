@@ -25,6 +25,10 @@ in
   funkcia.hm.gui.noctalia.bars.${barname} = {
     start = [
       {
+        type = "workspaces";
+        labels_only_when_occupied = true;
+      }
+      {
         type = "group";
         widget_spacing = 3;
         members = [
@@ -61,6 +65,9 @@ in
     ];
     center = [ { type = "active_window"; } ];
     end = [
+      {
+        type = "privacy";
+      }
       {
         type = "group";
         members = [
