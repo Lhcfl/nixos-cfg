@@ -1,4 +1,5 @@
 {
+  inputs,
   funkcia-utils,
   pkgs,
   ...
@@ -42,9 +43,9 @@
     recursive = true;
   };
 
-  imports = [
-    (funkcia-utils.files.mkDirModule ./programs)
-    (funkcia-utils.files.mkRecDirModule ./gui)
-    (funkcia-utils.files.mkRecDirModule ./modules)
+  imports = map (x: inputs.filesystem-modules.mkModule { directory = x; }) [
+    ./programs
+    ./modules
+    ./gui
   ];
 }

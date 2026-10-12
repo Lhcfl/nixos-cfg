@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790439310,
-        "narHash": "sha256-gKWe71yrRNeOQyRwt8Kl3y7ZBtY6B5KH8AvaUxtwdAU=",
+        "lastModified": 1791807847,
+        "narHash": "sha256-DkxZWrU1qihYnekP6ONnIMW7BOD6AIa6yFhocxF4lw0=",
         "owner": "Lhcfl",
         "repo": "filesystem-modules",
-        "rev": "957b3a873d7a91632b210c18ab21c394e7644ede",
+        "rev": "34f302f78bbe3f85e1b1518dfe3735080197bc5c",
         "type": "github"
       },
       "original": {

@@ -57,7 +57,7 @@
         nixos = {
           sharedModules = [
             ./home/home-manager.nix
-            (funkcia-utils.files.mkRecDirModule ./fixes)
+            (filesystem-modules.mkModule { directory = ./fixes; })
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             self.nixosModules.default

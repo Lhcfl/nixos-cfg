@@ -33,10 +33,9 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 子目录是一个 `perSystem.packages.<name>` 并导出同名 overlay。两者都由
 `flake.nix` 自动导入。
 
-`nixos/`、`home/modules/`、`fixes/` 都是递归自动导入（`mkRecDirModule`）；
-`devices/<name>/configuration.nix` 与 `home/<user>/home.nix` 用
-`funkcia-utils.files.mkDirModule` / `mkRecDirModule` 导入同层目录。这些工具的具
-体行为看 `utils/files.nix`。
+`nixos/`、`home/modules/`、`fixes/` 都是递归自动导入
+（`filesystem-modules.mkModule`）。该工具提供了 `this` 注入，`this.options` 被展
+开为目录对应模块名。下划线 `_` 开头的文件会被忽略。
 
 ## 名称与开关约定
 

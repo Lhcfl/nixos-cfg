@@ -1,12 +1,4 @@
-{ lib, ... }:
-rec {
-  listNixFilesRec =
-    path:
-    lib.pipe path [
-      lib.filesystem.listFilesRecursive
-      (builtins.filter (lib.hasSuffix ".nix"))
-    ];
-
+{ lib, ... }: {
   mkDirModule = path: {
     imports = lib.pipe (builtins.readDir path) [
       lib.attrsToList
@@ -14,9 +6,5 @@ rec {
       (map ({ name, ... }: name))
       (map (x: path + /${x}))
     ];
-  };
-
-  mkRecDirModule = path: {
-    imports = listNixFilesRec path;
   };
 }

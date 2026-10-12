@@ -7,7 +7,7 @@
 # ── 目录说明 ────────────────────────────────────────────────────────────────
 # 本文件位于项目根目录的 `fixes/` 下。
 # `fixes/` 目录在 flake.nix 的 `nixos.sharedModules` 中被
-# `funkcia-utils.files.mkRecDirModule` 递归自动导入，因此往这个目录里新增任意
+# `filesystem-modules.mkModule` 递归自动导入，因此往这个目录里新增任意
 #  `.nix` 模块都会被所有设备自动加载。请保持每个文件都是**独立的 NixOS 模块**。
 #
 #
