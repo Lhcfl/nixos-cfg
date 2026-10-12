@@ -35,6 +35,11 @@ in
       };
     };
 
+    funkcia.hm.agents = {
+      enable = true;
+      md.text = builtins.readFile ../assets/AGENTS.md;
+    };
+
     programs.direnv.enable = true;
   };
 }
