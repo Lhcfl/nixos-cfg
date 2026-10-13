@@ -115,6 +115,15 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 子。写 `mkOption` 时优先复用 `lib.types.*` 与 `pkgs.formats.<fmt>
 {}.type/.generate`，参考 `.agents/skills/write-option`。
 
+## 如何验证某个选项是否打开
+
+如果为了测试某个选项在当前 flake 下是否打开，你**必须**使用 `nixos-option
+{option-name}`，例如 `nixos-option hardware.nvidia.powerManagement.enable`。这是
+因为某些选项可能在外部模块、其他flake、其他选项默认值下隐式被打开。
+
+注意 `nixos-option` 求值的是当前修改后的 flake 的值，不是 /run/current-system 已
+经生效的值。
+
 ## 求值与隔离测试
 
 不是所有改动都值得 build 整个系统。多数情况下先用求值确认选项/类型正确：
