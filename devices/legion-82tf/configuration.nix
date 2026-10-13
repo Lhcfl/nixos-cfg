@@ -32,7 +32,11 @@
     networking.proxy = "http://127.0.0.1:10808";
 
     btrbk.home.enable = true;
+
+    local-ca.enable = true;
   };
+
+  sops.age.keyFile = "/home/linca/.config/sops/age/keys.txt";
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows

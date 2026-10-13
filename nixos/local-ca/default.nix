@@ -21,7 +21,16 @@ in
   };
 
   config = lib.mkIf cfg.enable (
-    if options ? sops then
+    if options.sops or null == null then
+      {
+        assertions = [
+          {
+            assertion = false;
+            message = "You must import sops to local-ca!";
+          }
+        ];
+      }
+    else
       {
         users.groups.funkcia-local-ca = { };
 
@@ -36,7 +45,5 @@ in
         funkcia.os.local-ca.crtPath = toString ./root.crt;
         security.pki.certificateFiles = [ ./root.crt ];
       }
-    else
-      throw "local-ca requirs sops"
   );
 }
