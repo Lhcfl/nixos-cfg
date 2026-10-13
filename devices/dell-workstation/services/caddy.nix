@@ -1,15 +1,25 @@
 # 内网 HTTPS：Caddy 用自带的本地 CA 签证书（`tls internal`），不接触公网 ACME。
-#
-# 一次性步骤：Caddy 首次启动会生成自己的 root CA，
-# 客户端要信任它，需要把
-#   /var/lib/caddy/pki/authorities/local/root.crt
-# 拷进仓库，再由 funkcia.os.trust-local-ca 装进各机器的信任库。
 { lib, config, ... }:
 {
+  funkcia.os.local-ca.enable = true;
+
   funkcia.os.domain.suffix = "workstation.internal";
 
   # 裸 workstation.internal（value 覆盖默认的 <name>.<suffix>）
   funkcia.os.domains.host.value = "workstation.internal";
+
+  users.users.caddy.extraGroups = [ "funkcia-local-ca" ];
+
+  systemd.tmpfiles.settings.caddy-root-keys = {
+    "/var/lib/caddy/.local/share/caddy/pki/authorities/local/root.key"."L+" = {
+      mode = "0444";
+      argument = config.funkcia.os.local-ca.keyPath;
+    };
+    "/var/lib/caddy/.local/share/caddy/pki/authorities/local/root.crt"."L+" = {
+      mode = "0444";
+      argument = config.funkcia.os.local-ca.crtPath;
+    };
+  };
 
   services.caddy = {
     enable = true;
@@ -36,7 +46,7 @@
         };
       }
     );
-  };
 
-  networking.firewall.allowedTCPPorts = [ 443 ];
+    openFirewall = true;
+  };
 }
