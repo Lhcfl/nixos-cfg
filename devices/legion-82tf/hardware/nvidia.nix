@@ -4,5 +4,6 @@
   hardware.nvidia = {
     open = true;
     nvidiaSettings = true;
+    branch = "latest";
   };
 }
