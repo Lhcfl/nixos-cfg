@@ -60,6 +60,9 @@
     # 供桌面自动挂载 U 盘/移动盘
     services.udisks2.enable = true;
 
+    # 打印机
+    services.printing.enable = true;
+
     # xdg user dir
     environment.systemPackages = with pkgs; [
       xdg-user-dirs

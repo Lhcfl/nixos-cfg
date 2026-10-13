@@ -10,6 +10,7 @@ let
     "127.0.0.1"
     "localhost"
     "internal.domain"
+    ".internal"
     ".local"
   ];
 in
