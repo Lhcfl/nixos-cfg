@@ -1,5 +1,12 @@
-# 内网 HTTPS：Caddy 用自带的本地 CA 签证书（`tls internal`），不接触公网 ACME。
-{ lib, config, ... }:
+# 内网 HTTPS：Caddy 用共享的本地 CA（funkcia.os.local-ca）签证书，不接触公网 ACME。
+#
+# 这里只管 Caddy 本身和 CA 接线。每个服务在自己的模块里加一条 virtualHosts，
+# 名字各用各的；某条需要额外名字（例如同时用 ws.xxx 访问）时，才在那一条上写
+# serverAliases。
+{
+  config,
+  ...
+}:
 {
   funkcia.os.local-ca.enable = true;
 
@@ -29,22 +36,16 @@
       auto_https disable_redirects
     '';
 
-    virtualHosts = lib.flip lib.mapAttrs' config.funkcia.os.domains (
-      _: domain: {
-        name = domain.value;
-        value = {
-          serverAliases = [ "ws.${config.funkcia.os.domain.suffix}" ];
-
-          extraConfig = ''
-            # 自签，不尝试公网 ACME
-            tls internal
-
-            # TODO: 换成这台机器真正要暴露的服务，例如
-            #   reverse_proxy 127.0.0.1:8080
-          '';
-        };
-      }
-    );
+    # 由各服务模块填充，例如：
+    #
+    #   "foo.workstation.internal" = {
+    #     serverAliases = [ "ws.workstation.internal" ];
+    #     extraConfig = ''
+    #       tls internal
+    #       reverse_proxy 127.0.0.1:8080
+    #     '';
+    #   };
+    virtualHosts = { };
 
     openFirewall = true;
   };
