@@ -67,6 +67,7 @@
             legion-82tf.imports = [
               ./devices/legion-82tf/configuration.nix
               self.nixosModules.llm-agents
+              self.nixosModules.rust-overlay
               lanzaboote.nixosModules.lanzaboote
               nixos-hardware.nixosModules.lenovo-legion-16iah7h
             ];
@@ -74,6 +75,7 @@
             dell-workstation.imports = [
               ./devices/dell-workstation/configuration.nix
               self.nixosModules.llm-agents
+              self.nixosModules.rust-overlay
             ];
 
             flying-fish.imports = [
@@ -168,6 +170,9 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-cloudreve.url = "github:Lhcfl/flake-cloudreve";
     flake-cloudreve.inputs.nixpkgs.follows = "nixpkgs";

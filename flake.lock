@@ -664,6 +664,7 @@
         "nixpkgs": "nixpkgs_3",
         "nuschtos-search": "nuschtos-search",
         "plum-nix": "plum-nix",
+        "rust-overlay": "rust-overlay_3",
         "shell-auto-pi": "shell-auto-pi",
         "sops-nix": "sops-nix",
         "yazi-everforest-medium": "yazi-everforest-medium",
@@ -704,6 +705,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "228ecefb6329d5a531b77b46b581a2f0c26ee056",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_3": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791882738,
+        "narHash": "sha256-7KXUW3FKbZAstFiK09LJ1sUnPN2dO5RX9ROCZgGbeZw=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "3100cf6ff140fb298f09192de610f4037d3bab0f",
         "type": "github"
       },
       "original": {

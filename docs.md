@@ -196,6 +196,54 @@ true
 
 
 
+## funkcia\.os\.cache-outside-home
+
+
+
+This option has no description\.
+
+
+
+*Type:*
+attribute set of (submodule)
+
+*Declared by:*
+ - [/nixos/cache-outside-home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/cache-outside-home.nix)
+
+
+
+## funkcia\.os\.cache-outside-home\.\<name>\.enable
+
+
+
+Whether to enable put cache files outside $HOME, so home backup wouldn’t back cache\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/cache-outside-home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/cache-outside-home.nix)
+
+
+
 ## funkcia\.os\.configure-ip\.enable
 
 
@@ -1124,6 +1172,38 @@ true
 
 
 
+## funkcia\.os\.local-ca\.enable
+
+
+
+Whether to enable 自签名\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/local-ca/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/local-ca/default.nix)
+
+
+
 ## funkcia\.os\.modern-cli-tools\.enable
 
 
@@ -1236,6 +1316,7 @@ list of string
   "127.0.0.1"
   "localhost"
   "internal.domain"
+  ".internal"
   ".local"
 ]
 ```
@@ -2207,6 +2288,38 @@ true
 
 
 
+## funkcia\.os\.tpm\.tpm-fido\.enable
+
+
+
+Whether to enable tpm-fido\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/tpm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/tpm.nix)
+
+
+
 ## funkcia\.os\.user
 
 
@@ -2319,7 +2432,87 @@ true
 
 
 # Home Manager Modules
+## funkcia\.hm\.agents\.enable
+
+Whether to enable global agents management\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/agents\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/agents.nix)
+
+
+
+## funkcia\.hm\.agents\.md\.path
+
+
+
+where to put global AGENTS\.md, relative to home
+
+
+
+*Type:*
+list of string
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+*Declared by:*
+ - [/home/modules/agents\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/agents.nix)
+
+
+
+## funkcia\.hm\.agents\.md\.text
+
+
+
+global AGENTS\.md, per section
+
+
+
+*Type:*
+strings concatenated with “\\n”
+
+
+
+*Default:*
+
+```nix
+""
+```
+
+*Declared by:*
+ - [/home/modules/agents\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/agents.nix)
+
+
+
 ## funkcia\.hm\.avatar
+
+
 
 path of your avatar
 
@@ -4735,6 +4928,38 @@ true
 
 *Declared by:*
  - [/home/linca/modules/play\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/modules/play.nix)
+
+
+
+## linca\.rclone\.enable
+
+
+
+Whether to enable connect to my personal webdav and etc\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/linca/modules/rclone\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/modules/rclone.nix)
 
 
 
