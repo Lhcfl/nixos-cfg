@@ -41,7 +41,6 @@
 
             # TODO: 换成这台机器真正要暴露的服务，例如
             #   reverse_proxy 127.0.0.1:8080
-            respond "caddy ok" 200
           '';
         };
       }
