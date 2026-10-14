@@ -3,6 +3,10 @@ let
   kdl = inputs.nix-kdl.kdl;
 in
 {
+  imports = [
+    ./systemd/pi-web.nix
+  ];
+
   funkcia.hm = {
     language-sdk = {
       cpp.enable = true;
