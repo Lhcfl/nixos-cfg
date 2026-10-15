@@ -12,7 +12,10 @@ let
 in
 {
   options.funkcia.nix.lix.enable = lib.mkEnableOption "Lix, a fork of Nix" // {
-    default = true;
+    # TODO: 临时关闭。nixos-unstable 2026-10-14 的 lix 2.95.4 构建回归
+    # （common-lix.nix 无条件传 -Dmimalloc，而 2.95.4 无该 meson 选项）；
+    # nixpkgs master 已修，等 channel 前进后改回 true。
+    default = false;
   };
 
   config = lib.mkMerge [
