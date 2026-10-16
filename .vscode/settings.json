@@ -54,5 +54,10 @@
             "name": "XML",
             "scopeName": "text.xml",
         }
+    },
+    "explorer.excludeGitIgnore": true,
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "flake.nix": "flake.lock, *.json, *.yml, *.yaml, *.lock, *.toml",
     }
 }
