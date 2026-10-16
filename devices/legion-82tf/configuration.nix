@@ -19,7 +19,6 @@
     presets.cn.enable = true;
 
     secure-boot.enable = true;
-    gui.hyprland.enable = true;
     keyring.provider = {
       oo7.tpm2.enable = true;
     };
