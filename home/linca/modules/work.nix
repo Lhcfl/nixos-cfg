@@ -13,6 +13,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    funkcia.hm = {
+      programs.dsh.enable = true;
+      programs.dsh.systemd.enable = true;
+    };
+
     home.packages = with pkgs; [
       tree-sitter
       vscode-json-languageserver

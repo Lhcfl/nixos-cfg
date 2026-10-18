@@ -148,7 +148,7 @@ boolean
 *Default:*
 
 ```nix
-true
+false
 ```
 
 
@@ -4235,6 +4235,137 @@ true
 
 *Declared by:*
  - [/home/modules/modern-cli-tools\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/modern-cli-tools.nix)
+
+
+
+## funkcia\.hm\.programs\.dsh\.enable
+
+
+
+Whether to enable DeepSeek Harness Web GUI（dsh web）的 systemd user 服务\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/programs/dsh\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/dsh.nix)
+
+
+
+## funkcia\.hm\.programs\.dsh\.environmentFiles
+
+
+
+systemd ` EnvironmentFile ` 列表，每行 ` KEY=VALUE `。适合放 sops 模板等不宜
+进 Nix store 的机密。
+
+
+
+*Type:*
+list of (string or absolute path)
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+
+
+*Example:*
+
+```nix
+[ config.sops.templates."dsh-env".path ]
+
+```
+
+*Declared by:*
+ - [/home/modules/programs/dsh\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/dsh.nix)
+
+
+
+## funkcia\.hm\.programs\.dsh\.extraArgs
+
+
+
+追加到 ` dsh web --no-open ` 之后的启动参数，例如 ` --host `、` --port `。
+
+
+
+*Type:*
+list of string
+
+
+
+*Default:*
+
+```nix
+[ ]
+```
+
+
+
+*Example:*
+
+```nix
+[ "--port" "8080" ]
+
+```
+
+*Declared by:*
+ - [/home/modules/programs/dsh\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/dsh.nix)
+
+
+
+## funkcia\.hm\.programs\.dsh\.systemd\.enable
+
+
+
+Whether to enable systemd service for dsh-web\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/modules/programs/dsh\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/programs/dsh.nix)
 
 
 
