@@ -11,6 +11,7 @@
 
   config.sops = lib.mkIf (osConfig.funkcia.os.sops-support.enable && config.linca.sops.enable) {
     defaultSopsFile = ./secrets.yaml;
-    age.keyFile = "/home/linca/.config/sops/age/keys.txt";
+    age.keyFile = "/var/lib/age/keys.txt";
+    defaultSymlinkPath = "%r/secrets";
   };
 }

@@ -35,7 +35,7 @@
     local-ca.enable = true;
   };
 
-  sops.age.keyFile = "/home/linca/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/var/lib/age/keys.txt";
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows

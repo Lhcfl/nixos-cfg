@@ -14,7 +14,7 @@
 
   environment.sessionVariables.NH_OS_FLAKE = "/home/linca/nixos-cfg";
 
-  sops.age.keyFile = "/home/linca/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/var/lib/age/keys.txt";
 
   funkcia.os = {
     presets.pc.enable = true;
