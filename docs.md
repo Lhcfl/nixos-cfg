@@ -4242,7 +4242,7 @@ true
 
 
 
-Whether to enable DeepSeek Harness Web GUI（dsh web）的 systemd user 服务\.
+Whether to enable DeepSeek Harness（dsh）的 package\.
 
 
 

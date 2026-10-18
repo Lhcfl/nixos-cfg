@@ -15,7 +15,7 @@ let
 in
 {
   options.funkcia.hm.programs.dsh = {
-    enable = lib.mkEnableOption "DeepSeek Harness Web GUI（dsh web）的 systemd user 服务";
+    enable = lib.mkEnableOption "DeepSeek Harness（dsh）的 package";
 
     systemd.enable = lib.mkEnableOption "systemd service for dsh-web";
 
