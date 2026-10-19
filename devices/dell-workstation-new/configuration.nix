@@ -1,0 +1,51 @@
+{
+  pkgs,
+  funkcia-utils,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    (funkcia-utils.files.mkDirModule ./services)
+    (funkcia-utils.files.mkDirModule ./users)
+  ];
+
+  networking.hostName = "dell-workstation"; # Define your hostname.
+
+  environment.sessionVariables.NH_OS_FLAKE = "/home/linca/nixos-cfg";
+
+  sops.age.keyFile = "/var/lib/age/keys.txt";
+
+  funkcia.os = {
+    presets.pc.enable = true;
+    presets.cn.enable = true;
+
+    networking.proxy = "http://127.0.0.1:10808";
+
+    btrbk.home.enable = true;
+  };
+
+  services.openssh.enable = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 50;
+  boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
+  # Whether the installation process is allowed to modify EFI boot variables.
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  programs.umbriel.enable = true;
+
+  nix.settings.substituters = [ "https://mirror.nju.edu.cn/nix-channels/store?priority=10" ];
+
+  environment.systemPackages = with pkgs; [
+    waypipe
+  ];
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "26.11"; # Did you read the comment?+
+}

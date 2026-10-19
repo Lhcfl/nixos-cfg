@@ -78,6 +78,13 @@
               self.nixosModules.rust-overlay
             ];
 
+            # 重装用的 bcache 统一大盘布局（纯安装脚本，不用 disko：disko 没有 bcache 类型）
+            dell-workstation-new.imports = [
+              ./devices/dell-workstation-new/configuration.nix
+              self.nixosModules.llm-agents
+              self.nixosModules.rust-overlay
+            ];
+
             flying-fish.imports = [
               disko.nixosModules.disko
               misskey-media-proxy.nixosModules.default
