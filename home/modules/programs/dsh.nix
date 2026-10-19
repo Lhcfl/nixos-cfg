@@ -6,12 +6,6 @@
 }:
 let
   cfg = config.funkcia.hm.programs.dsh;
-
-  # 启动脚本：extraArgs 交给 sh 做词法拆分，而不是塞进 ExecStart 里让 systemd
-  # 和 fish -lc 各解析一遍引号。
-  start = pkgs.writeShellScript "dsh-web-start" ''
-    exec ${pkgs.llm-agents.dsh}/bin/dsh web --no-open ${lib.escapeShellArgs cfg.extraArgs}
-  '';
 in
 {
   options.funkcia.hm.programs.dsh = {
@@ -56,39 +50,76 @@ in
         home.packages = [ pkgs.llm-agents.dsh ];
       }
 
-      (lib.mkIf cfg.systemd.enable {
-        home.packages = [
-          (pkgs.writeShellApplication {
-            name = "open-dsh-web";
+      (lib.mkIf cfg.systemd.enable (
+        let
+          # 启动脚本：extraArgs 交给 sh 做词法拆分，而不是塞进 ExecStart 里让 systemd
+          # 和 fish -lc 各解析一遍引号。
+          start = pkgs.writeShellScript "dsh-web-start" ''
+            exec ${pkgs.llm-agents.dsh}/bin/dsh web --no-open ${lib.escapeShellArgs cfg.extraArgs}
+          '';
+
+          chromium-app = pkgs.writeShellApplication {
+            name = "dsh-web";
             text = /* sh */ ''
-              journalctl --user -u dsh-web.service -n 100 --no-pager | awk '/dsh web: http/{u=$NF} END{print u}' | xargs -r xdg-open
+              DIR=''${XDG_DATA_HOME:-"$HOME/.local/share"}
+
+              journalctl --user -u dsh-web.service -n 100 --no-pager \
+              | awk '/dsh web: http/{u=$NF} END{print "--app=" u}' \
+              | xargs -r chromium --user-data-dir="$DIR/dsh-web" --profile-directory="dsh"
             '';
-          })
-        ];
-
-        # 用 login fish 启动，让 dsh 及其派生的 agent shell 继承 linca 的完整登录
-        # 环境（home-manager 的 sessionVariables/sessionPath 等），与 pi-web 一致。
-        #
-        # 不做 socket activation：dsh web 的 HTTP listener 由 dsh-host-webserver 自己
-        # `listen(host, port)`，不读 LISTEN_FDS、也不发 sd_notify，systemd 持有的
-        # socket 没法交给它；要按需拉起只能上 systemd-socket-proxyd 中转。
-        systemd.user.services.dsh-web = lib.mkIf cfg.systemd.enable {
-          Unit = {
-            Description = "DeepSeek Harness Web GUI";
           };
 
-          Service = {
-            WorkingDirectory = config.home.homeDirectory;
-            ExecStart = "${pkgs.fish}/bin/fish -lc 'exec ${start}'";
-            EnvironmentFile = cfg.environmentFiles;
-
-            Restart = "on-failure";
-            RestartSec = 5;
+          desktop-entry = pkgs.makeDesktopItem {
+            name = "deepseek-harness"; # 文件名（不含 .desktop）
+            startupWMClass = "chrome-127.0.0.1__-dsh";
+            desktopName = "Deepseek Harness"; # 显示名称
+            exec = lib.getExe chromium-app;
+            icon = ./dsh-icon.svg; # 图标名称（需在图标主题中能找到）
+            comment = "Agent for work with documents, analyze spreadsheets, write code, and schedule tasks.";
+            categories = [
+              "X-Agent"
+              "Utility"
+            ]; # 应用类别
+            terminal = false; # 是否在终端中运行
+            keywords = [
+              "app"
+              "agent"
+              "coding"
+              "deepseek"
+              "harness"
+            ]; # 搜索关键词
           };
+        in
+        {
+          home.packages = [
+            chromium-app
+            desktop-entry
+          ];
 
-          Install.WantedBy = [ "default.target" ];
-        };
-      })
+          # 用 login fish 启动，让 dsh 及其派生的 agent shell 继承 linca 的完整登录
+          # 环境（home-manager 的 sessionVariables/sessionPath 等），与 pi-web 一致。
+          #
+          # 不做 socket activation：dsh web 的 HTTP listener 由 dsh-host-webserver 自己
+          # `listen(host, port)`，不读 LISTEN_FDS、也不发 sd_notify，systemd 持有的
+          # socket 没法交给它；要按需拉起只能上 systemd-socket-proxyd 中转。
+          systemd.user.services.dsh-web = lib.mkIf cfg.systemd.enable {
+            Unit = {
+              Description = "DeepSeek Harness Web GUI";
+            };
+
+            Service = {
+              WorkingDirectory = config.home.homeDirectory;
+              ExecStart = "${pkgs.fish}/bin/fish -lc 'exec ${start}'";
+              EnvironmentFile = cfg.environmentFiles;
+
+              Restart = "on-failure";
+              RestartSec = 5;
+            };
+
+            Install.WantedBy = [ "default.target" ];
+          };
+        }
+      ))
     ]
   );
 }
