@@ -46,39 +46,49 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    # DeepSeek Harness。
-    #
-    # nixpkgs 编译的 node 带硬化，导致 `node-addon-require-builtin` 反汇编
-    # V8 getter 失败。llm-agents 上游现在**已经内置**了这个 workaround
-    # （patch dsh-app-boot 的 index.js 与 worker/profile-resolution-bootstrap.js，
-    # 把 requireBuiltin 改成 createRequire(import.meta.url)），所以这里不需要
-    # 再自己 override —— 之前那份 override 会和上游重复应用同一处替换而失败。
-    #
-    # 见 https://github.com/numtide/llm-agents.nix/issues/9994
-    home.packages = [ pkgs.llm-agents.dsh ];
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+      {
+        # DeepSeek Harness。
+        # nixpkgs 编译的 node 带硬化，导致 `node-addon-require-builtin` 反汇编
+        # V8 getter 失败。使用 llm-agents 这个 flake 有现成的修复。
+        # 见 https://github.com/numtide/llm-agents.nix/issues/9994
+        home.packages = [ pkgs.llm-agents.dsh ];
+      }
 
-    # 用 login fish 启动，让 dsh 及其派生的 agent shell 继承 linca 的完整登录
-    # 环境（home-manager 的 sessionVariables/sessionPath 等），与 pi-web 一致。
-    #
-    # 不做 socket activation：dsh web 的 HTTP listener 由 dsh-host-webserver 自己
-    # `listen(host, port)`，不读 LISTEN_FDS、也不发 sd_notify，systemd 持有的
-    # socket 没法交给它；要按需拉起只能上 systemd-socket-proxyd 中转。
-    systemd.user.services.dsh-web = lib.mkIf cfg.systemd.enable {
-      Unit = {
-        Description = "DeepSeek Harness Web GUI";
-      };
+      (lib.mkIf cfg.systemd.enable {
+        home.packages = [
+          (pkgs.writeShellApplication {
+            name = "open-dsh-web";
+            text = /* sh */ ''
+              journalctl --user -u dsh-web.service -n 100 --no-pager | awk '/dsh web: http/{u=$NF} END{print u}' | xargs -r xdg-open
+            '';
+          })
+        ];
 
-      Service = {
-        WorkingDirectory = config.home.homeDirectory;
-        ExecStart = "${pkgs.fish}/bin/fish -lc 'exec ${start}'";
-        EnvironmentFile = cfg.environmentFiles;
+        # 用 login fish 启动，让 dsh 及其派生的 agent shell 继承 linca 的完整登录
+        # 环境（home-manager 的 sessionVariables/sessionPath 等），与 pi-web 一致。
+        #
+        # 不做 socket activation：dsh web 的 HTTP listener 由 dsh-host-webserver 自己
+        # `listen(host, port)`，不读 LISTEN_FDS、也不发 sd_notify，systemd 持有的
+        # socket 没法交给它；要按需拉起只能上 systemd-socket-proxyd 中转。
+        systemd.user.services.dsh-web = lib.mkIf cfg.systemd.enable {
+          Unit = {
+            Description = "DeepSeek Harness Web GUI";
+          };
 
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
+          Service = {
+            WorkingDirectory = config.home.homeDirectory;
+            ExecStart = "${pkgs.fish}/bin/fish -lc 'exec ${start}'";
+            EnvironmentFile = cfg.environmentFiles;
 
-      Install.WantedBy = [ "default.target" ];
-    };
-  };
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
+
+          Install.WantedBy = [ "default.target" ];
+        };
+      })
+    ]
+  );
 }
