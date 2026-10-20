@@ -108,9 +108,6 @@ in
           dconf write /org/gnome/desktop/interface/color-scheme "\"prefer-$NOCTALIA_THEME_MODE\"";
         '';
       };
-
-      # FIX: noctalia lockscreen has a fingerprint bug that will be fixed in next release
-      lockscreen.fingerprint = lib.mkIf (pkgs.noctalia.version == "5.2.1") false;
     };
   };
 
