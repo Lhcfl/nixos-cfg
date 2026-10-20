@@ -1,5 +1,9 @@
-{ lib, config, ... }: {
-  config.funkcia.os.domain.suffix = "${
+{ lib, config, ... }:
+let
+  mapDomains = f: lib.mapAttrs' (_: f) config.funkcia.os.domains;
+in
+{
+  funkcia.os.domain.suffix = "${
     builtins.concatStringsSep "l" [
       "ste"
       "po"
@@ -7,17 +11,17 @@
     ]
   }.moe";
 
-  config.sops.secrets = {
+  sops.secrets = {
     "cloudflare/email" = { };
     "cloudflare/dns-api-token" = { };
   };
 
-  config.sops.templates."security-acme-envfile".content = ''
+  sops.templates."security-acme-envfile".content = ''
     CF_API_EMAIL=${config.sops.placeholder."cloudflare/email"}
     CF_DNS_API_TOKEN=${config.sops.placeholder."cloudflare/dns-api-token"}
   '';
 
-  config.security.acme = {
+  security.acme = {
     acceptTerms = true;
 
     defaults = {
@@ -28,45 +32,29 @@
     };
   };
 
-  config.services.nginx.virtualHosts = lib.pipe config.funkcia.os.domains [
-    lib.attrsToList
-    (map (
-      { value, ... }:
-      let
-        domain = value.value;
-      in
-      {
-        "${domain}" = {
-          forceSSL = true;
-          enableACME = true;
+  services.nginx.virtualHosts = mapDomains (domain: {
+    name = domain.value;
 
-          listen = [
-            {
-              addr = "0.0.0.0";
-              port = 443;
-              ssl = true;
-            }
-          ];
-        };
-      }
-    ))
-    lib.mkMerge
-  ];
+    value = {
+      forceSSL = true;
+      enableACME = true;
 
-  config.security.acme.certs = lib.pipe config.funkcia.os.domains [
-    lib.attrsToList
-    (map (
-      { value, ... }:
-      let
-        domain = value.value;
-      in
-      {
-        ${domain} = {
-          dnsProvider = "cloudflare";
-          webroot = lib.mkForce null;
-        };
-      }
-    ))
-    lib.mkMerge
-  ];
+      listen = [
+        {
+          addr = "0.0.0.0";
+          port = 443;
+          ssl = true;
+        }
+      ];
+    };
+  });
+
+  security.acme.certs = mapDomains (domain: {
+    name = domain.value;
+
+    value = {
+      dnsProvider = "cloudflare";
+      webroot = lib.mkForce null;
+    };
+  });
 }
