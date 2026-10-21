@@ -31,13 +31,19 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7862fcd4-0d8d-4b48-8dc1-7ef344f7928f";
     fsType = "btrfs";
-    options = [ "subvol=@root" ];
+    options = [
+      "subvol=@root"
+      "compress=zstd:3"
+    ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/7862fcd4-0d8d-4b48-8dc1-7ef344f7928f";
     fsType = "btrfs";
-    options = [ "subvol=@nix" ];
+    options = [
+      "subvol=@nix"
+      "noatime"
+    ];
   };
 
   fileSystems."/home" = {
