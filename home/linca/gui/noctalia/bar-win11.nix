@@ -48,7 +48,9 @@
           drawer_columns = 5;
           pinned = [
             "wechat"
+            "Element_status_icon_1"
             "Telegram Desktop"
+            "TelegramDesktop"
             "v2rayN"
             "Fcitx"
             "chrome_status_icon_1"
