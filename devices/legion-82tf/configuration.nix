@@ -9,7 +9,7 @@
     ./hardware
     ./services
     ./users
-  ];
+  ] ++ [ ./fonts.nix ];
 
   networking.hostName = "legion-82tf"; # Define your hostname.
 
