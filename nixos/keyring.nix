@@ -55,6 +55,7 @@ in
         environment.systemPackages = with pkgs; [
           gnome-keyring
           libsecret
+          seahorse
         ];
 
         services.gnome.gnome-keyring.enable = true;
