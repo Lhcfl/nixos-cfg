@@ -1,9 +1,12 @@
 { ... }:
 {
-  programs.nushell.enable = true;
-  programs.nushell.extraConfig = ''
-    use ${./from-nix.nu} *
-    source ${./fish-completer.nu}
-    source ${./menu.nu}
-  '';
+  programs.nushell = {
+    enable = true;
+    extraConfig = ''
+      use ${./from-nix.nu} *
+      source ${./fish-completer.nu}
+      source ${./menu.nu}
+    '';
+    loadSessionVariables = true;
+  };
 }
