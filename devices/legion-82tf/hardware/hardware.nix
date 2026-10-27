@@ -52,17 +52,17 @@
       ];
     };
     "/media/c" = {
-      device = "/dev/disk/by-uuid/F654E4A954E46E35";
+      device = "/dev/disk/by-label/Windows";
       fsType = "ntfs3";
       options = [ "ro" ];
     };
     "/media/d" = {
-      device = "/dev/disk/by-uuid/04374294FD1C96EA";
+      device = "/dev/disk/by-label/Data";
       fsType = "ntfs3";
       options = [ "ro" ];
     };
     "/media/share" = {
-      device = "/dev/disk/by-uuid/6ED9-FBF2";
+      device = "/dev/disk/by-label/shared-data";
       fsType = "exfat";
       options = [
         "gid=${toString config.users.groups.wheel.gid}"
