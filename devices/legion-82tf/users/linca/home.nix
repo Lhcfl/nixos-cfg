@@ -25,6 +25,7 @@
     work.enable = true;
     play.enable = true;
     tex.enable = true;
+    gpg.pk.enable = true;
   };
 
   programs.ssh.settings = {
