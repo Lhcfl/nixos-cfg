@@ -19,6 +19,7 @@ in
   linca = {
     work.enable = true;
     play.enable = true;
+    tex.enable = true;
   };
 
   programs.ssh.settings = {
