@@ -9,7 +9,7 @@ let
             -c gpg.format=ssh \
             -c user.signingkey="$HOME/.ssh/id_agent.pub" \
             -c user.name="Linca's Agent" \
-            -c user.email="lhcfl+agent@outlook.com" \
+            -c user.email="349399500+linca-s-agent[bot]@users.noreply.github.com" \
             "$@"
         fi
 
