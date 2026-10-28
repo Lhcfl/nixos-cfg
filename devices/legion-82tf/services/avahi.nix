@@ -5,7 +5,9 @@
     nssmdns4 = true;
     hostName = "linca";
 
-    publish.enable = true;
-    publish.userServices = true;
+    settings = {
+      publish.disable-publishing = false;
+      publish.disable-user-service-publishing = false;
+    };
   };
 }
