@@ -5,19 +5,17 @@
 # 这里在安装后用 kmodigest 给 legion-laptop.ko 签名并生成同目录的 .ko.cer。
 {
   nixpkgs.overlays = [
-    (
-      final: prev: {
-        linuxPackages_latest = prev.linuxPackages_latest.extend (
-          _self: super: {
-            lenovo-legion-module = super.lenovo-legion-module.overrideAttrs (old: {
-              postInstall = (old.postInstall or "") + ''
-                ${final.kmodigest}/bin/kmodigest \
-                  "$out/lib/modules/${super.kernel.modDirVersion}/kernel/drivers/platform/x86/legion-laptop.ko"
-              '';
-            });
-          }
-        );
-      }
-    )
+    (final: prev: {
+      linuxPackages_latest = prev.linuxPackages_latest.extend (
+        _self: super: {
+          lenovo-legion-module = super.lenovo-legion-module.overrideAttrs (old: {
+            postInstall = (old.postInstall or "") + ''
+              ${final.kmodigest}/bin/kmodigest \
+                "$out/lib/modules/${super.kernel.modDirVersion}/kernel/drivers/platform/x86/legion-laptop.ko"
+            '';
+          });
+        }
+      );
+    })
   ];
 }
