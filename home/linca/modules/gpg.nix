@@ -18,6 +18,12 @@
             }
           ];
         };
+
+        # 私钥口令缓存 2 小时（gpg-agent 默认 10 分钟）
+        home.file."${config.programs.gpg.homedir}/gpg-agent.conf".text = ''
+          default-cache-ttl 7200
+          max-cache-ttl 7200
+        '';
       }
 
       (lib.mkIf config.linca.gpg.pk.enable {

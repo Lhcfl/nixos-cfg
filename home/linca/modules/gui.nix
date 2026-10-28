@@ -41,7 +41,7 @@ in
 
       chromium.enable = true;
 
-      obsidian.enable = lib.mkIf (!osConfig.funkcia.os.new-cn-install) true;
+      obsidian.enable = true;
 
       firefox.enable = true;
     };

@@ -2,16 +2,26 @@
   config,
   lib,
   osConfig,
+  pkgs,
   ...
 }:
 {
-  options.linca.sops.enable = lib.mkEnableOption "SOPS configs";
+  options.linca.sops.enable = lib.mkEnableOption "SOPS configs" // {
+    default = true;
+  };
 
-  config.linca.sops.enable = lib.mkDefault (!osConfig.funkcia.os.new-cn-install);
+  config = lib.mkIf ((osConfig.funkcia.os.sops-support.enable or true) && config.linca.sops.enable) {
+    home.packages = with pkgs; [
+      age
+      sops
+    ];
 
-  config.sops = lib.mkIf (osConfig.funkcia.os.sops-support.enable && config.linca.sops.enable) {
-    defaultSopsFile = ./secrets.yaml;
-    age.keyFile = "/var/lib/age/keys.txt";
-    defaultSymlinkPath = "${config.xdg.stateHome}/sops-nix/secrets";
+    sops = {
+      defaultSopsFile = ./secrets.yaml;
+      age.keyFile = "/var/lib/age/keys.txt";
+      defaultSymlinkPath = "${config.xdg.stateHome}/sops-nix/secrets";
+    };
+
+    home.sessionVariables.SOPS_AGE_KEY_FILE = config.sops.age.keyFile;
   };
 }
