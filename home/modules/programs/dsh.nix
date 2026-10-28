@@ -112,6 +112,20 @@ in
               ExecStart = "${pkgs.fish}/bin/fish -lc 'exec ${start}'";
               EnvironmentFile = cfg.environmentFiles;
 
+              # 让 dsh 派生的 agent shell 能直接用 agent-browser。
+              #
+              # dsh 的 bash 工具跑在 landlock 沙箱里，只允许写工作区和 /tmp；
+              # agent-browser 默认把 daemon socket 放在 $XDG_RUNTIME_DIR/agent-browser，
+              # 在沙箱里会 Permission denied，因此改到 /tmp 下按用户隔离。
+              # home-manager 安装的 chromium 没有可用的 setuid sandbox helper
+              # （Nix store 无法 setuid），必须显式 --no-sandbox，否则 Chrome 直接退出。
+              # headless 是默认模式；headed 用 `agent-browser --headed` 按需打开，
+              # 所需的 DISPLAY/WAYLAND_DISPLAY 等由 systemd user manager 提供。
+              Environment = [
+                "AGENT_BROWSER_SOCKET_DIR=/tmp/agent-browser-${config.home.username}"
+                "AGENT_BROWSER_ARGS=--no-sandbox"
+              ];
+
               Restart = "on-failure";
               RestartSec = 5;
             };
