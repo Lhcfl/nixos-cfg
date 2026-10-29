@@ -20,9 +20,6 @@
             "npm:@monopi/extension-shell-format"
             "npm:pi-agent-browser-native"
             "npm:pi-background-tasks@latest"
-            "npm:@pi-unipi/notify"
-            "npm:@agnishc/edb-session-manager"
-            "npm:pi-interactive-shell"
             "npm:pi-commandcode-provider"
           ];
         };
