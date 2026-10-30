@@ -22,18 +22,6 @@ in
         lxgw-wenkai
         lxgw-wenkai-screen
       ];
-
-      fontconfig.defaultFonts = {
-        # fallback to HanaMin if no other font is available
-        sansSerif = lib.mkAfter [
-          "HanaMinA"
-          "HanaMinB"
-        ];
-        serif = lib.mkAfter [
-          "HanaMinA"
-          "HanaMinB"
-        ];
-      };
     };
   };
 }
