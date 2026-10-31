@@ -43,6 +43,14 @@
         "compress=zstd:3"
       ];
     };
+    "/home/linca/.cache" = {
+      device = "/dev/disk/by-uuid/353db29e-70df-4f30-ab7f-33bfc094112b";
+      fsType = "btrfs";
+      options = [
+        "subvol=@linca-cache"
+        "compress=zstd:3"
+      ];
+    };
     "/boot" = {
       device = "/dev/disk/by-uuid/7E2C-2BF1";
       fsType = "vfat";
