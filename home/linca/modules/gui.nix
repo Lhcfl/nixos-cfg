@@ -41,6 +41,8 @@ in
 
       chromium.enable = true;
 
+      google-chrome.enable = true;
+
       obsidian.enable = true;
 
       firefox.enable = true;
