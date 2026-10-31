@@ -1,14 +1,15 @@
 {
+  this,
   config,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.funkcia.os.displayManager.noctalia-greeter;
+  cfg = this.config;
 in
 {
-  options.funkcia.os.displayManager.noctalia-greeter = {
+  this.options = {
     enable = lib.mkEnableOption "noctalia-greeter module, which is a TUI login manager (or display manager).";
   };
 

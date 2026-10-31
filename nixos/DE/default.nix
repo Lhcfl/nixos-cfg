@@ -5,11 +5,12 @@
   ...
 }:
 let
-  cfg = config.funkcia.os.gui;
+  cfg = config.funkcia.os.DE;
 in
 {
-  options.funkcia.os.gui = {
+  options.funkcia.os.DE = {
     enable = lib.mkEnableOption "GUI related options";
+
     isWayland = lib.mkOption {
       description = "is wayland";
       type = lib.types.bool;
@@ -19,6 +20,10 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
+        funkcia.os.DE = {
+          settings.extra-fonts.enable = lib.mkDefault true;
+        };
+
         environment.systemPackages = with pkgs; [
           ## GUI PACKAGES
           libnotify # notification support
@@ -27,8 +32,6 @@ in
           brightnessctl # brightness control
           playerctl # media player control
         ];
-
-        funkcia.os.gui.fonts.enable = lib.mkDefault true;
       }
 
       (lib.mkIf cfg.isWayland {

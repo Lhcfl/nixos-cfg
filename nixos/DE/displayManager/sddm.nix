@@ -1,11 +1,11 @@
 {
-  config,
+  this,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.funkcia.os.displayManager.sddm;
+  cfg = this.config;
 
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = cfg.theme.name;
@@ -13,7 +13,7 @@ let
   };
 in
 {
-  options.funkcia.os.displayManager.sddm = {
+  this.options = {
     enable = lib.mkEnableOption "sddm module, which is a GUI login manager (or display manager).";
     theme.name = lib.mkOption {
       type = lib.types.str;

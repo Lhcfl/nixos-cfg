@@ -1,17 +1,15 @@
-#   funkcia.os.keyring.enable = true;
-#   funkcia.os.keyring.provider.gnome-keyring = { };        # 默认
-#   funkcia.os.keyring.provider.oo7.tpm2.enable = true;
 {
+  this,
   config,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.funkcia.os.keyring;
+  cfg = this.config;
 in
 {
-  options.funkcia.os.keyring = {
+  this.options = {
     enable = lib.mkEnableOption "Secret Service, an API on D-Bus to allow applications to store secrets securely.";
 
     provider = lib.mkOption {

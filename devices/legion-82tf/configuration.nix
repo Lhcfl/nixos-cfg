@@ -21,9 +21,6 @@
     presets.cn.enable = true;
 
     secure-boot.enable = true;
-    keyring.provider = {
-      oo7.tpm2.enable = true;
-    };
 
     fingerprint = {
       enable = true;
@@ -37,14 +34,18 @@
     local-ca.enable = true;
   };
 
+  funkcia.os.DE = {
+    settings.keyring.provider = {
+      oo7.tpm2.enable = true;
+    };
+  };
+
   sops.age.keyFile = "/var/lib/age/keys.txt";
 
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.sortKey = "wa"; # after auto windows
   # Whether the installation process is allowed to modify EFI boot variables.
   boot.loader.efi.canTouchEfiVariables = true;
-
-  programs.umbriel.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

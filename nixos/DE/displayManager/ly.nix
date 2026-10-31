@@ -1,14 +1,14 @@
 {
-  config,
+  this,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.funkcia.os.displayManager.ly;
+  cfg = this.config;
 in
 {
-  options.funkcia.os.displayManager.ly = {
+  this.options = {
     enable = lib.mkEnableOption "ly module, which is a TUI login manager (or display manager).";
   };
 

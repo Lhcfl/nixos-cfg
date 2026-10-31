@@ -27,6 +27,16 @@
         source-serif
         source-serif-pro
 
+        # 代码字体
+        nerd-fonts.liberation
+        maple-mono.NF-CN-unhinted
+        lxgw-wenkai-screen
+        lxgw-wenkai
+        lxgw-wenkai-screen
+
+        # 兼容字体
+        hanazono # 花园明朝，覆盖了几乎所有的汉字
+
         # 与 Windows 对齐的核心西文/中文/等宽字体（均为 unfree 或微软开源授权）
         corefonts # Arial / Times New Roman / Courier New / Verdana / Georgia / Impact / Webdings
         vista-fonts # Calibri / Cambria / Candara / Consolas / Constantia / Corbel

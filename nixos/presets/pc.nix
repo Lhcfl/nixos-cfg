@@ -10,20 +10,25 @@
 
   config = lib.mkIf config.funkcia.os.presets.pc.enable {
     funkcia.os.presets.host.enable = true;
-    funkcia.os.extra-fonts.enable = true;
 
     # funkcia modules
     funkcia.os = {
       tpm.enable = true;
       tpm.tpm-fido.enable = true;
-
-      gui = {
-        enable = true;
-        niri.enable = true;
-      };
-      displayManager.noctalia-greeter.enable = true;
       # flatpak 非 Nix 软件的安装
       flatpak.enable = true;
+    };
+
+    funkcia.os.DE = {
+      enable = true;
+
+      displayManager.noctalia-greeter.enable = true;
+
+      compositor.niri.enable = true;
+      compositor.umbriel.enable = true;
+
+      components.gnome.enable = true;
+      components.noctalia.enable = true;
     };
 
     # 使用 network manager
