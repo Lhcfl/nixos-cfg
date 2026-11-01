@@ -31,10 +31,8 @@ in
         };
 
         environment.systemPackages = with pkgs; [
-          ## GUI PACKAGES
-          libnotify # notification support
           firefox
-          xray
+          libnotify # notification support
           brightnessctl # brightness control
           playerctl # media player control
         ];

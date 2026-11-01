@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -30,6 +31,10 @@
           } final;
         }
       )
+    ];
+
+    environment.systemPackages = with pkgs; [
+      xray
     ];
   };
 }
