@@ -1,22 +1,20 @@
 { pkgs, lib, ... }:
 let
-  wrapgit = (
-    pkgs.writeShellApplication {
-      name = "git";
-      text = ''
-        if [ -n "''${PI_CODING_AGENT:-}" ] || [ -n "''${DSH_SHELL:-}" ]; then
-          exec ${lib.getExe pkgs.git} \
-            -c gpg.format=ssh \
-            -c user.signingkey="$HOME/.ssh/id_agent.pub" \
-            -c user.name="Linca's Agent" \
-            -c user.email="lhcfl+agent@outlook.com" \
-            "$@"
-        fi
+  wrapgit = pkgs.writeShellApplication {
+    name = "git";
+    text = ''
+      if [ -n "''${PI_CODING_AGENT:-}" ] || [ -n "''${DSH_SHELL:-}" ]; then
+        exec ${lib.getExe pkgs.git} \
+          -c gpg.format=ssh \
+          -c user.signingkey="$HOME/.ssh/id_agent.pub" \
+          -c user.name="Linca's Agent" \
+          -c user.email="lhcfl+agent@outlook.com" \
+          "$@"
+      fi
 
-        exec ${lib.getExe pkgs.git} "$@"
-      '';
-    }
-  );
+      exec ${lib.getExe pkgs.git} "$@"
+    '';
+  };
 in
 {
   programs.git = {

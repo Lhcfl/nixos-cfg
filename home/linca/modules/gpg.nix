@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.linca.gpg.pk.enable = lib.mkEnableOption ''
     当这台机器上有自己 ../trust/linca.pk.asc 对应的私钥的时候启用
   '';
@@ -31,10 +37,9 @@
         # system.slice 中，其中 keyboxd 一直占着 pubring.db 的锁，导致
         # 登录后 gpg 卡在 "waiting for lock"。上游暂无修复，这里按 issue
         # 里的建议在导入完成后把它们杀掉，让用户会话按需启动干净的实例。
-        home.activation.cleanupGpgDaemons =
-          lib.hm.dag.entryAfter [ "importGpgKeys" ] ''
-            run ${pkgs.gnupg}/bin/gpgconf --homedir "${config.programs.gpg.homedir}" --kill all || true
-          '';
+        home.activation.cleanupGpgDaemons = lib.hm.dag.entryAfter [ "importGpgKeys" ] ''
+          run ${pkgs.gnupg}/bin/gpgconf --homedir "${config.programs.gpg.homedir}" --kill all || true
+        '';
       }
 
       (lib.mkIf config.linca.gpg.pk.enable {

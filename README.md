@@ -17,10 +17,11 @@
 | 2 | [`home/`](home/README.md)                 | Home Manager 用户和模块定义                                                   |
 | 3 | [`home/linca/`](home/linca/README.md)     | Linca 的用户配置                                                              |
 | 4 | [`home/modules/`](home/modules/README.md) | 对所有用户生效的 Home Manager 模块                                            |
-| 5 | [`nixos/`](nixos/README.md)               | 所有设备都可使用的 NixOS module                                               |
-| 6 | [`packages/`](packages/README.md)         | 存放一些 nix 包                                                               |
-| 7 | [`parts/`](parts/README.md)               | flake-parts 模块                                                              |
-| 8 | [`scripts/`](scripts/README.md)           | 存放专属于本仓库开发用途的脚本文件。                                          |
+| 5 | [`nixos/DE/`](nixos/DE/README.md)         | **D**esktop **E**nvironment Configurations                                    |
+| 6 | [`nixos/`](nixos/README.md)               | 所有设备都可使用的 NixOS module                                               |
+| 7 | [`packages/`](packages/README.md)         | 存放一些 nix 包                                                               |
+| 8 | [`parts/`](parts/README.md)               | flake-parts 模块                                                              |
+| 9 | [`scripts/`](scripts/README.md)           | 存放专属于本仓库开发用途的脚本文件。                                          |
 
 
 <!-- END_GEN_README_TREE -->

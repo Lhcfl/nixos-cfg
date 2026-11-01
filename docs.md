@@ -164,6 +164,543 @@ true
 
 
 
+## funkcia\.os\.DE\.enable
+
+
+
+Whether to enable GUI related options\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/default.nix)
+
+
+
+## funkcia\.os\.DE\.components\.gnome\.enable
+
+
+
+Whether to enable GNOME components (NixOS Module)\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/components/gnome\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/components/gnome.nix)
+
+
+
+## funkcia\.os\.DE\.components\.noctalia\.enable
+
+
+
+Whether to enable Noctalia Shell
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/components/noctalia\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/components/noctalia.nix)
+
+
+
+## funkcia\.os\.DE\.compositor\.hyprland\.enable
+
+
+
+Whether to enable Hyprland, A scrollable-tiling Wayland compositor\.
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/compositor/hyprland\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/compositor/hyprland.nix)
+
+
+
+## funkcia\.os\.DE\.compositor\.niri\.enable
+
+
+
+Whether to enable Niri, A scrollable-tiling Wayland compositor\.
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/compositor/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/compositor/niri.nix)
+
+
+
+## funkcia\.os\.DE\.compositor\.umbriel\.enable
+
+
+
+Whether to enable Umbriel, the compositor by Noctalia team
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/compositor/umbriel\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/compositor/umbriel.nix)
+
+
+
+## funkcia\.os\.DE\.displayManager\.ly\.enable
+
+
+
+Whether to enable ly module, which is a TUI login manager (or display manager)…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/displayManager/ly\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/displayManager/ly.nix)
+
+
+
+## funkcia\.os\.DE\.displayManager\.noctalia-greeter\.enable
+
+
+
+Whether to enable noctalia-greeter module, which is a TUI login manager (or display manager)…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/displayManager/noctalia-greeter\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/displayManager/noctalia-greeter.nix)
+
+
+
+## funkcia\.os\.DE\.displayManager\.sddm\.enable
+
+
+
+Whether to enable sddm module, which is a GUI login manager (or display manager)…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/displayManager/sddm.nix)
+
+
+
+## funkcia\.os\.DE\.displayManager\.sddm\.theme\.config
+
+
+
+theme config of the theme\.
+
+
+
+*Type:*
+JSON value
+
+
+
+*Default:*
+
+```nix
+{ }
+```
+
+
+
+*Example:*
+
+```nix
+{
+  Background = "Backgrounds/your-custom-background.png";
+  HeaderTextColor = "#d5c4a1";
+}
+```
+
+*Declared by:*
+ - [/nixos/DE/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/displayManager/sddm.nix)
+
+
+
+## funkcia\.os\.DE\.displayManager\.sddm\.theme\.name
+
+
+
+theme name of sddm-astronaut-theme\. see https://github\.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+
+```nix
+"hyprland_kath"
+```
+
+*Declared by:*
+ - [/nixos/DE/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/displayManager/sddm.nix)
+
+
+
+## funkcia\.os\.DE\.isWayland
+
+
+
+is wayland
+
+
+
+*Type:*
+boolean
+
+*Declared by:*
+ - [/nixos/DE/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/default.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.extra-fonts\.enable
+
+
+
+Whether to enable 额外的字体\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/settings/extra-fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/extra-fonts.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.keyring\.enable
+
+
+
+Whether to enable Secret Service, an API on D-Bus to allow applications to store secrets securely…
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/settings/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/keyring.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.keyring\.provider
+
+
+
+Secret Service 的实现，只能选一个。
+
+
+
+*Type:*
+attribute-tagged union with choices: gnome-keyring, oo7
+
+
+
+*Default:*
+
+```nix
+{
+  gnome-keyring = { };
+}
+```
+
+
+
+*Example:*
+
+```nix
+{
+  oo7 = {
+    tpm2 = {
+      enable = true;
+    };
+  };
+}
+```
+
+*Declared by:*
+ - [/nixos/DE/settings/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/keyring.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.keyring\.provider\.gnome-keyring
+
+
+
+用 gnome-keyring, GNOME 的 Secret Service 实现。只能靠登录口令解锁 keyring，
+指纹登录不行。see [https://wiki\.nixos\.org/wiki/Secret_Service](https://wiki\.nixos\.org/wiki/Secret_Service)
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/nixos/DE/settings/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/keyring.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.keyring\.provider\.oo7
+
+
+
+用 oo7, 一个 Rust 编写的 D-Bus Secret Service 提供程序，旨在作为 gnome-keyring
+的轻量级跨桌面替代方案。see [https://github\.com/linux-credentials/oo7](https://github\.com/linux-credentials/oo7)
+
+
+
+*Type:*
+submodule
+
+*Declared by:*
+ - [/nixos/DE/settings/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/keyring.nix)
+
+
+
+## funkcia\.os\.DE\.settings\.keyring\.provider\.oo7\.tpm2\.enable
+
+
+
+Whether to enable 用 TPM2 封装的 systemd credential 解锁 keyring（会装一个 ` oo7-store-keyring-password `，跑一次即可）\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/nixos/DE/settings/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/DE/settings/keyring.nix)
+
+
+
 ## funkcia\.os\.btrbk\.home\.enable
 
 
@@ -193,54 +730,6 @@ true
 
 *Declared by:*
  - [/nixos/btrbk\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/btrbk.nix)
-
-
-
-## funkcia\.os\.cache-outside-home
-
-
-
-This option has no description\.
-
-
-
-*Type:*
-attribute set of (submodule)
-
-*Declared by:*
- - [/nixos/cache-outside-home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/cache-outside-home.nix)
-
-
-
-## funkcia\.os\.cache-outside-home\.\<name>\.enable
-
-
-
-Whether to enable put cache files outside $HOME, so home backup wouldn’t back cache\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/cache-outside-home\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/cache-outside-home.nix)
 
 
 
@@ -379,161 +868,6 @@ config.sops.placeholder."network/ens3/ipv4"
 
 
 
-## funkcia\.os\.displayManager\.ly\.enable
-
-
-
-Whether to enable ly module, which is a TUI login manager (or display manager)…
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/displayManager/ly\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/ly.nix)
-
-
-
-## funkcia\.os\.displayManager\.noctalia-greeter\.enable
-
-
-
-Whether to enable noctalia-greeter module, which is a TUI login manager (or display manager)…
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/displayManager/noctalia-greeter\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/noctalia-greeter.nix)
-
-
-
-## funkcia\.os\.displayManager\.sddm\.enable
-
-
-
-Whether to enable sddm module, which is a GUI login manager (or display manager)…
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
-
-
-
-## funkcia\.os\.displayManager\.sddm\.theme\.config
-
-
-
-theme config of the theme\.
-
-
-
-*Type:*
-JSON value
-
-
-
-*Default:*
-
-```nix
-{ }
-```
-
-
-
-*Example:*
-
-```nix
-{
-  Background = "Backgrounds/your-custom-background.png";
-  HeaderTextColor = "#d5c4a1";
-}
-```
-
-*Declared by:*
- - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
-
-
-
-## funkcia\.os\.displayManager\.sddm\.theme\.name
-
-
-
-theme name of sddm-astronaut-theme\. see https://github\.com/Keyitdev/sddm-astronaut-theme/tree/master/Themes
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-
-```nix
-"hyprland_kath"
-```
-
-*Declared by:*
- - [/nixos/displayManager/sddm\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/displayManager/sddm.nix)
-
-
-
 ## funkcia\.os\.domain\.suffix
 
 
@@ -584,38 +918,6 @@ string
 
 *Declared by:*
  - [/nixos/domains\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/domains.nix)
-
-
-
-## funkcia\.os\.extra-fonts\.enable
-
-
-
-Whether to enable 额外的字体\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/extra-fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/extra-fonts.nix)
 
 
 
@@ -710,183 +1012,6 @@ true
 
 *Declared by:*
  - [/nixos/flatpak\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/flatpak.nix)
-
-
-
-## funkcia\.os\.gui\.enable
-
-
-
-Whether to enable GUI related options\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/default.nix)
-
-
-
-## funkcia\.os\.gui\.fonts\.enable
-
-
-
-Whether to enable 启用 GUI 时的额外字体包\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gui/fonts\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/fonts.nix)
-
-
-
-## funkcia\.os\.gui\.hyprland\.enable
-
-
-
-Whether to enable Hyprland and related settings\.
-\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gui/hyprland\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/hyprland.nix)
-
-
-
-## funkcia\.os\.gui\.isWayland
-
-
-
-is wayland
-
-
-
-*Type:*
-boolean
-
-*Declared by:*
- - [/nixos/gui/default\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/default.nix)
-
-
-
-## funkcia\.os\.gui\.niri\.enable
-
-
-
-Whether to enable niri, a Wayland WM\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/niri.nix)
-
-
-
-## funkcia\.os\.gui\.niri\.noctalia\.enable
-
-
-
-Whether to enable noctalia shell, a sleek, customizable desktop shell crafted for Wayland\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-true
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/gui/niri\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/gui/niri.nix)
 
 
 
@@ -1031,144 +1156,6 @@ true
 
 *Declared by:*
  - [/nixos/incus\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/incus.nix)
-
-
-
-## funkcia\.os\.keyring\.enable
-
-
-
-Whether to enable Secret Service, an API on D-Bus to allow applications to store secrets securely…
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
-
-
-
-## funkcia\.os\.keyring\.provider
-
-
-
-Secret Service 的实现，只能选一个。
-
-
-
-*Type:*
-attribute-tagged union with choices: gnome-keyring, oo7
-
-
-
-*Default:*
-
-```nix
-{
-  gnome-keyring = { };
-}
-```
-
-
-
-*Example:*
-
-```nix
-{
-  oo7 = {
-    tpm2 = {
-      enable = true;
-    };
-  };
-}
-```
-
-*Declared by:*
- - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
-
-
-
-## funkcia\.os\.keyring\.provider\.gnome-keyring
-
-
-
-用 gnome-keyring, GNOME 的 Secret Service 实现。只能靠登录口令解锁 keyring，
-指纹登录不行。see [https://wiki\.nixos\.org/wiki/Secret_Service](https://wiki\.nixos\.org/wiki/Secret_Service)
-
-
-
-*Type:*
-submodule
-
-*Declared by:*
- - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
-
-
-
-## funkcia\.os\.keyring\.provider\.oo7
-
-
-
-用 oo7, 一个 Rust 编写的 D-Bus Secret Service 提供程序，旨在作为 gnome-keyring
-的轻量级跨桌面替代方案。see [https://github\.com/linux-credentials/oo7](https://github\.com/linux-credentials/oo7)
-
-
-
-*Type:*
-submodule
-
-*Declared by:*
- - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
-
-
-
-## funkcia\.os\.keyring\.provider\.oo7\.tpm2\.enable
-
-
-
-Whether to enable 用 TPM2 封装的 systemd credential 解锁 keyring（会装一个 ` oo7-store-keyring-password `，跑一次即可）\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/keyring\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/keyring.nix)
 
 
 
@@ -1366,40 +1353,6 @@ null
 
 *Declared by:*
  - [/nixos/networking\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/networking.nix)
-
-
-
-## funkcia\.os\.new-cn-install
-
-
-
-Whether to enable New CN installation mode, where some packages that require github network access
-will be delayed
-\.
-
-
-
-*Type:*
-boolean
-
-
-
-*Default:*
-
-```nix
-false
-```
-
-
-
-*Example:*
-
-```nix
-true
-```
-
-*Declared by:*
- - [/nixos/new-install\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/new-install.nix)
 
 
 
@@ -2697,7 +2650,7 @@ boolean
 *Default:*
 
 ```nix
-osConfig.funkcia.os.gui.enable or false
+osConfig.funkcia.os.DE.enable or false
 ```
 
 
@@ -2763,6 +2716,7 @@ list of package
 ```nix
 [
   <derivation adwaita-icon-theme-50.0>
+  <derivation morewaita-icon-theme-49>
   <derivation gnome-themes-extra-3.28>
 ]
 ```
@@ -2788,7 +2742,7 @@ string
 *Default:*
 
 ```nix
-"Adwaita"
+"MoreWaita"
 ```
 
 *Declared by:*
@@ -5032,7 +4986,40 @@ list of string
 
 
 # User Modules for linca
+## linca\.gpg\.pk\.enable
+
+Whether to enable 当这台机器上有自己 …/trust/linca\.pk\.asc 对应的私钥的时候启用
+\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/linca/modules/gpg\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/modules/gpg.nix)
+
+
+
 ## linca\.play\.enable
+
+
 
 Whether to enable packages for play\.
 
@@ -5110,7 +5097,7 @@ boolean
 *Default:*
 
 ```nix
-false
+true
 ```
 
 
@@ -5123,6 +5110,38 @@ true
 
 *Declared by:*
  - [/home/linca/modules/sops\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/modules/sops.nix)
+
+
+
+## linca\.tex\.enable
+
+
+
+Whether to enable LaTeX toolchain (tectonic + TeX Live/latexmk)\.
+
+
+
+*Type:*
+boolean
+
+
+
+*Default:*
+
+```nix
+false
+```
+
+
+
+*Example:*
+
+```nix
+true
+```
+
+*Declared by:*
+ - [/home/linca/modules/tex\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/linca/modules/tex.nix)
 
 
 

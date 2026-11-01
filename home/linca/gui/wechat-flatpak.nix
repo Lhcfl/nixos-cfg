@@ -9,7 +9,10 @@
     # sockets=fallback-x11;wayland 下有 wayland 就不给 X11，沙箱里 DISPLAY 为空，
     # 强行 xcb 会直接 abort。不要加 QT_SCALE_FACTOR，会和合成器缩放叠加。
     funkcia.hm.flatpak.overrides."com.tencent.WeChat" = {
-      Context.sockets = [ "!wayland" "x11" ];
+      Context.sockets = [
+        "!wayland"
+        "x11"
+      ];
       Environment = {
         LANG = "zh_CN.UTF-8";
         LC_CTYPE = "zh_CN.UTF-8";
