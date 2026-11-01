@@ -6,7 +6,7 @@
   };
 
   config = lib.mkIf this.config.enable {
-    programs.niri.enable = true;
+    programs.hyprland.enable = true;
 
     funkcia.os.DE = {
       isWayland = true;
