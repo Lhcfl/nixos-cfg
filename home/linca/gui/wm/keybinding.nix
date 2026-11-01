@@ -13,7 +13,7 @@
         };
         "Mod+F" = {
           title = "Open Launcher";
-          actions.spawn-sh = "vicinae toggle";
+          actions.spawn-sh = "noctalia msg panel-toggle launcher";
         };
       }
 
