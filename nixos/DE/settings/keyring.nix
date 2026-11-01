@@ -73,6 +73,7 @@ in
         # 实现会抢 org.freedesktop.secrets，所以显式关掉（gcr-ssh-agent 的默认值跟着
         # gnome-keyring 走，也会跟着关掉）。
         services.gnome.gnome-keyring.enable = false;
+        services.gnome.gcr-ssh-agent.enable = false;
 
         services.oo7.enable = true;
 

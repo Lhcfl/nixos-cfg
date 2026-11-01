@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "GNOME components";
     theme = {
       name = lib.mkOption {
-        default = "Adwaita";
+        default = "MoreWaita";
         type = lib.types.str;
         description = "The GTK theme to use for GNOME components";
       };
@@ -20,6 +20,7 @@ in
       package = lib.mkOption {
         default = with pkgs; [
           adwaita-icon-theme
+          morewaita-icon-theme
           gnome-themes-extra
         ];
         type = lib.types.listOf lib.types.package;
@@ -30,29 +31,6 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.gnome-shell.enable = true;
-
-    home.packages = with pkgs; [
-      nautilus # File manager
-      loupe # Image viewer
-      decibels # audio player
-      papers # doc viewer
-      file-roller
-      showtime
-
-      # GNOME runtime/theme integration
-      adwaita-icon-theme
-      gnome-themes-extra
-
-      # Apps
-      gnome-video-effects
-      gnome-clocks
-      gnome-disk-utility
-      gnome-system-monitor
-      gnome-text-editor
-      gnome-calendar
-      gnome-music
-
-    ];
 
     gtk = {
       enable = true;
