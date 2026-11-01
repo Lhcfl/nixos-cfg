@@ -4,19 +4,21 @@
   config,
   funkcia-utils,
   osConfig,
-  pkgs,
   ...
 }:
 let
   kdl = inputs.nix-kdl.kdl;
+  namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$";
 in
 {
-  # umbriel has a bug, so we disable the blur effect for noctalia panels in umbriel
-  funkcia.hm.gui.umbriel.settings = lib.mkIf false {
+  funkcia.hm.gui.umbriel.settings = lib.mkIf true {
     layer_rule = [
       {
-        match.namespace = "^noctalia.*(panel).*";
+        match = { inherit namespace; };
         blur = true;
+        # blur_ignore_alpha = 0.6 avoids blurring highly transparent parts of a surface.
+        blur_ignore_alpha = 0.6;
+        blur_optimized = false;
       }
     ];
   };
@@ -27,7 +29,7 @@ in
       (spawn-at-startup "noctalia")
 
       (layer-rule [
-        (match { namespace = "^noctalia.*(panel).*"; })
+        (match { inherit namespace; })
         (background-effect [
           (xray false)
         ])

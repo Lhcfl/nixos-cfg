@@ -47,5 +47,9 @@
     layout.scrolling = {
       default_extent_fraction = 0.5;
     };
+
+    appearance = {
+      prefer_no_csd = true;
+    };
   };
 }
