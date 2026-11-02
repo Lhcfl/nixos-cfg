@@ -29,6 +29,10 @@
           anchor = "bottom_right";
         };
       }
+      {
+        match.is_alone = true;
+        default_maximize = true;
+      }
     ];
 
     hot_corners.top_left = {
