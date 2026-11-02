@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   funkcia-utils,
@@ -7,40 +6,17 @@
   ...
 }:
 let
-  kdl = inputs.nix-kdl.kdl;
   namespace = "^noctalia-(notification|dock|panel|attached-panel|osd)$";
 in
 {
-  funkcia.hm.gui.umbriel.settings = lib.mkIf true {
-    layer_rule = [
-      {
-        match = { inherit namespace; };
-        blur = true;
-        # blur_ignore_alpha = 0.6 avoids blurring highly transparent parts of a surface.
-        blur_ignore_alpha = 0.6;
-        blur_optimized = false;
-      }
-    ];
+  tessera.settings.layer-rule.noctalia-surface = {
+    match = { inherit namespace; };
+    blur = true;
+    # blur_ignore_alpha = 0.6 avoids blurring highly transparent parts of a surface.
+    blur_ignore_alpha = 0.6;
+    blur_optimized = false;
+    background_effect.xray = false;
   };
-
-  funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.noctalia.enable (
-    with kdl.extras.niri;
-    kdl.formats.v1 [
-      (spawn-at-startup "noctalia")
-
-      (layer-rule [
-        (match { inherit namespace; })
-        (background-effect [
-          (xray false)
-        ])
-      ])
-
-      (layer-rule [
-        (match { namespace = "noctalia-wallpaper"; })
-        (place-within-backdrop true)
-      ])
-    ]
-  );
 
   funkcia.hm.gui.noctalia = {
     enable = config.funkcia.hm.gui.enable;
@@ -113,15 +89,15 @@ in
     };
   };
 
-  funkcia.hm.gui.wm.keybinding = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
+  tessera.settings.keybinds = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
     "XF86MonBrightnessUp".allow-when-locked = true;
-    "XF86MonBrightnessUp".actions.spawn-sh = "noctalia msg brightness-up";
+    "XF86MonBrightnessUp".actions.spawn = "noctalia msg brightness-up";
 
     "XF86MonBrightnessDown".allow-when-locked = true;
-    "XF86MonBrightnessDown".actions.spawn-sh = "noctalia msg brightness-down";
+    "XF86MonBrightnessDown".actions.spawn = "noctalia msg brightness-down";
 
     "Ctrl+Alt+A".title = "Take Screenshot";
-    "Ctrl+Alt+A".actions.spawn-sh = "noctalia msg screenshot-region";
+    "Ctrl+Alt+A".actions.spawn = "noctalia msg screenshot-region";
   };
 
   programs.alacritty.settings.general.import = [ "themes/noctalia.toml" ];

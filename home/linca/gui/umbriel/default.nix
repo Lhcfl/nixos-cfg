@@ -1,59 +1,47 @@
 {
   lib,
   config,
+  osConfig,
   ...
 }:
 {
-  funkcia.hm.gui.wm.umbriel.enable = config.funkcia.hm.gui.enable;
+  config = lib.mkIf (config.funkcia.hm.gui.enable && (osConfig.programs.umbriel.enable or false)) {
+    tessera.umbriel.enable = true;
 
-  funkcia.hm.gui.umbriel.settings = lib.mkIf config.funkcia.hm.gui.enable {
-    input.touchpad = {
-      tap = true;
-      natural_scroll = true;
-      disable_while_typing = true;
-    };
-
-    window_rule = [
-      { blur = true; }
+    tessera.umbriel.includes = [
       {
-        match.is_floating = true;
-        blur_optimized = false;
-      }
-      {
-        match.title = "^(Picture-in-Picture|Picture in picture)$";
-        default_floating = true;
-        default_maximize = false;
-        default_position = {
-          x = 20;
-          y = 20;
-          anchor = "bottom_right";
-        };
-      }
-      {
-        match.is_alone = true;
-        default_maximize = true;
+        optional = true;
+        source = "customize.toml";
       }
     ];
 
-    hot_corners.top_left = {
-      enabled = true;
-      delay_ms = 500;
-      action = "overview-open";
-    };
+    tessera.umbriel.settings = {
+      input.touchpad = {
+        tap = true;
+        natural_scroll = true;
+        disable_while_typing = true;
+      };
 
-    layout.struts.top = -3;
+      hot_corners.top_left = {
+        enabled = true;
+        delay_ms = 500;
+        action = "overview-open";
+      };
 
-    general = {
-      xwayland = true;
-      xwayland_native_resolution = true;
-    };
+      layout.struts.top = -3;
 
-    layout.scrolling = {
-      default_extent_fraction = 0.5;
-    };
+      general = {
+        xwayland = true;
+        xwayland_native_resolution = true;
+      };
 
-    appearance = {
-      prefer_no_csd = true;
+      layout.scrolling = {
+        default_extent_fraction = 0.5;
+      };
+
+      appearance = {
+        prefer_no_csd = true;
+      };
     };
   };
 }

@@ -1,5 +1,4 @@
 {
-  inputs,
   this,
   lib,
   ...
@@ -26,26 +25,11 @@
       imports = [ "settings-hm.json" ];
     };
 
-    funkcia.hm.gui.niri.settings =
-      let
-        kdl = inputs.nix-kdl.kdl;
-      in
-      with kdl.extras.niri;
-      kdl.formats.v1 [
-        (layer-rule [
-          (match { namespace = "vicinae"; })
-          (background-effect [
-            (xray false)
-          ])
-        ])
-      ];
-
-    funkcia.hm.gui.umbriel.settings.layer_rule = [
-      {
-        match.namespace = "vicinae";
-        blur = true;
-        blur_optimized = false;
-      }
-    ];
+    tessera.settings.layer-rule.vicinae = {
+      match.namespace = "vicinae";
+      blur = true;
+      blur_optimized = false;
+      background_effect.xray = false;
+    };
   };
 }

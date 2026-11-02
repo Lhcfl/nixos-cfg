@@ -25,7 +25,7 @@ in
 {
   config = lib.mkIf (config.funkcia.hm.gui.enable && xresourcesConfigured) {
     # WM 会话启动时把 ~/.Xresources 灌进 X server。
-    funkcia.hm.gui.wm.spawn-at-startup = [
+    tessera.settings.general.autostart = [
       "${lib.getExe pkgs.xrdb} -merge ${config.xresources.path}"
     ];
   };

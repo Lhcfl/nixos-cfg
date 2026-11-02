@@ -1,26 +1,16 @@
 {
-  inputs,
   lib,
   config,
   ...
 }:
 let
-  kdl = inputs.nix-kdl.kdl;
-
   barname = "top-only";
 in
 {
-  funkcia.hm.gui.niri.settings = lib.mkIf config.funkcia.hm.gui.noctalia.enable (
-    with kdl.extras.niri;
-    kdl.formats.v1 [
-      (layer-rule [
-        (match { namespace = "noctalia-bar-${barname}"; })
-        (background-effect [
-          (blur false)
-        ])
-      ])
-    ]
-  );
+  tessera.settings.layer-rule.noctalia-bar-top-only = lib.mkIf config.funkcia.hm.gui.noctalia.enable {
+    match.namespace = "noctalia-bar-${barname}";
+    blur = false;
+  };
 
   funkcia.hm.gui.noctalia.bars.${barname} = {
     settings = {

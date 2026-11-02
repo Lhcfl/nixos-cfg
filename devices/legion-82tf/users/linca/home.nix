@@ -44,7 +44,7 @@
     };
   };
 
-  funkcia.hm.gui.umbriel.settings.output.eDP-1 = {
+  tessera.umbriel.settings.output.eDP-1 = {
     scale = 1.5;
     # hdr = "on";
   };

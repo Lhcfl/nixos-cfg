@@ -1,6 +1,5 @@
 # home manager noctalia module
 {
-  inputs,
   config,
   lib,
   osConfig,
@@ -10,7 +9,6 @@
 let
   cfg = config.funkcia.hm.gui.noctalia;
   toml = pkgs.formats.toml { };
-  kdl = inputs.nix-kdl.kdl;
 in
 {
   options.funkcia.hm.gui.noctalia = {
@@ -43,33 +41,33 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    funkcia.hm.gui.wm.spawn-at-startup = [ "noctalia" ];
+    tessera.settings.general.autostart = [ "noctalia" ];
 
-    funkcia.hm.gui.niri.settings = lib.mkMerge [
-      (
-        with kdl.extras.niri;
-        kdl.formats.v1 [
-          (layer-rule [
-            (match { namespace = "^noctalia.*(panel).*"; })
-            (background-effect [
-              (xray false)
-            ])
-          ])
+    tessera.settings.layer-rule = {
+      noctalia-panel = {
+        match.namespace = "^noctalia.*(panel).*";
+        background_effect.xray = false;
+      };
 
-          (layer-rule [
-            (match { namespace = "noctalia-wallpaper"; })
-            (place-within-backdrop true)
-          ])
-        ]
-      )
-      (lib.mkAfter ''
-        include optional=true "noctalia.kdl"
-      '')
+      noctalia-wallpaper = {
+        match.namespace = "noctalia-wallpaper";
+        place_within_backdrop = true;
+      };
+    };
+
+    tessera.niri.includes = [
+      {
+        optional = true;
+        source = "noctalia.kdl";
+      }
     ];
 
-    funkcia.hm.gui.umbriel.settings = {
-      include.optional.files = [ "noctalia.toml" ];
-    };
+    tessera.umbriel.includes = [
+      {
+        optional = true;
+        source = "noctalia.toml";
+      }
+    ];
 
     home.packages = lib.mkIf (osConfig.programs.noctalia.enable or false) [
       pkgs.noctalia

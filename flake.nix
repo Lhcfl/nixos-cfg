@@ -19,6 +19,7 @@
       plum-nix,
       flake-cloudreve,
       llm-agents,
+      tessera,
       ...
     }:
     let
@@ -114,6 +115,7 @@
             nix-index-database.homeModules.default
             plum-nix.homeModules.default
             sops-nix.homeManagerModules.sops
+            tessera.homeModules.default
           ];
         };
       };
@@ -148,6 +150,9 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-kdl.url = "github:Lhcfl/nix-kdl";
+
+    tessera.url = "github:Lhcfl/tessera";
+    tessera.inputs.nix-kdl.follows = "nix-kdl";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";

@@ -26,6 +26,7 @@ description: Linca 的用户配置
   [`modules/gui.nix`](modules/gui.nix) 通过 `filesystem-modules.mkModule` 递归引
   入。每个文件自己负责开关：program 的 `enable` 绑定
   `config.funkcia.hm.gui.enable`，跨子系统贡献
-  （`funkcia.hm.gui.niri.settings`、`funkcia.hm.gui.umbriel.settings`、`funkcia.hm.gui.noctalia.*`
+  （`tessera.settings.window-rule`、`tessera.settings.layer-rule`、
+  `tessera.niri.includes`、`tessera.umbriel.settings`、`funkcia.hm.gui.noctalia.*`
   等）用目标模块的 enable 通过 `lib.mkIf` 守护，不再有统一的 `patchModule` 魔
   法。

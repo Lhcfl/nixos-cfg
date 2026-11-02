@@ -8,7 +8,7 @@
   this.options.enable = lib.mkEnableOption "v2rayn, a GUI for v2ray";
 
   config = lib.mkIf this.config.enable {
-    funkcia.hm.gui.wm.spawn-at-startup = [ "v2rayN" ];
+    tessera.settings.general.autostart = [ "v2rayN" ];
 
     home.packages = with pkgs; [
       v2rayn
@@ -19,12 +19,12 @@
     xdg.dataFile."v2rayN/bin/geoip.dat".source = "${pkgs.v2ray-rules-dat}/share/v2ray/geoip.dat";
     xdg.dataFile."v2rayN/bin/geosite.dat".source = "${pkgs.v2ray-rules-dat}/share/v2ray/geosite.dat";
 
-    funkcia.hm.gui.umbriel.settings.window_rule = [
-      {
-        match.app_id = "v2rayN";
-        match.is_floating = false;
-        default_scratchpad = "default";
-      }
-    ];
+    tessera.settings.window-rule.v2rayn = {
+      match = {
+        app_id = "v2rayN";
+        is_floating = false;
+      };
+      default_scratchpad = "default";
+    };
   };
 }

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   kdl = inputs.nix-kdl.kdl;
 in
@@ -35,11 +35,16 @@ in
     };
   };
 
-  funkcia.hm.gui.niri.settings =
-    with kdl.extras.niri;
-    kdl.formats.v1 [
-      (output "HDMI-A-2" [
-        (scale 1.2)
-      ])
-    ];
+  tessera.niri.includes = [
+    {
+      source = "${pkgs.writeText "tessera-niri-dell-output.kdl" (
+        with kdl.extras.niri;
+        kdl.formats.v1 [
+          (output "HDMI-A-2" [
+            (scale 1.2)
+          ])
+        ]
+      )}";
+    }
+  ];
 }

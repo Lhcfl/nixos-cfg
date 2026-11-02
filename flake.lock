@@ -667,6 +667,7 @@
         "rust-overlay": "rust-overlay_3",
         "shell-auto-pi": "shell-auto-pi",
         "sops-nix": "sops-nix",
+        "tessera": "tessera",
         "yazi-everforest-medium": "yazi-everforest-medium",
         "zen-browser": "zen-browser"
       }
@@ -815,6 +816,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tessera": {
+      "inputs": {
+        "nix-kdl": [
+          "nix-kdl"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793644451,
+        "narHash": "sha256-SE72JNK/4dOwh6R/VYVXtcZ5A2U5U7iSFtA/jcjpMcM=",
+        "owner": "Lhcfl",
+        "repo": "tessera",
+        "rev": "6b3a8dcc176a1f02823380e4cbd96fb10fb8aebe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lhcfl",
+        "repo": "tessera",
         "type": "github"
       }
     },

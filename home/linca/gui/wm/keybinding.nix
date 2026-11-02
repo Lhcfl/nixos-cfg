@@ -1,19 +1,19 @@
 { lib, ... }: {
-  funkcia.hm.gui.wm.keybinding = lib.mkMerge (
+  tessera.settings.keybinds = lib.mkMerge (
     lib.flatten [
       # Applications
       {
-        "Ctrl+Alt+T".actions.spawn = [ "kitty" ];
-        "Mod+A".actions.spawn = [ "alacritty" ];
-        "Mod+B".actions.spawn = [ "zen" ];
-        "Mod+S".actions.spawn-sh = "kitty nu";
+        "Ctrl+Alt+T".actions.spawn = "kitty";
+        "Mod+A".actions.spawn = "alacritty";
+        "Mod+B".actions.spawn = "zen";
+        "Mod+S".actions.spawn = "kitty nu";
         "Mod+E" = {
           title = "Open Home Folder";
-          actions.spawn-sh = "xdg-open ~";
+          actions.spawn = "xdg-open ~";
         };
         "Mod+F" = {
           title = "Open Launcher";
-          actions.spawn-sh = "noctalia msg panel-toggle launcher";
+          actions.spawn = "noctalia msg panel-toggle launcher";
         };
       }
 
@@ -21,41 +21,41 @@
       {
         "Print".actions.screenshot = { };
         "Ctrl+Alt+A".actions = lib.mkDefault { screenshot = { }; };
-        "Mod+Q".actions.close-window = { };
-        "Alt+F4".actions.close-window = { };
-        "Mod+Delete".actions.quit = { };
-        "Shift+F11".actions.fullscreen = { };
-        "Mod+M".actions.maximize = { };
-        "Mod+R".actions.resize-preset = { };
-        "Mod+L".actions.spawn-sh = "loginctl lock-session";
-        "Mod+Slash".actions.show-help = { };
-        "Mod+Shift+F".actions.toggle-window-floating = { };
-        "Mod+P".actions."toggle-window-pinned" = { };
-        "Mod+T".actions."toggle-column-tabbed" = { };
-        "Mod+bracketright".actions."focus-column-tab-relative" = "Next";
-        "Mod+bracketleft".actions."focus-column-tab-relative" = "Previous";
-        "Mod+Shift+Space".actions."toggle-window-scratchpad" = { };
-        "Mod+Space".actions."toggle-scratchpad" = { };
-        "Mod+WheelUp".actions."focus-workspace-relative" = "Previous";
-        "Mod+WheelDown".actions."focus-workspace-relative" = "Next";
+        "Mod+Q".actions.window-close = { };
+        "Alt+F4".actions.window-close = { };
+        "Mod+Delete".actions.session-quit = { };
+        "Shift+F11".actions.window-toggle-fullscreen = { };
+        "Mod+M".actions.window-toggle-maximize = { };
+        "Mod+R".actions.window-cycle-primary-extent = { };
+        "Mod+L".actions.spawn = "loginctl lock-session";
+        "Mod+Slash".actions.cheatsheet-toggle = { };
+        "Mod+Shift+F".actions.window-toggle-floating = { };
+        "Mod+P".actions.window-toggle-pinned = { };
+        "Mod+T".actions.column-toggle-tabbed = { };
+        "Mod+bracketright".actions.column-focus-tab = "Next";
+        "Mod+bracketleft".actions.column-focus-tab = "Previous";
+        "Mod+Shift+Space".actions.window-toggle-scratchpad = { };
+        "Mod+Space".actions.scratchpad-toggle = { };
+        "Mod+WheelUp".actions.workspace-focus = "Previous";
+        "Mod+WheelDown".actions.workspace-focus = "Next";
       }
 
       # workspace 1~10
       (map (id: {
-        "Mod+${toString id}".actions.focus-workspace = id;
-        "Shift+Mod+${toString id}".actions.move-window-to-workspace = id;
+        "Mod+${toString id}".actions.workspace-switch = id;
+        "Shift+Mod+${toString id}".actions.window-move-to-workspace = id;
       }) (builtins.genList (x: x + 1) 9))
 
       {
-        "Mod+N".actions.focus-workspace = ctx: ctx.new-workspace-id;
-        "Mod+Shift+N".actions.move-window-to-workspace = ctx: ctx.new-workspace-id;
+        "Mod+N".actions.workspace-switch = ctx: ctx.workspace.empty.id;
+        "Mod+Shift+N".actions.window-move-to-workspace = ctx: ctx.workspace.empty.id;
       }
 
       # window u/d/l/r
       (map
         (dir: {
-          "Mod+${dir}".actions.focus-window-relative = dir;
-          "Mod+Shift+${dir}".actions.move-window-relative = dir;
+          "Mod+${dir}".actions.window-focus = dir;
+          "Mod+Shift+${dir}".actions.window-move = dir;
         })
         [
           "Left"
@@ -68,7 +68,7 @@
       # workspace u/d
       (map
         (dir: {
-          "Mod+Ctrl+Shift+${dir}".actions.move-workspace-relative = dir;
+          "Mod+Ctrl+Shift+${dir}".actions.workspace-move = dir;
         })
         [
           "Up"
@@ -78,16 +78,16 @@
 
       # XF86 Keybindings
       (lib.mapAttrs (_: x: lib.mkDefault x // { allow-when-locked = true; }) {
-        "XF86AudioMute".actions.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "XF86AudioMicMute".actions.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-        "XF86AudioLowerVolume".actions.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
-        "XF86AudioRaiseVolume".actions.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
-        "XF86AudioPlay".actions.spawn-sh = "playerctl play-pause";
-        "XF86AudioPause".actions.spawn-sh = "playerctl play-pause";
-        "XF86AudioNext".actions.spawn-sh = "playerctl next";
-        "XF86AudioPrev".actions.spawn-sh = "playerctl previous";
-        "XF86MonBrightnessUp".actions.spawn-sh = "brightnessctl set 5%+";
-        "XF86MonBrightnessDown".actions.spawn-sh = "brightnessctl set 5%-";
+        "XF86AudioMute".actions.spawn = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioMicMute".actions.spawn = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        "XF86AudioLowerVolume".actions.spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioRaiseVolume".actions.spawn = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioPlay".actions.spawn = "playerctl play-pause";
+        "XF86AudioPause".actions.spawn = "playerctl play-pause";
+        "XF86AudioNext".actions.spawn = "playerctl next";
+        "XF86AudioPrev".actions.spawn = "playerctl previous";
+        "XF86MonBrightnessUp".actions.spawn = "brightnessctl set 5%+";
+        "XF86MonBrightnessDown".actions.spawn = "brightnessctl set 5%-";
       })
     ]
   );
