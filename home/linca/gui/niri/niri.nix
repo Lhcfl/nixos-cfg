@@ -99,12 +99,6 @@ in
       ])
 
       (binds [
-        (n "Mod+N" [
-          (focus-workspace 255)
-        ])
-        (n "Mod+Shift+N" [
-          (move-column-to-workspace 255)
-        ])
         (n "Mod+Up" { hotkey-overlay-title = "Focus Up"; } [
           (spawn "nu" ./niri-mod-up-down.nu "true")
         ])
@@ -125,9 +119,6 @@ in
         ])
         (n "Mod+G" [
           toggle-column-tabbed-display
-        ])
-        (n "Mod+C" [
-          center-column
         ])
         (n "Mod+Tab" [
           focus-workspace-previous

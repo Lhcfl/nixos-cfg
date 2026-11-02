@@ -22,134 +22,146 @@ let
 
       unit-type = submodule { options = { }; };
     in
-    {
-      spawn = lib.mkOption {
-        description = ''
-          spawn command.
-        '';
-        type = listOf str;
+    (lib.mapAttrs (
+      _:
+      attrs@{ type, ... }:
+      lib.mkOption (
+        attrs
+        // {
+          type = (either type (functionTo type)) // {
+            description = "X, or a function that takes the context and returns X, where X = ${type.description}";
+          };
+        }
+      )
+    ))
+      {
+        spawn = {
+          description = ''
+            spawn command.
+          '';
+          type = listOf str;
+        };
+        spawn-sh = {
+          description = ''
+            spawn command, with `sh -c`
+          '';
+          type = str;
+        };
+        focus-workspace = {
+          description = ''
+            focus workspace by id
+          '';
+          type = workspace-type;
+        };
+        focus-window-relative = {
+          description = ''
+            focus window by direction
+          '';
+          type = direction-type;
+        };
+        move-window-relative = {
+          description = ''
+            move window by direction
+          '';
+          type = direction-type;
+        };
+        move-window-to-workspace = {
+          description = ''
+            move window to workspace by id
+          '';
+          type = workspace-type;
+        };
+        move-workspace-relative = {
+          description = ''
+            move workspace by direction
+          '';
+          type = workspace-type;
+        };
+        screenshot = {
+          description = ''
+            take a screenshot
+          '';
+          type = unit-type;
+        };
+        close-window = {
+          description = ''
+            close the focused window
+          '';
+          type = unit-type;
+        };
+        quit = {
+          description = ''
+            quit shell
+          '';
+          type = unit-type;
+        };
+        maximize = {
+          description = ''
+            maximize the window
+          '';
+          type = unit-type;
+        };
+        fullscreen = {
+          description = ''
+            fullscreen the window
+          '';
+          type = unit-type;
+        };
+        resize-preset = {
+          description = ''
+            resize the window
+          '';
+          type = unit-type;
+        };
+        show-help = {
+          description = ''
+            show help of commands
+          '';
+          type = unit-type;
+        };
+        toggle-window-floating = {
+          description = ''
+            toggle floating
+          '';
+          type = unit-type;
+        };
+        toggle-window-pinned = {
+          description = ''
+            Pin the focused window above other windows
+          '';
+          type = unit-type;
+        };
+        toggle-column-tabbed = {
+          description = ''
+            Tab the rows around the focused window, or stack its tabs
+          '';
+          type = unit-type;
+        };
+        focus-column-tab-relative = {
+          description = ''
+            Focus the previous or next tab in the focused tab group
+          '';
+          type = step-type;
+        };
+        focus-workspace-relative = {
+          description = ''
+            Switch to the previous or next workspace on this output
+          '';
+          type = step-type;
+        };
+        toggle-window-scratchpad = {
+          description = ''
+            Move the focused window to or from a scratchpad
+          '';
+          type = unit-type;
+        };
+        toggle-scratchpad = {
+          description = ''
+            Show or hide the selected scratchpad windows
+          '';
+          type = unit-type;
+        };
       };
-      spawn-sh = lib.mkOption {
-        description = ''
-          spawn command, with `sh -c`
-        '';
-        type = str;
-      };
-      focus-workspace = lib.mkOption {
-        description = ''
-          focus workspace by id
-        '';
-        type = workspace-type;
-      };
-      focus-window-relative = lib.mkOption {
-        description = ''
-          focus window by direction
-        '';
-        type = direction-type;
-      };
-      move-window-relative = lib.mkOption {
-        description = ''
-          move window by direction
-        '';
-        type = direction-type;
-      };
-      move-window-to-workspace = lib.mkOption {
-        description = ''
-          move window to workspace by id
-        '';
-        type = workspace-type;
-      };
-      move-workspace-relative = lib.mkOption {
-        description = ''
-          move workspace by direction
-        '';
-        type = workspace-type;
-      };
-      screenshot = lib.mkOption {
-        description = ''
-          take a screenshot
-        '';
-        type = unit-type;
-      };
-      close-window = lib.mkOption {
-        description = ''
-          close the focused window
-        '';
-        type = unit-type;
-      };
-      quit = lib.mkOption {
-        description = ''
-          quit shell
-        '';
-        type = unit-type;
-      };
-      maximize = lib.mkOption {
-        description = ''
-          maximize the window
-        '';
-        type = unit-type;
-      };
-      fullscreen = lib.mkOption {
-        description = ''
-          fullscreen the window
-        '';
-        type = unit-type;
-      };
-      resize-preset = lib.mkOption {
-        description = ''
-          resize the window
-        '';
-        type = unit-type;
-      };
-      show-help = lib.mkOption {
-        description = ''
-          show help of commands
-        '';
-        type = unit-type;
-      };
-      toggle-window-floating = lib.mkOption {
-        description = ''
-          toggle floating
-        '';
-        type = unit-type;
-      };
-      toggle-window-pinned = lib.mkOption {
-        description = ''
-          Pin the focused window above other windows
-        '';
-        type = unit-type;
-      };
-      toggle-column-tabbed = lib.mkOption {
-        description = ''
-          Tab the rows around the focused window, or stack its tabs
-        '';
-        type = unit-type;
-      };
-      focus-column-tab-relative = lib.mkOption {
-        description = ''
-          Focus the previous or next tab in the focused tab group
-        '';
-        type = step-type;
-      };
-      focus-workspace-relative = lib.mkOption {
-        description = ''
-          Switch to the previous or next workspace on this output
-        '';
-        type = step-type;
-      };
-      toggle-window-scratchpad = lib.mkOption {
-        description = ''
-          Move the focused window to or from a scratchpad
-        '';
-        type = unit-type;
-      };
-      toggle-scratchpad = lib.mkOption {
-        description = ''
-          Show or hide the selected scratchpad windows
-        '';
-        type = unit-type;
-      };
-    };
 in
 {
   options.funkcia.hm.gui.wm.keybinding = lib.mkOption {

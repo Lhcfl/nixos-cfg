@@ -33,7 +33,10 @@ let
       ];
 
       body = lib.flip lib.mapAttrsToList actions (
-        name: param:
+        name: praw:
+        let
+          param = if lib.isFunction praw then praw { new-workspace-id = 255; } else praw;
+        in
         match name {
           spawn = lib.foldl (f: f) (n "spawn") param;
           spawn-sh = n "spawn-sh" param;

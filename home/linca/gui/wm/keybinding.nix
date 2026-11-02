@@ -46,6 +46,11 @@
         "Shift+Mod+${toString id}".actions.move-window-to-workspace = id;
       }) (builtins.genList (x: x + 1) 9))
 
+      {
+        "Mod+N".actions.focus-workspace = ctx: ctx.new-workspace-id;
+        "Mod+Shift+N".actions.move-window-to-workspace = ctx: ctx.new-workspace-id;
+      }
+
       # window u/d/l/r
       (map
         (dir: {

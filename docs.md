@@ -3354,10 +3354,7 @@ close the focused window
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3370,10 +3367,7 @@ Focus the previous or next tab in the focused tab group
 
 
 *Type:*
-one of “Previous”, “Next”
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = one of “Previous”, “Next”
 
 
 
@@ -3386,10 +3380,7 @@ focus window by direction
 
 
 *Type:*
-one of “Left”, “Right”, “Up”, “Down”
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = one of “Left”, “Right”, “Up”, “Down”
 
 
 
@@ -3402,10 +3393,7 @@ focus workspace by id
 
 
 *Type:*
-string or signed integer
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = string or signed integer
 
 
 
@@ -3418,10 +3406,7 @@ Switch to the previous or next workspace on this output
 
 
 *Type:*
-one of “Previous”, “Next”
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = one of “Previous”, “Next”
 
 
 
@@ -3434,10 +3419,7 @@ fullscreen the window
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3450,10 +3432,7 @@ maximize the window
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3466,10 +3445,7 @@ move window by direction
 
 
 *Type:*
-one of “Left”, “Right”, “Up”, “Down”
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = one of “Left”, “Right”, “Up”, “Down”
 
 
 
@@ -3482,10 +3458,7 @@ move window to workspace by id
 
 
 *Type:*
-string or signed integer
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = string or signed integer
 
 
 
@@ -3498,10 +3471,7 @@ move workspace by direction
 
 
 *Type:*
-string or signed integer
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = string or signed integer
 
 
 
@@ -3514,10 +3484,7 @@ quit shell
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3530,10 +3497,7 @@ resize the window
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3546,10 +3510,7 @@ take a screenshot
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3562,10 +3523,7 @@ show help of commands
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3578,18 +3536,7 @@ spawn command\.
 
 
 *Type:*
-list of string
-
-
-
-*Default:*
-
-```nix
-[ ]
-```
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = list of string
 
 
 
@@ -3602,10 +3549,7 @@ spawn command, with ` sh -c `
 
 
 *Type:*
-string
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = string
 
 
 
@@ -3618,10 +3562,7 @@ Tab the rows around the focused window, or stack its tabs
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3634,10 +3575,7 @@ Show or hide the selected scratchpad windows
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3650,10 +3588,7 @@ toggle floating
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3666,10 +3601,7 @@ Pin the focused window above other windows
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 
@@ -3682,10 +3614,7 @@ Move the focused window to or from a scratchpad
 
 
 *Type:*
-submodule
-
-*Declared by:*
- - [/home/modules/gui/wm/keybinding\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/wm/keybinding.nix)
+X, or a function that takes the context and returns X, where X = submodule
 
 
 

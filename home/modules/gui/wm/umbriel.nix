@@ -34,33 +34,34 @@ in
       }:
       let
         action = builtins.head (builtins.attrNames actions);
-        arguments = actions.${action};
+        praw = actions.${action};
+        params = if lib.isFunction praw then praw { new-workspace-id = 64; } else praw;
       in
       {
         action = match action {
-          spawn = "spawn:${builtins.concatStringsSep " " arguments}";
+          spawn = "spawn:${builtins.concatStringsSep " " params}";
 
-          spawn-sh = "spawn:${arguments}";
+          spawn-sh = "spawn:${params}";
 
-          focus-workspace = "workspace-switch:${toString arguments}";
+          focus-workspace = "workspace-switch:${toString params}";
 
-          focus-window-relative = "window-focus-" + (lib.strings.toLower arguments);
+          focus-window-relative = "window-focus-" + (lib.strings.toLower params);
 
-          move-window-relative = match arguments {
+          move-window-relative = match params {
             Left = "column-move-left";
             Right = "column-move-right";
             Up = "window-move-or-workspace-up";
             Down = "window-move-or-workspace-down";
           };
 
-          move-workspace-relative = match arguments {
+          move-workspace-relative = match params {
             Left = "spawn:notify-send \"Cannot Move Workspace Left!\"";
             Right = "spawn:notify-send \"Cannot Move Workspace Right!\"";
             Up = "workspace-move-up";
             Down = "workspace-move-down";
           };
 
-          move-window-to-workspace = "window-move-to-workspace:${toString arguments}";
+          move-window-to-workspace = "window-move-to-workspace:${toString params}";
 
           screenshot = lib.mkMerge [
             (lib.mkIf config.funkcia.hm.gui.noctalia.enable "spawn:noctalia msg screenshot-fullscreen")
@@ -85,12 +86,12 @@ in
 
           toggle-column-tabbed = "column-toggle-tabbed";
 
-          focus-column-tab-relative = match arguments {
+          focus-column-tab-relative = match params {
             Previous = "column-focus-tab-previous";
             Next = "column-focus-tab-next";
           };
 
-          focus-workspace-relative = match arguments {
+          focus-workspace-relative = match params {
             Previous = "workspace-previous";
             Next = "workspace-next";
           };
