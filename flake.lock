@@ -826,11 +826,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793644451,
-        "narHash": "sha256-SE72JNK/4dOwh6R/VYVXtcZ5A2U5U7iSFtA/jcjpMcM=",
+        "lastModified": 1793646970,
+        "narHash": "sha256-hAXmkzOUr7+2WhIfEdKFMugGjyTt4HbLzeXpMA0emHQ=",
         "owner": "Lhcfl",
         "repo": "tessera",
-        "rev": "6b3a8dcc176a1f02823380e4cbd96fb10fb8aebe",
+        "rev": "f41a24191a41839c9a71abd18ff4bd2bec3bd58d",
         "type": "github"
       },
       "original": {

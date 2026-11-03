@@ -15,7 +15,6 @@ in
     # blur_ignore_alpha = 0.6 avoids blurring highly transparent parts of a surface.
     blur_ignore_alpha = 0.6;
     blur_optimized = false;
-    background_effect.xray = false;
   };
 
   funkcia.hm.gui.noctalia = {

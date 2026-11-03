@@ -29,7 +29,6 @@
       match.namespace = "vicinae";
       blur = true;
       blur_optimized = false;
-      background_effect.xray = false;
     };
   };
 }

@@ -44,10 +44,7 @@
     };
   };
 
-  tessera.umbriel.settings.output.eDP-1 = {
-    scale = 1.5;
-    # hdr = "on";
-  };
+  tessera.settings.outputs.eDP-1.scale = 1.5;
 
   xresources.properties = {
     "Xft.dpi" = 144;

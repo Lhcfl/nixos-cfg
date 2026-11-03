@@ -46,7 +46,7 @@ in
     tessera.settings.layer-rule = {
       noctalia-panel = {
         match.namespace = "^noctalia.*(panel).*";
-        background_effect.xray = false;
+        blur_optimized = false;
       };
 
       noctalia-wallpaper = {
