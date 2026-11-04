@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  osConfig,
   ...
 }:
 let
@@ -11,6 +10,10 @@ in
 {
   config = lib.mkIf cfg.enable {
     funkcia.hm.gui.components.gnome.enable = true;
+    home.sessionVariables = {
+      # fix ngl 渲染器会在分数缩放的时候产生锯齿
+      GSK_RENDERER = "vulkan";
+    };
 
     home.pointerCursor = {
       name = "Bibata-Modern-Ice";
