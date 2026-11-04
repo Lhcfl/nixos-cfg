@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -10,23 +9,6 @@ in
 {
   options.funkcia.hm.gui.components.gnome = {
     enable = lib.mkEnableOption "GNOME components";
-    theme = {
-      name = lib.mkOption {
-        default = "MoreWaita";
-        type = lib.types.str;
-        description = "The GTK theme to use for GNOME components";
-      };
-
-      package = lib.mkOption {
-        default = with pkgs; [
-          adwaita-icon-theme
-          morewaita-icon-theme
-          gnome-themes-extra
-        ];
-        type = lib.types.listOf lib.types.package;
-        description = "The packages providing the GTK theme to use for GNOME components";
-      };
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -34,8 +16,13 @@ in
 
     gtk = {
       enable = true;
-      iconTheme.name = cfg.theme.name;
-      theme.name = cfg.theme.name;
+      iconTheme.name = "MoreWaita";
+      theme.name = "Adwaita";
+    };
+
+    qt = {
+      enable = true;
+      platformTheme.name = "gtk3";
     };
 
     funkcia.hm.xdg.mime.defaultApplications = {
