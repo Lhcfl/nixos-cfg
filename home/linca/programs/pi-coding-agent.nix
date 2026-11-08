@@ -21,6 +21,7 @@
             "npm:pi-agent-browser-native"
             "npm:pi-background-tasks@latest"
             "npm:pi-commandcode-provider"
+            "npm:pi-token-speed"
           ];
         };
       }

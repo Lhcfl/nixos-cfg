@@ -28,6 +28,7 @@ in
       poppler-utils
       agent-browser # headless browser automation CLI for AI agents
       cc-switch-cli
+      android-tools
     ];
 
     # pandoc 导出 PDF：默认引擎是 pdflatex（需 texlive），这里改用已安装的 typst。
