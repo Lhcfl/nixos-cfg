@@ -13,7 +13,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.tex-fmt
-      pkgs.tectonic
+      # pkgs.tectonic # 等 nixos-unstable 带上 aws-lc 修复后再启用
       (pkgs.texliveMedium.withPackages (
         ps: with ps; [
           latexmk # latexmk 不在 scheme 里，必须单列

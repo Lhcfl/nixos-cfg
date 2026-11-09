@@ -6,6 +6,13 @@
 }:
 let
   cfg = config.linca.work;
+
+  # nixpkgs 的 cargo setup hook 全局强制 ZSTD_SYS_USE_PKG_CONFIG=1，但
+  # cc-switch-cli 没有 pkg-config/zstd 依赖，导致 zstd-sys 构建脚本 panic。
+  # 关掉 system libs 强制后，zstd-sys 会改用内置源码构建。
+  cc-switch-cli' = pkgs.cc-switch-cli.overrideAttrs (_: {
+    dontCargoUseSystemLibs = true;
+  });
 in
 {
   options.linca.work = {
@@ -27,7 +34,7 @@ in
       typst
       poppler-utils
       agent-browser # headless browser automation CLI for AI agents
-      cc-switch-cli
+      cc-switch-cli'
       android-tools
     ];
 
