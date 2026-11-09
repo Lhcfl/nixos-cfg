@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
   funkcia-utils,
   pkgs,
   ...
@@ -14,7 +15,7 @@
     # ./networking/firewall.nix
     ./networking.nix
     ./nocow.nix
-    (funkcia-utils.files.mkDirModule ./services)
+    (inputs.filesystem-modules.mkModule { directory = ./services; })
     (funkcia-utils.files.mkDirModule ./users)
   ];
 

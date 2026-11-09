@@ -1,19 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
   domain = config.funkcia.os.domains.mat.value;
   port = 8008;
-
-  # ===== 迁移开关（分阶段切换）=====
-  # 1. 都关：仅暴露矩阵但不服务（迁移前）
-  # 2. enableSynapse=true：启动 synapse
-  # 3. enableNginx=true：恢复矩阵对外 nginx
-  enableSynapse = true;
-  enableNginx = true;
 
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in
@@ -36,7 +28,7 @@ in
   funkcia.os.domains.mat = { };
 
   services.matrix-synapse = {
-    enable = enableSynapse;
+    enable = true;
     settings = {
       server_name = domain;
 
@@ -105,12 +97,12 @@ in
   services.nginx = {
     enable = true;
 
-    virtualHosts = lib.mkIf enableNginx {
-      ${domain} = {
-        forceSSL = true;
-        enableACME = true;
+    virtualHosts.${domain} = {
+      forceSSL = true;
+      enableACME = true;
 
-        locations."~ ^/\\.well-known/matrix/server" = {
+      locations = {
+        "~ ^/\\.well-known/matrix/server" = {
           extraConfig = ''
             default_type application/json;
           '';
@@ -121,7 +113,7 @@ in
           }'";
         };
 
-        locations."~ ^/(_matrix|_synapse/client|_synapse/admin)" = {
+        "~ ^/(_matrix|_synapse/client|_synapse/admin)" = {
           proxyPass = "http://127.0.0.1:${toString port}";
           recommendedProxySettings = true;
 
@@ -130,42 +122,6 @@ in
             client_max_body_size 50M;
           '';
         };
-
-        locations."/" =
-          let
-            cinny-config = pkgs.writeText "cinny-config" (
-              builtins.toJSON {
-                "defaultHomeserver" = 0;
-                "homeserverList" = [ domain ];
-                "allowCustomHomeservers" = false;
-
-                "featuredCommunities" = {
-                  "openAsDefault" = false;
-                  "spaces" = [ ];
-                  "rooms" = [ ];
-                  "servers" = [ ];
-                };
-
-                "hashRouter" = {
-                  "enabled" = true;
-                  "basename" = "/";
-                };
-              }
-            );
-
-            cinny = pkgs.symlinkJoin {
-              name = "cinny-configured";
-              paths = [ pkgs.cinny ];
-
-              postBuild = ''
-                rm $out/config.json
-                cp ${cinny-config} $out/config.json
-              '';
-            };
-          in
-          {
-            root = "${cinny}";
-          };
       };
     };
   };
