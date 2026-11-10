@@ -195,6 +195,14 @@ let
     mailFormats = [
       "x-scheme-handler/mailto"
     ];
+    ebookFormats = [
+      "application/epub+zip"
+      "application/x-mobipocket-ebook"
+      "application/vnd.amazon.ebook"
+      "application/vnd.amazon.mobi8-ebook"
+      "application/x-fictionbook+xml"
+      "application/vnd.comicbook+zip"
+    ];
   };
 
   cfg = config.funkcia.hm.xdg.mime.defaultApplications;
