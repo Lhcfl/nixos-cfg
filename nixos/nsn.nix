@@ -61,7 +61,7 @@
                 inherit inputs funkcia-utils;
               };
 
-              config = {
+              config = { ... }: {
                 imports = [ self.nixosModules.default ];
 
                 config = {
@@ -73,6 +73,8 @@
                   # 会 Wants 它），就会和宿主形成死锁，最终 TimeoutStartSec
                   # 超时导致容器启动失败。因此容器内不使用 wait-online。
                   systemd.network.wait-online.enable = false;
+
+                  networking.wireless.enable = lib.mkForce false;
                 };
               };
             }

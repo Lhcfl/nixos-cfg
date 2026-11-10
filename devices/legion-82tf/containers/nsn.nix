@@ -16,6 +16,10 @@
         };
 
         funkcia.os.winslow-cloud.enable = true;
+        funkcia.os.modern-cli-tools.enable = true;
+        funkcia.os.presets.host.programs.enable = true;
+
+        programs.ssh.startAgent = true;
 
         users.users.root = {
           shell = pkgs.fish;
