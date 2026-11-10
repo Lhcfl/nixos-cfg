@@ -63,7 +63,17 @@
 
               config = {
                 imports = [ self.nixosModules.default ];
-                config.funkcia.os.presets.container.enable = true;
+
+                config = {
+                  funkcia.os.presets.container.enable = true;
+
+                  # 宿主侧的 ve-* 是在 container@.service 的 ExecStartPost 里
+                  # 才 up 的，而 ExecStartPost 要等容器 ready 之后才执行。
+                  # 如果容器内等待 network-online.target（例如 tailscaled
+                  # 会 Wants 它），就会和宿主形成死锁，最终 TimeoutStartSec
+                  # 超时导致容器启动失败。因此容器内不使用 wait-online。
+                  systemd.network.wait-online.enable = false;
+                };
               };
             }
           ];
