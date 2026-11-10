@@ -114,11 +114,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793261634,
-        "narHash": "sha256-imoJbdOJzZZWCzDVXNKPGgVenhqwbIAT+NoNymMM6z8=",
+        "lastModified": 1794332790,
+        "narHash": "sha256-xg0BT1z5LwLTRBHlf4kvxXlm5Y8NG/k+DP/kzGF6lg8=",
         "owner": "Lhcfl",
         "repo": "flake-cloudreve",
-        "rev": "28a1899a5492a35bb859f7e9a696be868e418784",
+        "rev": "26327897e4269b77560b1c9aae9e1b9dae1d5295",
         "type": "github"
       },
       "original": {
