@@ -3,7 +3,7 @@ let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
   sync-config = x: {
-    source = mkOutOfStoreSymlink (config.funckia.install-dir + "/home/linca/sync/Config/${x}");
+    source = mkOutOfStoreSymlink (config.funkcia.install-dir + "/home/linca/sync/Config/${x}");
     target = ".config/${x}";
   };
 in

@@ -2409,32 +2409,7 @@ true
 
 
 # Home Manager Modules
-## funckia\.install-dir
-
-整个配置文件夹被安装在哪里
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-
-```nix
-toString (osConfig.funkcia.install-dir or (funkcia-utils.projectPath ./.))
-
-```
-
-*Declared by:*
- - [/home/modules/options\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/options.nix)
-
-
-
 ## funkcia\.hm\.agents\.enable
-
-
 
 Whether to enable global agents management\.
 
@@ -4261,6 +4236,31 @@ list of string
 
 *Declared by:*
  - [/home/modules/mime/defaultApplications\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/mime/defaultApplications.nix)
+
+
+
+## funkcia\.install-dir
+
+
+
+整个配置文件夹被安装在哪里
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+
+```nix
+toString (osConfig.funkcia.install-dir or (funkcia-utils.projectPath ./.))
+
+```
+
+*Declared by:*
+ - [/home/modules/options\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/options.nix)
 
 
 # User Modules for linca
