@@ -42,9 +42,13 @@
     recursive = true;
   };
 
-  imports = map (x: inputs.filesystem-modules.mkModule { directory = x; }) [
-    ./programs
-    ./modules
-    ./gui
-  ];
+  imports =
+    map (x: inputs.filesystem-modules.mkModule { directory = x; }) [
+      ./programs
+      ./modules
+      ./gui
+    ]
+    ++ [
+      ./sync/sync.nix
+    ];
 }

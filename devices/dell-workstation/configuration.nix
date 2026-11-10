@@ -12,7 +12,7 @@
 
   networking.hostName = "dell-workstation"; # Define your hostname.
 
-  environment.sessionVariables.NH_OS_FLAKE = "/home/linca/nixos-cfg";
+  funkcia.install-dir = "/home/linca/nixos-cfg";
 
   sops.age.keyFile = "/var/lib/age/keys.txt";
 

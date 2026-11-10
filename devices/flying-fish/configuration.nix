@@ -23,6 +23,7 @@
   services.openssh.ports = [ 8023 ];
   services.openssh.openFirewall = false;
 
+  funkcia.install-dir = "/home/linca/nixos-cfg";
   funkcia.os.presets.server.enable = true;
 
   sops = {

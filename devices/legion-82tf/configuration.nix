@@ -13,7 +13,9 @@
     ]
     ++ [ ./fonts.nix ];
 
-  networking.hostName = "legion-82tf"; # Define your hostname.
+  networking.hostName = "legion-82tf"; # Define your hostname
+
+  funkcia.install-dir = "/home/linca/nixos";
 
   funkcia.os = {
     presets.pc.enable = true;

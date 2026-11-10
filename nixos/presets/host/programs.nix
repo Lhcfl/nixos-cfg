@@ -2,6 +2,7 @@
   pkgs,
   lib,
   this,
+  config,
   ...
 }:
 {
@@ -30,6 +31,7 @@
     programs.neovim.enable = true;
 
     programs.nh.enable = true;
+    environment.sessionVariables.NH_OS_FLAKE = config.funkcia.install-dir;
 
     programs.git.enable = true;
 
