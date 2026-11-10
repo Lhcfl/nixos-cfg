@@ -11,7 +11,7 @@ let metadatas = fd README.md
 | each { update content { from yaml } }
 
 let table = $metadatas 
-| update path { $"[`($in)`]\(($in)README.md\)" }
+| update path { $"[`($in)`]\(($in)\)" }
 | update content { get description }
 | rename path description
 | table --theme markdown --width 500

@@ -9,7 +9,7 @@ let
 in
 {
   home.file = {
-    sync-nvim = (sync-config "nvim");
-    sync-hypr = (sync-config "hypr");
+    sync-nvim = sync-config "nvim";
+    sync-hypr = sync-config "hypr";
   };
 }
