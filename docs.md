@@ -134,7 +134,31 @@ list of raw value
 
 
 # NixOS Modules
+## funkcia\.install-dir
+
+整个配置文件夹被安装在哪里
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+
+```nix
+toString funkcia-utils.projectPath ./.
+```
+
+*Declared by:*
+ - [/nixos/options\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/nixos/options.nix)
+
+
+
 ## funkcia\.nix\.lix\.enable
+
+
 
 Whether to enable Lix, a fork of Nix\.
 
@@ -2385,7 +2409,32 @@ true
 
 
 # Home Manager Modules
+## funckia\.install-dir
+
+整个配置文件夹被安装在哪里
+
+
+
+*Type:*
+string
+
+
+
+*Default:*
+
+```nix
+toString (osConfig.funkcia.install-dir or (funkcia-utils.projectPath ./.))
+
+```
+
+*Declared by:*
+ - [/home/modules/options\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/options.nix)
+
+
+
 ## funkcia\.hm\.agents\.enable
+
+
 
 Whether to enable global agents management\.
 
@@ -2691,58 +2740,6 @@ false
 
 ```nix
 true
-```
-
-*Declared by:*
- - [/home/modules/gui/components/gnome\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/components/gnome.nix)
-
-
-
-## funkcia\.hm\.gui\.components\.gnome\.theme\.package
-
-
-
-The packages providing the GTK theme to use for GNOME components
-
-
-
-*Type:*
-list of package
-
-
-
-*Default:*
-
-```nix
-[
-  <derivation adwaita-icon-theme-50.0>
-  <derivation morewaita-icon-theme-49>
-  <derivation gnome-themes-extra-3.28>
-]
-```
-
-*Declared by:*
- - [/home/modules/gui/components/gnome\.nix](https://github.com/Lhcfl/nixos-cfg/blob/main/home/modules/gui/components/gnome.nix)
-
-
-
-## funkcia\.hm\.gui\.components\.gnome\.theme\.name
-
-
-
-The GTK theme to use for GNOME components
-
-
-
-*Type:*
-string
-
-
-
-*Default:*
-
-```nix
-"MoreWaita"
 ```
 
 *Declared by:*
