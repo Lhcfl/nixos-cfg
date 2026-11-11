@@ -64,6 +64,10 @@ in
 
       url_preview_enabled = true;
 
+      room_list_publication_rules = [
+        { action = "allow"; }
+      ];
+
       # 本机 PostgreSQL，走 unix socket + peer auth（不需要密码）
       database.args = {
         host = "/run/postgresql";
