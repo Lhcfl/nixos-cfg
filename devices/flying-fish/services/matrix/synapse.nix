@@ -16,6 +16,7 @@ in
   sops.secrets."synapse/signing-key" = {
     inherit owner;
   };
+  sops.secrets."synapse/public-room" = { };
 
   sops.templates."synapse-secrets.yaml".content = lib.generators.toYAML { } {
     registration_shared_secret = config.sops.placeholder."synapse/registration_shared_secret";
