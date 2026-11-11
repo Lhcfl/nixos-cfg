@@ -21,6 +21,9 @@ in
     registration_shared_secret = config.sops.placeholder."synapse/registration_shared_secret";
     macaroon_secret_key = config.sops.placeholder."synapse/macaroon_secret_key";
     form_secret = config.sops.placeholder."synapse/form_secret";
+    auto_join_rooms = [
+      config.sops.placeholder."synapse/public-room"
+    ];
   };
 
   sops.templates."synapse-secrets.yaml".owner = owner;
