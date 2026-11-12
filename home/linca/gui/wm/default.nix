@@ -111,6 +111,14 @@ in
             match.is_alone = true;
             default_maximize = true;
           };
+
+          default-maximized-apps = {
+            match = [
+              { app_id = "code"; }
+              { app_id = "zen"; }
+            ];
+            default_maximize = true;
+          };
         };
       };
     })

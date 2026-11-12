@@ -49,4 +49,6 @@
   xresources.properties = {
     "Xft.dpi" = 144;
   };
+
+  funkcia.hm.agents.md.text = lib.mkAfter (builtins.readFile ./assets/AGENTS.md);
 }
