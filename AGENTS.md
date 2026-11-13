@@ -82,16 +82,6 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 改。发现最可能的原因后直接先汇报；之后再让用户决定要不要继续深挖或者动手修改。只
 有用户明确要求修改时，才改文件或执行修复。
 
-## 使用现代化的 cli 工具和脚本
-
-该系统已经配置了使用更现代的 CLI 工具，包括 `fd`, `fzf`, `rg`, `eza`, `bat`,
-`nushell` 等。可选地，可以使用这些现代化的 CLI 工具来完成各种搜索、替换等需求。
-
-推荐使用 javascript 和 python 进行脚本处理，优先使用 javascript 和 bun 运行时。
-该系统没有 system-wide python，使用 `uv run <script>.py` 运行 python 脚本。该系
-统 system-wide nodejs 版本很高，在新版本 nodejs 中，typescript 可以直接被运行。
-使用 bun 和 nodejs 可以无需 `tsc` 对 typescript 脚本运行。
-
 ## 如何添加、修改一个系统功能
 
 在该项目中，当用户说“帮我安装”的时候，默认指的是用 Nix 的方式安装，应该先在本地
@@ -168,7 +158,7 @@ nh os build .#device-name -o result-{device-name}
 构建。对于本机，额外使用
 
 ```bash
-nvd diff result-{device-name} /run/current-system
+nvd diff /run/current-system result-{device-name}
 ```
 
 计算差异，防止配置更改产生不必要的变化。
