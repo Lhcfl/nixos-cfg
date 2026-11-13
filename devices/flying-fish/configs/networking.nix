@@ -1,7 +1,4 @@
 { lib, config, ... }: {
-  networking.useDHCP = false;
-  systemd.network.enable = true;
-
   sops.secrets = {
     "network/enX0/addr" = { };
     "network/enX0/mask" = { };
@@ -13,5 +10,12 @@
     addr = config.sops.placeholder."network/enX0/addr";
     mask = config.sops.placeholder."network/enX0/mask";
     gateway = config.sops.placeholder."network/enX0/gateway";
+  };
+
+  networking.firewall.allowedTCPPorts = lib.mkForce [ 4430 ];
+
+  funkcia.os.firewall.allow-cloudflare = {
+    enable = true;
+    allowTCPports = [ 443 ];
   };
 }

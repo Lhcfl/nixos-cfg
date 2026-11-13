@@ -11,10 +11,7 @@
   imports = [
     ./disk-config.nix
     ./hardware-configuration.nix
-    ./domain.nix
-    # ./networking/firewall.nix
-    ./networking.nix
-    ./nocow.nix
+    (inputs.filesystem-modules.mkModule { directory = ./configs; })
     (inputs.filesystem-modules.mkModule { directory = ./services; })
     (funkcia-utils.files.mkDirModule ./users)
   ];
