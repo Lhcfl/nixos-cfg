@@ -71,8 +71,8 @@ in
 
     networking.firewall.extraInputRules = lib.mkMerge (
       map (port: ''
-        ip saddr @cloudflare_v4 tcp dport ${port} accept comment "allow cloudflare ips"
-        ip6 saddr @cloudflare_v6 tcp dport ${port} accept comment "allow cloudflare ips"
+        ip saddr @cloudflare_v4 tcp dport ${toString port} accept comment "allow cloudflare ips"
+        ip6 saddr @cloudflare_v6 tcp dport ${toString port} accept comment "allow cloudflare ips"
       '') this.config.allowedTCPPorts
     );
 
