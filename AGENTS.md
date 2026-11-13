@@ -195,21 +195,6 @@ nu scripts/lint/app.nu -f
 
 自动修复可以修复的问题。
 
-### 更新 README.md
-
-在提交前，使用 `nu scripts/readme-tree-gen/app.nu` 自动重新生成“路径约定”章节。
-
-### 更新 docs.md
-
-在提交前，重新生成 `docs.md`：
-
-```bash
-nix build .#funkcia-options-doc-md -o result-doc && install -m0644 result-doc docs.md
-```
-
-`nix build` 只生成指向 store 的 `result` 符号链接（且 store 里的文件是只读的），
-`install -m0644` 解引用并写出普通可写文件。
-
 ### Commit 格式规范
 
 - 作为 NixOS 配置仓库，传统的 `feat` `refactor` 之类的 type 没有意义，不写

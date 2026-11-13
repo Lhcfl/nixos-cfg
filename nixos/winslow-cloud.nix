@@ -51,11 +51,9 @@
           ];
         };
 
-        systemd.services.tailscaled.serviceConfig.Environment =
-          lib.mkIf (config.networking.nftables.enable)
-            [
-              "TS_DEBUG_FIREWALL_MODE=nftables"
-            ];
+        systemd.services.tailscaled.serviceConfig.Environment = lib.mkIf config.networking.nftables.enable [
+          "TS_DEBUG_FIREWALL_MODE=nftables"
+        ];
       }
 
       (lib.mkIf this.config.krb5.enable {
