@@ -57,15 +57,12 @@ in
       }
 
       (lib.mkIf (cfg.auth != { }) {
-        home.file.".pi/agent/auth.json".text = lib.pipe cfg.auth [
-          (lib.mapAttrs (
-            _: value: {
-              inherit (value) type;
-              key = "!cat \"${value.key-path}\"";
-            }
-          ))
-          builtins.toJSON
-        ];
+        funkcia.hm.merge-files.".pi/agent/auth.json" = lib.flip lib.mapAttrs cfg.auth (
+          _: value: {
+            inherit (value) type;
+            key = "!cat \"${value.key-path}\"";
+          }
+        );
       })
     ]
   );
