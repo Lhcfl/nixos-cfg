@@ -1,6 +1,8 @@
 def main [
     --check (-c)
 ] {
+    $env.config.use_ansi_coloring = false
+
     let metadatas = fd README.md 
     | lines 
     | each { |x| open | first | { ...$in, path: ($x | str replace "README.md" "") } }
