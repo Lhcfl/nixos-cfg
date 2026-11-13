@@ -16,6 +16,6 @@
 
   funkcia.os.firewall.allow-cloudflare = {
     enable = true;
-    allowTCPports = [ 443 ];
+    allowedTCPPorts = [ 443 ];
   };
 }
