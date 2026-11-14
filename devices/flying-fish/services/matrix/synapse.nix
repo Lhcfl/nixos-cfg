@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }:
 let
@@ -10,24 +9,16 @@ let
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in
 {
-  sops.secrets."synapse/registration_shared_secret" = { };
-  sops.secrets."synapse/macaroon_secret_key" = { };
-  sops.secrets."synapse/form_secret" = { };
   sops.secrets."synapse/signing-key" = {
     inherit owner;
   };
-  sops.secrets."synapse/public-room" = { };
 
-  sops.templates."synapse-secrets.yaml".content = lib.generators.toYAML { } {
-    registration_shared_secret = config.sops.placeholder."synapse/registration_shared_secret";
-    macaroon_secret_key = config.sops.placeholder."synapse/macaroon_secret_key";
-    form_secret = config.sops.placeholder."synapse/form_secret";
-    auto_join_rooms = [
-      config.sops.placeholder."synapse/public-room"
-    ];
+  sops.secrets."synapse-secrets.yaml" = {
+    inherit owner;
+    format = "yaml";
+    key = "";
+    sopsFile = ./secret-config.yaml;
   };
-
-  sops.templates."synapse-secrets.yaml".owner = owner;
 
   funkcia.os.domains.mat = { };
 
@@ -79,7 +70,7 @@ in
     # secrets (registration_shared_secret / macaroon_secret_key / form_secret)
     # 放在机器上的文件里，不进 nix store / git
     extraConfigFiles = [
-      config.sops.templates."synapse-secrets.yaml".path
+      config.sops.secrets."synapse-secrets.yaml".path
     ];
   };
 
