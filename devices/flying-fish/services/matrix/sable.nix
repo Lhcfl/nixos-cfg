@@ -23,10 +23,7 @@ let
         "servers" = [ ];
       };
 
-      "hashRouter" = {
-        "enabled" = true;
-        "basename" = "/";
-      };
+      # sable does not support hash router
     }
   );
 
