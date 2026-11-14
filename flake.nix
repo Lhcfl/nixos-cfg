@@ -184,5 +184,8 @@
     flake-cloudreve.inputs.flake-parts.follows = "flake-parts";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+
+    sable-next.url = "git+https://git.sable.moe/SableClient/sable-next";
+    sable-next.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

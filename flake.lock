@@ -665,6 +665,7 @@
         "nuschtos-search": "nuschtos-search",
         "plum-nix": "plum-nix",
         "rust-overlay": "rust-overlay_3",
+        "sable-next": "sable-next",
         "shell-auto-pi": "shell-auto-pi",
         "sops-nix": "sops-nix",
         "tessera": "tessera",
@@ -732,6 +733,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "sable-next": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794608143,
+        "narHash": "sha256-qb8LKutzL/Ufe9MayTA6T5fKrtxraebgy1TW1y8y2Ko=",
+        "ref": "refs/heads/main",
+        "rev": "fda3c3e72ff22ae374875523a9bb111d8303fa5e",
+        "revCount": 8122,
+        "type": "git",
+        "url": "https://git.sable.moe/SableClient/sable-next"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.sable.moe/SableClient/sable-next"
       }
     },
     "shell-auto-pi": {

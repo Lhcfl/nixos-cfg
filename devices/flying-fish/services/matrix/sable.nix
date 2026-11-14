@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   ...
@@ -31,7 +32,7 @@ let
 
   sable = pkgs.symlinkJoin {
     name = "sable-configured";
-    paths = [ pkgs.sable ];
+    paths = [ inputs.sable-next.packages.x86_64-linux.sable ];
     buildInputs = [ pkgs.nushell ];
 
     postBuild = ''
