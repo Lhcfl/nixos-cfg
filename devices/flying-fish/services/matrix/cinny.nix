@@ -36,8 +36,12 @@ let
     '';
   };
 in
-{
-  services.nginx.virtualHosts.${domain}.locations."/" = {
-    root = "${cinny}";
-  };
-}
+# 前端换成 sable 了
+if false then
+  {
+    services.nginx.virtualHosts.${domain}.locations."/" = {
+      root = "${cinny}";
+    };
+  }
+else
+  { }
