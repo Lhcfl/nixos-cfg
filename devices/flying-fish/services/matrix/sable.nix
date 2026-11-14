@@ -49,5 +49,6 @@ in
 {
   services.nginx.virtualHosts.${domain}.locations."/" = {
     root = "${configured}";
+    tryFiles = "$uri $uri.html $uri/ /index.html";
   };
 }
