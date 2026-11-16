@@ -28,8 +28,8 @@ let
   );
 
   sable-next = fetchTarball {
-    url = "https://git.sable.moe/SableClient/sable-next/releases/download/v2.3.9/sable-2.3.9-web.tar.gz";
-    sha256 = "sha256-J351B4mZ+egyqJE+mG5aIgqml8I8PeXf64Z4k8hfv9w=";
+    url = "https://git.sable.moe/SableClient/sable-next/releases/download/v26.11.0/sable-26.11.0-web.tar.gz";
+    sha256 = "sha256-lSeiBrZeGOO6tpeKkqCimhoXy3m2TPfwAW2kRudVyZQ=";
   };
 
   configured = pkgs.symlinkJoin {
