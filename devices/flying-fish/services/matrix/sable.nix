@@ -27,17 +27,25 @@ let
     }
   );
 
-  sable-next = fetchTarball {
-    url = "https://git.sable.moe/SableClient/sable-next/releases/download/v26.11.0/sable-26.11.0-web.tar.gz";
-    sha256 = "sha256-lSeiBrZeGOO6tpeKkqCimhoXy3m2TPfwAW2kRudVyZQ=";
-  };
+  sable = pkgs.stdenv.mkDerivation rec {
+    pname = "sable-configured";
+    version = "26.11.2";
 
-  configured = pkgs.symlinkJoin {
-    name = "sable-configured";
-    paths = [ sable-next ];
+    src = fetchTarball {
+      url = "https://git.sable.moe/SableClient/sable-next/releases/download/v${version}/sable-${version}-web.tar.gz";
+      sha256 = "sha256-lSeiBrZeGOO6tpeKkqCimhoXy3m2TPfwAW2kRudVyZQ=";
+    };
+
     buildInputs = [ pkgs.nushell ];
 
-    postBuild = ''
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out
+      cp -r * $out/
+      runHook postInstall
+    '';
+
+    postInstall = ''
       mv $out/config.json $out/default-config.json
       nu -c "open $out/default-config.json | merge deep (open ${sable-config}) | save $out/config.json"
     '';
@@ -45,7 +53,7 @@ let
 in
 {
   services.nginx.virtualHosts.${domain}.locations."/" = {
-    root = "${configured}";
+    root = "${sable}";
     tryFiles = "$uri $uri.html $uri/ /index.html";
   };
 }
