@@ -33,7 +33,7 @@ let
 
     src = fetchTarball {
       url = "https://git.sable.moe/SableClient/sable-next/releases/download/v${version}/sable-${version}-web.tar.gz";
-      sha256 = "sha256-lSeiBrZeGOO6tpeKkqCimhoXy3m2TPfwAW2kRudVyZQ=";
+      sha256 = "sha256-FK/LaAUPvDvsFXNhEGO5tTKm+5N9aoYH9FFs3V1XKcE=";
     };
 
     buildInputs = [ pkgs.nushell ];
