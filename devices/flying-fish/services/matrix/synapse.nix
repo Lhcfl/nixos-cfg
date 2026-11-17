@@ -55,6 +55,17 @@ in
 
       url_preview_enabled = true;
 
+      # MSC4140 延迟事件（delayed events）：设成任意正时长即开启
+      max_event_delay_duration = "24h";
+
+      experimental_features = {
+        # MSC4354 粘性事件（sticky events）
+        msc4354_enabled = true;
+
+        # MSC2654 未读数（unread counts）
+        msc2654_enabled = true;
+      };
+
       room_list_publication_rules = [
         { action = "allow"; }
       ];
