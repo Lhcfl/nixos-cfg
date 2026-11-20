@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs,
   ...
@@ -14,7 +13,7 @@ let
       };
       "defaultHomeserver" = 0;
       "homeserverList" = [ domain ];
-      "allowCustomHomeservers" = false;
+      "allowCustomHomeservers" = true;
 
       "featuredCommunities" = {
         "openAsDefault" = false;
@@ -27,25 +26,15 @@ let
     }
   );
 
-  sable = pkgs.stdenv.mkDerivation rec {
-    pname = "sable-configured";
-    version = "26.11.2";
+  sable = pkgs.symlinkJoin {
+    name = "sable-configured";
+    paths = [ pkgs.nur.repos.linyinfeng.sable-web ];
 
-    src = fetchTarball {
-      url = "https://git.sable.moe/SableClient/sable-next/releases/download/v${version}/sable-${version}-web.tar.gz";
-      sha256 = "sha256-FK/LaAUPvDvsFXNhEGO5tTKm+5N9aoYH9FFs3V1XKcE=";
-    };
+    buildInputs = with pkgs; [
+      nushell
+    ];
 
-    buildInputs = [ pkgs.nushell ];
-
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out
-      cp -r * $out/
-      runHook postInstall
-    '';
-
-    postInstall = ''
+    postBuild = ''
       mv $out/config.json $out/default-config.json
       nu -c "open $out/default-config.json | merge deep (open ${sable-config}) | save $out/config.json"
     '';

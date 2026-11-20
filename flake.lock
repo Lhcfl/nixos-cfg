@@ -497,6 +497,29 @@
         "type": "github"
       }
     },
+    "nur": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795148137,
+        "narHash": "sha256-B9o9no0TkjUVvMbjhMQ8uNeDonxtFwq9zKpm3hx6tH0=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "77bdd80d3ddf951bf12c694e1bb979bdc006b518",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "nuschtos-search": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -662,6 +685,7 @@
         "nix-kdl": "nix-kdl",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
+        "nur": "nur",
         "nuschtos-search": "nuschtos-search",
         "plum-nix": "plum-nix",
         "rust-overlay": "rust-overlay_3",

@@ -62,6 +62,7 @@
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             self.nixosModules.default
+            self.nixosModules.nur
           ];
 
           devices = {
@@ -184,5 +185,9 @@
     flake-cloudreve.inputs.flake-parts.follows = "flake-parts";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur.inputs.flake-parts.follows = "flake-parts";
   };
 }
