@@ -16,8 +16,9 @@ cat README.md                                         # 路径约定（自动生
 fd 'secrets\.yaml$'                                   # sops 加密文件的位置
 ```
 
-（`README.md` 的“路径约定”由 `nu scripts/readme-tree-gen/app.nu` 生成，别手
-改。）
+（`README.md` 的“路径约定”由 `scripts/lint/tasks/readme-tree.nu` 生成，是 `nu
+scripts/lint/app.nu` 的 `content:readme-tree` 任务，别手改。`docs.md` 同样由
+lint 的 `content:docs.md` 任务生成。）
 
 ## 结构约定
 
@@ -27,11 +28,18 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 - 共享 Home Manager 模块 → `home/modules/`（导出 `homeModules.default`）
 - 设备专属 → `devices/<hostname>/`
 - 用户专属 → `home/<user>/`
+- 设备上的用户覆盖 → `devices/<hostname>/users/<user>/`（叠加在 `home/<user>/`
+  之上）
 - 对所有设备/用户生效的上游修复（`overrideAttrs`）→ `fixes/`（被前置注入）
 
 `parts/` 是 flake-parts 模块（定义 flake 输出与自定义选项），`packages/` 下每个
-子目录是一个 `perSystem.packages.<name>` 并导出同名 overlay。两者都由
+子目录是一个 flake-parts 模块，通常以一个 `perSystem.packages.<name>` 加同名
+`overlayAttrs` 的形式暴露（名字不一定等于目录名，例如 `packages/docs` 导出的是
+`funkcia-options-doc*`；纯构建产物如 `installer-iso` 不导出 overlay）。两者都由
 `flake.nix` 自动导入。
+
+`devices/` 下的目录并不都是设备：`devices/installer-iso/` 是 ISO 构建目标，被
+`packages/installer-iso` 拿去组 `nixosSystem`，不在 `nixosConfigurations` 里。
 
 `nixos/`、`home/modules/`、`fixes/` 都是递归自动导入
 （`filesystem-modules.mkModule`）。该工具提供了 `this` 注入，`this.options` 被展
@@ -89,7 +97,8 @@ flake 用 flake-parts 组织。分层决定了改动该放哪：
 解决方案，应当：
 
 0. 确定当前机器。使用 `hostname` 确定当前机器名（在本仓库中设备名总是等于
-   hostname）。
+   hostname，`nixosConfigurations` 也用这个名字；例外是
+   `devices/installer-iso/`，它不是设备）。
 
 1. 确定模块范围。判断这属于哪一层配置（见上文“结构约定”）。
 
@@ -164,8 +173,7 @@ nvd diff /run/current-system result-{device-name}
 计算差异，防止配置更改产生不必要的变化。
 
 如果用户需要 switch 系统，使用 `nh os switch --elevation-strategy
-/run/current-system/sw/bin/run0` 使用 run0 提权。仓库根的 `apply.sh` 是另一条路
-径，看该文件。
+/run/current-system/sw/bin/run0` 使用 run0 提权。
 
 ## 提交
 
@@ -191,9 +199,9 @@ nu scripts/lint/app.nu -f
 - 使用 `part (scope): subject` 作为格式
 - part 是改动的哪个部位。下面列出一些例子：
   - 改动 `devices/legion-82tf` 时，part 是 `legion-82tf`
-  - 改动 `devices/legion-82tf/home/linca` 时，part 是 `legion-82tf/linca`
-  - 改动 `packages/commit` 时，part 是 `package`
-  - 改动 `parts/doc` 时，part 是 `parts`
+  - 改动 `devices/legion-82tf/users/linca` 时，part 是 `legion-82tf/linca`
+  - 改动 `packages/commit` 时，part 是 `packages`
+  - 改动 `parts/` 时，part 是 `parts`
 - 最前面加一个与改动最贴切的 emoji，后接一个空格
 - subject 的语言与改动内容保持一致，不超过 72 个字符
 - 确有需要时，空一行后补充正文

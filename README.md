@@ -36,5 +36,5 @@
 
 ## Installation Documentations
 
-Here is a [`apply.sh`](./apply.sh) file to build nixos and apply some extra
-syncs
+构建与切换系统使用 `nh os build .#<device>` 与 `nh os switch
+--elevation-strategy /run/current-system/sw/bin/run0 .#<device>`。
