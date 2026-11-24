@@ -30,7 +30,7 @@ in
         screenshot.path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
         input = {
-          follow-mouse = true;
+          follow-mouse = "sloppy";
           follow-mouse-max-scroll = 0.5;
 
           cursor = {
