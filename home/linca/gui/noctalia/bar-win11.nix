@@ -56,6 +56,7 @@
             "chrome_status_icon_1"
             "steam"
             "Bitwarden_status_icon_1"
+            "@sable/electron_status_icon_1"
           ];
         }
         {
