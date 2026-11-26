@@ -26,6 +26,7 @@
         source-han-serif
         source-serif
         source-serif-pro
+        nunito # Google 字体，圆润的无衬线体
 
         # 代码字体
         nerd-fonts.liberation
