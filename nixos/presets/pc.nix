@@ -68,7 +68,11 @@
     # 打印机
     services.printing.enable = true;
 
-    # xdg user dir
+    # 基于 Linux 内核模式设置（KMS）的用户空间虚拟控制台终端模拟器，
+    # 替代传统位于 Linux 内核中的虚拟终端实现，且无需依赖 Xorg 或 Wayland 等图形服务器。
+    # 用于在系统无法启动的时候更好的 tty
+    services.kmscon.enable = true;
+
     environment.systemPackages = with pkgs; [
       xdg-user-dirs
     ];
